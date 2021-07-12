@@ -28,7 +28,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "lint": "yarn eslint src --ext .js,.ts,.tsx",
+    "lint:fix": "yarn eslint --fix src --ext .js,.ts,.tsx",
+    "types:check": "tsc -p tsconfig.json --noEmit "
   },
   "browserslist": {
     "production": [

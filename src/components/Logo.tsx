@@ -19,13 +19,11 @@ const Text = styled.div`
   height: 48px;
 `;
 
-function Logo(): JSX.Element {
-  return (
-    <Wrapper>
-      <img src={LogoSvg} alt="" />
-      <Text>РОССИЙСКАЯ АССОЦИАЦИЯ ДИСК-ГОЛЬФА</Text>
-    </Wrapper>
-  );
-}
+const Logo = (): JSX.Element => (
+  <Wrapper>
+    <img src={LogoSvg} alt="" />
+    <Text>РОССИЙСКАЯ АССОЦИАЦИЯ ДИСК-ГОЛЬФА</Text>
+  </Wrapper>
+);
 
 export default Logo;

@@ -20,3 +20,15 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn lint`
+
+Check files in src directory with eslint.
+
+### `yarn lint:fix`
+
+Fix eslint errors that can be fixed automatically.
+
+### `yarn types:check`
+
+Check files in src directory with typescript to find type errors.
