@@ -57,6 +57,7 @@ const ButtonsContact = styled.div`
 
 const LogoWrapper = styled.div`
   grid-area: logo;
+  margin: auto;
 `;
 
 const Header = (): JSX.Element => (

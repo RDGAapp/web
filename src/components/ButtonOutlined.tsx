@@ -8,6 +8,7 @@ const Button = styled.button`
   font-size: 12px;
   font-weight: 500;
   padding: 8px 16px;
+  cursor: pointer;
 `;
 
 interface ButtonOutdatedProps {

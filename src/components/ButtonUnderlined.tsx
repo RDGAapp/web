@@ -7,6 +7,7 @@ const Button = styled.button`
   font-size: 12px;
   font-weight: 500;
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 interface ButtonUnderlinedProps {
