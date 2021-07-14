@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0 60px 60px 0;
+  margin: 0;
 `;
 
 const TextStyle = css`
