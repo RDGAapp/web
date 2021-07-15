@@ -2,11 +2,14 @@ const theme = {
   breakpoints: {
     tablet: '@media (max-width: 1024px)',
     mobile: '@media (max-width: 767px)',
+    tabletPx: 1024,
+    mobilePx: 767,
   },
   colors: {
     background: '#E5E5E5',
     yellow: '#FBCD04',
     blue: '#2A74ED',
+    menuShadow: '#F3F3F3',
   },
 };
 

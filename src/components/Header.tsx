@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import Logo from 'components/Logo';
-import ButtonOutlined from './ButtonOutlined';
-import ButtonUnderlined from './ButtonUnderlined';
+import { Link } from 'react-router-dom';
+import LinkOutlined from 'components/LinkOutlined';
+import HashLinkOutlined from 'components/HashLinkOutlined';
+import ButtonUnderlined from 'components/ButtonUnderlined';
+import routes from 'helpers/routes';
 
 const Wrapper = styled.div`
   display: grid;
@@ -9,7 +12,7 @@ const Wrapper = styled.div`
   grid-template-rows: 1fr;
   grid-template-areas:
           'commercial logo contact';
-  margin: 25px 20px;
+  margin: 20px;
   
   ${({ theme }) => theme.breakpoints.tablet} {
     grid-template-columns: repeat(2, 1fr);
@@ -55,21 +58,25 @@ const ButtonsContact = styled.div`
   }
 `;
 
-const LogoWrapper = styled.div`
+const LogoWrapper = styled(Link)`
   grid-area: logo;
   margin: auto;
+  text-decoration: none;
+  color: black;
 `;
 
 const Header = (): JSX.Element => (
   <Wrapper>
     <ButtonsCommercial>
-      <ButtonOutlined text="Магазин" />
-      <ButtonOutlined text="Компаниям" />
-      <ButtonOutlined text="Спонсорство" />
+      <LinkOutlined route={routes.SHOP} text="Магазин" />
+      <LinkOutlined route={routes.COMPANIES} text="Компаниям" />
+      <LinkOutlined route={routes.SPONSORSHIP} text="Спонсорство" />
     </ButtonsCommercial>
-    <LogoWrapper><Logo /></LogoWrapper>
+    <LogoWrapper to={routes.HOME}>
+      <Logo />
+    </LogoWrapper>
     <ButtonsContact>
-      <ButtonOutlined text="Контакты" />
+      <HashLinkOutlined route={routes.CONTACTS} text="Контакты" />
       <ButtonUnderlined text="Выберите город" />
     </ButtonsContact>
   </Wrapper>
