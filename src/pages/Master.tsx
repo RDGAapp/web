@@ -22,6 +22,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   max-width: 60%;
+  gap: 32px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 100%;
@@ -33,7 +34,6 @@ const StyledHeader = styled.h3`
   font-size: 36px;
   font-weight: 600;
   line-height: 43px;
-  margin: 32px 0;
 `;
 
 const StyledImage = styled.div`
@@ -73,6 +73,7 @@ const Master = (): JSX.Element => (
             {'Ближайший мастер класс в твоем городе:'.toUpperCase()}
           </StyledHeader>
           {/* TODO: create CitySelector with localStore management */}
+          Здесь будет селектор
         </TextContainer>
         <StyledImage />
       </ArticleContainer>

@@ -8,7 +8,10 @@ enum routes {
   SHOP = '/shop',
   COMPANIES = '/companies',
   SPONSORSHIP = '/sponsorship',
-  CONTACTS = '#contacts'
+  CONTACTS = '#contacts',
+  MENU = '#menu',
+  CHARITY = '#charity',
+  SHOP_FORM = '#buy',
 }
 
 export default routes;

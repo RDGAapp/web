@@ -21,30 +21,38 @@ const Wrapper = styled.div<{ image: string }>`
 
 const Banner = (): JSX.Element => {
   const history = useHistory();
-  const [bannerImage, setBannerImage] = useState<string>('');
-  const [bannerText, setBannerText] = useState<string>('');
+  const [image, setImage] = useState<string>('');
+  const [text, setText] = useState<string>('');
+  const [link, setLink] = useState<string>('');
 
   useEffect(() => {
     switch (history.location.pathname) {
       case routes.SHOP:
-        setBannerImage(ShopBackground);
-        setBannerText('Купить');
+        setImage(ShopBackground);
+        setText('Купить');
+        setLink(`${routes.SHOP_FORM}`);
         break;
       case routes.SPONSORSHIP:
+        setImage(SponsorBackground);
+        setText('Сделать пожертвование');
+        setLink(`${routes.CHARITY}`);
+        break;
       case routes.COMPANIES:
-        setBannerImage(SponsorBackground);
-        setBannerText('Заказать мероприятие');
+        setImage(SponsorBackground);
+        setText('Заказать мероприятие');
+        setLink(`${routes.CONTACTS}`);
         break;
       default:
-        setBannerImage(MainBackground);
-        setBannerText('Пройти мастер-класс');
+        setImage(MainBackground);
+        setText('Пройти мастер-класс');
+        setLink(`${routes.MASTER}${routes.MENU}`);
         break;
     }
   }, [history.location.pathname]);
 
   return (
-    <Wrapper image={bannerImage}>
-      <ButtonAgitation text={bannerText} />
+    <Wrapper image={image}>
+      <ButtonAgitation text={text} link={link} />
     </Wrapper>
   );
 };

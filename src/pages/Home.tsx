@@ -39,6 +39,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   max-width: 60%;
+  gap: 32px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 100%;

@@ -59,7 +59,7 @@ const Menu = (): JSX.Element => {
   const history = useHistory();
 
   return (
-    <Wrapper>
+    <Wrapper id="menu">
       {menuItemsList.map((menuItem, index) => (
         <MenuItem
           key={menuItem.name}

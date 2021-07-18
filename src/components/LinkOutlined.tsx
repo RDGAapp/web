@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
-const Button = styled(Link)`
+const Button = styled(Link)<{ active: boolean }>`
   background: none;
   border: 1px solid black;
   border-radius: 40px;
@@ -12,6 +13,7 @@ const Button = styled(Link)`
   color: black;
   padding: 8px 16px;
   cursor: pointer;
+  ${({ active, theme }) => active && `background-color: ${theme.colors.yellow};`};
   
   :hover {
     background-color: ${({ theme }) => theme.colors.yellow};
@@ -24,10 +26,14 @@ interface ButtonOutlinedProps {
   route: string,
 }
 
-const LinkOutlined = ({ text, route }: ButtonOutlinedProps): JSX.Element => (
-  <Button to={route}>
-    {text.toUpperCase()}
-  </Button>
-);
+const LinkOutlined = ({ text, route }: ButtonOutlinedProps): JSX.Element => {
+  const history = useHistory();
+
+  return (
+    <Button to={route} active={history.location.pathname === route}>
+      {text.toUpperCase()}
+    </Button>
+  );
+};
 
 export default LinkOutlined;
