@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Layout from 'components/Layout';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
 import ContentContainer from 'components/ContentContainer';
@@ -58,7 +57,7 @@ const StyledImage = styled.div`
 `;
 
 const Master = (): JSX.Element => (
-  <Layout>
+  <>
     <PageHeader text="Пройти Мастер-класс" />
     <ContentContainer>
       <ArticleContainer>
@@ -78,7 +77,7 @@ const Master = (): JSX.Element => (
         <StyledImage />
       </ArticleContainer>
     </ContentContainer>
-  </Layout>
+  </>
 );
 
 export default Master;

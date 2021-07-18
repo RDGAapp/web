@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ContentContainer from 'components/ContentContainer';
-import Layout from 'components/Layout';
 import PageHeader from 'components/PageHeader';
 import VideoLink from 'components/VideoLink';
 import Text from 'components/Text';
@@ -60,7 +59,7 @@ const StyledImage = styled.div`
 `;
 
 const Home = (): JSX.Element => (
-  <Layout>
+  <>
     <PageHeader text="Что такое диск-гольф? Видео — лучше слов: узнай за 2 минуты!" />
     <ContentContainer>
       <VideoContainer>
@@ -114,7 +113,7 @@ const Home = (): JSX.Element => (
         <StyledImage />
       </ArticleContainer>
     </ContentContainer>
-  </Layout>
+  </>
 );
 
 export default Home;

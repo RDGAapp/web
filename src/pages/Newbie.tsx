@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { HashLink as Link } from 'react-router-hash-link';
-import Layout from 'components/Layout';
 import PageHeader from 'components/PageHeader';
 import ContentContainer from 'components/ContentContainer';
 import Text from 'components/Text';
@@ -42,6 +41,7 @@ const Header = styled.h3`
 
 const StyledHeader = styled(Header)`
   font-size: 36px;
+  font-style: normal;
   line-height: 43px;
 `;
 
@@ -60,7 +60,7 @@ const StyledImage = styled.div`
 `;
 
 const Newbie = (): JSX.Element => (
-  <Layout>
+  <>
     <PageHeader text="Участвовать в турнире для начинающих!" />
     <ContentContainer>
       <ArticleContainer>
@@ -98,7 +98,7 @@ const Newbie = (): JSX.Element => (
         <StyledImage />
       </ArticleContainer>
     </ContentContainer>
-  </Layout>
+  </>
 );
 
 export default Newbie;

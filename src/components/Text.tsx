@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const TextDiv = styled.div`
   font-family: Inter, sans-serif;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 29px;
   margin: 0;
 `;

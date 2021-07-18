@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Layout from 'components/Layout';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
 import ContentContainer from 'components/ContentContainer';
@@ -24,6 +23,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   max-width: 60%;
+  gap: 32px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 100%;
@@ -45,7 +45,7 @@ const StyledImage = styled.div`
 `;
 
 const Train = (): JSX.Element => (
-  <Layout>
+  <>
     <PageHeader text="Играть самому и с друзьями" />
     <ContentContainer>
       <ArticleContainer>
@@ -72,7 +72,7 @@ const Train = (): JSX.Element => (
         <StyledImage />
       </ArticleContainer>
     </ContentContainer>
-  </Layout>
+  </>
 );
 
 export default Train;
