@@ -5,6 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import Home from 'pages/Home';
+import Master from 'pages/Master';
 import theme from 'helpers/theme';
 import routes from './helpers/routes';
 
@@ -20,7 +21,15 @@ const App = (): JSX.Element => (
     <GlobalStyle />
     <BrowserRouter>
       <Switch>
-        <Route path={routes.HOME} component={Home} />
+        <Route exact path={routes.HOME} component={Home} />
+        <Route exact path={routes.MASTER} component={Master} />
+        <Route exact path={routes.TRAINING} component={Home} />
+        <Route exact path={routes.NEWBIE} component={Home} />
+        <Route exact path={routes.PRO} component={Home} />
+        <Route exact path={routes.INTERNATIONAL} component={Home} />
+        <Route exact path={routes.SHOP} component={Home} />
+        <Route exact path={routes.COMPANIES} component={Home} />
+        <Route exact path={routes.SPONSORSHIP} component={Home} />
       </Switch>
     </BrowserRouter>
   </ThemeProvider>

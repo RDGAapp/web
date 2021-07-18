@@ -1,23 +1,15 @@
 import styled from 'styled-components';
+import ContentContainer from 'components/ContentContainer';
 import Layout from 'components/Layout';
 import PageHeader from 'components/PageHeader';
 import VideoLink from 'components/VideoLink';
+import Text from 'components/Text';
+import SubHeader from 'components/SubHeader';
+import RulesLink from 'components/RulesLink';
 import RussiaVideo from 'assets/russia-video.png';
 import AmericaVideo from 'assets/america-video.png';
 import { ReactComponent as File } from 'assets/file.svg';
 import Image from 'assets/main-page-img.png';
-// @ts-ignore pdf import
-import DiscGolfRules from 'assets/disc-golf-rules-2018.pdf';
-
-const Content = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 60px 120px;
-
-  ${({ theme }) => theme.breakpoints.mobile} {
-    margin: 0 24px 120px;
-  }
-`;
 
 const VideoContainer = styled.div`
   display: flex;
@@ -54,61 +46,6 @@ const TextContainer = styled.div`
   }
 `;
 
-const Text = styled.div`
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 29px;
-  margin: 0;
-`;
-
-const SubHeader = styled.h3`
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
-  margin: 32px 0;
-`;
-
-const RulesLink = styled.a`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  color: black;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-style: italic;
-  font-weight: 600;
-  line-height: 24px;
-  text-decoration: none;
-  
-  p {
-    margin: 0;
-    text-decoration: underline;
-
-    ${({ theme }) => theme.breakpoints.mobile} {
-      width: 50%;
-    }
-  }
-`;
-
-const LinkDescription = styled.div`
-  display: flex;
-  align-items: flex-start;
-  font-family: Inter, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px;
-  margin-left: 30px;
-  gap: 15px;
-
-  ${({ theme }) => theme.breakpoints.mobile} {
-    justify-content: flex-end;
-    width: 50%;
-  }
-`;
-
 const StyledImage = styled.div`
   width: 530px;
   height: 580px;
@@ -125,7 +62,7 @@ const StyledImage = styled.div`
 const Home = (): JSX.Element => (
   <Layout>
     <PageHeader text="Что такое диск-гольф? Видео — лучше слов: узнай за 2 минуты!" />
-    <Content>
+    <ContentContainer>
       <VideoContainer>
         <VideoLink
           header="В России"
@@ -148,9 +85,7 @@ const Home = (): JSX.Element => (
             во-вторых, очень приятно, когда получается бросить всё дальше и точнее, а дополнительные
             яркие эмоции - это возбуждение и азарт от спортивной конкуренции во время соревнований.
           </Text>
-          <SubHeader>
-            {'А теперь в 2-х словах о правилах:'.toUpperCase()}
-          </SubHeader>
+          <SubHeader>А теперь в 2-х словах о правилах:</SubHeader>
           <Text>
             Цель игры: попасть в мишень (корзину), сделав меньшее количество бросков.
             Краткие (очень) правила игры:
@@ -174,17 +109,11 @@ const Home = (): JSX.Element => (
               </li>
             </ul>
           </Text>
-          <RulesLink href={DiscGolfRules} download="disc-golf-rules">
-            <p>{'Скачать полные правила диск-гольфа'.toUpperCase()}</p>
-            <LinkDescription>
-              <File width={24} height={24} />
-              .pdf / 513 Кб
-            </LinkDescription>
-          </RulesLink>
+          <RulesLink />
         </TextContainer>
         <StyledImage />
       </ArticleContainer>
-    </Content>
+    </ContentContainer>
   </Layout>
 );
 

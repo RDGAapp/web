@@ -4,7 +4,7 @@ import Banner from 'components/Banner';
 import Menu from 'components/Menu';
 
 interface LayoutProps {
-  children: JSX.Element[],
+  children: JSX.Element[] | JSX.Element,
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => (
