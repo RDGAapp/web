@@ -9,7 +9,7 @@ const TextDiv = styled.div`
 `;
 
 interface TextProps {
-  children: string | Array<string | JSX.Element>,
+  children: string | JSX.Element | Array<string | JSX.Element>,
 }
 
 const Text = ({ children }: TextProps): JSX.Element => (

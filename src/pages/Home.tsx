@@ -8,7 +8,6 @@ import SubHeader from 'components/SubHeader';
 import RulesLink from 'components/RulesLink';
 import RussiaVideo from 'assets/russia-video.png';
 import AmericaVideo from 'assets/america-video.png';
-import { ReactComponent as File } from 'assets/file.svg';
 import Image from 'assets/main-page-img.png';
 
 const VideoContainer = styled.div`
