@@ -12,11 +12,16 @@ import Master from 'pages/Master';
 import Train from 'pages/Train';
 import Newbie from 'pages/Newbie';
 import Pro from 'pages/Pro';
+import International from 'pages/International';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
     width: 100%;
     margin: 0;
+  }
+
+  svg {
+    flex-shrink: 0;
   }
 `;
 
@@ -31,7 +36,7 @@ const App = (): JSX.Element => (
           <Route exact path={routes.TRAINING} component={Train} />
           <Route exact path={routes.NEWBIE} component={Newbie} />
           <Route exact path={routes.PRO} component={Pro} />
-          <Route exact path={routes.INTERNATIONAL} component={Home} />
+          <Route exact path={routes.INTERNATIONAL} component={International} />
           <Route exact path={routes.SHOP} component={Home} />
           <Route exact path={routes.COMPANIES} component={Home} />
           <Route exact path={routes.SPONSORSHIP} component={Home} />
