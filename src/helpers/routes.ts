@@ -10,7 +10,7 @@ enum routes {
   SPONSORSHIP = '/sponsorship',
   CONTACTS = '#contacts',
   MENU = '#menu',
-  CHARITY = '#charity',
+  SPONSOR = '#sponsor',
   SHOP_FORM = '#buy',
 }
 

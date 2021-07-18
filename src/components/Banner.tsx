@@ -35,7 +35,7 @@ const Banner = (): JSX.Element => {
       case routes.SPONSORSHIP:
         setImage(SponsorBackground);
         setText('Сделать пожертвование');
-        setLink(`${routes.CHARITY}`);
+        setLink(`${routes.SPONSOR}`);
         break;
       case routes.COMPANIES:
         setImage(SponsorBackground);

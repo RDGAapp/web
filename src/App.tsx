@@ -13,6 +13,8 @@ import Train from 'pages/Train';
 import Newbie from 'pages/Newbie';
 import Pro from 'pages/Pro';
 import International from 'pages/International';
+import Companies from 'pages/Companies';
+import Sponsorship from 'pages/Sponsorship';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -38,8 +40,8 @@ const App = (): JSX.Element => (
           <Route exact path={routes.PRO} component={Pro} />
           <Route exact path={routes.INTERNATIONAL} component={International} />
           <Route exact path={routes.SHOP} component={Home} />
-          <Route exact path={routes.COMPANIES} component={Home} />
-          <Route exact path={routes.SPONSORSHIP} component={Home} />
+          <Route exact path={routes.COMPANIES} component={Companies} />
+          <Route exact path={routes.SPONSORSHIP} component={Sponsorship} />
         </Layout>
       </Switch>
     </BrowserRouter>

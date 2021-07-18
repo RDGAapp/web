@@ -33,6 +33,7 @@ const StyledHeader = styled.h3`
   font-size: 36px;
   font-weight: 600;
   line-height: 43px;
+  margin: 0;
 `;
 
 const StyledImage = styled.div`

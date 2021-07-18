@@ -58,7 +58,7 @@ const Train = (): JSX.Element => (
             Для игры каждому участнику понадобится:
           </SubHeader>
           <Text>
-            <ul style={{ margin: '0 0 33px' }}>
+            <ul style={{ margin: '0' }}>
               <li>
                 Минимум один диск для игры;
               </li>

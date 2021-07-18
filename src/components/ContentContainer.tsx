@@ -4,6 +4,7 @@ const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 60px 120px;
+  gap: 24px;
 
   ${({ theme }) => theme.breakpoints.mobile} {
     margin: 0 24px 120px;

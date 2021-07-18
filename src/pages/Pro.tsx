@@ -12,7 +12,7 @@ const StyledImage = styled.div`
   flex-grow: 0;
   background: center url(${Image});
   background-size: 1360px 605px;
-  margin: 25px auto 90px;
+  margin: 0 auto;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 750px;
