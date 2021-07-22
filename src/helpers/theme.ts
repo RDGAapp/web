@@ -9,6 +9,8 @@ const theme = {
     background: '#E5E5E5',
     yellow: '#FBCD04',
     blue: '#2A74ED',
+    red: '#FF7F7F',
+    green: '#90EE90',
     menuShadow: '#F3F3F3',
   },
 };
