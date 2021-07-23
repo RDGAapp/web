@@ -12,10 +12,11 @@ const Button = styled.button`
 
 interface ButtonUnderlinedProps {
   text: string,
+  onClick: () => void,
 }
 
-const ButtonUnderlined = ({ text }: ButtonUnderlinedProps): JSX.Element => (
-  <Button>
+const ButtonUnderlined = ({ text, onClick }: ButtonUnderlinedProps): JSX.Element => (
+  <Button onClick={onClick}>
     {text.toUpperCase()}
   </Button>
 );

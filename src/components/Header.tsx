@@ -5,6 +5,7 @@ import LinkOutlined from 'components/LinkOutlined';
 import HashLinkOutlined from 'components/HashLinkOutlined';
 import ButtonUnderlined from 'components/ButtonUnderlined';
 import routes from 'helpers/routes';
+import useCity from 'helpers/useCity';
 
 const Wrapper = styled.div`
   display: grid;
@@ -65,21 +66,28 @@ const LogoWrapper = styled(Link)`
   color: black;
 `;
 
-const Header = (): JSX.Element => (
-  <Wrapper>
-    <ButtonsCommercial>
-      <LinkOutlined route={routes.SHOP} text="Магазин" />
-      <LinkOutlined route={routes.COMPANIES} text="Компаниям" />
-      <LinkOutlined route={routes.SPONSORSHIP} text="Спонсорство" />
-    </ButtonsCommercial>
-    <LogoWrapper to={routes.HOME}>
-      <Logo />
-    </LogoWrapper>
-    <ButtonsContact>
-      <HashLinkOutlined route={routes.CONTACTS} text="Контакты" />
-      <ButtonUnderlined text="Выберите город" />
-    </ButtonsContact>
-  </Wrapper>
-);
+interface HeaderProps {
+  openCitySelect: () => void,
+}
+
+const Header = ({ openCitySelect }: HeaderProps): JSX.Element => {
+  const city = useCity();
+  return (
+    <Wrapper>
+      <ButtonsCommercial>
+        <LinkOutlined route={routes.SHOP} text="Магазин" />
+        <LinkOutlined route={routes.COMPANIES} text="Компаниям" />
+        <LinkOutlined route={routes.SPONSORSHIP} text="Спонсорство" />
+      </ButtonsCommercial>
+      <LogoWrapper to={routes.HOME}>
+        <Logo />
+      </LogoWrapper>
+      <ButtonsContact>
+        <HashLinkOutlined route={routes.CONTACTS} text="Контакты" />
+        <ButtonUnderlined text={city?.toUpperCase() || 'Выберите город'} onClick={openCitySelect} />
+      </ButtonsContact>
+    </Wrapper>
+  );
+};
 
 export default Header;

@@ -7,6 +7,7 @@ import routes from 'helpers/routes';
 
 interface LayoutProps {
   children: JSX.Element[] | JSX.Element,
+  openCitySelect: () => void,
 }
 
 const shouldNotShowMenuSet = new Set<string>([
@@ -15,12 +16,12 @@ const shouldNotShowMenuSet = new Set<string>([
   routes.SPONSORSHIP,
 ]);
 
-const Layout = ({ children }: LayoutProps): JSX.Element => {
+const Layout = ({ children, openCitySelect }: LayoutProps): JSX.Element => {
   const history = useHistory();
 
   return (
     <>
-      <Header />
+      <Header openCitySelect={openCitySelect} />
       <Banner />
       {!shouldNotShowMenuSet.has(history.location.pathname) && <Menu />}
       {children}
