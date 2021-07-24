@@ -69,7 +69,9 @@ const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
           {'Ближайший PRO-Турнир в твоем городе:'.toUpperCase()}
         </Header>
         <CityContainer>
-          <CitySelect onClick={openCitySelect} />
+          <div>
+            <CitySelect onClick={openCitySelect} />
+          </div>
           {city && (<CityEvent />)}
         </CityContainer>
       </ContentContainer>
