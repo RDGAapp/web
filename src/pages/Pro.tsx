@@ -3,6 +3,9 @@ import PageHeader from 'components/PageHeader';
 import ContentContainer from 'components/ContentContainer';
 import Text from 'components/Text';
 import Image from 'assets/pro-img.png';
+import CitySelect from 'components/CitySelect';
+import CityEvent from 'components/CityEvent';
+import useCity from 'helpers/useCity';
 
 const StyledImage = styled.div`
   width: 100%;
@@ -31,33 +34,47 @@ const Header = styled.h3`
   margin: 0;
 `;
 
-const Pro = (): JSX.Element => (
-  <>
-    <PageHeader text="Участвовать в PRO-турнире!" />
-    <ContentContainer>
-      <Text>
-        Диск-гольф - это твоё, ты хочешь бросать диск точнее и дальше,
-        ты перерос турниры для начинающих игроков, твой уровень игры соответствует
-        желтому браслету и выше.... ЗдОрово! Ждём тебя на турнирах для профессионалов.
-        <br />
-        Диски для игры: ты можешь купить или взять в аренду.
-        <br />
-        Стоимость участия: 1000 рублей.
-        <br />
-        Ждём тебя на каждом турнире из расписания.
-        <br />
-        Будь во время! Мы начинаем в указанное время!
-      </Text>
-      <StyledImage />
-      <Header>
-        {'Ближайший PRO-Турнир в твоем городе:'.toUpperCase()}
-      </Header>
-      <>
-        {/* TODO: create CitySelector with localStore management */}
-        Здесь будет селектор
-      </>
-    </ContentContainer>
-  </>
-);
+const CityContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+interface ProProps {
+  openCitySelect: () => void,
+}
+
+const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
+  const city = useCity();
+
+  return (
+    <>
+      <PageHeader text="Участвовать в PRO-турнире!" />
+      <ContentContainer>
+        <Text>
+          Диск-гольф - это твоё, ты хочешь бросать диск точнее и дальше,
+          ты перерос турниры для начинающих игроков, твой уровень игры соответствует
+          желтому браслету и выше.... ЗдОрово! Ждём тебя на турнирах для профессионалов.
+          <br />
+          Диски для игры: ты можешь купить или взять в аренду.
+          <br />
+          Стоимость участия: 1000 рублей.
+          <br />
+          Ждём тебя на каждом турнире из расписания.
+          <br />
+          Будь во время! Мы начинаем в указанное время!
+        </Text>
+        <StyledImage />
+        <Header>
+          {'Ближайший PRO-Турнир в твоем городе:'.toUpperCase()}
+        </Header>
+        <CityContainer>
+          <CitySelect onClick={openCitySelect} />
+          {city && (<CityEvent />)}
+        </CityContainer>
+      </ContentContainer>
+    </>
+  );
+};
 
 export default Pro;

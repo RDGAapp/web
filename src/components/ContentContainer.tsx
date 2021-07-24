@@ -12,7 +12,7 @@ const Content = styled.div`
 `;
 
 interface ContentContainerProps {
-  children: JSX.Element | JSX.Element[],
+  children: JSX.Element | Array<JSX.Element | null | string>,
 }
 
 const ContentContainer = ({ children }: ContentContainerProps): JSX.Element => (

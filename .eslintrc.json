@@ -60,6 +60,7 @@
             "ts-nocheck": "allow-with-description",
             "ts-check": "allow-with-description",
             "minimumDescriptionLength": 10
-        }]
+        }],
+        "react/jsx-props-no-spreading": "off"
     }
 }

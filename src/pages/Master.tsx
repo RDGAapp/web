@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
 import ContentContainer from 'components/ContentContainer';
+import CitySelect from 'components/CitySelect';
+import useCity from 'helpers/useCity';
+import CityEvent from 'components/CityEvent';
 import Image from 'assets/master-img.png';
 
 const ArticleContainer = styled.div`
@@ -57,28 +60,45 @@ const StyledImage = styled.div`
   }
 `;
 
-const Master = (): JSX.Element => (
-  <>
-    <PageHeader text="Пройти Мастер-класс" />
-    <ContentContainer>
-      <ArticleContainer>
-        <TextContainer>
-          <Text>
-            В 2021 году мы регулярно и бесплатно проводим мастер-классы!
-            Приходи один или с друзьями - с собой ничего не нужно!
-            Научись красиво и метко кидать фрисби, насладись красотой
-            запущенного тобой диска - это действительно клёво!
-          </Text>
-          <StyledHeader>
-            {'Ближайший мастер класс в твоем городе:'.toUpperCase()}
-          </StyledHeader>
-          {/* TODO: create CitySelector with localStore management */}
-          Здесь будет селектор
-        </TextContainer>
-        <StyledImage />
-      </ArticleContainer>
-    </ContentContainer>
-  </>
-);
+const CityContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+interface MasterProps {
+  openCitySelect: () => void,
+}
+
+const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
+  const city = useCity();
+  return (
+    <>
+      <PageHeader text="Пройти Мастер-класс" />
+      <ContentContainer>
+        <ArticleContainer>
+          <TextContainer>
+            <Text>
+              В 2021 году мы регулярно и бесплатно проводим мастер-классы!
+              Приходи один или с друзьями - с собой ничего не нужно!
+              Научись красиво и метко кидать фрисби, насладись красотой
+              запущенного тобой диска - это действительно клёво!
+            </Text>
+            <StyledHeader>
+              {'Ближайший мастер класс в твоем городе:'.toUpperCase()}
+            </StyledHeader>
+            <CityContainer>
+              <div>
+                <CitySelect onClick={openCitySelect} />
+              </div>
+              {city && (<CityEvent />)}
+            </CityContainer>
+          </TextContainer>
+          <StyledImage />
+        </ArticleContainer>
+      </ContentContainer>
+    </>
+  );
+};
 
 export default Master;

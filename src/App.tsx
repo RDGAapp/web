@@ -39,10 +39,22 @@ const App = (): JSX.Element => {
         <Switch>
           <Layout openCitySelect={() => setOpen(true)}>
             <Route exact path={routes.HOME} component={Home} />
-            <Route exact path={routes.MASTER} component={Master} />
+            <Route
+              exact
+              path={routes.MASTER}
+              render={(props) => (<Master {...props} openCitySelect={() => setOpen(true)} />)}
+            />
             <Route exact path={routes.TRAINING} component={Train} />
-            <Route exact path={routes.NEWBIE} component={Newbie} />
-            <Route exact path={routes.PRO} component={Pro} />
+            <Route
+              exact
+              path={routes.NEWBIE}
+              render={(props) => (<Newbie {...props} openCitySelect={() => setOpen(true)} />)}
+            />
+            <Route
+              exact
+              path={routes.PRO}
+              render={(props) => (<Pro {...props} openCitySelect={() => setOpen(true)} />)}
+            />
             <Route exact path={routes.INTERNATIONAL} component={International} />
             <Route exact path={routes.SHOP} component={Shop} />
             <Route exact path={routes.COMPANIES} component={Companies} />

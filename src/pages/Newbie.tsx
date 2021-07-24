@@ -5,6 +5,9 @@ import ContentContainer from 'components/ContentContainer';
 import Text from 'components/Text';
 import routes from 'helpers/routes';
 import Image from 'assets/newbie-img.png';
+import CitySelect from 'components/CitySelect';
+import CityEvent from 'components/CityEvent';
+import useCity from 'helpers/useCity';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -59,46 +62,65 @@ const StyledImage = styled.div`
   }
 `;
 
-const Newbie = (): JSX.Element => (
-  <>
-    <PageHeader text="Участвовать в турнире для начинающих!" />
-    <ContentContainer>
-      <ArticleContainer>
-        <TextContainer>
-          <Text>
-            Ты только начинаешь играть в диск-гольф? Тогда обязательно приходи на наши турниры!
-            <br />
-            Турнир - это азарт и драйв, здесь буря эмоций борются с выдержкой и холодным расчетом,
-            огромная мотивация к хорошей игре, море опыта и отличных знакомств!
-          </Text>
-          <Header>
-            {'Внимание! К турнирам допускаются игроки, прошедшие минимум два '.toUpperCase()}
-            <Link
-              to={`${routes.MASTER}${routes.MENU}`}
-              style={{ color: 'black' }}
-              smooth
-            >
-              {'мастер-класса!'.toUpperCase()}
-            </Link>
-          </Header>
-          <Text>
-            В Москве, Санкт-Петербурге и Екатеринбурге действует рейтинговая система
-            отраженная в цветных браслетах. Участвуй в турнирах и мастер-классах,
-            приходи на тренировки - повышай уровень игры и побеждай в турнирах!
-          </Text>
-          <Text>
-            Ждём тебя на каждом турнире из расписания. Будь вовремя, мы начинаем в указанное время!
-          </Text>
-          <StyledHeader>
-            {'Ближайший Турнир в твоем городе:'.toUpperCase()}
-          </StyledHeader>
-          {/* TODO: create CitySelector with localStore management */}
-          Здесь будет селектор
-        </TextContainer>
-        <StyledImage />
-      </ArticleContainer>
-    </ContentContainer>
-  </>
-);
+const CityContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+interface NewbieProps {
+  openCitySelect: () => void,
+}
+
+const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
+  const city = useCity();
+
+  return (
+    <>
+      <PageHeader text="Участвовать в турнире для начинающих!" />
+      <ContentContainer>
+        <ArticleContainer>
+          <TextContainer>
+            <Text>
+              Ты только начинаешь играть в диск-гольф? Тогда обязательно приходи на наши турниры!
+              <br />
+              Турнир - это азарт и драйв, здесь буря эмоций борются с выдержкой и холодным расчетом,
+              огромная мотивация к хорошей игре, море опыта и отличных знакомств!
+            </Text>
+            <Header>
+              {'Внимание! К турнирам допускаются игроки, прошедшие минимум два '.toUpperCase()}
+              <Link
+                to={`${routes.MASTER}${routes.MENU}`}
+                style={{ color: 'black' }}
+                smooth
+              >
+                {'мастер-класса!'.toUpperCase()}
+              </Link>
+            </Header>
+            <Text>
+              В Москве, Санкт-Петербурге и Екатеринбурге действует рейтинговая система
+              отраженная в цветных браслетах. Участвуй в турнирах и мастер-классах,
+              приходи на тренировки - повышай уровень игры и побеждай в турнирах!
+            </Text>
+            <Text>
+              Ждём тебя на каждом турнире из расписания.
+              Будь вовремя, мы начинаем в указанное время!
+            </Text>
+            <StyledHeader>
+              {'Ближайший Турнир в твоем городе:'.toUpperCase()}
+            </StyledHeader>
+            <CityContainer>
+              <div>
+                <CitySelect onClick={openCitySelect} />
+              </div>
+              {city && (<CityEvent />)}
+            </CityContainer>
+          </TextContainer>
+          <StyledImage />
+        </ArticleContainer>
+      </ContentContainer>
+    </>
+  );
+};
 
 export default Newbie;

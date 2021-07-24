@@ -32,7 +32,14 @@ const ListElement = styled.div<{ selected: boolean }>`
   font-size: 20px;
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
   line-height: 24px;
+  transition: all 0.3s ease;
+
+  ${({ selected }) => !selected && `
   cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
+  `}
 
   svg {
     margin-right: 25px;
