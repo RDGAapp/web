@@ -1,6 +1,6 @@
 {
   "name": "disc-golf-react",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@types/node": "12.20.16",
