@@ -3,9 +3,10 @@ import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
 import ContentContainer from 'components/ContentContainer';
 import CitySelect from 'components/CitySelect';
-import useCity from 'helpers/useCity';
+import useShortCity from 'helpers/useShortCity';
 import CityEvent from 'components/CityEvent';
 import Image from 'assets/master-img.png';
+import useStorage from '../helpers/useStorage';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -71,7 +72,8 @@ interface MasterProps {
 }
 
 const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
-  const city = useCity();
+  const city = useShortCity();
+  const { master } = useStorage();
   return (
     <>
       <PageHeader text="Пройти Мастер-класс" />
@@ -91,7 +93,7 @@ const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
               <div>
                 <CitySelect onClick={openCitySelect} />
               </div>
-              {city && (<CityEvent />)}
+              {city && (<CityEvent data={master.cities[city]} />)}
             </CityContainer>
           </TextContainer>
           <StyledImage />

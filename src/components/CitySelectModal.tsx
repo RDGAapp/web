@@ -57,6 +57,7 @@ const cities = [
   'Москва',
   'Нижний Новгород',
   'Белгород',
+  'Псков',
 ];
 
 const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element => {

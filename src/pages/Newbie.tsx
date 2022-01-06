@@ -7,7 +7,8 @@ import routes from 'helpers/routes';
 import Image from 'assets/newbie-img.png';
 import CitySelect from 'components/CitySelect';
 import CityEvent from 'components/CityEvent';
-import useCity from 'helpers/useCity';
+import useShortCity from 'helpers/useShortCity';
+import useStorage from '../helpers/useStorage';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -73,7 +74,8 @@ interface NewbieProps {
 }
 
 const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
-  const city = useCity();
+  const city = useShortCity();
+  const { newbie } = useStorage();
 
   return (
     <>
@@ -113,7 +115,7 @@ const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
               <div>
                 <CitySelect onClick={openCitySelect} />
               </div>
-              {city && (<CityEvent />)}
+              {city && (<CityEvent data={newbie.cities[city]} />)}
             </CityContainer>
           </TextContainer>
           <StyledImage />

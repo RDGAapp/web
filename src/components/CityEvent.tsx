@@ -31,26 +31,28 @@ const Badge = styled.div`
   padding: 12px 20px;
 `;
 
-const CityEvent = (): JSX.Element => (
+interface Props {
+  data: DgEvent,
+}
+
+const CityEvent = ({ data }: Props): JSX.Element => (
   <>
     <CityHeader>
       <Clock />
       ВРЕМЯ:
     </CityHeader>
     <CityContainer>
-      <Badge>ПТ</Badge>
-      <Badge>СБ</Badge>
-      <Badge>ВС</Badge>
-      <Badge>18:00</Badge>
+      { data.eventData.days.map((day) => <Badge>{ day.toUpperCase() }</Badge>) }
+      <Badge>{ data.eventData.time }</Badge>
     </CityContainer>
     <CityHeader>
       <Map />
       МЕСТО:
     </CityHeader>
     <CityContainer>
-      <Badge>СЕСТРОРЕЦК</Badge>
-      <Badge>КУРОРТНАЯ УЛИЦА, 27</Badge>
-      <Badge>ШИКАРНЫЙ ГАЗОН У ЗАПРАВКИ ЛУКОЙЛ</Badge>
+      <Badge>{ data.eventData.place.town.toUpperCase() }</Badge>
+      <Badge>{ data.eventData.place.street.toUpperCase() }</Badge>
+      <Badge>{ data.eventData.place.comment.toUpperCase() }</Badge>
     </CityContainer>
   </>
 );

@@ -5,7 +5,8 @@ import Text from 'components/Text';
 import Image from 'assets/pro-img.png';
 import CitySelect from 'components/CitySelect';
 import CityEvent from 'components/CityEvent';
-import useCity from 'helpers/useCity';
+import useShortCity from 'helpers/useShortCity';
+import useStorage from 'helpers/useStorage';
 
 const StyledImage = styled.div`
   width: 100%;
@@ -45,7 +46,8 @@ interface ProProps {
 }
 
 const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
-  const city = useCity();
+  const city = useShortCity();
+  const { pro } = useStorage();
 
   return (
     <>
@@ -72,7 +74,7 @@ const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
           <div>
             <CitySelect onClick={openCitySelect} />
           </div>
-          {city && (<CityEvent />)}
+          {city && (<CityEvent data={pro.cities[city]} />)}
         </CityContainer>
       </ContentContainer>
     </>
