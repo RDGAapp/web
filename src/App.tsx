@@ -3,7 +3,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import {
   BrowserRouter,
   Route,
-  Switch,
+  Routes,
 } from 'react-router-dom';
 import Layout from 'components/Layout';
 import theme from 'helpers/theme';
@@ -36,32 +36,29 @@ const App = (): JSX.Element => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <Switch>
-          <Layout openCitySelect={() => setOpen(true)}>
-            <Route exact path={routes.HOME} component={Home} />
+        <Layout openCitySelect={() => setOpen(true)}>
+          <Routes>
+            <Route path={routes.HOME} element={<Home />} />
             <Route
-              exact
               path={routes.MASTER}
-              render={(props) => (<Master {...props} openCitySelect={() => setOpen(true)} />)}
+              element={<Master openCitySelect={() => setOpen(true)} />}
             />
-            <Route exact path={routes.TRAINING} component={Train} />
+            <Route path={routes.TRAINING} element={<Train />} />
             <Route
-              exact
               path={routes.NEWBIE}
-              render={(props) => (<Newbie {...props} openCitySelect={() => setOpen(true)} />)}
+              element={<Newbie openCitySelect={() => setOpen(true)} />}
             />
             <Route
-              exact
               path={routes.PRO}
-              render={(props) => (<Pro {...props} openCitySelect={() => setOpen(true)} />)}
+              element={<Pro openCitySelect={() => setOpen(true)} />}
             />
-            <Route exact path={routes.INTERNATIONAL} component={International} />
-            <Route exact path={routes.SHOP} component={Shop} />
-            <Route exact path={routes.COMPANIES} component={Companies} />
-            <Route exact path={routes.SPONSORSHIP} component={Sponsorship} />
-            <CitySelectModal isOpen={open} onClose={() => setOpen(false)} />
-          </Layout>
-        </Switch>
+            <Route path={routes.INTERNATIONAL} element={<International />} />
+            <Route path={routes.SHOP} element={<Shop />} />
+            <Route path={routes.COMPANIES} element={<Companies />} />
+            <Route path={routes.SPONSORSHIP} element={<Sponsorship />} />
+          </Routes>
+          <CitySelectModal isOpen={open} onClose={() => setOpen(false)} />
+        </Layout>
       </BrowserRouter>
     </ThemeProvider>
   );

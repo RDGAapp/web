@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useLocation } from 'react-router';
 
 const Button = styled(Link)<{ $active: boolean }>`
   background: none;
@@ -27,10 +27,10 @@ interface ButtonOutlinedProps {
 }
 
 const LinkOutlined = ({ text, route }: ButtonOutlinedProps): JSX.Element => {
-  const history = useHistory();
+  const location = useLocation();
 
   return (
-    <Button to={route} $active={history.location.pathname === route || false}>
+    <Button to={route} $active={location.pathname === route || false}>
       {text.toUpperCase()}
     </Button>
   );

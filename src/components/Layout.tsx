@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router';
+import { useLocation } from 'react-router';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Banner from 'components/Banner';
@@ -17,13 +17,13 @@ const shouldNotShowMenuSet = new Set<string>([
 ]);
 
 const Layout = ({ children, openCitySelect }: LayoutProps): JSX.Element => {
-  const history = useHistory();
+  const location = useLocation();
 
   return (
     <>
       <Header openCitySelect={openCitySelect} />
       <Banner />
-      {!shouldNotShowMenuSet.has(history.location.pathname) && <Menu />}
+      {!shouldNotShowMenuSet.has(location.pathname) && <Menu />}
       {children}
       <Footer />
     </>

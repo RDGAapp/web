@@ -1,7 +1,7 @@
 import MenuItem from 'components/MenuItem';
 import styled from 'styled-components';
 import routes from 'helpers/routes';
-import { useHistory } from 'react-router';
+import { useLocation } from 'react-router';
 
 const Wrapper = styled.div`
   display: grid;
@@ -56,7 +56,7 @@ const menuItemsList = [
 ];
 
 const Menu = (): JSX.Element => {
-  const history = useHistory();
+  const location = useLocation();
 
   return (
     <Wrapper id="menu">
@@ -67,7 +67,7 @@ const Menu = (): JSX.Element => {
           description={menuItem.description}
           number={index + 1}
           route={menuItem.route}
-          selected={history.location.pathname === menuItem.route}
+          selected={location.pathname === menuItem.route}
         />
       ))}
     </Wrapper>

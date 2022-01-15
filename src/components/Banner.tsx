@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import MainBackground from 'assets/banner-main.png';
 import ShopBackground from 'assets/banner-shop.png';
 import SponsorBackground from 'assets/banner-sponsor.png';
-import { useHistory } from 'react-router';
+import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import ButtonAgitation from 'components/ButtonAgitation';
 import routes from 'helpers/routes';
@@ -20,13 +20,13 @@ const Wrapper = styled.div<{ image: string }>`
 `;
 
 const Banner = (): JSX.Element => {
-  const history = useHistory();
+  const location = useLocation();
   const [image, setImage] = useState<string>('');
   const [text, setText] = useState<string>('');
   const [link, setLink] = useState<string>('');
 
   useEffect(() => {
-    switch (history.location.pathname) {
+    switch (location.pathname) {
       case routes.SHOP:
         setImage(ShopBackground);
         setText('Купить');
@@ -48,7 +48,7 @@ const Banner = (): JSX.Element => {
         setLink(`${routes.MASTER}${routes.MENU}`);
         break;
     }
-  }, [history.location.pathname]);
+  }, [location.pathname]);
 
   return (
     <Wrapper image={image}>

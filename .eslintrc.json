@@ -29,7 +29,6 @@
     },
     "rules": {
         "no-shadow": 0,                  // http://eslint.org/docs/rules/no-shadow
-        "@typescript-eslint/no-shadow": 2, // Fix no-shadow for enums: https://github.com/typescript-eslint/typescript-eslint/issues/2483
 
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md
         "import/no-anonymous-default-export": [2, {"allowArrowFunction": true}],
@@ -61,6 +60,7 @@
             "ts-check": "allow-with-description",
             "minimumDescriptionLength": 10
         }],
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "react/function-component-definition": [2, { "namedComponents": ["function-expression", "arrow-function"] }]
     }
 }

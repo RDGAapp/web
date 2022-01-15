@@ -3,6 +3,7 @@ import PageHeader from 'components/PageHeader';
 import ContentContainer from 'components/ContentContainer';
 import Text from 'components/Text';
 import { FormEvent, useState } from 'react';
+import HomeLink from 'components/HomeLink';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -112,7 +113,8 @@ const Shop = (): JSX.Element => {
   const [phone, setPhone] = useState<string>('');
   const [product, setProduct] = useState<string>('');
   const [buttonColor, setButtonColor] = useState<string>('yellow');
-  function handleSubmit(event: FormEvent): void {
+
+  const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
     setButtonColor('yellow');
     if (!name || !phone || !product) {
@@ -128,7 +130,8 @@ const Shop = (): JSX.Element => {
     setName('');
     setPhone('');
     setProduct('');
-  }
+  };
+
   return (
     <>
       <PageHeader text="Диски для точных попаданий и невероятных траекторий!" />
@@ -205,6 +208,7 @@ const Shop = (): JSX.Element => {
             </SubmitButton>
           </Form>
         </ArticleContainer>
+        <HomeLink />
       </ContentContainer>
     </>
   );
