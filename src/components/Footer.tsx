@@ -96,6 +96,14 @@ const contacts = [
     telegram: 'link',
     vk: 'https://vk.com/discgolf_ekb',
   },
+  {
+    city: 'Псков',
+    phone: '+7 000 000 00 00',
+    email: 'pskovmail@mail.ru',
+    instagram: 'https://www.instagram.com/discgolf_ekb/',
+    telegram: 'link',
+    vk: 'https://vk.com/discgolf_ekb',
+  },
 ];
 
 const Footer = (): JSX.Element => {
