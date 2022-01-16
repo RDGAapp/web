@@ -42,7 +42,12 @@
     "build": "react-scripts build",
     "lint": "yarn eslint src --ext .js,.ts,.tsx",
     "lint:fix": "yarn eslint --fix src --ext .js,.ts,.tsx",
-    "types:check": "tsc -p tsconfig.json --noEmit "
+    "types:check": "tsc -p tsconfig.json --noEmit ",
+    "docker:pull": "docker pull cherkasik/rdga-web:latest",
+    "docker:start": "docker ",
+    "docker:build:push": "docker build . -t cherkasik/rdga-web:latest && docker push cherkasik/rdga-web:latest",
+    "docker:build:local": "docker build . -t rdga-web:local",
+    "docker:start:local": ""
   },
   "browserslist": {
     "production": [
