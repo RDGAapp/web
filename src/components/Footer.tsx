@@ -58,27 +58,27 @@ const BottomWrapper = styled.div`
 const contacts = [
   {
     city: 'Екатеринбург',
-    phone: '+7 343 328 92 31',
-    email: 'discgolfekb@yandex.ru',
+    phone: '+7 (343) 328 92 31',
+    email: 'discgolfekb@ya.ru',
     instagram: 'https://www.instagram.com/discgolf_ekb/',
-    telegram: 'link',
+    telegram: 'https://t.me/discgolf_ekb',
     vk: 'https://vk.com/discgolf_ekb',
   },
   {
     city: 'Санкт-Петербург',
-    phone: '+7 000 000 00 00',
-    email: 'spbmail@mail.ru',
+    phone: '+7 (981) 783 25 16',
+    email: 'discgolfspb@gmail.com',
     instagram: 'https://www.instagram.com/discgolf_ekb/',
-    telegram: 'link',
-    vk: 'https://vk.com/discgolf_ekb',
+    telegram: 'https://t.me/discgolfspb',
+    vk: 'https://vk.com/discgolfspb',
   },
   {
     city: 'Москва',
-    phone: '+7 000 000 00 00',
-    email: 'mskmail@mail.ru',
-    instagram: 'https://www.instagram.com/discgolf_ekb/',
-    telegram: 'link',
-    vk: 'https://vk.com/discgolf_ekb',
+    phone: '+7 (916) 780 81 68',
+    email: 'Discgolf.msk@gmail.com',
+    instagram: 'https://www.instagram.com/discgolf.msk/',
+    telegram: 'https://t.me/discgolfpro',
+    vk: 'https://vk.com/discgolfmsk',
   },
   {
     city: 'Нижний Новгород',
@@ -126,7 +126,7 @@ const Footer = (): JSX.Element => {
       </ContactsWrapper>
       <BottomWrapper>
         <Logo big={width >= appTheme.breakpoints.tabletPx} />
-        <Copyright>© ФЕДЕРАЦИЯ ФЛАИНГ ДИСКА СВЕРДЛОВСКОЙ ОБЛАСТИ, 2021</Copyright>
+        <Copyright>© АССОЦИАЦИЯ ИГРОКОВ В ДИСК-ГОЛЬФ</Copyright>
       </BottomWrapper>
     </Wrapper>
   );
