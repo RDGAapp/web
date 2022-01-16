@@ -1,4 +1,4 @@
-FROM node:latest AS build
+FROM node:16.13 AS build
 
 LABEL maintainer="ilyakopeysk@gmail.com"
 
