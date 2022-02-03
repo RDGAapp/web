@@ -44,7 +44,7 @@
     "lint:fix": "yarn eslint --fix src --ext .js,.ts,.tsx",
     "types:check": "tsc -p tsconfig.json --noEmit ",
     "docker:pull": "docker pull cherkasik/rdga-web:latest",
-    "docker:start": "docker run -d -p 80:80 cherkasik/rdga-web:latest",
+    "docker:start": "docker run -d -p 81:80 cherkasik/rdga-web:latest",
     "docker:build:push": "docker build . -t cherkasik/rdga-web:latest && docker push cherkasik/rdga-web:latest",
     "docker:build:local": "docker build . -t rdga-web:local",
     "docker:start:local": "docker run -d -p 81:80 rdga-web:local"
