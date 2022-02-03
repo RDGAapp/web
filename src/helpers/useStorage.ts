@@ -317,14 +317,10 @@ const useStorage = (): Storage => {
   const [storage, setStorage] = useState<Storage>();
 
   useEffect(() => {
-    fetch('/api/getContent').then((response) => {
+    fetch('/api/getContent').then(async (response) => {
       if (!response.ok) return;
-      if (typeof response.body === 'string') {
-        setStorage(JSON.parse(response.body) as Storage);
-      }
-      if ((response.body as unknown as Storage)?.master) {
-        setStorage(response.body as unknown as Storage);
-      }
+      const data: Storage = await response.json();
+      setStorage(data);
     });
   }, []);
 
