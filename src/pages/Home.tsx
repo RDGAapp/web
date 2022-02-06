@@ -66,7 +66,7 @@ const Home = (): JSX.Element => (
         <VideoLink
           header="В России"
           image={RussiaVideo}
-          link="https://www.youtube.com/watch?v=N_VEPWy3fdU"
+          link="https://youtu.be/nEGf3sRlPek"
           name="Презентация диск-гольфа"
         />
         <VideoLink
