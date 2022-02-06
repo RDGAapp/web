@@ -109,6 +109,7 @@ const contacts = [
     city: 'Тольяти',
     phone: '+7 (927) 687 97 50',
     email: 'https://tfdf.ru/',
+    site: 'tfdf.ru',
     instagram: 'https://www.instagram.com/tfdf63/',
     telegram: 'https://t.me/tfdf63',
     vk: 'https://vk.com/tfdf63',
