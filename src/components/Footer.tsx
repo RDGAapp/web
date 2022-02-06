@@ -68,7 +68,7 @@ const contacts = [
     city: 'Санкт-Петербург',
     phone: '+7 (981) 783 25 16',
     email: 'discgolfspb@gmail.com',
-    instagram: 'https://www.instagram.com/discgolf_ekb/',
+    instagram: 'https://www.instagram.com/discgolf_spb/',
     telegram: 'https://t.me/discgolfspb',
     vk: 'https://vk.com/discgolfspb',
   },
@@ -76,33 +76,43 @@ const contacts = [
     city: 'Москва',
     phone: '+7 (916) 780 81 68',
     email: 'Discgolf.msk@gmail.com',
+    site: 'discgolf.me',
     instagram: 'https://www.instagram.com/discgolf.msk/',
     telegram: 'https://t.me/discgolfpro',
     vk: 'https://vk.com/discgolfmsk',
   },
   {
     city: 'Нижний Новгород',
-    phone: '+7 000 000 00 00',
-    email: 'mskmail@mail.ru',
-    instagram: 'https://www.instagram.com/discgolf_ekb/',
-    telegram: 'link',
-    vk: 'https://vk.com/discgolf_ekb',
+    phone: '+7 (910) 058 21 21',
+    email: 'discgolfnn@gmail.com',
+    instagram: 'https://www.instagram.com/discgolfnn/',
+    telegram: 'https://t.me/discgolfnn',
+    vk: 'https://vk.com/discgolfnn',
   },
   {
     city: 'Белгород',
-    phone: '+7 000 000 00 00',
-    email: 'belmail@mail.ru',
-    instagram: 'https://www.instagram.com/discgolf_ekb/',
-    telegram: 'link',
-    vk: 'https://vk.com/discgolf_ekb',
+    phone: '+7 (915) 566 68 08',
+    email: 'discgolf31@mail.ru',
+    instagram: 'https://www.instagram.com/discgolf31/',
+    telegram: 'https://t.me/discgolf31',
+    vk: 'https://m.vk.com/discgolf31',
   },
   {
     city: 'Псков',
     phone: '+7 000 000 00 00',
-    email: 'pskovmail@mail.ru',
-    instagram: 'https://www.instagram.com/discgolf_ekb/',
+    email: 'discgolfpskov@gmail.com',
+    instagram: 'https://www.instagram.com/discgolf.pskov/',
     telegram: 'link',
-    vk: 'https://vk.com/discgolf_ekb',
+    vk: 'https://vk.com/discgolfpskov',
+  },
+  {
+    city: 'Тольяти',
+    phone: '+7 (927) 687 97 50',
+    email: 'https://tfdf.ru/',
+    site: 'tfdf.ru',
+    instagram: 'https://www.instagram.com/tfdf63/',
+    telegram: 'https://t.me/tfdf63',
+    vk: 'https://vk.com/tfdf63',
   },
 ];
 
@@ -118,6 +128,7 @@ const Footer = (): JSX.Element => {
             phone={contact.phone}
             email={contact.email}
             city={contact.city}
+            site={contact.site}
             instagram={contact.instagram}
             telegram={contact.telegram}
             vk={contact.vk}

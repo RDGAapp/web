@@ -40,13 +40,14 @@ interface ContactProps {
   city: string,
   phone: string,
   email: string,
+  site?: string,
   instagram?: string,
   telegram?: string,
   vk?: string
 }
 
 const Contact = ({
-  city, phone, email, instagram, telegram, vk,
+  city, phone, email, site, instagram, telegram, vk,
 }: ContactProps): JSX.Element => (
   <Wrapper>
     <City>
@@ -55,6 +56,7 @@ const Contact = ({
     </City>
     <Text>{phone}</Text>
     <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>
+    {(site) ? <Link href={site}>{site.toUpperCase()}</Link> : ''}
     <Social>
       {instagram && (<SocialLink name="INSTAGRAM" value={instagram} />)}
       {telegram && (<SocialLink name="TELEGRAM" value={telegram} />)}
@@ -67,6 +69,7 @@ Contact.defaultProps = {
   instagram: '',
   telegram: '',
   vk: '',
+  site: '',
 };
 
 export default Contact;

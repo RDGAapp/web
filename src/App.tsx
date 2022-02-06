@@ -34,6 +34,7 @@ const App = (): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <ThemeProvider theme={theme}>
+      <base target="_blank" />
       <GlobalStyle />
       <BrowserRouter>
         <Layout openCitySelect={() => setOpen(true)}>

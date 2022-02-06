@@ -21,7 +21,7 @@ interface SocialLinkProps {
 
 const SocialLink = ({ name, value }: SocialLinkProps): JSX.Element => (
   <>
-    <Link href={value}>{name}</Link>
+    <Link href={value} target="_blank">{name}</Link>
     <LinkIcon width={13} height={13} />
   </>
 );
