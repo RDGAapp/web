@@ -76,7 +76,7 @@ const contacts = [
     city: 'Москва',
     phone: '+7 (916) 780 81 68',
     email: 'Discgolf.msk@gmail.com',
-    site: 'https:discgolf.me',
+    site: 'discgolf.me',
     instagram: 'https://www.instagram.com/discgolf.msk/',
     telegram: 'https://t.me/discgolfpro',
     vk: 'https://vk.com/discgolfmsk',
