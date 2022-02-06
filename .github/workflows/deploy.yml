@@ -1,11 +1,11 @@
-name: Build and Push Docker image
+name: Deploy / Production
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  docker:
+  build-push:
     runs-on: ubuntu-latest
     steps:
       -
@@ -30,3 +30,19 @@ jobs:
           context: .
           push: true
           tags: cherkasik/rdga-web:latest
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Deploy script
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          password: ${{ secrets.DO_PASSWORD }}
+          port: ${{ secrets.DO_PORT }}
+          script: docker stop $(docker ps -a -q) && docker system prune --force && docker pull cherkasik/rdga-web:latest && docker run -d -p 81:80 cherkasik/rdga-web:latest
