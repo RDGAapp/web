@@ -83,6 +83,7 @@ const Header = ({ openCitySelect }: HeaderProps): JSX.Element => {
         <Logo />
       </LogoWrapper>
       <ButtonsContact>
+        <LinkOutlined route={routes.PLAYERS} text="Игроки" />
         <HashLinkOutlined route={routes.CONTACTS} text="Контакты" />
         <ButtonUnderlined text={city?.toUpperCase() || 'Выберите город'} onClick={openCitySelect} />
       </ButtonsContact>

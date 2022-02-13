@@ -17,6 +17,7 @@ import International from 'pages/International';
 import Companies from 'pages/Companies';
 import Sponsorship from 'pages/Sponsorship';
 import Shop from 'pages/Shop';
+import Players from 'pages/Players';
 import CitySelectModal from 'components/CitySelectModal';
 
 const GlobalStyle = createGlobalStyle`
@@ -57,6 +58,7 @@ const App = (): JSX.Element => {
             <Route path={routes.SHOP} element={<Shop />} />
             <Route path={routes.COMPANIES} element={<Companies />} />
             <Route path={routes.SPONSORSHIP} element={<Sponsorship />} />
+            <Route path={routes.PLAYERS} element={<Players />} />
           </Routes>
           <CitySelectModal isOpen={open} onClose={() => setOpen(false)} />
         </Layout>
