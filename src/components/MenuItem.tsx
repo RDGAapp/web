@@ -17,6 +17,10 @@ const Wrapper = styled(Link)<{ index: number, selected: boolean }>`
   text-decoration: none;
   color: black;
   transition: all 0.3s ease;
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    padding: 18px;
+  }
 `;
 
 const HeaderContainer = styled.div`

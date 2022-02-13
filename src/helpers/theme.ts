@@ -2,6 +2,7 @@ const theme = {
   breakpoints: {
     tablet: '@media (max-width: 1024px)',
     mobile: '@media (max-width: 767px)',
+    mobilexs: '@media (max-width: 400px)',
     tabletPx: 1024,
     mobilePx: 767,
   },

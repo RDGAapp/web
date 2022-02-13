@@ -7,6 +7,10 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-areas: 'item1 item2 item3 item4 item5 item6';
   margin: 0 20px;
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    margin: 0 16px;
+  }
   
   ${({ theme }) => theme.breakpoints.tablet} {
     grid-template-areas:

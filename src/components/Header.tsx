@@ -33,6 +33,10 @@ const Wrapper = styled.div`
             'contact';
     gap: 30px;
   }
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    margin: 16px;
+  }
 `;
 
 const ButtonsCommercial = styled.div`
@@ -44,6 +48,10 @@ const ButtonsCommercial = styled.div`
 
   ${({ theme }) => theme.breakpoints.mobile} {
     justify-content: space-between;
+  }
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    gap: 0;
   }
 `;
 

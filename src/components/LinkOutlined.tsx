@@ -14,6 +14,11 @@ const Button = styled(Link)<{ $active: boolean }>`
   padding: 8px 16px;
   cursor: pointer;
   ${({ $active, theme }) => $active && `background-color: ${theme.colors.yellow};`};
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
   
   :hover {
     background-color: ${({ theme }) => theme.colors.yellow};
