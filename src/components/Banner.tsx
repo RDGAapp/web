@@ -18,6 +18,10 @@ const Wrapper = styled.div<{ image: string }>`
   overflow: hidden;
   background: center url(${({ image }) => image});
   padding-bottom: 100px;
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    margin: 0 16px 60px;
+  }
 `;
 
 const Banner = (): JSX.Element => {
