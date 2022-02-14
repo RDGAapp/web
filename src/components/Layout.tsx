@@ -24,8 +24,6 @@ const Layout = ({ children, openCitySelect }: LayoutProps): JSX.Element => {
     <>
       <Header openCitySelect={openCitySelect} />
       <Banner />
-      {console.log(shouldNotShowMenuSet)}
-      {console.log(!shouldNotShowMenuSet.has(location.pathname))}
       {!shouldNotShowMenuSet.has(location.pathname) && <Menu />}
       {children}
       <Footer />
