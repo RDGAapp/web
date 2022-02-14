@@ -12,6 +12,11 @@ const Button = styled(Link)`
   color: black;
   padding: 8px 16px;
   cursor: pointer;
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    font-size: 11px;
+    padding: 6px 14px;
+  }
   
   :hover {
     background-color: ${({ theme }) => theme.colors.yellow};

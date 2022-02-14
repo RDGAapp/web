@@ -7,6 +7,11 @@ const Wrapper = styled.div<{ width: number, height: number }>`
   height: ${({ height }) => height}px;
   align-items: center;
   justify-content: space-between;
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    width: ${({ width }) => width - 35}px;
+  }
+
 `;
 
 const Text = styled.div<{ fontSize: number, width: number }>`
@@ -16,6 +21,11 @@ const Text = styled.div<{ fontSize: number, width: number }>`
   line-height: ${({ fontSize }) => fontSize}px;
   width: ${({ width }) => width}px;
   height: ${({ fontSize }) => fontSize * 2}px;
+
+  ${({ theme }) => theme.breakpoints.mobilexs} {
+    font-size: ${({ fontSize }) => fontSize - 3}px;
+    width: ${({ width }) => width - 20}px;
+  }
 `;
 
 interface LogoProps {
