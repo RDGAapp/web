@@ -1,3 +1,6 @@
+<a href="https://codeclimate.com/github/IlyaCherkasov/disc-golf-react/maintainability"><img src="https://api.codeclimate.com/v1/badges/0fc3774706680ab5b505/maintainability" /></a>
+<a href="https://codeclimate.com/github/IlyaCherkasov/disc-golf-react/test_coverage"><img src="https://api.codeclimate.com/v1/badges/0fc3774706680ab5b505/test_coverage" /></a>
+
 # Russian Disc-Golf Association
 ## Available Scripts
 
