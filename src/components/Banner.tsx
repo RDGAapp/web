@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import MainBackground from 'assets/banner-main.png';
 import ShopBackground from 'assets/banner-shop.png';
 import SponsorBackground from 'assets/banner-sponsor.png';
+import PlayersBackground from 'assets/players.jpg';
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import ButtonAgitation from 'components/ButtonAgitation';
@@ -45,6 +46,11 @@ const Banner = (): JSX.Element => {
         setImage(SponsorBackground);
         setText('Заказать мероприятие');
         setLink(`${routes.CONTACTS}`);
+        break;
+      case routes.PLAYERS:
+        setImage(PlayersBackground);
+        setText('Пройти мастер-класс');
+        setLink(`${routes.MASTER}${routes.MENU}`);
         break;
       default:
         setImage(MainBackground);

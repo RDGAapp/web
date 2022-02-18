@@ -14,6 +14,7 @@ const shouldNotShowMenuSet = new Set<string>([
   routes.SHOP,
   routes.COMPANIES,
   routes.SPONSORSHIP,
+  routes.PLAYERS,
 ]);
 
 const Layout = ({ children, openCitySelect }: LayoutProps): JSX.Element => {

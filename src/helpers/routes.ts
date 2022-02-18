@@ -12,6 +12,7 @@ enum routes {
   MENU = '#menu',
   SPONSOR = '#sponsor',
   SHOP_FORM = '#buy',
+  PLAYERS = '/players',
 }
 
 export default routes;
