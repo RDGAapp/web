@@ -83,7 +83,8 @@ const contacts = [
   },
   {
     city: 'Нижний Новгород',
-    phone: '+7 (910) 058 21 21',
+    phone: '+7 (930) 813 33 99',
+    phone2: '+7 (831) 414 21 23',
     email: 'discgolfnn@gmail.com',
     instagram: 'https://www.instagram.com/discgolfnn',
     telegram: 'https://t.me/discgolfnn',
@@ -106,7 +107,7 @@ const contacts = [
     vk: 'https://vk.com/discgolfpskov',
   },
   {
-    city: 'Тольяти',
+    city: 'Тольятти',
     phone: '+7 (927) 687 97 50',
     email: 'tfdf63@yandex.ru',
     site: 'tfdf.ru',
@@ -126,6 +127,7 @@ const Footer = (): JSX.Element => {
           <Contact
             key={contact.city}
             phone={contact.phone}
+            phone2={contact.phone2}
             email={contact.email}
             city={contact.city}
             site={contact.site}

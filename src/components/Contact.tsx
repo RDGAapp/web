@@ -39,6 +39,7 @@ const Social = styled.div`
 interface ContactProps {
   city: string,
   phone: string,
+  phone2?: string,
   email: string,
   site?: string,
   instagram?: string,
@@ -47,7 +48,7 @@ interface ContactProps {
 }
 
 const Contact = ({
-  city, phone, email, site, instagram, telegram, vk,
+  city, phone, phone2, email, site, instagram, telegram, vk,
 }: ContactProps): JSX.Element => (
   <Wrapper>
     <City>
@@ -55,6 +56,7 @@ const Contact = ({
       :
     </City>
     <Text>{phone}</Text>
+    {phone2 ? <Text>{phone2}</Text> : ''}
     <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>
     {(site) ? <Link href={site}>{site.toUpperCase()}</Link> : ''}
     <Social>
@@ -66,6 +68,7 @@ const Contact = ({
 );
 
 Contact.defaultProps = {
+  phone2: '',
   instagram: '',
   telegram: '',
   vk: '',
