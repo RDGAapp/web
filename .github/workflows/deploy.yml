@@ -41,8 +41,8 @@ jobs:
         name: Deploy script
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.DO_HOST }}
-          username: ${{ secrets.DO_USER }}
-          password: ${{ secrets.DO_PASSWORD }}
-          port: ${{ secrets.DO_PORT }}
+          host: ${{ secrets.VDS_HOST }}
+          username: ${{ secrets.VDS_USER }}
+          password: ${{ secrets.VDS_PASSWORD }}
+          port: ${{ secrets.VDS_PORT }}
           script: docker stop $(docker ps -a -q) && docker system prune --force && docker pull cherkasik/rdga-web:latest && docker run -d -p 81:80 cherkasik/rdga-web:latest
