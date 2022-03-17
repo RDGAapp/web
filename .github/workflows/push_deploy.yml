@@ -1,0 +1,12 @@
+name: Push+Deploy (Production)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-push:
+    uses: IlyaCherkasov/disc-golf-react/.github/workflows/push.yml@master
+  deploy:
+    uses: IlyaCherkasov/disc-golf-react/.github/workflows/deploy.yml@master
