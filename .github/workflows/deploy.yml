@@ -3,6 +3,15 @@ name: Deploy (Production)
 on:
   workflow_dispatch:
   workflow_call:
+    secrets:
+      VDS_HOST:
+        required: true
+      VDS_USER:
+        required: true
+      VDS_PASSWORD:
+        required: true
+      VDS_PORT:
+        required: true
 
 jobs:
   deploy:
