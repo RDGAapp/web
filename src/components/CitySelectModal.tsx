@@ -71,7 +71,7 @@ const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element
       styles={{
         modal: {
           borderRadius: '40px',
-          width: '100%',
+          width: '60%',
           maxWidth: '450px',
           padding: '32px 48px',
         },
