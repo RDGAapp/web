@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import useCity from './useCity';
 
 const cityMapper: Record<string, Towns> = {
   Екатеринбург: 'ekb',
@@ -10,18 +10,7 @@ const cityMapper: Record<string, Towns> = {
 };
 
 export default function useShortCity(): Towns | null {
-  function getCity(): string | null {
-    return localStorage.getItem('city');
-  }
-
-  const [city, setCity] = useState<string | null>(getCity());
-
-  useEffect(() => {
-    const newCity = localStorage.getItem('city');
-    if (newCity !== city) {
-      setCity(newCity);
-    }
-  }, [localStorage.getItem('city')]);
+  const city = useCity();
 
   return city ? cityMapper[city] : null;
 }

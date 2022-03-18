@@ -7,13 +7,13 @@ on:
 
 jobs:
   build-push:
-    uses: IlyaCherkasov/disc-golf-react/.github/workflows/push.yml@master
+    uses: RDGAapp/web/.github/workflows/push.yml@master
     secrets:
       DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   deploy:
     needs: build-push
-    uses: IlyaCherkasov/disc-golf-react/.github/workflows/deploy.yml@master
+    uses: RDGAapp/web/.github/workflows/deploy.yml@master
     secrets:
       VDS_HOST: ${{ secrets.VDS_HOST }}
       VDS_USER: ${{ secrets.VDS_USER }}
