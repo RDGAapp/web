@@ -12,6 +12,7 @@ import Image from 'assets/main-page-img.png';
 const VideoContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
   width: 100%;
   gap: 40px;
   margin-bottom: 60px;
@@ -45,7 +46,7 @@ const TextContainer = styled.div`
   }
 `;
 
-const StyledImage = styled.div`
+const StyledImage = styled.img`
   width: 530px;
   height: 580px;
   border-radius: 20px;
@@ -110,7 +111,7 @@ const Home = (): JSX.Element => (
           </Text>
           <RulesLink />
         </TextContainer>
-        <StyledImage />
+        <StyledImage alt="" />
       </ArticleContainer>
     </ContentContainer>
   </>

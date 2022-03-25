@@ -49,7 +49,7 @@ const StyledHeader = styled(Header)`
   line-height: 43px;
 `;
 
-const StyledImage = styled.div`
+const StyledImage = styled.img`
   width: 530px;
   height: 440px;
   border-radius: 20px;
@@ -118,7 +118,7 @@ const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
               {city && (<CityEvent data={newbie.cities[city]} />)}
             </CityContainer>
           </TextContainer>
-          <StyledImage />
+          <StyledImage alt="" />
         </ArticleContainer>
       </ContentContainer>
     </>

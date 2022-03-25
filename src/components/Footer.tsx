@@ -4,12 +4,17 @@ import Contact from 'components/Contact';
 import appTheme from 'helpers/theme';
 import useWindowDimensions from 'helpers/useWindowDimensions';
 
+const BackgroundContacts = styled.footer`
+  background: ${({ theme }) => theme.colors.yellow};
+`;
+
 const Wrapper = styled.div`
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: ${({ theme }) => theme.colors.yellow};
   padding: 60px 20px;
+  margin: auto;
 `;
 
 const Header = styled.h1`
@@ -30,12 +35,13 @@ const ContactsWrapper = styled.div`
   margin-bottom: 60px;
 `;
 
-const Copyright = styled.div`
+const Copyright = styled.p`
   font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
   align-self: flex-end;
+  margin: 0;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     align-self: center;
@@ -120,28 +126,30 @@ const contacts = [
 const Footer = (): JSX.Element => {
   const { width } = useWindowDimensions();
   return (
-    <Wrapper id="contacts">
-      <Header>Контакты</Header>
-      <ContactsWrapper>
-        {contacts.map((contact) => (
-          <Contact
-            key={contact.city}
-            phone={contact.phone}
-            phone2={contact.phone2}
-            email={contact.email}
-            city={contact.city}
-            site={contact.site}
-            instagram={contact.instagram}
-            telegram={contact.telegram}
-            vk={contact.vk}
-          />
-        ))}
-      </ContactsWrapper>
-      <BottomWrapper>
-        <Logo big={width >= appTheme.breakpoints.tabletPx} />
-        <Copyright>© АССОЦИАЦИЯ ИГРОКОВ В ДИСК-ГОЛЬФ</Copyright>
-      </BottomWrapper>
-    </Wrapper>
+    <BackgroundContacts>
+      <Wrapper id="contacts">
+        <Header>Контакты</Header>
+        <ContactsWrapper>
+          {contacts.map((contact) => (
+            <Contact
+              key={contact.city}
+              phone={contact.phone}
+              phone2={contact.phone2}
+              email={contact.email}
+              city={contact.city}
+              site={contact.site}
+              instagram={contact.instagram}
+              telegram={contact.telegram}
+              vk={contact.vk}
+            />
+          ))}
+        </ContactsWrapper>
+        <BottomWrapper>
+          <Logo big={width >= appTheme.breakpoints.tabletPx} />
+          <Copyright>© АССОЦИАЦИЯ ИГРОКОВ В ДИСК-ГОЛЬФ</Copyright>
+        </BottomWrapper>
+      </Wrapper>
+    </BackgroundContacts>
   );
 };
 

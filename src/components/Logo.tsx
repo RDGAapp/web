@@ -14,13 +14,14 @@ const Wrapper = styled.div<{ width: number, height: number }>`
 
 `;
 
-const Text = styled.div<{ fontSize: number, width: number }>`
+const Text = styled.h1<{ fontSize: number, width: number }>`
   font-family: Oswald, sans-serif;
   font-weight: 500;
   font-size: ${({ fontSize }) => fontSize}px;
   line-height: ${({ fontSize }) => fontSize}px;
   width: ${({ width }) => width}px;
   height: ${({ fontSize }) => fontSize * 2}px;
+  margin: 0;
 
   ${({ theme }) => theme.breakpoints.mobilexs} {
     font-size: ${({ fontSize }) => fontSize - 3}px;

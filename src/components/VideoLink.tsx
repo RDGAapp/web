@@ -3,13 +3,14 @@ import { ReactComponent as Play } from 'assets/play.svg';
 import { ReactComponent as Link } from 'assets/link.svg';
 
 const Wrapper = styled.div`
+  max-width: 560px;
   padding: 40px;
   border: 1px solid black;
   border-radius: 40px;
   flex-grow: 1;
 `;
 
-const Header = styled.h5`
+const Header = styled.h3`
   font-family: Inter, sans-serif;
   font-weight: 600;
   font-size: 24px;
