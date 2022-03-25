@@ -48,7 +48,7 @@ const Number = styled.div`
   padding: 8px 12px;
 `;
 
-const Header = styled.h5`
+const Header = styled.p`
   font-family: Oswald, sans-serif;
   font-weight: 500;
   font-size: 20px;

@@ -7,7 +7,7 @@ import ButtonUnderlined from 'components/ButtonUnderlined';
 import routes from 'helpers/routes';
 import useCity from 'helpers/useCity';
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;

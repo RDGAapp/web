@@ -30,7 +30,7 @@ const TextContainer = styled.div`
   }
 `;
 
-const StyledImage = styled.div`
+const StyledImage = styled.img`
   width: 520px;
   height: 420px;
   border-radius: 20px;
@@ -69,7 +69,7 @@ const Train = (): JSX.Element => (
           </Text>
           <RulesLink />
         </TextContainer>
-        <StyledImage />
+        <StyledImage alt="" />
       </ArticleContainer>
     </ContentContainer>
   </>

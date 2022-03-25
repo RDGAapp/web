@@ -8,7 +8,7 @@ import CityEvent from 'components/CityEvent';
 import useShortCity from 'helpers/useShortCity';
 import useStorage from 'helpers/useStorage';
 
-const StyledImage = styled.div`
+const StyledImage = styled.img`
   width: 100%;
   max-width: 1360px;
   height: 605px;
@@ -66,7 +66,7 @@ const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
           <br />
           Будь во время! Мы начинаем в указанное время!
         </Text>
-        <StyledImage />
+        <StyledImage alt="" />
         <Header>
           {'Ближайший PRO-Турнир в твоем городе:'.toUpperCase()}
         </Header>

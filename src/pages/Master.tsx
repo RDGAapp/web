@@ -40,7 +40,7 @@ const StyledHeader = styled.h3`
   margin: 0;
 `;
 
-const StyledImage = styled.div`
+const StyledImage = styled.img`
   width: 530px;
   height: 830px;
   border-radius: 20px;
@@ -96,7 +96,7 @@ const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
               {city && (<CityEvent data={master.cities[city]} />)}
             </CityContainer>
           </TextContainer>
-          <StyledImage />
+          <StyledImage alt="" />
         </ArticleContainer>
       </ContentContainer>
     </>

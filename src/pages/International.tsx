@@ -30,7 +30,7 @@ const TextContainer = styled.div`
   }
 `;
 
-const StyledImage = styled.div`
+const StyledImage = styled.img`
   width: 530px;
   height: 700px;
   border-radius: 20px;
@@ -93,7 +93,7 @@ const International = (): JSX.Element => (
             </OuterLink>
           </LinkContainer>
         </TextContainer>
-        <StyledImage />
+        <StyledImage alt="" />
       </ArticleContainer>
     </ContentContainer>
   </>

@@ -5,7 +5,7 @@ import { ReactComponent as Cross } from 'assets/cross.svg';
 import { ReactComponent as Arrow } from 'assets/arrow-right.svg';
 import useCity, { changeCity } from '../helpers/useCity';
 
-const Header = styled.h2`
+const Header = styled.h1`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,7 +24,7 @@ const List = styled.div`
   gap: 25px;
 `;
 
-const ListElement = styled.div<{ selected: boolean }>`
+const ListElement = styled.p<{ selected: boolean }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -33,6 +33,7 @@ const ListElement = styled.div<{ selected: boolean }>`
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
   line-height: 24px;
   transition: all 0.3s ease;
+  margin: 0;
 
   ${({ selected }) => !selected && `
   cursor: pointer;

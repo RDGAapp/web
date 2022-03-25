@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as Clock } from '../assets/clock.svg';
 import { ReactComponent as Map } from '../assets/map.svg';
 
-const CityHeader = styled.div`
+const CityHeader = styled.h5`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -11,6 +11,7 @@ const CityHeader = styled.div`
   font-weight: 500;
   line-height: 24px;
   gap: 14px;
+  margin: 0;
 `;
 
 const CityContainer = styled.div`
@@ -21,7 +22,7 @@ const CityContainer = styled.div`
   gap: 20px 10px;
 `;
 
-const Badge = styled.div`
+const Badge = styled.p`
   font-family: Inter, sans-serif;
   font-size: 24px;
   font-weight: 400;
@@ -29,6 +30,7 @@ const Badge = styled.div`
   border: 1px solid black;
   border-radius: 40px;
   padding: 12px 20px;
+  margin: 0;
 `;
 
 interface Props {
@@ -42,7 +44,7 @@ const CityEvent = ({ data }: Props): JSX.Element => (
       ВРЕМЯ:
     </CityHeader>
     <CityContainer>
-      { data.eventData.days.map((day) => <Badge>{ day.toUpperCase() }</Badge>) }
+      { data.eventData.days.map((day) => <Badge key={day}>{ day.toUpperCase() }</Badge>) }
       <Badge>{ data.eventData.time }</Badge>
     </CityContainer>
     <CityHeader>

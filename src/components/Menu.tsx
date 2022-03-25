@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import routes from 'helpers/routes';
 import { useLocation } from 'react-router';
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   display: grid;
   grid-template-areas: 'item1 item2 item3 item4 item5 item6';
   margin: 0 20px;
