@@ -51,7 +51,7 @@ const contacts = [
     email: 'discgolf31@mail.ru',
     instagram: 'https://www.instagram.com/discgolf31',
     telegram: 'https://t.me/discgolf31',
-    vk: 'https://m.vk.com/discgolf31',
+    vk: 'https://vk.com/discgolf31',
   },
   {
     city: 'Псков',
@@ -82,7 +82,6 @@ const Contacts = () => (
         email={contact.email}
         city={contact.city}
         site={contact.site}
-        instagram={contact.instagram}
         telegram={contact.telegram}
         vk={contact.vk}
       />
