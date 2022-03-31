@@ -1,0 +1,21 @@
+name: Check Code Quality
+
+on:
+  push
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Check ESLint
+        run: yarn lint
+      -
+        name: Check StyleLint
+        run: yarn lint:css
+      -
+        name: Check Types
+        run: yarn types:check
