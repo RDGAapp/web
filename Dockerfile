@@ -4,7 +4,7 @@ LABEL maintainer="ilyakopeysk@gmail.com"
 
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
-RUN yarn
+RUN yarn install --production
 COPY . ./
 RUN yarn build
 
