@@ -5,14 +5,14 @@ import { ReactComponent as Home } from 'assets/home.svg';
 
 const StyledLink = styled(Link)`
   display: flex;
+  gap: 10px;
   align-items: center;
+  padding: 5px 10px;
   color: black;
   text-decoration: none;
   border: 1px solid black;
   border-radius: 20px;
-  padding: 5px 10px;
-  gap: 10px;
-  
+
   :hover {
     background-color: ${({ theme }) => theme.colors.yellow};
   }

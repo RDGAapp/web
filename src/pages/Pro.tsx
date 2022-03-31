@@ -9,14 +9,14 @@ import useShortCity from 'helpers/useShortCity';
 import useStorage from 'helpers/useStorage';
 
 const StyledImage = styled.img`
+  flex-grow: 0;
   width: 100%;
   max-width: 1360px;
   height: 605px;
-  border-radius: 20px;
-  flex-grow: 0;
+  margin: 0 auto;
   background: center url(${Image});
   background-size: 1360px 605px;
-  margin: 0 auto;
+  border-radius: 20px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 750px;
@@ -27,12 +27,12 @@ const StyledImage = styled.img`
 
 const Header = styled.h3`
   width: 100%;
-  font-family: Inter, sans-serif;
+  margin: 0;
+  font-weight: 600;
   font-size: 36px;
+  font-family: Inter, sans-serif;
   font-style: normal;
   line-height: 43px;
-  font-weight: 600;
-  margin: 0;
 `;
 
 const CityContainer = styled.div`

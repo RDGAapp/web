@@ -5,18 +5,18 @@ import useCity from 'helpers/useCity';
 
 const Button = styled.button`
   display: flex;
-  justify-content: flex-start;
+  gap: 20px;
   align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+  padding: 12px 20px;
+  font-weight: 500;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
+  line-height: 24px;
   background: none;
   border: 1px solid black;
   border-radius: 40px;
-  gap: 20px;
-  padding: 12px 20px;
-  margin-bottom: 12px;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
 

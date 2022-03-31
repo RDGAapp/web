@@ -8,8 +8,7 @@ import { ReactComponent as YouTubeSvg } from 'assets/youtube.svg';
 
 const ArticleContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   gap: 60px 25px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
@@ -22,8 +21,8 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 60%;
   gap: 32px;
+  max-width: 60%;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 100%;
@@ -31,12 +30,12 @@ const TextContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
+  flex-grow: 0;
   width: 530px;
   height: 700px;
-  border-radius: 20px;
-  flex-grow: 0;
   background: center url(${Image});
   background-size: 1100px 700px;
+  border-radius: 20px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     width: 100%;
@@ -48,8 +47,7 @@ const StyledImage = styled.img`
 
 const LinkContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 10px;
 `;
 

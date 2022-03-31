@@ -9,28 +9,23 @@ import useCity from 'helpers/useCity';
 
 const Wrapper = styled.nav`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-template-areas:
-          'commercial logo contact';
+  grid-template: "commercial logo contact" 1fr / 1fr 1fr 1fr;
   margin: 20px;
-  
+
   ${({ theme }) => theme.breakpoints.tablet} {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 2fr 1fr;
-    grid-template-areas:
-            'logo logo'
-            'commercial contact';
+    grid-template:
+      "logo logo" 2fr
+      "commercial contact" 1fr
+      / 1fr 1fr;
     gap: 50px;
   }
 
   ${({ theme }) => theme.breakpoints.mobile} {
-    grid-template-columns: 1fr;
-    grid-template-rows: 2fr 1fr 1fr;
-    grid-template-areas: 
-            'logo'
-            'commercial'
-            'contact';
+    grid-template:
+      "logo" 2fr
+      "commercial" 1fr
+      "contact" 1fr
+      / 1fr;
     gap: 30px;
   }
 
@@ -40,11 +35,11 @@ const Wrapper = styled.nav`
 `;
 
 const ButtonsCommercial = styled.div`
-  grid-area: commercial;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  grid-area: commercial;
   gap: 15px;
+  align-items: center;
+  justify-content: flex-start;
 
   ${({ theme }) => theme.breakpoints.mobile} {
     justify-content: space-between;
@@ -56,11 +51,11 @@ const ButtonsCommercial = styled.div`
 `;
 
 const ButtonsContact = styled.div`
-  grid-area: contact;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  grid-area: contact;
   gap: 15px;
+  align-items: center;
+  justify-content: flex-end;
 
   ${({ theme }) => theme.breakpoints.mobile} {
     justify-content: space-between;
@@ -70,8 +65,8 @@ const ButtonsContact = styled.div`
 const LogoWrapper = styled(Link)`
   grid-area: logo;
   margin: auto;
-  text-decoration: none;
   color: black;
+  text-decoration: none;
 `;
 
 interface HeaderProps {

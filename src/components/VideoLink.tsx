@@ -3,51 +3,51 @@ import { ReactComponent as Play } from 'assets/play.svg';
 import { ReactComponent as Link } from 'assets/link.svg';
 
 const Wrapper = styled.div`
+  flex-grow: 1;
   max-width: 560px;
   padding: 40px;
   border: 1px solid black;
   border-radius: 40px;
-  flex-grow: 1;
 `;
 
 const Header = styled.h3`
-  font-family: Inter, sans-serif;
+  margin: 0 0 12px;
   font-weight: 600;
   font-size: 24px;
-  margin: 0 0 12px;
+  font-family: Inter, sans-serif;
 `;
 
 const VideoPreview = styled.a<{ image: string }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 560px;
   height: 320px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 15px;
   background: left center url(${({ image }) => image});
   border-radius: 20px;
-  margin-bottom: 15px;
 `;
 
 const PlayButton = styled.button`
   width: 140px;
   height: 140px;
+  padding: 42px 42px 42px 56px;
   background: none;
   border: 1px solid white;
   border-radius: 50%;
-  padding: 42px 42px 42px 56px;
   cursor: pointer;
 `;
 
 const VideoName = styled.a`
   display: flex;
   justify-content: space-between;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
+  color: black;
   font-weight: 400;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
   line-height: 24px;
   text-decoration: none;
-  color: black;
 `;
 
 interface VideoLinkProps {

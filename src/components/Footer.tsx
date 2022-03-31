@@ -9,30 +9,30 @@ const BackgroundContacts = styled.footer`
 `;
 
 const Wrapper = styled.div`
-  max-width: 1440px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 60px 20px;
+  max-width: 1440px;
   margin: auto;
+  padding: 60px 20px;
 `;
 
 const Header = styled.h1`
-  font-family: Oswald, sans-serif;
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 48px;
   width: 100%;
   margin: 0 0 60px;
+  font-weight: 400;
+  font-size: 48px;
+  font-family: Oswald, sans-serif;
+  line-height: 48px;
 `;
 
 const Copyright = styled.p`
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 14px;
   align-self: flex-end;
   margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+  line-height: 14px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     align-self: center;
@@ -40,15 +40,15 @@ const Copyright = styled.p`
 `;
 
 const BottomWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
+  width: 100%;
+
   ${({ theme }) => theme.breakpoints.tablet} {
     flex-direction: column;
-    align-items: center;
     gap: 60px;
+    align-items: center;
   }
 `;
 

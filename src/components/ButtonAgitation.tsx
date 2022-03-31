@@ -5,18 +5,18 @@ import { ReactComponent as ArrowDown } from 'assets/arrow-down.svg';
 const Button = styled(Link)`
   display: flex;
   align-items: center;
+  padding: 16px 24px;
+  color: black;
+  font-weight: 400;
+  font-size: 24px;
+  font-family: Oswald, sans-serif;
+  line-height: 24px;
+  text-decoration: none;
   background-color: ${({ theme }) => theme.colors.yellow};
   border: 1px solid ${({ theme }) => theme.colors.yellow};
   border-radius: 40px;
-  color: black;
-  font-family: Oswald, sans-serif;
-  text-decoration: none;
-  font-size: 24px;
-  line-height: 24px;
-  font-weight: 400;
-  padding: 16px 24px;
   cursor: pointer;
-  
+
   :hover {
     border: 1px solid black;
     transition: border 0.3s ease;

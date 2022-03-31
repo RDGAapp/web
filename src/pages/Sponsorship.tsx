@@ -6,10 +6,10 @@ import QRCode from 'assets/sponsor-qr.png';
 import HomeLink from 'components/HomeLink';
 
 const QRCodeContainer = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
 
 const Sponsorship = (): JSX.Element => (

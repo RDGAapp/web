@@ -7,13 +7,13 @@ import useCity, { changeCity } from '../helpers/useCity';
 
 const Header = styled.h1`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-family: Inter, sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 32px;
+  justify-content: space-between;
   margin: 0 0 40px;
+  font-weight: 600;
+  font-size: 32px;
+  font-family: Inter, sans-serif;
+  line-height: 32px;
 
   svg { cursor: pointer; }
 `;
@@ -26,15 +26,14 @@ const List = styled.div`
 
 const ListElement = styled.p<{ selected: boolean }>`
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  font-family: Inter, sans-serif;
-  font-size: 20px;
+  justify-content: flex-start;
+  margin: 0;
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
+  font-size: 20px;
+  font-family: Inter, sans-serif;
   line-height: 24px;
   transition: all 0.3s ease;
-  margin: 0;
-
   ${({ selected }) => !selected && `
   cursor: pointer;
   :hover {

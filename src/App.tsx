@@ -21,7 +21,9 @@ import Players from 'pages/Players';
 import CitySelectModal from 'components/CitySelectModal';
 
 const GlobalStyle = createGlobalStyle`
-  html, body, #root {
+  html,
+  body,
+  #root {
     width: 100%;
     margin: 0;
   }

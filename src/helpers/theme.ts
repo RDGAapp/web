@@ -7,12 +7,12 @@ const theme = {
     mobilePx: 767,
   },
   colors: {
-    background: '#E5E5E5',
-    yellow: '#FBCD04',
-    blue: '#2A74ED',
-    red: '#FF7F7F',
-    green: '#90EE90',
-    menuShadow: '#F3F3F3',
+    background: '#e5e5e5',
+    yellow: '#fbcd04',
+    blue: '#2a74ed',
+    red: '#ff7f7f',
+    green: '#90ee90',
+    menuShadow: '#f3f3f3',
   },
 };
 

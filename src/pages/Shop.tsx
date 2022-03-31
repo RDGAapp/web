@@ -7,8 +7,7 @@ import HomeLink from 'components/HomeLink';
 
 const ArticleContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   gap: 60px 25px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
@@ -21,8 +20,8 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 60%;
   gap: 32px;
+  max-width: 60%;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 100%;
@@ -30,28 +29,28 @@ const TextContainer = styled.div`
 `;
 
 const Header = styled.h3`
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
   margin: 0;
+  font-weight: 600;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
+  line-height: 29px;
 `;
 
 const Form = styled.form`
-  width: 530px;
-  height: 390px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  gap: 20px;
   align-items: center;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
+  justify-content: flex-start;
+  width: 530px;
+  height: 390px;
+  padding: 32px;
   font-weight: 600;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
   line-height: 29px;
   border: 1px solid black;
   border-radius: 20px;
-  padding: 32px;
-  gap: 20px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     width: 100%;
@@ -61,21 +60,21 @@ const Form = styled.form`
 const Input = styled.input`
   width: calc(100% - 40px);
   padding: 20px;
-  border-radius: 20px;
-  border: 1px solid #DCDFE6;
-  font-family: Inter, sans-serif;
-  font-size: 18px;
   font-weight: 400;
+  font-size: 18px;
+  font-family: Inter, sans-serif;
   line-height: 18px;
+  border: 1px solid #dcdfe6;
+  border-radius: 20px;
   transition: all 0.3s ease;
 
   :focus {
-    outline: transparent;
     border: 1px solid black;
+    outline: transparent;
   }
 
   ::placeholder {
-    color: #C0C4CC;
+    color: #c0c4cc;
   }
 
   :first-of-type {
@@ -92,14 +91,14 @@ const Input = styled.input`
 `;
 
 const SubmitButton = styled.button<{ color: string }>`
+  padding: 16px 24px;
+  font-weight: 400;
+  font-size: 24px;
+  font-family: Oswald, sans-serif;
+  line-height: 24px;
   background: ${({ theme, color }) => theme.colors[color]};
   border: 1px solid ${({ theme, color }) => theme.colors[color]};
   border-radius: 40px;
-  font-family: Oswald, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 24px;
-  padding: 16px 24px;
   cursor: pointer;
   transition: all 0.3s ease;
 

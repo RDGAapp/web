@@ -3,19 +3,19 @@ import { ReactComponent as LinkSvg } from 'assets/link.svg';
 
 const Link = styled.a`
   display: flex;
+  gap: 15px;
   align-items: center;
-  word-break: break-word;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-style: normal;
+  padding: 10px 15px;
+  color: black;
   font-weight: 300;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
+  font-style: normal;
   line-height: 24px;
   text-decoration: none;
-  color: black;
+  word-break: break-word;
   border: 1px solid black;
   border-radius: 30px;
-  padding: 10px 15px;
-  gap: 15px;
 `;
 
 interface OuterLinkProps {

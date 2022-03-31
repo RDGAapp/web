@@ -9,16 +9,16 @@ const Wrapper = styled.div`
 `;
 
 const TextStyle = css`
-  font-family: Inter, sans-serif;
+  margin: 0 0 8px;
   font-weight: 400;
   font-size: 14px;
+  font-family: Inter, sans-serif;
   line-height: 14px;
-  margin: 0 0 8px;
 `;
 
 const City = styled.p`
-  ${TextStyle};
   margin: 0 0 20px;
+  ${TextStyle};
 `;
 
 const Text = styled.p`

@@ -10,14 +10,14 @@ import routes from 'helpers/routes';
 
 const Wrapper = styled.div<{ image: string }>`
   display: flex;
-  justify-content: center;
   align-items: flex-end;
+  justify-content: center;
   height: 460px;
   margin: 0 20px 60px;
-  border-radius: 50px;
+  padding-bottom: 100px;
   overflow: hidden;
   background: center url(${({ image }) => image});
-  padding-bottom: 100px;
+  border-radius: 50px;
 
   ${({ theme }) => theme.breakpoints.mobilexs} {
     margin: 0 16px 60px;

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const Header = styled.h1`
-  font-family: Oswald, sans-serif;
+  margin: 60px;
   font-weight: 400;
   font-size: 48px;
+  font-family: Oswald, sans-serif;
   line-height: 48px;
-  margin: 60px;
 
   ${({ theme }) => theme.breakpoints.mobile} {
     margin: 60px 24px;

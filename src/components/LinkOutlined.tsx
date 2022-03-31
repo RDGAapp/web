@@ -3,23 +3,23 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
 const Button = styled(Link)<{ $active: boolean }>`
+  padding: 8px 16px;
+  color: black;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: Inter, sans-serif;
+  text-decoration: none;
   background: none;
+  ${({ $active, theme }) => $active && `background-color: ${theme.colors.yellow};`}
   border: 1px solid black;
   border-radius: 40px;
-  font-family: Inter, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  text-decoration: none;
-  color: black;
-  padding: 8px 16px;
   cursor: pointer;
-  ${({ $active, theme }) => $active && `background-color: ${theme.colors.yellow};`};
 
   ${({ theme }) => theme.breakpoints.mobilexs} {
-    font-size: 11px;
     padding: 6px 14px;
+    font-size: 11px;
   }
-  
+
   :hover {
     background-color: ${({ theme }) => theme.colors.yellow};
     transition: background-color 0.3s ease;

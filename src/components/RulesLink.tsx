@@ -4,37 +4,37 @@ import DiscGolfRules from 'assets/disc-golf-rules-2018.pdf';
 import { ReactComponent as File } from 'assets/file.svg';
 
 const Wrapper = styled.a`
-  width: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
   color: black;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-style: italic;
   font-weight: 600;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
+  font-style: italic;
   line-height: 24px;
   text-decoration: none;
-  
+
+  ${({ theme }) => theme.breakpoints.mobile} {
+    width: 50%;
+  }
+
   p {
     margin: 0;
     text-decoration: underline;
-
-    ${({ theme }) => theme.breakpoints.mobile} {
-      width: 50%;
-    }
   }
 `;
 
 const LinkDescription = styled.div`
   display: flex;
-  align-items: flex-start;
-  font-family: Inter, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px;
-  margin-left: 30px;
   gap: 15px;
+  align-items: flex-start;
+  margin-left: 30px;
+  font-weight: 400;
+  font-size: 18px;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  line-height: 18px;
 
   ${({ theme }) => theme.breakpoints.mobile} {
     justify-content: flex-end;

@@ -5,24 +5,24 @@ import { useLocation } from 'react-router';
 
 const Wrapper = styled.nav`
   display: grid;
-  grid-template-areas: 'item1 item2 item3 item4 item5 item6';
+  grid-template-areas: "item1 item2 item3 item4 item5 item6";
   margin: 0 20px;
 
   ${({ theme }) => theme.breakpoints.mobilexs} {
     margin: 0 16px;
   }
-  
+
   ${({ theme }) => theme.breakpoints.tablet} {
     grid-template-areas:
-            'item1 item2 item3'
-            'item4 item5 item6';
+      "item1 item2 item3"
+      "item4 item5 item6";
   }
-  
+
   ${({ theme }) => theme.breakpoints.mobile} {
     grid-template-areas:
-            'item1 item2'
-            'item3 item4'
-            'item5 item6';
+      "item1 item2"
+      "item3 item4"
+      "item5 item6";
   }
 `;
 

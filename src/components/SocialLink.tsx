@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { ReactComponent as LinkSvg } from 'assets/link.svg';
 
 const Link = styled.a`
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 14px;
   margin: 0 0 8px;
   color: black;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+  line-height: 14px;
 `;
 
 const LinkIcon = styled(LinkSvg)`

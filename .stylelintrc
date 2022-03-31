@@ -1,0 +1,15 @@
+{
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-standard-scss",
+    "stylelint-config-styled-components",
+    "stylelint-config-rational-order"
+  ],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "value-keyword-case": null
+  }
+}

@@ -4,33 +4,32 @@ import { ReactComponent as Map } from '../assets/map.svg';
 
 const CityHeader = styled.h5`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 24px;
   gap: 14px;
+  align-items: center;
+  justify-content: flex-start;
   margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
+  line-height: 24px;
 `;
 
 const CityContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 20px 10px;
+  align-items: center;
 `;
 
 const Badge = styled.p`
-  font-family: Inter, sans-serif;
-  font-size: 24px;
+  margin: 0;
+  padding: 12px 20px;
   font-weight: 400;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
   line-height: 24px;
   border: 1px solid black;
   border-radius: 40px;
-  padding: 12px 20px;
-  margin: 0;
 `;
 
 interface Props {

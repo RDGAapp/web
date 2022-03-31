@@ -3,10 +3,9 @@ import Contact from 'components/Contact';
 
 const ContactsWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-flow: row wrap;
   gap: 60px;
+  justify-content: flex-start;
   margin-bottom: 60px;
 `;
 

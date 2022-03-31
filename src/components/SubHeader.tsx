@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const Header = styled.h3`
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
   margin: 0;
+  font-weight: 600;
+  font-size: 24px;
+  font-family: Inter, sans-serif;
+  line-height: 29px;
 `;
 
 interface SubHeaderProps {

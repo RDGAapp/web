@@ -3,29 +3,28 @@ import { ReactComponent as LogoSvg } from 'assets/logo.svg';
 
 const Wrapper = styled.div<{ width: number, height: number }>`
   display: flex;
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
   align-items: center;
   justify-content: space-between;
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
 
   ${({ theme }) => theme.breakpoints.mobilexs} {
     width: ${({ width }) => width - 35}px;
   }
-
 `;
 
 const Text = styled.h1<{ fontSize: number, width: number }>`
-  font-family: Oswald, sans-serif;
-  font-weight: 500;
-  font-size: ${({ fontSize }) => fontSize}px;
-  line-height: ${({ fontSize }) => fontSize}px;
   width: ${({ width }) => width}px;
   height: ${({ fontSize }) => fontSize * 2}px;
   margin: 0;
+  font-weight: 500;
+  font-size: ${({ fontSize }) => fontSize}px;
+  font-family: Oswald, sans-serif;
+  line-height: ${({ fontSize }) => fontSize}px;
 
   ${({ theme }) => theme.breakpoints.mobilexs} {
-    font-size: ${({ fontSize }) => fontSize - 3}px;
     width: ${({ width }) => width - 20}px;
+    font-size: ${({ fontSize }) => fontSize - 3}px;
   }
 `;
 

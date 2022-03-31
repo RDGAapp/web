@@ -12,9 +12,9 @@ import Image from 'assets/main-page-img.png';
 const VideoContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
+  gap: 40px;
   justify-content: center;
   width: 100%;
-  gap: 40px;
   margin-bottom: 60px;
 
   ${({ theme }) => theme.breakpoints.mobile} {
@@ -24,8 +24,7 @@ const VideoContainer = styled.div`
 
 const ArticleContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   gap: 60px 25px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
@@ -38,8 +37,8 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 60%;
   gap: 32px;
+  max-width: 60%;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     max-width: 100%;
@@ -47,11 +46,11 @@ const TextContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
+  flex-grow: 0;
   width: 530px;
   height: 580px;
-  border-radius: 20px;
-  flex-grow: 0;
   background: center url(${Image});
+  border-radius: 20px;
 
   ${({ theme }) => theme.breakpoints.tablet} {
     width: 100%;
