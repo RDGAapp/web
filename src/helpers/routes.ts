@@ -1,5 +1,6 @@
 enum routes {
   HOME = '/',
+  ABOUT = '/about',
   MASTER = '/master',
   TRAINING = '/training',
   NEWBIE = '/newbie',

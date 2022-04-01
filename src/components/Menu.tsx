@@ -31,6 +31,7 @@ const menuItemsList = [
     name: 'Диск-гольф',
     description: 'Узнать подробнее о спорте и правилах',
     route: routes.HOME,
+    additionalRoute: routes.ABOUT,
   },
   {
     name: 'Мастер-класс',
@@ -71,7 +72,10 @@ const Menu = (): JSX.Element => {
           description={menuItem.description}
           number={index + 1}
           route={menuItem.route}
-          selected={location.pathname === menuItem.route}
+          selected={
+            location.pathname === menuItem.route
+            || location.pathname === menuItem.additionalRoute
+          }
         />
       ))}
     </Wrapper>

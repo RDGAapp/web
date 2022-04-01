@@ -43,6 +43,7 @@ const App = (): JSX.Element => {
         <Layout openCitySelect={() => setOpen(true)}>
           <Routes>
             <Route path={routes.HOME} element={<Home />} />
+            <Route path={routes.ABOUT} element={<Home />} />
             <Route
               path={routes.MASTER}
               element={<Master openCitySelect={() => setOpen(true)} />}
