@@ -1,5 +1,6 @@
 {
-  "name": "disc-golf-react",
+  "name": "web",
+  "description": "web application for RDGA website",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
