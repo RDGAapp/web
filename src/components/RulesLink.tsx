@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-// @ts-ignore pdf import
-import DiscGolfRules from 'assets/disc-golf-rules-2018.pdf';
+import DiscGolfRules from 'assets/rules.pdf';
 import { ReactComponent as File } from 'assets/file.svg';
 
 const Wrapper = styled.a`
@@ -47,7 +46,7 @@ const RulesLink = (): JSX.Element => (
     <p>{'Скачать полные правила диск-гольфа'.toUpperCase()}</p>
     <LinkDescription>
       <File width={24} height={24} />
-      .pdf / 513 Кб
+      .pdf / 258 КБ
     </LinkDescription>
   </Wrapper>
 );
