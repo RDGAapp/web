@@ -35,7 +35,7 @@ const Banner = (): JSX.Element => {
       case routes.SHOP:
         setImage(ShopBackground);
         setText('Купить');
-        setLink(`${routes.SHOP_FORM}`);
+        setLink(`${routes.CONTACTS}`);
         break;
       case routes.SPONSORSHIP:
         setImage(SponsorBackground);
