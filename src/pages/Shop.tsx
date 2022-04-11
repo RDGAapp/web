@@ -19,13 +19,8 @@ const ArticleContainer = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex-grow: 3;
   gap: 32px;
-  max-width: 60%;
-
-  ${({ theme }) => theme.breakpoints.tablet} {
-    max-width: 100%;
-  }
 `;
 
 const Header = styled.h3`
@@ -112,6 +107,7 @@ const Shop = (): JSX.Element => {
   const [phone, setPhone] = useState<string>('');
   const [product, setProduct] = useState<string>('');
   const [buttonColor, setButtonColor] = useState<string>('yellow');
+  const [showForm] = useState(false);
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
@@ -180,6 +176,7 @@ const Shop = (): JSX.Element => {
               Наши координаты для заказа указаны внизу страницы.
             </Text>
           </TextContainer>
+          {showForm && (
           <Form onSubmit={handleSubmit} id="buy">
             {'Отправить заявку'.toUpperCase()}
             <Input
@@ -206,6 +203,7 @@ const Shop = (): JSX.Element => {
               ОТПРАВИТЬ
             </SubmitButton>
           </Form>
+          )}
         </ArticleContainer>
         <HomeLink />
       </ContentContainer>
