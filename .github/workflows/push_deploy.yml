@@ -1,4 +1,4 @@
-name: Push+Deploy (Production)
+name: Update Docker and Deploy (Production)
 
 on:
   workflow_dispatch:
@@ -6,16 +6,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build-push:
+  update-docker:
     uses: RDGAapp/web/.github/workflows/push.yml@master
     secrets:
       DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  deploy:
-    needs: build-push
-    uses: RDGAapp/web/.github/workflows/deploy.yml@master
-    secrets:
-      VDS_HOST: ${{ secrets.VDS_HOST }}
-      VDS_USER: ${{ secrets.VDS_USER }}
-      VDS_PASSWORD: ${{ secrets.VDS_PASSWORD }}
-      VDS_PORT: ${{ secrets.VDS_PORT }}
