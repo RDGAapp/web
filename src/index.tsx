@@ -1,13 +1,14 @@
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOMClient from 'react-dom/client';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-ReactDOM.render(
+const container = document.getElementById('root') as HTMLElement;
+const root = ReactDOMClient.createRoot(container);
+
+root.render(
   <StrictMode>
     <App />
   </StrictMode>,
-  document.getElementById('root'),
 );
-
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
