@@ -11,4 +11,6 @@ root.render(
     <App />
   </StrictMode>,
 );
-serviceWorkerRegistration.register();
+serviceWorkerRegistration.register({
+  onUpdate: (registration: ServiceWorkerRegistration) => registration.waiting?.postMessage('skipWaiting'),
+});
