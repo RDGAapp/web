@@ -38,3 +38,7 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+
+self.addEventListener('install', () => {
+  self.skipWaiting();
+});
