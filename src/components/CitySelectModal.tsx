@@ -76,6 +76,7 @@ const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element
           padding: '32px 48px',
         },
       }}
+      animationDuration={0}
     >
       <Header>
         {'Выберите город'.toUpperCase()}
