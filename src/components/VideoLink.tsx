@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as Play } from 'assets/play.svg';
-import { ReactComponent as Link } from 'assets/link.svg';
+import { ReactComponent as PlaySvg } from 'assets/play.svg';
+import { ReactComponent as LinkSvg } from 'assets/link.svg';
 
 const Wrapper = styled.div`
   flex-grow: 1;
@@ -63,11 +63,11 @@ const VideoLink = ({
   <Wrapper>
     <Header>{header.toUpperCase()}</Header>
     <VideoPreview href={link} image={image} target="_blank">
-      <PlayButton><Play /></PlayButton>
+      <PlayButton><PlaySvg /></PlayButton>
     </VideoPreview>
     <VideoName href={link} target="_blank">
       <i>{name.toUpperCase()}</i>
-      <Link width={20} height={20} />
+      <LinkSvg width={20} height={20} />
     </VideoName>
   </Wrapper>
 );

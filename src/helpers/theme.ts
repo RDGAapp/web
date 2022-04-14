@@ -13,6 +13,7 @@ const theme = {
     red: '#ff7f7f',
     green: '#90ee90',
     menuShadow: '#f3f3f3',
+    black: '#000000',
   },
 };
 
