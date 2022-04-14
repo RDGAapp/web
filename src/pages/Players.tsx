@@ -6,6 +6,7 @@ import { getPlayers } from 'store/requests/player';
 import Spinner from 'components/Spinner';
 import Card from 'components/Card';
 import SelectedCard from 'components/SelectedCard';
+import PageHeader from 'components/PageHeader';
 
 const Container = styled(motion.ul)`
   display: flex;
@@ -14,7 +15,7 @@ const Container = styled(motion.ul)`
   gap: 1rem;
   width: calc(100% - 2rem);
   margin: auto;
-  padding: 0 1rem 2rem;
+  padding: 0 1rem 3rem;
   list-style: none;
 `;
 
@@ -31,6 +32,7 @@ const Players = (): JSX.Element => {
 
   return (
     <>
+      <PageHeader text="Наши игроки" />
       {loading ? (<Spinner />)
         : (
           <Container>

@@ -1,5 +1,13 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as CloseSvg } from 'assets/cross.svg';
+import { ReactComponent as ChartSvg } from 'assets/chart.svg';
+import { ReactComponent as LocationSvg } from 'assets/location.svg';
+import Avatar from 'components/Avatar';
+import ServiceCard from 'components/ServiceCard';
+import MetrixImg from 'assets/metrix.png';
+import PdgaImg from 'assets/pdga.jpg';
 
 const Container = styled.div`
   position: fixed;
@@ -8,20 +16,83 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: calc(100% - 2rem);
   height: 100%;
+  padding: 0 1rem;
 `;
 
 const Card = styled(motion.div)`
+  position: relative;
   display: flex;
-  flex: 1 0 30%;
-  align-items: center;
-  justify-content: center;
-  max-width: 600px;
-  height: 80vh;
-  background: ${({ theme }) => theme.colors.green};
+  flex: 1;
+  flex-direction: column;
+  max-width: 30rem;
+  max-height: 80vh;
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.grey};
   border-radius: 2rem;
-  box-shadow: 0 0 0 150vw ${({ theme }) => theme.colors.black}80;
+  box-shadow: 0 0 0 200vw ${({ theme }) => theme.colors.black}80;
+  overflow-y: scroll;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: calc(100% - 2rem);
+  margin: 0;
+  padding: 1.5rem 1rem 1rem;
+  background-color: ${({ theme }) => theme.colors.yellow};
+
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: ${({ theme }) => theme.colors.black};
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+
+  svg {
+    width: 1rem;
+    fill: currentColor;
+  }
+
+  :hover,
+  :focus {
+    color: ${({ theme }) => theme.colors.background};
+  }
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: calc(100% - 4rem);
+  padding: 1rem 2rem 1.5rem;
+`;
+
+const InfoLine = styled.div`
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+  line-height: 2rem;
+
+  svg {
+    width: 2rem;
+  }
+
+  p {
+    margin: 0;
+  }
 `;
 
 interface Props {
@@ -29,12 +100,68 @@ interface Props {
   resetSelected: () => void,
 }
 
-const SelectedCard = ({ selected, resetSelected }: Props) => (
-  <Container onClick={resetSelected}>
-    <Card layoutId={selected.rdgaNumber.toString()} onClick={(e) => e.stopPropagation()}>
-      <h3>{`${selected.name} ${selected.surname || ''}`}</h3>
-    </Card>
-  </Container>
-);
+const SelectedCard = ({ selected, resetSelected }: Props) => {
+  const handleEscPress = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      resetSelected();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscPress);
+    return () => document.removeEventListener('keydown', handleEscPress);
+  }, []);
+
+  return (
+    <Container onClick={resetSelected}>
+      <Card layoutId={selected.rdgaNumber.toString()} onClick={(e) => e.stopPropagation()}>
+        <Header>
+          <div>
+            <Avatar />
+          </div>
+          <h2>{`${selected.name} ${selected.surname || ''}`}</h2>
+          <h2>{`#${selected.rdgaNumber}`}</h2>
+          <CloseButton onClick={resetSelected}>
+            <CloseSvg />
+          </CloseButton>
+        </Header>
+        <InfoContainer>
+          {selected.rdgaRating
+            ? (
+              <InfoLine>
+                <ChartSvg />
+                <p>{`Рейтинг: ${selected.rdgaRating}`}</p>
+              </InfoLine>
+            )
+            : ''}
+          {selected.town
+            ? (
+              <InfoLine>
+                <LocationSvg />
+                <p>{`Город: ${selected.town}`}</p>
+              </InfoLine>
+            )
+            : ''}
+          <InfoLine>
+            {selected.metrixNumber && (
+              <ServiceCard
+                img={MetrixImg}
+                number={selected.metrixNumber}
+                rating={selected.metrixRating}
+              />
+            )}
+            {selected.pdgaNumber && (
+              <ServiceCard
+                img={PdgaImg}
+                number={selected.pdgaNumber}
+                rating={selected.pdgaRating}
+              />
+            )}
+          </InfoLine>
+        </InfoContainer>
+      </Card>
+    </Container>
+  );
+};
 
 export default SelectedCard;

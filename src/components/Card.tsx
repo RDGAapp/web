@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { ReactComponent as AvatarSvg } from 'assets/avatar.svg';
+import Avatar from 'components/Avatar';
 
 const Container = styled(motion.div)`
   display: flex;
@@ -28,21 +28,6 @@ const Container = styled(motion.div)`
   ${({ theme }) => theme.breakpoints.mobile} {
     flex: 1 0 60%;
     max-width: calc(100% - 2rem);
-  }
-`;
-
-const Avatar = styled.div`
-  flex: 0;
-  width: 2rem;
-  height: 2rem;
-  padding: 1rem;
-  background: ${({ theme }) => theme.colors.grey};
-  border-radius: 100vh;
-  box-shadow: 0 0 0.1rem;
-
-  svg {
-    width: inherit;
-    fill: currentColor;
   }
 `;
 
@@ -88,7 +73,7 @@ const Card = ({ player, setSelected }: Props) => (
     viewport={{ once: true }}
     onClick={() => setSelected(player)}
   >
-    <Avatar><AvatarSvg /></Avatar>
+    <Avatar />
     <TextContainer>
       <MainInformation title={`${player.name} ${player.surname || ''}`}>
         {`${player.name} ${player.surname || ''}`}
