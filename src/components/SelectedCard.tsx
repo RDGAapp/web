@@ -28,11 +28,11 @@ const Card = styled(motion.div)`
   flex-direction: column;
   max-width: 30rem;
   max-height: 80vh;
+  overflow-y: scroll;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.grey};
   border-radius: 2rem;
   box-shadow: 0 0 0 200vw ${({ theme }) => theme.colors.black}80;
-  overflow-y: scroll;
 `;
 
 const Header = styled.div`
@@ -53,8 +53,8 @@ const Header = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
-  right: 1rem;
   top: 1rem;
+  right: 1rem;
   color: ${({ theme }) => theme.colors.black};
   background: none;
   border: none;

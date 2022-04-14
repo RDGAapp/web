@@ -33,8 +33,8 @@ const Container = styled(motion.div)`
 
 const TextContainer = styled.div`
   display: flex;
-  gap: 0.5rem;
   flex-direction: column;
+  gap: 0.5rem;
   justify-content: flex-start;
   width: calc(100% - 4rem);
 `;
@@ -43,11 +43,11 @@ const MainInformation = styled.p`
   width: 100%;
   margin: 0;
   padding: 0;
-  font-size: 1rem;
-  font-weight: bold;
-  text-overflow: ellipsis;
   overflow: hidden;
+  font-weight: bold;
+  font-size: 1rem;
   white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const AdditionalInformation = styled.p`

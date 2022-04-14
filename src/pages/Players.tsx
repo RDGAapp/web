@@ -11,8 +11,8 @@ import PageHeader from 'components/PageHeader';
 const Container = styled(motion.ul)`
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
   gap: 1rem;
+  justify-content: flex-start;
   width: calc(100% - 2rem);
   margin: auto;
   padding: 0 1rem 3rem;
