@@ -14,6 +14,7 @@ const theme = {
     green: '#90ee90',
     menuShadow: '#f3f3f3',
     black: '#000000',
+    white: '#ffffff',
     grey: '#c8c8c8',
   },
 };

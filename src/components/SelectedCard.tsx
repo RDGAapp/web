@@ -29,7 +29,7 @@ const Card = styled(motion.div)`
   max-width: 30rem;
   max-height: 80vh;
   overflow-y: scroll;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.grey};
   border-radius: 2rem;
   box-shadow: 0 0 0 200vw ${({ theme }) => theme.colors.black}80;
