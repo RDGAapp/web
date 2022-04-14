@@ -7,7 +7,7 @@ import { ReactComponent as LocationSvg } from 'assets/location.svg';
 import Avatar from 'components/Avatar';
 import ServiceCard from 'components/ServiceCard';
 import MetrixImg from 'assets/metrix.png';
-import PdgaImg from 'assets/pdga.jpg';
+import PdgaImg from 'assets/pdga.png';
 
 const Container = styled.div`
   position: fixed;
