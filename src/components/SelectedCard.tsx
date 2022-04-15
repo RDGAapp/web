@@ -95,6 +95,11 @@ const InfoLine = styled.div`
   }
 `;
 
+const CardsLine = styled(InfoLine)`
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
 interface Props {
   selected: Player,
   resetSelected: () => void,
@@ -142,7 +147,7 @@ const SelectedCard = ({ selected, resetSelected }: Props) => {
               </InfoLine>
             )
             : ''}
-          <InfoLine>
+          <CardsLine>
             {selected.metrixNumber && (
               <ServiceCard
                 img={MetrixImg}
@@ -157,7 +162,7 @@ const SelectedCard = ({ selected, resetSelected }: Props) => {
                 rating={selected.pdgaRating}
               />
             )}
-          </InfoLine>
+          </CardsLine>
         </InfoContainer>
       </Card>
     </Container>
