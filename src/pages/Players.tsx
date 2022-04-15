@@ -7,6 +7,7 @@ import Spinner from 'components/Spinner';
 import Card from 'components/Card';
 import SelectedCard from 'components/SelectedCard';
 import PageHeader from 'components/PageHeader';
+import Pagination from 'components/Pagination';
 
 const Container = styled(motion.ul)`
   display: flex;
@@ -25,26 +26,36 @@ const Players = (): JSX.Element => {
   const loading = useAppSelector((state) => state.player.loading);
 
   const [selected, setSelected] = useState<Player | null>(null);
+  const [pageNumber, setPageNumber] = useState(0);
+  const pageHeader = document.getElementById('page-header');
+
+  const scrollToPageHeader = () => {
+    window.scrollTo({ top: pageHeader?.offsetTop, behavior: 'smooth' });
+  };
 
   useEffect(() => {
-    dispatch(getPlayers());
-  }, []);
+    dispatch(getPlayers(pageNumber));
+  }, [pageNumber]);
+
+  useEffect(() => {
+    if (players && !loading && pageNumber !== 0) {
+      scrollToPageHeader();
+    }
+  }, [players]);
 
   return (
     <>
       <PageHeader text="Наши игроки" />
-      {loading ? (<Spinner />)
-        : (
-          <Container>
-            {players.map((player) => (
-              <Card
-                key={player.rdgaNumber}
-                player={player}
-                setSelected={() => setSelected(player)}
-              />
-            ))}
-          </Container>
-        )}
+      {loading && <Spinner />}
+      <Container>
+        {players?.data.map((player) => (
+          <Card
+            key={player.rdgaNumber}
+            player={player}
+            setSelected={() => setSelected(player)}
+          />
+        ))}
+      </Container>
 
       <AnimatePresence>
         {selected && (
@@ -54,6 +65,13 @@ const Players = (): JSX.Element => {
           />
         )}
       </AnimatePresence>
+      {players && (
+        <Pagination
+          currentPageNumber={players.pagination.currentPage}
+          totalPagesNumber={players.pagination.lastPage}
+          onPageChange={setPageNumber}
+        />
+      )}
     </>
   );
 };

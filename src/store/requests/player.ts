@@ -3,8 +3,8 @@ import getApiUrl from 'helpers/getApiUrl';
 
 export const getPlayers = createAsyncThunk(
   'player/getAll',
-  async () => {
-    const response = await fetch(getApiUrl('/players'));
+  async (pageNumber: number) => {
+    const response = await fetch(getApiUrl(`/players?page=${pageNumber}`));
 
     const json = await response.json();
 

@@ -11,13 +11,15 @@ const Container = styled(motion.div)`
   max-width: 29.5%;
   height: 8rem;
   padding: 1rem;
-  background: ${({ theme }) => theme.colors.yellow};
+  background: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 0 0.3rem ${({ theme }) => theme.colors.yellow};
   border-radius: 2rem;
+  transition: background 0.3s ease-in-out;
   cursor: pointer;
 
   :hover,
   :focus {
-    box-shadow: 0 0 0.1rem;
+    background: ${({ theme }) => theme.colors.yellow};
   }
 
   ${({ theme }) => theme.breakpoints.tablet} {

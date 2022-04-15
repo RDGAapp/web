@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getPlayers } from 'store/requests/player';
 
 interface PlayerState {
-  players: Player[],
+  players: Paginated<Player[]> | null,
   loading: boolean,
   error: string | null,
 }
@@ -10,7 +10,7 @@ interface PlayerState {
 const playerSlice = createSlice({
   name: 'player',
   initialState: {
-    players: [],
+    players: null,
     loading: false,
     error: null,
   } as PlayerState,
@@ -18,11 +18,10 @@ const playerSlice = createSlice({
   extraReducers: {
     [getPlayers.pending.type]: (state) => {
       state.loading = true;
-      state.players = [];
       state.error = null;
     },
 
-    [getPlayers.fulfilled.type]: (state, action: PayloadAction<Player[]>) => {
+    [getPlayers.fulfilled.type]: (state, action: PayloadAction<Paginated<Player[]>>) => {
       state.loading = false;
       state.players = action.payload;
     },
