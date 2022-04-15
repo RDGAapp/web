@@ -25,10 +25,10 @@ const PageNumber = styled.button`
   }
 
   :disabled {
-    opacity: 1;
     color: inherit;
     background-color: ${({ theme }) => theme.colors.yellow};
     cursor: default;
+    opacity: 1;
   }
 `;
 

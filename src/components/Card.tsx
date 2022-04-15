@@ -12,10 +12,10 @@ const Container = styled(motion.div)`
   height: 8rem;
   padding: 1rem;
   background: ${({ theme }) => theme.colors.white};
-  box-shadow: 0 0 0.3rem ${({ theme }) => theme.colors.yellow};
   border-radius: 2rem;
-  transition: background 0.3s ease-in-out;
+  box-shadow: 0 0 0.3rem ${({ theme }) => theme.colors.yellow};
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
 
   :hover,
   :focus {
