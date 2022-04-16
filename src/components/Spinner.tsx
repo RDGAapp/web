@@ -10,6 +10,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.colors.white}88;
+  cursor: wait;
 `;
 
 const Core = styled.div`

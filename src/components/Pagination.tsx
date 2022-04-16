@@ -75,7 +75,7 @@ const Pagination = ({
         onClick={() => onPageChange(1)}
         title="Перейти на первую страницу"
       >
-        {'<<'}
+        &laquo;
       </PageNumber>
       {pages.map((pageNumber) => (
         <PageNumber
@@ -90,7 +90,7 @@ const Pagination = ({
         onClick={() => onPageChange(totalPagesNumber)}
         title="Перейти на последнюю страницу"
       >
-        {'>>'}
+        &raquo;
       </PageNumber>
     </Container>
   );
