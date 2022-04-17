@@ -30,7 +30,7 @@ const Container = styled(motion.div)`
 
 const SWNotification = () => (
   <Container id="reloadNotification">
-    Newer version is available! Please, refresh the page.
+    Доступна более новая версия сайта! Пожалуйста, обновите страницу.
   </Container>
 );
 
