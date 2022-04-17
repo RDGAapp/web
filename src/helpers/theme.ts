@@ -12,6 +12,7 @@ const theme = {
     blue: '#2a74ed',
     red: '#ff7f7f',
     green: '#90ee90',
+    black: '#000000',
     menuShadow: '#f3f3f3',
   },
 };

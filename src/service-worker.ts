@@ -34,11 +34,7 @@ registerRoute(
 );
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+  if (event.data === 'skipWaiting') {
     self.skipWaiting();
   }
-});
-
-self.addEventListener('install', () => {
-  self.skipWaiting();
 });

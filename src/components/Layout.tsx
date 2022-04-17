@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
+import SWNotification from 'components/SWNotification';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Banner from 'components/Banner';
@@ -27,6 +28,7 @@ const Layout = ({ children, openCitySelect }: LayoutProps): JSX.Element => {
 
   return (
     <>
+      <SWNotification />
       <Wrapper>
         <Header openCitySelect={openCitySelect} />
         <Banner />
