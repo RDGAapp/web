@@ -19,9 +19,9 @@ const Container = styled(motion.div)`
   background: ${({ theme }) => theme.colors.yellow};
   border-radius: 2rem;
   transform: translateX(-50%);
-  transition: all 1s ease-in-out;
   opacity: 0;
-  
+  transition: all 1s ease-in-out;
+
   [open] {
     top: 1.5rem;
     opacity: 1;
