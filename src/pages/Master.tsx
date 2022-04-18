@@ -96,7 +96,7 @@ const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
               <div>
                 <CitySelect onClick={openCitySelect} />
               </div>
-              {city && (<CityEvent data={master.cities[city]} />)}
+              {city && (<CityEvent data={master[city]} />)}
             </CityContainer>
           </TextContainer>
           <StyledImage alt="" />

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { ReactComponent as Clock } from '../assets/clock.svg';
-import { ReactComponent as Map } from '../assets/map.svg';
+import Text from 'components/Text';
+import { ReactComponent as Clock } from 'assets/clock.svg';
+import { ReactComponent as Map } from 'assets/map.svg';
+import PlaceholderImg from 'assets/calendar.jpg';
 
 const CityHeader = styled.h5`
   display: flex;
@@ -32,30 +34,47 @@ const Badge = styled.p`
   border-radius: 40px;
 `;
 
+const Calendar = styled.img`
+  width: 100%;
+`;
+
 interface Props {
-  data: DgEvent,
+  data: DgEvent | null,
 }
 
-const CityEvent = ({ data }: Props): JSX.Element => (
-  <>
-    <CityHeader>
-      <Clock />
-      ВРЕМЯ:
-    </CityHeader>
-    <CityContainer>
-      { data.eventData.days.map((day) => <Badge key={day}>{ day.toUpperCase() }</Badge>) }
-      <Badge>{ data.eventData.time }</Badge>
-    </CityContainer>
-    <CityHeader>
-      <Map />
-      МЕСТО:
-    </CityHeader>
-    <CityContainer>
-      <Badge>{ data.eventData.place.town.toUpperCase() }</Badge>
-      <Badge>{ data.eventData.place.street.toUpperCase() }</Badge>
-      <Badge>{ data.eventData.place.comment.toUpperCase() }</Badge>
-    </CityContainer>
-  </>
-);
+const CityEvent = ({ data }: Props): JSX.Element => {
+  if (data) {
+    return (
+      <>
+        <CityHeader>
+          <Clock />
+          ВРЕМЯ:
+        </CityHeader>
+        <CityContainer>
+          { data.days.map((day) => <Badge key={day}>{ day.toUpperCase() }</Badge>) }
+          <Badge>{ data.time }</Badge>
+        </CityContainer>
+        <CityHeader>
+          <Map />
+          МЕСТО:
+        </CityHeader>
+        <CityContainer>
+          <Badge>{ data.place.town.toUpperCase() }</Badge>
+          <Badge>{ data.place.street.toUpperCase() }</Badge>
+          <Badge>{ data.place.comment.toUpperCase() }</Badge>
+        </CityContainer>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Calendar src={PlaceholderImg} alt="Календарь на сезон" />
+      <Text>
+        Для более подробной информации свяжитесь с нами любым из способов, указанных ниже.
+      </Text>
+    </>
+  );
+};
 
 export default CityEvent;

@@ -54,10 +54,12 @@ interface CitySelectModalProps {
 const cities = [
   'Белгород',
   'Екатеринбург',
+  'Калининград',
   'Москва',
   'Нижний Новгород',
   'Псков',
   'Санкт-Петербург',
+  'Тольятти',
 ];
 
 const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element => {

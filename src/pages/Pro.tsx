@@ -74,7 +74,7 @@ const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
           <div>
             <CitySelect onClick={openCitySelect} />
           </div>
-          {city && (<CityEvent data={pro.cities[city]} />)}
+          {city && (<CityEvent data={pro[city]} />)}
         </CityContainer>
       </ContentContainer>
     </>

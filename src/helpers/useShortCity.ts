@@ -7,6 +7,8 @@ const cityMapper: Record<string, Towns> = {
   'Нижний Новгород': 'nnov',
   Белгород: 'blg',
   Псков: 'psk',
+  Тольятти: 'tlt',
+  Калининград: 'klg',
 };
 
 export default function useShortCity(): Towns | null {

@@ -68,6 +68,11 @@ const contacts = [
     telegram: 'https://t.me/tfdf63',
     vk: 'https://vk.com/tfdf63',
   },
+  {
+    city: 'Калининград',
+    phone: '+7 (906) 239 00 58',
+    telegram: 'https://t.me/discgolf_Kaliningrad',
+  },
 ];
 
 const Contacts = () => (

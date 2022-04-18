@@ -114,7 +114,7 @@ const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
               <div>
                 <CitySelect onClick={openCitySelect} />
               </div>
-              {city && (<CityEvent data={newbie.cities[city]} />)}
+              {city && (<CityEvent data={newbie[city]} />)}
             </CityContainer>
           </TextContainer>
           <StyledImage alt="" />
