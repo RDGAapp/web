@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import CityEvent from 'components/CityEvent';
+import CitySelect from 'components/CitySelect';
+import ContentContainer from 'components/ContentContainer';
+import Image from 'assets/newbie-img.png';
 import { HashLink as Link } from 'react-router-hash-link';
 import PageHeader from 'components/PageHeader';
-import ContentContainer from 'components/ContentContainer';
 import Text from 'components/Text';
 import routes from 'helpers/routes';
-import Image from 'assets/newbie-img.png';
-import CitySelect from 'components/CitySelect';
-import CityEvent from 'components/CityEvent';
+import styled from 'styled-components';
 import useShortCity from 'helpers/useShortCity';
-import useStorage from '../helpers/useStorage';
+import useStorage from 'helpers/useStorage';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -40,12 +40,6 @@ const Header = styled.h3`
   font-family: Inter, sans-serif;
   font-style: italic;
   line-height: 29px;
-`;
-
-const StyledHeader = styled(Header)`
-  font-size: 36px;
-  font-style: normal;
-  line-height: 43px;
 `;
 
 const StyledImage = styled.img`
@@ -107,14 +101,9 @@ const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
               Ждём тебя на каждом турнире из расписания.
               Будь вовремя, мы начинаем в указанное время!
             </Text>
-            <StyledHeader>
-              {'Ближайший Турнир в твоем городе:'.toUpperCase()}
-            </StyledHeader>
             <CityContainer>
-              <div>
-                <CitySelect onClick={openCitySelect} />
-              </div>
-              {city && (<CityEvent data={newbie[city]} />)}
+              <CitySelect onClick={openCitySelect} />
+              {city && (<CityEvent data={newbie[city]} header="Ближайший Турнир в твоем городе:" />)}
             </CityContainer>
           </TextContainer>
           <StyledImage alt="" />

@@ -1,12 +1,12 @@
-import styled from 'styled-components';
+import CityEvent from 'components/CityEvent';
+import CitySelect from 'components/CitySelect';
+import ContentContainer from 'components/ContentContainer';
+import Image from 'assets/master-img.png';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
-import ContentContainer from 'components/ContentContainer';
-import CitySelect from 'components/CitySelect';
+import styled from 'styled-components';
 import useShortCity from 'helpers/useShortCity';
-import CityEvent from 'components/CityEvent';
-import Image from 'assets/master-img.png';
-import useStorage from '../helpers/useStorage';
+import useStorage from 'helpers/useStorage';
 
 const ArticleContainer = styled.div`
   display: flex;
@@ -31,14 +31,6 @@ const TextContainer = styled.div`
   }
 `;
 
-const StyledHeader = styled.h3`
-  margin: 0;
-  font-weight: 600;
-  font-size: 36px;
-  font-family: Inter, sans-serif;
-  line-height: 43px;
-`;
-
 const StyledImage = styled.img`
   flex-grow: 0;
   width: 530px;
@@ -60,14 +52,8 @@ const StyledImage = styled.img`
   }
 `;
 
-const CityContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
 interface MasterProps {
-  openCitySelect: () => void,
+  openCitySelect: () => void;
 }
 
 const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
@@ -81,23 +67,14 @@ const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
           <TextContainer>
             <Text>
               В
-              {' '}
               {new Date().getFullYear().toString()}
-              {' '}
-              году мы регулярно и бесплатно проводим мастер-классы!
-              Приходи один или с друзьями - с собой ничего не нужно!
-              Научись красиво и метко кидать фрисби, насладись красотой
-              запущенного тобой диска - это действительно клёво!
+              году мы регулярно и бесплатно проводим мастер-классы! Приходи один
+              или с друзьями - с собой ничего не нужно! Научись красиво и метко
+              кидать фрисби, насладись красотой запущенного тобой диска - это
+              действительно клёво!
             </Text>
-            <StyledHeader>
-              {'Ближайший мастер класс в твоем городе:'.toUpperCase()}
-            </StyledHeader>
-            <CityContainer>
-              <div>
-                <CitySelect onClick={openCitySelect} />
-              </div>
-              {city && (<CityEvent data={master[city]} />)}
-            </CityContainer>
+            <CitySelect onClick={openCitySelect} />
+            {city && <CityEvent data={master[city]} header="Ближайший мастер класс в твоем городе:" />}
           </TextContainer>
           <StyledImage alt="" />
         </ArticleContainer>

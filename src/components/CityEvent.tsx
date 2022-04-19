@@ -1,8 +1,21 @@
-import styled from 'styled-components';
-import Text from 'components/Text';
 import { ReactComponent as Clock } from 'assets/clock.svg';
 import { ReactComponent as Map } from 'assets/map.svg';
 import PlaceholderImg from 'assets/calendar.jpg';
+import Text from 'components/Text';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const Header = styled.h3`
+  margin: 0;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2rem;
+`;
 
 const CityHeader = styled.h5`
   display: flex;
@@ -12,7 +25,6 @@ const CityHeader = styled.h5`
   margin: 0;
   font-weight: 500;
   font-size: 24px;
-  font-family: Inter, sans-serif;
   line-height: 24px;
 `;
 
@@ -40,12 +52,16 @@ const Calendar = styled.img`
 
 interface Props {
   data: DgEvent | null,
+  header: string,
 }
 
-const CityEvent = ({ data }: Props): JSX.Element => {
+const CityEvent = ({ data, header }: Props): JSX.Element => {
   if (data) {
     return (
-      <>
+      <Container>
+        <Header>
+          {header.toUpperCase()}
+        </Header>
         <CityHeader>
           <Clock />
           ВРЕМЯ:
@@ -63,7 +79,7 @@ const CityEvent = ({ data }: Props): JSX.Element => {
           <Badge>{ data.place.street.toUpperCase() }</Badge>
           <Badge>{ data.place.comment.toUpperCase() }</Badge>
         </CityContainer>
-      </>
+      </Container>
     );
   }
 
