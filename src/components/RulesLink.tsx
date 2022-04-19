@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import DiscGolfRules from 'assets/rules.pdf';
 import { ReactComponent as File } from 'assets/file.svg';
 
-const Wrapper = styled.a`
+const Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -18,9 +18,9 @@ const Wrapper = styled.a`
     width: 50%;
   }
 
-  p {
+  a {
     margin: 0;
-    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.black};
   }
 `;
 
@@ -42,8 +42,10 @@ const LinkDescription = styled.div`
 `;
 
 const RulesLink = (): JSX.Element => (
-  <Wrapper href={DiscGolfRules} download="disc-golf-rules">
-    <p>{'Скачать полные правила диск-гольфа'.toUpperCase()}</p>
+  <Wrapper>
+    <a href={DiscGolfRules} download="disc-golf-rules">
+      {'Скачать полные правила диск-гольфа'.toUpperCase()}
+    </a>
     <LinkDescription>
       <File width={24} height={24} />
       .pdf / 258 КБ

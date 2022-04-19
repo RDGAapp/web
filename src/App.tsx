@@ -1,24 +1,25 @@
-import { useState } from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import {
   BrowserRouter,
   Route,
   Routes,
 } from 'react-router-dom';
-import Layout from 'components/Layout';
-import theme from 'helpers/theme';
-import routes from 'helpers/routes';
-import Home from 'pages/Home';
-import Master from 'pages/Master';
-import Train from 'pages/Train';
-import Newbie from 'pages/Newbie';
-import Pro from 'pages/Pro';
-import International from 'pages/International';
-import Companies from 'pages/Companies';
-import Sponsorship from 'pages/Sponsorship';
-import Shop from 'pages/Shop';
-import Players from 'pages/Players';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+
 import CitySelectModal from 'components/CitySelectModal';
+import Companies from 'pages/Companies';
+import Home from 'pages/Home';
+import International from 'pages/International';
+import Layout from 'components/Layout';
+import Master from 'pages/Master';
+import Newbie from 'pages/Newbie';
+import Players from 'pages/Players';
+import Pro from 'pages/Pro';
+import Shop from 'pages/Shop';
+import Sponsorship from 'pages/Sponsorship';
+import Train from 'pages/Train';
+import routes from 'helpers/routes';
+import theme from 'helpers/theme';
+import { useState } from 'react';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -27,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0;
     font-size: 20px;
+    font-family: Inter, sans-serif;
   }
 
   svg {
