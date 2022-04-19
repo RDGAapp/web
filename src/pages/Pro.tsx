@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import PageHeader from 'components/PageHeader';
-import ContentContainer from 'components/ContentContainer';
-import Text from 'components/Text';
-import Image from 'assets/pro-img.png';
-import CitySelect from 'components/CitySelect';
 import CityEvent from 'components/CityEvent';
+import CitySelect from 'components/CitySelect';
+import ContentContainer from 'components/ContentContainer';
+import Image from 'assets/pro-img.png';
+import PageHeader from 'components/PageHeader';
+import Text from 'components/Text';
+import styled from 'styled-components';
 import useShortCity from 'helpers/useShortCity';
 import useStorage from 'helpers/useStorage';
 
@@ -23,16 +23,6 @@ const StyledImage = styled.img`
     height: 330px;
     background-size: 750px 330px;
   }
-`;
-
-const Header = styled.h3`
-  width: 100%;
-  margin: 0;
-  font-weight: 600;
-  font-size: 36px;
-  font-family: Inter, sans-serif;
-  font-style: normal;
-  line-height: 43px;
 `;
 
 const CityContainer = styled.div`
@@ -67,14 +57,9 @@ const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
           Будь во время! Мы начинаем в указанное время!
         </Text>
         <StyledImage alt="" />
-        <Header>
-          {'Ближайший PRO-Турнир в твоем городе:'.toUpperCase()}
-        </Header>
         <CityContainer>
-          <div>
-            <CitySelect onClick={openCitySelect} />
-          </div>
-          {city && (<CityEvent data={pro.cities[city]} />)}
+          <CitySelect onClick={openCitySelect} />
+          {city && (<CityEvent data={pro[city]} header="Ближайший PRO-Турнир в твоем городе:" />)}
         </CityContainer>
       </ContentContainer>
     </>

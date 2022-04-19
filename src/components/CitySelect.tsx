@@ -1,24 +1,22 @@
+import { ReactComponent as PlaceSvg } from 'assets/place.svg';
+import { ReactComponent as SelectSvg } from 'assets/select.svg';
 import styled from 'styled-components';
-import { ReactComponent as Place } from 'assets/place.svg';
-import { ReactComponent as Select } from 'assets/select.svg';
 import useCity from 'helpers/useCity';
 
 const Button = styled.button`
   display: flex;
-  gap: 20px;
+  gap: 1rem;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 12px;
-  padding: 12px 20px;
+  width: max-content;
+  padding: 0.6rem 1rem;
   font-weight: 500;
-  font-size: 24px;
-  font-family: Inter, sans-serif;
-  line-height: 24px;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
   background: none;
   border: 1px solid black;
   border-radius: 40px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
 
   :hover {
     background-color: ${({ theme }) => theme.colors.yellow};
@@ -33,9 +31,9 @@ const CitySelect = ({ onClick }: CitySelectProps): JSX.Element => {
   const city = useCity();
   return (
     <Button onClick={onClick}>
-      <Place />
+      <PlaceSvg />
       {(city || 'Выберите город').toUpperCase()}
-      <Select />
+      <SelectSvg />
     </Button>
   );
 };

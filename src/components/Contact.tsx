@@ -40,7 +40,7 @@ interface ContactProps {
   city: string,
   phone?: string,
   phone2?: string,
-  email: string,
+  email?: string,
   site?: string,
   instagram?: string,
   telegram?: string,
@@ -56,9 +56,9 @@ const Contact = ({
       :
     </City>
     <Text>{phone}</Text>
-    {phone2 ? <Text>{phone2}</Text> : ''}
-    <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>
-    {(site) ? <Link href={site}>{site.split('//')[1].toUpperCase()}</Link> : ''}
+    {phone2 && <Text>{phone2}</Text>}
+    {email && <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>}
+    {site && <Link href={site}>{site.split('//')[1].toUpperCase()}</Link>}
     <Social>
       {instagram && (<SocialLink name="INSTAGRAM" value={instagram} />)}
       {telegram && (<SocialLink name="TELEGRAM" value={telegram} />)}
@@ -70,6 +70,7 @@ const Contact = ({
 Contact.defaultProps = {
   phone: '',
   phone2: '',
+  email: '',
   instagram: '',
   telegram: '',
   vk: '',
