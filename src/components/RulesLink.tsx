@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as FileSvg } from 'assets/file.svg';
 import DiscGolfRules from 'assets/rules.pdf';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -34,7 +34,7 @@ const LinkDescription = styled.div`
 `;
 
 const RulesLink = (): JSX.Element => (
-  <Wrapper>
+  <Container>
     <a href={DiscGolfRules} download="disc-golf-rules">
       {'Скачать полные правила диск-гольфа'.toUpperCase()}
     </a>
@@ -42,7 +42,7 @@ const RulesLink = (): JSX.Element => (
       <FileSvg width={24} height={24} />
       .pdf / 258 КБ
     </LinkDescription>
-  </Wrapper>
+  </Container>
 );
 
 export default RulesLink;
