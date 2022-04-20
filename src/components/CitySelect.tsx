@@ -10,6 +10,7 @@ const Button = styled.button`
   align-items: center;
   width: max-content;
   padding: 0.6rem 1rem;
+  color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1;

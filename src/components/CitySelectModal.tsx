@@ -76,9 +76,16 @@ const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element
       styles={{
         modal: {
           borderRadius: '2rem',
-          width: '60%',
+          width: '90%',
           maxWidth: '23rem',
           padding: '1.5rem 2.5rem',
+        },
+        modalContainer: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100vw',
+          height: '100vh',
         },
       }}
       animationDuration={0}
