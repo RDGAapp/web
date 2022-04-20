@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import PageHeader from 'components/PageHeader';
-import Text from 'components/Text';
-import ContentContainer from 'components/ContentContainer';
-import SubHeader from 'components/SubHeader';
-import RulesLink from 'components/RulesLink';
-import Image from 'assets/train-img.png';
 
-const ArticleContainer = styled.div`
+import Image from 'assets/train-img.png';
+import ContentContainer from 'components/ContentContainer';
+import PageHeader from 'components/PageHeader';
+import RulesLink from 'components/RulesLink';
+import SubHeader from 'components/SubHeader';
+import Text from 'components/Text';
+
+const ArticleContainer = styled.article`
   display: flex;
   flex-flow: row nowrap;
-  gap: 60px 25px;
+  gap: 3rem 1rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -21,26 +22,29 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 32px;
+  gap: 1.5rem;
   max-width: 60%;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     max-width: 100%;
   }
 `;
 
 const StyledImage = styled.img`
+  flex-basis: 26rem;
   flex-grow: 0;
-  width: 520px;
-  height: 420px;
+  height: 21rem;
   background: center url(${Image});
-  background-size: 750px 420px;
-  border-radius: 20px;
+  background-size: 37rem 21rem;
+  border-radius: 2rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
-    width: 100%;
-    max-width: 750px;
+  ${({ theme }) => theme.media.tablet} {
+    flex-basis: 37rem;
   }
+`;
+
+const Ul = styled.ul`
+  margin: 0;
 `;
 
 const Train = (): JSX.Element => (
@@ -57,14 +61,14 @@ const Train = (): JSX.Element => (
             Для игры каждому участнику понадобится:
           </SubHeader>
           <Text>
-            <ul style={{ margin: '0' }}>
+            <Ul>
               <li>
                 Минимум один диск для игры;
               </li>
               <li>
                 Знание основных правил диск-гольфа.
               </li>
-            </ul>
+            </Ul>
           </Text>
           <RulesLink />
         </TextContainer>

@@ -1,15 +1,17 @@
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
-import SWNotification from 'components/SWNotification';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+
 import Banner from 'components/Banner';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
 import Menu from 'components/Menu';
+import SWNotification from 'components/SWNotification';
 import routes from 'helpers/routes';
 
-const Wrapper = styled.div`
-  max-width: 1440px;
+const Container = styled.div`
+  max-width: 72rem;
   margin: auto;
+  padding: 0 1rem;
 `;
 interface LayoutProps {
   children: JSX.Element[] | JSX.Element,
@@ -29,12 +31,12 @@ const Layout = ({ children, openCitySelect }: LayoutProps): JSX.Element => {
   return (
     <>
       <SWNotification />
-      <Wrapper>
+      <Container>
         <Header openCitySelect={openCitySelect} />
         <Banner />
         {!shouldNotShowMenuSet.has(location.pathname) && <Menu />}
         {children}
-      </Wrapper>
+      </Container>
       <Footer />
     </>
   );

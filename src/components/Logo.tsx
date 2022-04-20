@@ -1,31 +1,19 @@
 import styled from 'styled-components';
+
 import { ReactComponent as LogoSvg } from 'assets/logo.svg';
 
-const Wrapper = styled.div<{ width: number, height: number }>`
+const Container = styled.div`
   display: flex;
+  gap: 1rem;
   align-items: center;
-  justify-content: space-between;
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
-
-  ${({ theme }) => theme.breakpoints.mobilexs} {
-    width: ${({ width }) => width - 35}px;
-  }
 `;
 
-const Text = styled.h1<{ fontSize: number, width: number }>`
-  width: ${({ width }) => width}px;
-  height: ${({ fontSize }) => fontSize * 2}px;
-  margin: 0;
+const Text = styled.h1<{ fontSize: number } >`
+  max-width: 22ch;
   font-weight: 500;
-  font-size: ${({ fontSize }) => fontSize}px;
-  font-family: Oswald, sans-serif;
-  line-height: ${({ fontSize }) => fontSize}px;
-
-  ${({ theme }) => theme.breakpoints.mobilexs} {
-    width: ${({ width }) => width - 20}px;
-    font-size: ${({ fontSize }) => fontSize - 3}px;
-  }
+  font-size: ${({ fontSize }) => fontSize}rem;
+  font-family: ${({ theme }) => theme.fontFamily.header};
+  line-height: 1;
 `;
 
 interface LogoProps {
@@ -33,12 +21,12 @@ interface LogoProps {
 }
 
 const Logo = ({ big }: LogoProps): JSX.Element => (
-  <Wrapper width={big ? 550 : 365} height={big ? 115 : 64}>
+  <Container>
     <LogoSvg width={big ? 120 : 64} height={big ? 115 : 60} />
-    <Text fontSize={big ? 36 : 24} width={big ? 420 : 280}>
+    <Text fontSize={big ? 1.8 : 1.2}>
       РОССИЙСКАЯ АССОЦИАЦИЯ ДИСК-ГОЛЬФА
     </Text>
-  </Wrapper>
+  </Container>
 );
 
 Logo.defaultProps = {

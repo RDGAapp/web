@@ -1,33 +1,34 @@
 import styled from 'styled-components';
-import ContentContainer from 'components/ContentContainer';
-import PageHeader from 'components/PageHeader';
-import VideoLink from 'components/VideoLink';
-import Text from 'components/Text';
-import SubHeader from 'components/SubHeader';
-import RulesLink from 'components/RulesLink';
-import RussiaVideo from 'assets/russia-video.png';
+
 import AmericaVideo from 'assets/america-video.png';
 import Image from 'assets/main-page-img.png';
+import RussiaVideo from 'assets/russia-video.png';
+import ContentContainer from 'components/ContentContainer';
+import PageHeader from 'components/PageHeader';
+import RulesLink from 'components/RulesLink';
+import SubHeader from 'components/SubHeader';
+import Text from 'components/Text';
+import VideoLink from 'components/VideoLink';
 
 const VideoContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  gap: 40px;
-  justify-content: center;
+  gap: 2rem;
+  justify-content: flex-start;
   width: 100%;
-  margin-bottom: 60px;
 
-  ${({ theme }) => theme.breakpoints.mobile} {
+  ${({ theme }) => theme.media.mobile} {
     flex-wrap: wrap;
+    justify-content: center;
   }
 `;
 
-const ArticleContainer = styled.div`
+const ArticleContainer = styled.article`
   display: flex;
   flex-flow: row nowrap;
-  gap: 60px 25px;
+  gap: 2rem 1rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -37,24 +38,24 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: 32px;
+  gap: 1.5rem;
   max-width: 60%;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     max-width: 100%;
   }
 `;
 
 const StyledImage = styled.img`
+  flex-basis: 26rem;
   flex-grow: 0;
-  width: 530px;
-  height: 580px;
+  height: 29rem;
   background: center url(${Image});
-  border-radius: 20px;
+  border-radius: 1rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
+    flex-basis: 36rem;
     width: 100%;
-    max-width: 752px;
   }
 `;
 
@@ -72,7 +73,7 @@ const Home = (): JSX.Element => (
         <VideoLink
           header="В Америке"
           image={AmericaVideo}
-          link="https://www.youtube.com/watch?v=AHVF5cFDOEU"
+          link="https://youtube.com/watch?v=AHVF5cFDOEU"
           name="This is Disc-Golf - Spin.tv"
         />
       </VideoContainer>

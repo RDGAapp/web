@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import PageHeader from 'components/PageHeader';
-import ContentContainer from 'components/ContentContainer';
-import Text from 'components/Text';
-import OuterLink from 'components/OuterLink';
+
 import Image from 'assets/international-img.png';
 import { ReactComponent as YouTubeSvg } from 'assets/youtube.svg';
+import ContentContainer from 'components/ContentContainer';
+import OuterLink from 'components/OuterLink';
+import PageHeader from 'components/PageHeader';
+import Text from 'components/Text';
 
 const ArticleContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
   gap: 60px 25px;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -24,7 +25,7 @@ const TextContainer = styled.div`
   gap: 32px;
   max-width: 60%;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     max-width: 100%;
   }
 `;
@@ -37,7 +38,7 @@ const StyledImage = styled.img`
   background-size: 1100px 700px;
   border-radius: 20px;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     width: 100%;
     max-width: 750px;
     height: 480px;
@@ -48,7 +49,7 @@ const StyledImage = styled.img`
 const LinkContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
-  gap: 10px;
+  gap: 0.5rem;
 `;
 
 const International = (): JSX.Element => (
@@ -87,7 +88,7 @@ const International = (): JSX.Element => (
           </Text>
           <LinkContainer>
             <OuterLink link="youtube.com/c/JomezProductions/videos">
-              <YouTubeSvg />
+              <YouTubeSvg height={20} />
             </OuterLink>
           </LinkContainer>
         </TextContainer>

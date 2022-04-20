@@ -1,70 +1,66 @@
 import styled from 'styled-components';
-import Logo from 'components/Logo';
-import appTheme from 'helpers/theme';
+
 import Contacts from 'components/Contacts';
+import Logo from 'components/Logo';
+import theme from 'helpers/theme';
 import useWindowDimensions from 'helpers/useWindowDimensions';
 
-const BackgroundContacts = styled.footer`
-  background: ${({ theme }) => theme.colors.yellow};
+const PrimaryBackground = styled.footer`
+  background: ${({ theme }) => theme.colors.primary};
 `;
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  max-width: 1440px;
+  gap: 3rem;
+  max-width: 72rem;
   margin: auto;
-  padding: 60px 20px;
+  padding: 3rem 1rem;
 `;
 
 const Header = styled.h1`
-  width: 100%;
-  margin: 0 0 60px;
   font-weight: 400;
-  font-size: 48px;
-  font-family: Oswald, sans-serif;
-  line-height: 48px;
+  font-size: 2.4rem;
+  font-family: ${({ theme }) => theme.fontFamily.header};
+  line-height: 1;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  ${({ theme }) => theme.media.tablet} {
+    flex-direction: column;
+    gap: 3rem;
+  }
 `;
 
 const Copyright = styled.p`
   align-self: flex-end;
-  margin: 0;
-  font-weight: 400;
-  font-size: 14px;
-  font-family: Inter, sans-serif;
-  line-height: 14px;
+  font-size: 0.7rem;
+  line-height: 1;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     align-self: center;
-  }
-`;
-
-const BottomWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-
-  ${({ theme }) => theme.breakpoints.tablet} {
-    flex-direction: column;
-    gap: 60px;
-    align-items: center;
   }
 `;
 
 const Footer = (): JSX.Element => {
   const { width } = useWindowDimensions();
   return (
-    <BackgroundContacts>
-      <Wrapper id="contacts">
+    <PrimaryBackground>
+      <Container id="contacts">
         <Header>Контакты</Header>
         <Contacts />
-        <BottomWrapper>
-          <Logo big={width >= appTheme.breakpoints.tabletPx} />
+        <LogoContainer>
+          <Logo big={width >= theme.breakpoints.tablet} />
           <Copyright>© АССОЦИАЦИЯ ИГРОКОВ В ДИСК-ГОЛЬФ</Copyright>
-        </BottomWrapper>
-      </Wrapper>
-    </BackgroundContacts>
+        </LogoContainer>
+      </Container>
+    </PrimaryBackground>
   );
 };
 

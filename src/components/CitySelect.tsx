@@ -1,6 +1,7 @@
+import styled from 'styled-components';
+
 import { ReactComponent as PlaceSvg } from 'assets/place.svg';
 import { ReactComponent as SelectSvg } from 'assets/select.svg';
-import styled from 'styled-components';
 import useCity from 'helpers/useCity';
 
 const Button = styled.button`
@@ -11,15 +12,19 @@ const Button = styled.button`
   padding: 0.6rem 1rem;
   font-weight: 500;
   font-size: 1.2rem;
-  line-height: 1.2rem;
+  line-height: 1;
   background: none;
-  border: 1px solid black;
-  border-radius: 40px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.yellow};
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  svg {
+    height: 1.2rem;
   }
 `;
 

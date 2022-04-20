@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 
 const Header = styled.h1`
-  margin: 60px;
+  margin: 3rem 0;
   font-weight: 400;
-  font-size: 48px;
-  font-family: Oswald, sans-serif;
-  line-height: 48px;
-
-  ${({ theme }) => theme.breakpoints.mobile} {
-    margin: 60px 24px;
-  }
+  font-size: 2.4rem;
+  font-family: ${({ theme }) => theme.fontFamily.header};
+  line-height: 1;
 `;
 
 interface PageHeaderProps {

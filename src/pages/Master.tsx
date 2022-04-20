@@ -1,19 +1,20 @@
+import styled from 'styled-components';
+
+import Image from 'assets/master-img.png';
 import CityEvent from 'components/CityEvent';
 import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
-import Image from 'assets/master-img.png';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
-import styled from 'styled-components';
 import useShortCity from 'helpers/useShortCity';
 import useStorage from 'helpers/useStorage';
 
-const ArticleContainer = styled.div`
+const ArticleContainer = styled.article`
   display: flex;
   flex-flow: row nowrap;
-  gap: 60px 25px;
+  gap: 3rem 2rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -21,35 +22,23 @@ const ArticleContainer = styled.div`
 
 const TextContainer = styled.div`
   display: flex;
+  flex-basis: 60%;
   flex-direction: column;
   flex-grow: 1;
   gap: 32px;
-  max-width: 60%;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
-    max-width: 100%;
+  ${({ theme }) => theme.media.tablet} {
+    flex-basis: 100%;
   }
 `;
 
 const StyledImage = styled.img`
+  flex-basis: 26rem;
   flex-grow: 0;
-  width: 530px;
-  height: 830px;
+  height: 41rem;
   background: center url(${Image});
-  background-size: 530px 830px;
-  border-radius: 20px;
-
-  ${({ theme }) => theme.breakpoints.tablet} {
-    width: 100%;
-    max-width: 750px;
-    background-size: 750px 1050px;
-  }
-
-  ${({ theme }) => theme.breakpoints.mobile} {
-    width: 100%;
-    max-width: 530px;
-    background-size: 530px 830px;
-  }
+  background-size: 26rem 41rem;
+  border-radius: 2rem;
 `;
 
 interface MasterProps {

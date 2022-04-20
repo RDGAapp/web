@@ -7,7 +7,9 @@
         "plugin:react/recommended",
         "airbnb",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/eslint-recommended"
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:import/recommended",
+        "plugin:import/typescript"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -28,39 +30,77 @@
         }
     },
     "rules": {
-        "no-shadow": 0,                  // http://eslint.org/docs/rules/no-shadow
-
-        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-anonymous-default-export.md
-        "import/no-anonymous-default-export": [2, {"allowArrowFunction": true}],
-
+        // http://eslint.org/docs/rules/no-shadow
+        // won't work with enums
+        "no-shadow": 0,
         // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-        // new JSX Transform, no need for these rules
+        // new JSX Transform, no need to import React
         "react/jsx-uses-react": 0,
         "react/react-in-jsx-scope": 0,
-
-        "react/jsx-filename-extension": [2, { "extensions": [
-            ".js", ".jsx", ".ts", ".tsx"
-        ] }],
-
+        "react/jsx-filename-extension": [
+            2,
+            {
+                "extensions": [
+                    ".jsx",
+                    ".tsx"
+                ]
+            }
+        ],
         "import/extensions": [
             "error",
             "ignorePackages",
             {
-                "js": "never",
-                "jsx": "never",
                 "ts": "never",
                 "tsx": "never"
             }
         ],
-        "jsx-a11y/anchor-is-valid": "off",
-        "@typescript-eslint/ban-ts-comment": [2, {
-            "ts-expect-error": "allow-with-description",
-            "ts-ignore": "allow-with-description",
-            "ts-nocheck": "allow-with-description",
-            "ts-check": "allow-with-description",
-            "minimumDescriptionLength": 10
-        }],
-        "react/jsx-props-no-spreading": "off",
-        "react/function-component-definition": [2, { "namedComponents": ["function-expression", "arrow-function"] }]
+        // allow arrow function components
+        "react/function-component-definition": [
+            2,
+            {
+                "namedComponents": [
+                    "function-expression",
+                    "arrow-function"
+                ]
+            }
+        ],
+        // https://redux-toolkit.js.org/usage/immer-reducers#linting-state-mutations
+        // allow modification of state for redux-toolkit
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "state"
+                ]
+            }
+        ],
+
+        // right order of imports
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal"
+                ],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": [
+                    "react"
+                ],
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ]
     }
 }

@@ -1,21 +1,22 @@
+import { HashLink as Link } from 'react-router-hash-link';
+import styled from 'styled-components';
+
+import Image from 'assets/newbie-img.png';
 import CityEvent from 'components/CityEvent';
 import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
-import Image from 'assets/newbie-img.png';
-import { HashLink as Link } from 'react-router-hash-link';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
 import routes from 'helpers/routes';
-import styled from 'styled-components';
 import useShortCity from 'helpers/useShortCity';
 import useStorage from 'helpers/useStorage';
 
-const ArticleContainer = styled.div`
+const ArticleContainer = styled.article`
   display: flex;
   flex-flow: row nowrap;
-  gap: 60px 25px;
+  gap: 3rem 1rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -23,36 +24,41 @@ const ArticleContainer = styled.div`
 
 const TextContainer = styled.div`
   display: flex;
+  flex-basis: 60%;
   flex-direction: column;
   flex-grow: 1;
-  gap: 32px;
-  max-width: 60%;
+  gap: 1.5rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
-    max-width: 100%;
+  ${({ theme }) => theme.media.tablet} {
+    flex-basis: 100%;
   }
 `;
 
 const Header = styled.h3`
-  margin: 0;
   font-weight: 600;
-  font-size: 24px;
-  font-family: Inter, sans-serif;
+  font-size: 1.2rem;
   font-style: italic;
-  line-height: 29px;
+  line-height: 1;
+
+  a {
+    color: ${({ theme }) => theme.colors.text.primary};
+    transition: color 0.3s ease-in-out;
+
+    :hover {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
+  }
 `;
 
 const StyledImage = styled.img`
-  flex-grow: 0;
-  width: 530px;
-  height: 440px;
+  flex-basis: 26rem;
+  height: 22rem;
   background: center url(${Image});
-  background-size: 750px 440px;
-  border-radius: 20px;
+  background-size: 37rem 22rem;
+  border-radius: 2rem;
 
   ${({ theme }) => theme.breakpoints.tablet} {
-    width: 100%;
-    max-width: 750px;
+    flex-basis: 37rem;
   }
 `;
 
@@ -86,7 +92,6 @@ const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
               {'Внимание! К турнирам допускаются игроки, прошедшие минимум два '.toUpperCase()}
               <Link
                 to={`${routes.MASTER}${routes.MENU}`}
-                style={{ color: 'black' }}
                 smooth
               >
                 {'мастер-класса!'.toUpperCase()}
