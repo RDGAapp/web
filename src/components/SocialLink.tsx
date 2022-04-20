@@ -1,17 +1,23 @@
 import styled from 'styled-components';
+
 import { ReactComponent as LinkSvg } from 'assets/link.svg';
 
 const Link = styled.a`
-  margin: 0 0 8px;
-  color: black;
+  display: flex;
+  gap: 0.1rem;
+  color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 400;
-  font-size: 14px;
-  font-family: Inter, sans-serif;
-  line-height: 14px;
+  font-size: 0.7rem;
+  line-height: 1;
+  transition: color 0.3s ease-in-out;
+
+  :hover {
+    color: ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 const LinkIcon = styled(LinkSvg)`
-  margin: 0 15px 0 10px;
+  height: 0.7rem;
 `;
 
 interface SocialLinkProps {
@@ -20,10 +26,10 @@ interface SocialLinkProps {
 }
 
 const SocialLink = ({ name, value }: SocialLinkProps): JSX.Element => (
-  <>
-    <Link href={value} target="_blank">{name}</Link>
-    <LinkIcon width={13} height={13} />
-  </>
+  <Link href={value} target="_blank" rel="noreferrer">
+    {name}
+    <LinkIcon />
+  </Link>
 );
 
 export default SocialLink;

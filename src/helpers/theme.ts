@@ -1,19 +1,31 @@
 const theme = {
-  breakpoints: {
+  media: {
     tablet: '@media (max-width: 1024px)',
     mobile: '@media (max-width: 767px)',
-    mobilexs: '@media (max-width: 400px)',
-    tabletPx: 1024,
-    mobilePx: 767,
+  },
+  breakpoints: {
+    tablet: 1024,
+    mobile: 767,
   },
   colors: {
-    background: '#e5e5e5',
-    yellow: '#fbcd04',
-    blue: '#2a74ed',
-    red: '#ff7f7f',
-    green: '#90ee90',
-    black: '#000000',
-    menuShadow: '#f3f3f3',
+    primary: '#fbcd04',
+    secondary: '#2a74ed',
+    background: '#ffffff',
+    border: '#000000',
+    borderContrast: '#ffffff',
+    error: '#ff7f7f',
+    success: '#90ee90',
+    menuInactive: '#f3f3f3',
+    text: {
+      primary: '#000000',
+    },
+  },
+  fontFamily: {
+    primary: 'Inter, sans-serif',
+    header: 'Oswald, sans-serif',
+  },
+  zIndex: {
+    swNotification: 1000,
   },
 };
 

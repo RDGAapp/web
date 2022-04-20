@@ -1,34 +1,34 @@
+import styled from 'styled-components';
+
+import Image from 'assets/pro-img.png';
 import CityEvent from 'components/CityEvent';
 import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
-import Image from 'assets/pro-img.png';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
-import styled from 'styled-components';
 import useShortCity from 'helpers/useShortCity';
 import useStorage from 'helpers/useStorage';
 
 const StyledImage = styled.img`
+  flex-basis: 68rem;
   flex-grow: 0;
-  width: 100%;
-  max-width: 1360px;
-  height: 605px;
+  height: 30rem;
   margin: 0 auto;
   background: center url(${Image});
-  background-size: 1360px 605px;
-  border-radius: 20px;
+  background-size: 68rem 30rem;
+  border-radius: 2rem;
 
-  ${({ theme }) => theme.breakpoints.tablet} {
-    max-width: 750px;
-    height: 330px;
-    background-size: 750px 330px;
+  ${({ theme }) => theme.media.tablet} {
+    flex-basis: 37rem;
+    height: 16rem;
+    background-size: 37rem 16rem;
   }
 `;
 
 const CityContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
 `;
 
 interface ProProps {

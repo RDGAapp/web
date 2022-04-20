@@ -1,28 +1,61 @@
+import { useEffect, useState } from 'react';
+
+import { useLocation } from 'react-router';
+import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
+
+import { ReactComponent as ArrowDown } from 'assets/arrow-down.svg';
 import MainBackground from 'assets/banner-main.png';
 import ShopBackground from 'assets/banner-shop.png';
 import SponsorBackground from 'assets/banner-sponsor.png';
 import PlayersBackground from 'assets/players.jpg';
-import { useLocation } from 'react-router';
-import { useEffect, useState } from 'react';
-import ButtonAgitation from 'components/ButtonAgitation';
 import routes from 'helpers/routes';
 
-const Wrapper = styled.div<{ image: string }>`
+const Container = styled.div<{ image: string }>`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 460px;
-  margin: 0 20px 60px;
-  padding-bottom: 100px;
-  overflow: hidden;
+  height: 28rem;
+  margin: 0 0 3rem;
+  padding-bottom: 5rem;
   background: center url(${({ image }) => image});
-  border-radius: 50px;
+  border-radius: 2.5rem;
+`;
 
-  ${({ theme }) => theme.breakpoints.mobilexs} {
-    margin: 0 16px 60px;
+const LinkCta = styled(HashLink)`
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-weight: 400;
+  font-size: 1.2rem;
+  font-family: ${({ theme }) => theme.fontFamily.header};
+  line-height: 1;
+  text-decoration: none;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 2rem;
+  box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primary};
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+
+  :hover {
+    box-shadow: 0 0 1rem ${({ theme }) => theme.colors.border};
+  }
+
+  svg {
+    height: 1.2rem;
   }
 `;
+
+const bannerContent = new Map<string, Record<string, string>>([
+  [routes.SHOP, { image: ShopBackground, text: 'Купить', link: routes.CONTACTS }],
+  [routes.SPONSORSHIP, { image: SponsorBackground, text: 'Сделать пожертвование', link: routes.SPONSOR }],
+  [routes.COMPANIES, { image: SponsorBackground, text: 'Заказать мероприятие', link: routes.CONTACTS }],
+  [routes.PLAYERS, { image: PlayersBackground, text: 'Пройти мастер-класс', link: `${routes.MASTER}${routes.MENU}` }],
+]);
+
+const defaultBannerContent = { image: MainBackground, text: 'Пройти мастер-класс', link: `${routes.MASTER}${routes.MENU}` };
 
 const Banner = (): JSX.Element => {
   const location = useLocation();
@@ -31,39 +64,19 @@ const Banner = (): JSX.Element => {
   const [link, setLink] = useState<string>('');
 
   useEffect(() => {
-    switch (location.pathname) {
-      case routes.SHOP:
-        setImage(ShopBackground);
-        setText('Купить');
-        setLink(`${routes.CONTACTS}`);
-        break;
-      case routes.SPONSORSHIP:
-        setImage(SponsorBackground);
-        setText('Сделать пожертвование');
-        setLink(`${routes.SPONSOR}`);
-        break;
-      case routes.COMPANIES:
-        setImage(SponsorBackground);
-        setText('Заказать мероприятие');
-        setLink(`${routes.CONTACTS}`);
-        break;
-      case routes.PLAYERS:
-        setImage(PlayersBackground);
-        setText('Пройти мастер-класс');
-        setLink(`${routes.MASTER}${routes.MENU}`);
-        break;
-      default:
-        setImage(MainBackground);
-        setText('Пройти мастер-класс');
-        setLink(`${routes.MASTER}${routes.MENU}`);
-        break;
-    }
+    const currentBannerContent = bannerContent.get(location.pathname) || defaultBannerContent;
+    setImage(currentBannerContent.image);
+    setText(currentBannerContent.text);
+    setLink(currentBannerContent.link);
   }, [location.pathname]);
 
   return (
-    <Wrapper image={image}>
-      <ButtonAgitation text={text} link={link} />
-    </Wrapper>
+    <Container image={image}>
+      <LinkCta to={link} smooth>
+        <ArrowDown />
+        {text.toUpperCase()}
+      </LinkCta>
+    </Container>
   );
 };
 

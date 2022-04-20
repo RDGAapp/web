@@ -1,28 +1,17 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { HashLink } from 'react-router-hash-link';
+import styled from 'styled-components';
 
-const Button = styled(Link)<{ $active: boolean }>`
-  padding: 8px 16px;
-  color: black;
+import ButtonOutlined from 'components/ButtonOutlined';
+
+const Link = styled(HashLink)<{ $active: boolean }>`
+  ${ButtonOutlined}
   font-weight: 500;
-  font-size: 12px;
-  font-family: Inter, sans-serif;
-  text-decoration: none;
-  background: none;
-  ${({ $active, theme }) => $active && `background-color: ${theme.colors.yellow};`}
-  border: 1px solid black;
-  border-radius: 40px;
-  cursor: pointer;
-
-  ${({ theme }) => theme.breakpoints.mobilexs} {
-    padding: 6px 14px;
-    font-size: 11px;
-  }
+  ${({ $active, theme }) => $active && `background-color: ${theme.colors.primary};`}
+  transition: background-color 0.3s ease;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.yellow};
-    transition: background-color 0.3s ease;
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -35,9 +24,9 @@ const LinkOutlined = ({ text, route }: ButtonOutlinedProps): JSX.Element => {
   const location = useLocation();
 
   return (
-    <Button to={route} $active={location.pathname === route || false}>
+    <Link smooth to={route} $active={location.pathname === route || false}>
       {text.toUpperCase()}
-    </Button>
+    </Link>
   );
 };
 
