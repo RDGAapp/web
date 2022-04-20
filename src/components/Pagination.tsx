@@ -21,12 +21,12 @@ const PageNumber = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.yellow};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   :disabled {
     color: inherit;
-    background-color: ${({ theme }) => theme.colors.yellow};
+    background-color: ${({ theme }) => theme.colors.primary};
     cursor: default;
     opacity: 1;
   }

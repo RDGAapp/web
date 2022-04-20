@@ -9,7 +9,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => theme.colors.white}88;
+  background: ${({ theme }) => theme.colors.backdrop};
   cursor: wait;
 `;
 
@@ -19,7 +19,7 @@ const Core = styled.div`
   height: 1em;
   margin: 72px auto;
   overflow: hidden;
-  color: ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.primary};
   font-size: 90px;
   text-indent: -9999em;
   border-radius: 50%;

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { getPlayers } from 'store/requests/player';
 
 interface PlayerState {

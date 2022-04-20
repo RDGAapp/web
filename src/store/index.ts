@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
 import playerSlice from 'store/player';
 
 const rootReducer = combineReducers({

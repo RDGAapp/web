@@ -1,13 +1,15 @@
-import { motion } from 'framer-motion';
 import { useEffect } from 'react';
+
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { ReactComponent as CloseSvg } from 'assets/cross.svg';
+
 import { ReactComponent as ChartSvg } from 'assets/chart.svg';
+import { ReactComponent as CloseSvg } from 'assets/cross.svg';
 import { ReactComponent as LocationSvg } from 'assets/location.svg';
-import Avatar from 'components/Avatar';
-import ServiceCard from 'components/ServiceCard';
 import MetrixImg from 'assets/metrix.png';
 import PdgaImg from 'assets/pdga.png';
+import Avatar from 'components/Avatar';
+import ServiceCard from 'components/ServiceCard';
 
 const Container = styled.div`
   position: fixed;
@@ -16,7 +18,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(100% - 2rem);
+  width: 100%;
   height: 100%;
   padding: 0 1rem;
 `;
@@ -29,10 +31,9 @@ const Card = styled(motion.div)`
   max-width: 30rem;
   max-height: 80vh;
   overflow-y: scroll;
-  background: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.grey};
+  background: ${({ theme }) => theme.colors.background};
   border-radius: 2rem;
-  box-shadow: 0 0 0 200vw ${({ theme }) => theme.colors.black}80;
+  box-shadow: 0 0 0 200vw ${({ theme }) => theme.colors.backdrop};
 `;
 
 const Header = styled.div`
@@ -40,22 +41,16 @@ const Header = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
-  width: calc(100% - 2rem);
-  margin: 0;
+  width: 100%;
   padding: 1.5rem 1rem 1rem;
-  background-color: ${({ theme }) => theme.colors.yellow};
-
-  h2 {
-    margin: 0;
-    padding: 0;
-  }
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text.primary};
   background: none;
   border: none;
   cursor: pointer;
@@ -63,7 +58,6 @@ const CloseButton = styled.button`
 
   svg {
     width: 1rem;
-    fill: currentColor;
   }
 
   :hover,
@@ -76,7 +70,7 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: calc(100% - 4rem);
+  width: 100%;
   padding: 1rem 2rem 1.5rem;
 `;
 
@@ -89,15 +83,11 @@ const InfoLine = styled.div`
   svg {
     width: 2rem;
   }
-
-  p {
-    margin: 0;
-  }
 `;
 
 const CardsLine = styled(InfoLine)`
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 interface Props {

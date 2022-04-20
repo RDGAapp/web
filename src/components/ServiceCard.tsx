@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 11rem;
+  margin: auto;
   padding-bottom: 1rem;
   border-radius: 1rem;
 `;
@@ -9,10 +10,6 @@ const Container = styled.div`
 const Header = styled.img`
   width: 100%;
   height: 4rem;
-`;
-
-const Info = styled.p`
-  padding: 0 1rem;
 `;
 
 interface Props {
@@ -24,13 +21,13 @@ interface Props {
 const ServiceCard = ({ img, number, rating }: Props) => (
   <Container>
     <Header src={img} />
-    <Info>
+    <p>
       {`#${number}`}
-    </Info>
+    </p>
     {rating && (
-    <Info>
+    <p>
       {`Рейтинг: ${rating}`}
-    </Info>
+    </p>
     )}
   </Container>
 );

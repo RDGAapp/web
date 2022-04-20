@@ -1,18 +1,21 @@
 import styled from 'styled-components';
+
 import { ReactComponent as AvatarSvg } from 'assets/avatar.svg';
 
 const Background = styled.div`
+  display: flex;
   flex: 0;
-  width: 2rem;
-  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
   padding: 1rem;
-  background: ${({ theme }) => theme.colors.grey};
+  background: ${({ theme }) => theme.colors.avatarBackground};
   border-radius: 100vh;
   box-shadow: 0 0 0.1rem;
 
   svg {
-    width: inherit;
-    fill: currentColor;
+    height: 1.5rem;
   }
 `;
 

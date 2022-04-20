@@ -16,6 +16,8 @@ const theme = {
     error: '#ff7f7f',
     success: '#90ee90',
     menuInactive: '#f3f3f3',
+    backdrop: '#00000080',
+    avatarBackground: '#c8c8c8',
     text: {
       primary: '#000000',
     },

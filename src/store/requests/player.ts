@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import getApiUrl from 'helpers/getApiUrl';
 
 export const getPlayers = createAsyncThunk(
