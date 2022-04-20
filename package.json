@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "1.8.1",
-    "@types/node": "17.0.24",
+    "@types/node": "17.0.25",
     "@types/react": "18.0.5",
     "@types/react-dom": "18.0.1",
     "@types/react-router": "5.1.18",
@@ -39,8 +39,8 @@
   "devDependencies": {
     "@testing-library/react": "13.1.1",
     "@testing-library/user-event": "14.1.1",
-    "@typescript-eslint/eslint-plugin": "5.19.0",
-    "@typescript-eslint/parser": "5.19.0",
+    "@typescript-eslint/eslint-plugin": "5.20.0",
+    "@typescript-eslint/parser": "5.20.0",
     "eslint": "8.13.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-import-resolver-typescript": "2.7.1",
@@ -49,17 +49,13 @@
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.4.0",
     "postcss-scss": "4.0.3",
-    "stylelint": "14.7.0",
+    "stylelint": "14.7.1",
     "stylelint-config-rational-order": "0.1.2",
     "stylelint-config-recommended": "7.0.0",
     "stylelint-config-standard-scss": "3.0.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-order": "5.0.0",
     "stylelint-processor-styled-components": "1.10.0"
-  },
-  "resolutions": {
-    "@types/react": "18.0.3",
-    "@types/react-dom": "18.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

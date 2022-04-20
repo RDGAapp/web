@@ -1,24 +1,20 @@
-import MenuItem from 'components/MenuItem';
-import styled from 'styled-components';
-import routes from 'helpers/routes';
 import { useLocation } from 'react-router';
+import styled from 'styled-components';
 
-const Wrapper = styled.nav`
+import MenuItem from 'components/MenuItem';
+import routes from 'helpers/routes';
+
+const Container = styled.nav`
   display: grid;
   grid-template-areas: "item1 item2 item3 item4 item5 item6";
-  margin: 0 20px;
 
-  ${({ theme }) => theme.breakpoints.mobilexs} {
-    margin: 0 16px;
-  }
-
-  ${({ theme }) => theme.breakpoints.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     grid-template-areas:
       "item1 item2 item3"
       "item4 item5 item6";
   }
 
-  ${({ theme }) => theme.breakpoints.mobile} {
+  ${({ theme }) => theme.media.mobile} {
     grid-template-areas:
       "item1 item2"
       "item3 item4"
@@ -64,7 +60,7 @@ const Menu = (): JSX.Element => {
   const location = useLocation();
 
   return (
-    <Wrapper id="menu">
+    <Container id="menu">
       {menuItemsList.map((menuItem, index) => (
         <MenuItem
           key={menuItem.name}
@@ -78,7 +74,7 @@ const Menu = (): JSX.Element => {
           }
         />
       ))}
-    </Wrapper>
+    </Container>
   );
 };
 

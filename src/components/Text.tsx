@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 const TextDiv = styled.div`
   width: 100%;
-  margin: 0;
   font-weight: 300;
-  font-size: 24px;
-  font-family: Inter, sans-serif;
-  line-height: 29px;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 `;
 
 interface TextProps {

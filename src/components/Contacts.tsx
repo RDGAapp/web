@@ -1,12 +1,12 @@
 import styled from 'styled-components';
+
 import Contact from 'components/Contact';
 
-const ContactsWrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   gap: 60px;
   justify-content: flex-start;
-  margin-bottom: 60px;
 `;
 
 const contacts = [
@@ -76,7 +76,7 @@ const contacts = [
 ];
 
 const Contacts = () => (
-  <ContactsWrapper>
+  <Container>
     {contacts.map((contact) => (
       <Contact
         key={contact.city}
@@ -89,7 +89,7 @@ const Contacts = () => (
         vk={contact.vk}
       />
     ))}
-  </ContactsWrapper>
+  </Container>
 );
 
 export default Contacts;

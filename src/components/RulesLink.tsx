@@ -1,56 +1,48 @@
 import styled from 'styled-components';
+
+import { ReactComponent as FileSvg } from 'assets/file.svg';
 import DiscGolfRules from 'assets/rules.pdf';
-import { ReactComponent as File } from 'assets/file.svg';
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
+  gap: 1rem;
   align-items: center;
-  width: 100%;
-  color: black;
-  font-weight: 600;
-  font-size: 24px;
-  font-family: Inter, sans-serif;
   font-style: italic;
-  line-height: 24px;
-  text-decoration: none;
+  line-height: 1;
 
-  ${({ theme }) => theme.breakpoints.mobile} {
-    width: 50%;
+  ${({ theme }) => theme.media.tablet} {
+    margin: auto;
   }
 
   a {
-    margin: 0;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.text.primary};
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+
+    :hover {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
   }
 `;
 
 const LinkDescription = styled.div`
   display: flex;
-  gap: 15px;
-  align-items: flex-start;
-  margin-left: 30px;
-  font-weight: 400;
-  font-size: 18px;
-  font-family: Inter, sans-serif;
-  font-style: normal;
-  line-height: 18px;
-
-  ${({ theme }) => theme.breakpoints.mobile} {
-    justify-content: flex-end;
-    width: 50%;
-  }
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.8rem;
+  line-height: 1;
 `;
 
 const RulesLink = (): JSX.Element => (
-  <Wrapper>
+  <Container>
     <a href={DiscGolfRules} download="disc-golf-rules">
       {'Скачать полные правила диск-гольфа'.toUpperCase()}
     </a>
     <LinkDescription>
-      <File width={24} height={24} />
+      <FileSvg width={24} height={24} />
       .pdf / 258 КБ
     </LinkDescription>
-  </Wrapper>
+  </Container>
 );
 
 export default RulesLink;

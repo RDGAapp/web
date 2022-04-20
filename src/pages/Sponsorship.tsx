@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import PageHeader from 'components/PageHeader';
-import ContentContainer from 'components/ContentContainer';
-import Text from 'components/Text';
+
 import QRCode from 'assets/sponsor-qr.png';
+import ContentContainer from 'components/ContentContainer';
 import HomeLink from 'components/HomeLink';
+import PageHeader from 'components/PageHeader';
+import Text from 'components/Text';
 
 const QRCodeContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
 `;

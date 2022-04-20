@@ -1,53 +1,71 @@
 import styled from 'styled-components';
-import { ReactComponent as PlaySvg } from 'assets/play.svg';
-import { ReactComponent as LinkSvg } from 'assets/link.svg';
 
-const Wrapper = styled.div`
+import { ReactComponent as LinkSvg } from 'assets/link.svg';
+import { ReactComponent as PlaySvg } from 'assets/play.svg';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  max-width: 560px;
-  padding: 40px;
-  border: 1px solid black;
-  border-radius: 40px;
+  gap: 0.5rem;
+  padding: 2rem;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 2rem;
 `;
 
 const Header = styled.h3`
-  margin: 0 0 12px;
   font-weight: 600;
-  font-size: 24px;
-  font-family: Inter, sans-serif;
+  font-size: 1.2rem;
 `;
 
 const VideoPreview = styled.a<{ image: string }>`
   display: flex;
   align-items: center;
+  align-self: center;
   justify-content: center;
   width: 100%;
-  max-width: 560px;
-  height: 320px;
-  margin-bottom: 15px;
+  max-width: 28rem;
+  height: 16rem;
+  color: transparent;
   background: left center url(${({ image }) => image});
-  border-radius: 20px;
+  border-radius: 1rem;
+
+  :hover > button {
+    box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primary};
+    transition: box-shadow 0.3s ease-in-out;
+  }
 `;
 
 const PlayButton = styled.button`
-  width: 140px;
-  height: 140px;
-  padding: 42px 42px 42px 56px;
+  width: 7rem;
+  height: 7rem;
+  color: inherit;
   background: none;
-  border: 1px solid white;
-  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.colors.borderContrast};
+  border-radius: 100vh;
   cursor: pointer;
+
+  svg {
+    width: 2.1rem;
+    margin-left: 0.5rem;
+    aspect-ratio: 3 / 4;
+    stroke: ${({ theme }) => theme.colors.borderContrast};
+  }
 `;
 
 const VideoName = styled.a`
   display: flex;
-  justify-content: space-between;
-  color: black;
+  gap: 1rem;
+  max-width: max-content;
+  color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 400;
-  font-size: 24px;
-  font-family: Inter, sans-serif;
-  line-height: 24px;
+  font-size: 1.2rem;
+  line-height: 1;
   text-decoration: none;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 interface VideoLinkProps {
@@ -60,16 +78,16 @@ interface VideoLinkProps {
 const VideoLink = ({
   header, image, link, name,
 }: VideoLinkProps): JSX.Element => (
-  <Wrapper>
+  <Container>
     <Header>{header.toUpperCase()}</Header>
     <VideoPreview href={link} image={image} target="_blank">
       <PlayButton><PlaySvg /></PlayButton>
     </VideoPreview>
-    <VideoName href={link} target="_blank">
+    <VideoName href={link} target="_blank" rel="noreferrer">
       <i>{name.toUpperCase()}</i>
       <LinkSvg width={20} height={20} />
     </VideoName>
-  </Wrapper>
+  </Container>
 );
 
 export default VideoLink;

@@ -1,23 +1,24 @@
 import styled, { css } from 'styled-components';
-import SocialLink from './SocialLink';
 
-const Wrapper = styled.div`
+import SocialLink from 'components/SocialLink';
+
+const Container = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0;
+  max-width: max-content;
 `;
 
 const TextStyle = css`
-  margin: 0 0 8px;
+  margin: 0 0 0.4rem;
   font-weight: 400;
-  font-size: 14px;
-  font-family: Inter, sans-serif;
-  line-height: 14px;
+  font-size: 0.7rem;
+  line-height: 1;
 `;
 
 const City = styled.p`
-  margin: 0 0 20px;
+  margin: 0 0 1rem;
   ${TextStyle};
 `;
 
@@ -27,13 +28,17 @@ const Text = styled.p`
 
 const Link = styled.a`
   ${TextStyle};
-  color: black;
+  color: ${({ theme }) => theme.colors.text.primary};
+  transition: color 0.3s ease-in-out;
+
+  :hover {
+    color: ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 const Social = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  gap: 0.7rem;
 `;
 
 interface ContactProps {
@@ -50,7 +55,7 @@ interface ContactProps {
 const Contact = ({
   city, phone, phone2, email, site, instagram, telegram, vk,
 }: ContactProps): JSX.Element => (
-  <Wrapper>
+  <Container>
     <City>
       {city.toUpperCase()}
       :
@@ -64,7 +69,7 @@ const Contact = ({
       {telegram && (<SocialLink name="TELEGRAM" value={telegram} />)}
       {vk && (<SocialLink name="VK" value={vk} />)}
     </Social>
-  </Wrapper>
+  </Container>
 );
 
 Contact.defaultProps = {

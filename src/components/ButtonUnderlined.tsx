@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
+  color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 500;
-  font-size: 12px;
-  font-family: Inter, sans-serif;
+  font-size: 0.6rem;
   text-decoration: underline;
   background: none;
   border: none;

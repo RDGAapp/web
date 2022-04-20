@@ -1,48 +1,51 @@
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import styled from 'styled-components';
-import { ReactComponent as Cross } from 'assets/cross.svg';
-import { ReactComponent as Arrow } from 'assets/arrow-right.svg';
-import useCity, { changeCity } from '../helpers/useCity';
+import styled, { css } from 'styled-components';
+
+import { ReactComponent as ArrowSvg } from 'assets/arrow-right.svg';
+import { ReactComponent as CrossSvg } from 'assets/cross.svg';
+import useCity, { changeCity } from 'helpers/useCity';
 
 const Header = styled.h1`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 40px;
+  margin: 0 0 2rem;
   font-weight: 600;
-  font-size: 32px;
-  font-family: Inter, sans-serif;
-  line-height: 32px;
+  font-size: 1.5rem;
+  line-height: 1;
 
-  svg { cursor: pointer; }
+  svg {
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+
+    :hover {
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
 `;
 
 const List = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 1.2rem;
 `;
 
 const ListElement = styled.p<{ selected: boolean }>`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin: 0;
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
-  font-size: 20px;
-  font-family: Inter, sans-serif;
-  line-height: 24px;
-  transition: all 0.3s ease;
-  ${({ selected }) => !selected && `
-  cursor: pointer;
-  :hover {
-    text-decoration: underline;
-  }
+  line-height: 1;
+  ${({ selected }) => !selected && css`
+    cursor: pointer;
+
+    :hover {
+      text-decoration: underline;
+    }
   `}
 
   svg {
-    margin-right: 25px;
+    margin-right: 1rem;
   }
 `;
 
@@ -72,22 +75,29 @@ const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element
       showCloseIcon={false}
       styles={{
         modal: {
-          borderRadius: '40px',
-          width: '60%',
-          maxWidth: '450px',
-          padding: '32px 48px',
+          borderRadius: '2rem',
+          width: '90%',
+          maxWidth: '23rem',
+          padding: '1.5rem 2.5rem',
+        },
+        modalContainer: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100vw',
+          height: '100vh',
         },
       }}
       animationDuration={0}
     >
       <Header>
         {'Выберите город'.toUpperCase()}
-        <Cross width={17} height={17} onClick={onClose} />
+        <CrossSvg height={17} onClick={onClose} />
       </Header>
       <List>
         {!city && (
         <ListElement selected>
-          <Arrow width={20} height={19} />
+          <ArrowSvg width={20} height={19} />
           {'Город не выбран'.toUpperCase()}
         </ListElement>
         )}
@@ -100,7 +110,7 @@ const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element
               onClose();
             }}
           >
-            {item === city && <Arrow width={20} height={19} />}
+            {item === city && <ArrowSvg width={20} height={19} />}
             {item.toUpperCase()}
           </ListElement>
         ))}
