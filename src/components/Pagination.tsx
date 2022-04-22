@@ -13,6 +13,7 @@ const Container = styled.div`
 const PageNumber = styled.button`
   width: 2rem;
   aspect-ratio: 1 / 1;
+  color: ${({ theme }) => theme.colors.text.primary};
   font-size: 0.8rem;
   background: none;
   border: none;

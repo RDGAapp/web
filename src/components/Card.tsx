@@ -11,6 +11,7 @@ const Container = styled(motion.div)`
   justify-content: space-between;
   max-width: 31.5%;
   height: 8rem;
+  margin: auto;
   padding: 1rem;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 2rem;
