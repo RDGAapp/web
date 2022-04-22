@@ -8,12 +8,11 @@ enum routes {
   INTERNATIONAL = '/international',
   SHOP = '/shop',
   COMPANIES = '/companies',
-  SPONSORSHIP = '/sponsorship',
+  PLAYERS = '/players',
   CONTACTS = '#contacts',
   MENU = '#menu',
-  SPONSOR = '#sponsor',
   SHOP_FORM = '#buy',
-  PLAYERS = '/players',
+  JOIN = '#join',
 }
 
 export default routes;

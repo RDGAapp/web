@@ -8,7 +8,7 @@ import Menu from 'components/Menu';
 import SWNotification from 'components/SWNotification';
 import routes from 'helpers/routes';
 
-const Container = styled.div`
+const Container = styled.article`
   max-width: 72rem;
   margin: auto;
   padding: 0 1rem;
@@ -21,7 +21,7 @@ interface LayoutProps {
 const shouldNotShowMenuSet = new Set<string>([
   routes.SHOP,
   routes.COMPANIES,
-  routes.SPONSORSHIP,
+  routes.ABOUT,
   routes.PLAYERS,
 ]);
 
