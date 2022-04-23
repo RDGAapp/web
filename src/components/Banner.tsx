@@ -19,7 +19,7 @@ const Container = styled.div<{ image: string }>`
   margin: 0 0 3rem;
   padding-bottom: 5rem;
   background: center url(${({ image }) => image});
-  background-size: 100% auto;
+  background-size: cover;
   border-radius: 2.5rem;
 `;
 

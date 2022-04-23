@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import PlayerPackages from 'assets/player-packages.jpg';
 import ContentContainer from 'components/ContentContainer';
 import HomeLink from 'components/HomeLink';
 import PageHeader from 'components/PageHeader';
@@ -12,6 +13,11 @@ const Cta = styled.a`
   :hover {
     color: ${({ theme }) => theme.colors.secondary};
   }
+`;
+
+const Img = styled.img`
+  width: 100%;
+  margin: auto;
 `;
 
 const About = (): JSX.Element => (
@@ -36,6 +42,7 @@ const About = (): JSX.Element => (
       <SubHeader id="join">
         Как вступить в РДГА?
       </SubHeader>
+      <Img src={PlayerPackages} alt="Пакеты игрока" />
       <Text>
         <ol>
           <li>Выбери пакет игрока 👆</li>
