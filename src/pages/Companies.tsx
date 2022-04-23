@@ -1,14 +1,8 @@
-import styled from 'styled-components';
-
 import ContentContainer from 'components/ContentContainer';
 import HomeLink from 'components/HomeLink';
 import PageHeader from 'components/PageHeader';
 import SubHeader from 'components/SubHeader';
 import Text from 'components/Text';
-
-const Ul = styled.ul`
-  margin: 0;
-`;
 
 const Companies = (): JSX.Element => (
   <>
@@ -18,7 +12,7 @@ const Companies = (): JSX.Element => (
         Корпоративному сектору в любой точке РФ и стран СНГ мы предлагаем:
       </SubHeader>
       <Text>
-        <Ul>
+        <ul>
           <li>
             Проектирование, оборудование тренировочных и профессиональных диск-гольф парков;
           </li>
@@ -34,7 +28,7 @@ const Companies = (): JSX.Element => (
           <li>
             Постоянные групповые тренировки по диск-гольфу.
           </li>
-        </Ul>
+        </ul>
       </Text>
       <Text>
         Наши координаты для заказа указаны ниже! Мы всегда ждем звонка от Вас!

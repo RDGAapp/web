@@ -8,10 +8,15 @@ const Header = styled.h3`
 
 interface SubHeaderProps {
   children: string,
+  id?: string,
 }
 
-const SubHeader = ({ children }: SubHeaderProps): JSX.Element => (
-  <Header>{children.toUpperCase()}</Header>
+const SubHeader = ({ children, id }: SubHeaderProps): JSX.Element => (
+  <Header id={id}>{children.toUpperCase()}</Header>
 );
+
+SubHeader.defaultProps = {
+  id: '',
+};
 
 export default SubHeader;

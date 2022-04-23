@@ -43,10 +43,6 @@ const StyledImage = styled.img`
   }
 `;
 
-const Ul = styled.ul`
-  margin: 0;
-`;
-
 const Train = (): JSX.Element => (
   <>
     <PageHeader text="Играть самому и с друзьями" />
@@ -61,14 +57,14 @@ const Train = (): JSX.Element => (
             Для игры каждому участнику понадобится:
           </SubHeader>
           <Text>
-            <Ul>
+            <ul>
               <li>
                 Минимум один диск для игры;
               </li>
               <li>
                 Знание основных правил диск-гольфа.
               </li>
-            </Ul>
+            </ul>
           </Text>
           <RulesLink />
         </TextContainer>
