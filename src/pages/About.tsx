@@ -8,10 +8,11 @@ import SubHeader from 'components/SubHeader';
 import Text from 'components/Text';
 
 const Cta = styled.a`
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.secondary};
+  transition: color 0.3s ease-in-out;
 
   :hover {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 `;
 
