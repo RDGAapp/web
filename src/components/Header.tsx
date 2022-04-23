@@ -76,7 +76,7 @@ const Header = ({ openCitySelect }: HeaderProps): JSX.Element => {
       <CommercialBlock>
         <LinkOutlined route={routes.SHOP} text="Магазин" />
         <LinkOutlined route={routes.COMPANIES} text="Компаниям" />
-        <LinkOutlined route={routes.SPONSORSHIP} text="Спонсорство" />
+        <LinkOutlined route={routes.ABOUT} text="О нас" />
       </CommercialBlock>
       <LogoBlock to={routes.HOME}>
         <Logo />

@@ -19,6 +19,7 @@ const Container = styled.div<{ image: string }>`
   margin: 0 0 3rem;
   padding-bottom: 5rem;
   background: center url(${({ image }) => image});
+  background-size: cover;
   border-radius: 2.5rem;
 `;
 
@@ -50,7 +51,7 @@ const LinkCta = styled(HashLink)`
 
 const bannerContent = new Map<string, Record<string, string>>([
   [routes.SHOP, { image: ShopBackground, text: 'Купить', link: routes.CONTACTS }],
-  [routes.SPONSORSHIP, { image: SponsorBackground, text: 'Сделать пожертвование', link: routes.SPONSOR }],
+  [routes.ABOUT, { image: PlayersBackground, text: 'Вступить в РДГА', link: routes.JOIN }],
   [routes.COMPANIES, { image: SponsorBackground, text: 'Заказать мероприятие', link: routes.CONTACTS }],
   [routes.PLAYERS, { image: PlayersBackground, text: 'Пройти мастер-класс', link: `${routes.MASTER}${routes.MENU}` }],
 ]);
