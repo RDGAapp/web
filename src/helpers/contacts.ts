@@ -1,4 +1,4 @@
-const contacts = [
+const contacts: Contact[] = [
   {
     city: 'Екатеринбург',
     phone: '+7 (343) 328 92 31',
