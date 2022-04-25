@@ -24,7 +24,7 @@ const Logo = ({ big }: LogoProps): JSX.Element => (
   <Container>
     <LogoSvg width={big ? 120 : 64} height={big ? 115 : 60} />
     <Text fontSize={big ? 1.8 : 1.2}>
-      РОССИЙСКАЯ АССОЦИАЦИЯ ДИСК-ГОЛЬФА
+      РОССИЙСКАЯ ДИСК-ГОЛЬФ АССОЦИАЦИЯ
     </Text>
   </Container>
 );

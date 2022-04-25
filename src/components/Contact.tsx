@@ -41,20 +41,9 @@ const Social = styled.div`
   gap: 0.7rem;
 `;
 
-interface ContactProps {
-  city: string,
-  phone?: string,
-  phone2?: string,
-  email?: string,
-  site?: string,
-  instagram?: string,
-  telegram?: string,
-  vk?: string
-}
-
 const Contact = ({
   city, phone, phone2, email, site, instagram, telegram, vk,
-}: ContactProps): JSX.Element => (
+}: Contact): JSX.Element => (
   <Container>
     <City>
       {city.toUpperCase()}
@@ -62,23 +51,19 @@ const Contact = ({
     </City>
     <Text>{phone}</Text>
     {phone2 && <Text>{phone2}</Text>}
-    {email && <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>}
+    <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>
     {site && <Link href={site}>{site.split('//')[1].toUpperCase()}</Link>}
     <Social>
       {instagram && (<SocialLink name="INSTAGRAM" value={instagram} />)}
-      {telegram && (<SocialLink name="TELEGRAM" value={telegram} />)}
-      {vk && (<SocialLink name="VK" value={vk} />)}
+      <SocialLink name="TELEGRAM" value={telegram} />
+      <SocialLink name="VK" value={vk} />
     </Social>
   </Container>
 );
 
 Contact.defaultProps = {
-  phone: '',
   phone2: '',
-  email: '',
   instagram: '',
-  telegram: '',
-  vk: '',
   site: '',
 };
 
