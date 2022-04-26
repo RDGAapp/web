@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import PlayerPackages from 'assets/images/player-packages.webp';
 import ContentContainer from 'components/ContentContainer';
-import HomeLink from 'components/HomeLink';
 import PageHeader from 'components/PageHeader';
 import SubHeader from 'components/SubHeader';
 import Text from 'components/Text';
@@ -23,7 +22,7 @@ const Img = styled.img`
 
 const About = (): JSX.Element => (
   <>
-    <PageHeader text="Что такое РДГА?" />
+    <PageHeader text="Что такое РДГА?" shouldLinkToMainPage />
     <ContentContainer>
       <Text>
         <dfn>Российская Диск-Гольф Ассоциация</dfn>
@@ -78,7 +77,6 @@ const About = (): JSX.Element => (
           </li>
         </ol>
       </Text>
-      <HomeLink />
     </ContentContainer>
   </>
 );

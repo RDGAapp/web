@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowDown } from 'assets/icons/arrow-down.svg';
+import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import MainBackground from 'assets/images/banner-main.webp';
 import ShopBackground from 'assets/images/banner-shop.webp';
 import SponsorBackground from 'assets/images/banner-sponsor.webp';
@@ -47,6 +47,10 @@ const LinkCta = styled(HashLink)`
   svg {
     height: 1.2rem;
   }
+`;
+
+const ArrowDown = styled(ArrowSvg)`
+  transform: rotate(90deg);
 `;
 
 const bannerContent = new Map<string, Record<string, string>>([
