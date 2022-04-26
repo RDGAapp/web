@@ -5,7 +5,7 @@ import ButtonUnderlined from 'components/ButtonUnderlined';
 import LinkOutlined from 'components/LinkOutlined';
 import Logo from 'components/Logo';
 import routes from 'helpers/routes';
-import useCity from 'helpers/useCity';
+import useCity from 'hooks/useCity';
 
 const Container = styled.nav`
   display: grid;

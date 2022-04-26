@@ -1,4 +1,4 @@
-import useCity from './useCity';
+import useCity from 'hooks/useCity';
 
 const cityMapper: Record<string, Towns> = {
   Екатеринбург: 'ekb',
