@@ -47,7 +47,7 @@ const Players = (): JSX.Element => {
 
   return (
     <>
-      <PageHeader text="Наши игроки" />
+      <PageHeader text="Наши игроки" shouldLinkToMainPage />
       {loading && <Spinner />}
       <Container>
         {players?.data.map((player) => (

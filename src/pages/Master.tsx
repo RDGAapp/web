@@ -6,8 +6,8 @@ import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
-import useShortCity from 'helpers/useShortCity';
-import useStorage from 'helpers/useStorage';
+import useShortCity from 'hooks/useShortCity';
+import useStorage from 'hooks/useStorage';
 
 const ArticleContainer = styled.article`
   display: flex;

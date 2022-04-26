@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Contacts from 'components/Contacts';
 import Logo from 'components/Logo';
 import theme from 'helpers/theme';
-import useWindowDimensions from 'helpers/useWindowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 const PrimaryBackground = styled.footer`
   background: ${({ theme }) => theme.colors.primary};

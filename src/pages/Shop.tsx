@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import ContentContainer from 'components/ContentContainer';
-import HomeLink from 'components/HomeLink';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
 
@@ -19,7 +18,7 @@ const Header = styled.h3`
 
 const Shop = (): JSX.Element => (
   <>
-    <PageHeader text="Диски для точных попаданий и невероятных траекторий!" />
+    <PageHeader text="Диски для точных попаданий и невероятных траекторий!" shouldLinkToMainPage />
     <ContentContainer>
       <TextContainer>
         <Text>
@@ -65,7 +64,6 @@ const Shop = (): JSX.Element => (
           Наши координаты для заказа указаны внизу страницы.
         </Text>
       </TextContainer>
-      <HomeLink />
     </ContentContainer>
   </>
 );

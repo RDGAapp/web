@@ -1,12 +1,11 @@
 import ContentContainer from 'components/ContentContainer';
-import HomeLink from 'components/HomeLink';
 import PageHeader from 'components/PageHeader';
 import SubHeader from 'components/SubHeader';
 import Text from 'components/Text';
 
 const Companies = (): JSX.Element => (
   <>
-    <PageHeader text="Диск-гольф против дивана: сделай диск-гольф сильней!" />
+    <PageHeader text="Диск-гольф против дивана: сделай диск-гольф сильней!" shouldLinkToMainPage />
     <ContentContainer>
       <SubHeader>
         Корпоративному сектору в любой точке РФ и стран СНГ мы предлагаем:
@@ -33,7 +32,6 @@ const Companies = (): JSX.Element => (
       <Text>
         Наши координаты для заказа указаны ниже! Мы всегда ждем звонка от Вас!
       </Text>
-      <HomeLink />
     </ContentContainer>
   </>
 );

@@ -2,9 +2,9 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as ArrowSvg } from 'assets/icons/arrow-right.svg';
+import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
-import useCity, { changeCity } from 'helpers/useCity';
+import useCity, { changeCity } from 'hooks/useCity';
 
 const Header = styled.h1`
   display: flex;

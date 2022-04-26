@@ -6,8 +6,8 @@ import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
-import useShortCity from 'helpers/useShortCity';
-import useStorage from 'helpers/useStorage';
+import useShortCity from 'hooks/useShortCity';
+import useStorage from 'hooks/useStorage';
 
 const StyledImage = styled.img`
   flex-basis: 68rem;
@@ -46,7 +46,7 @@ const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
         <Text>
           Диск-гольф - это твоё, ты хочешь бросать диск точнее и дальше,
           ты перерос турниры для начинающих игроков, твой уровень игры соответствует
-          желтому браслету и выше.... ЗдОрово! Ждём тебя на турнирах для профессионалов.
+          желтому браслету и выше.... Здо&#x301;рово! Ждём тебя на турнирах для профессионалов.
           <br />
           Диски для игры: ты можешь купить или взять в аренду.
           <br />

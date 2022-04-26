@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as PlaceSvg } from 'assets/icons/place.svg';
 import { ReactComponent as SelectSvg } from 'assets/icons/select.svg';
-import useCity from 'helpers/useCity';
+import useCity from 'hooks/useCity';
 
 const Button = styled.button`
   display: flex;
