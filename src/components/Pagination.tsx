@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ const Container = styled.div`
   margin-bottom: 2rem;
 `;
 
-const PageNumber = styled.button`
+const PageNumber = styled.button<{ number?: boolean }>`
   width: 2rem;
   aspect-ratio: 1 / 1;
   color: ${({ theme }) => theme.colors.text.primary};
@@ -21,15 +21,19 @@ const PageNumber = styled.button`
   box-shadow: 0 0 0.1rem;
   cursor: pointer;
 
-  :hover {
-    background-color: ${({ theme }) => theme.colors.primary};
+  :disabled {
+    background-color: none;
+    cursor: not-allowed;
+    ${({ number, theme }) => number && css`
+      color: inherit;
+      background-color: ${theme.colors.primary};
+      cursor: default;
+      opacity: 1;
+    `}
   }
 
-  :disabled {
-    color: inherit;
+  :hover:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.primary};
-    cursor: default;
-    opacity: 1;
   }
 `;
 
@@ -75,6 +79,7 @@ const Pagination = ({
       <PageNumber
         onClick={() => onPageChange(1)}
         title="Перейти на первую страницу"
+        disabled={currentPageNumber === 1}
       >
         &laquo;
       </PageNumber>
@@ -82,7 +87,8 @@ const Pagination = ({
         <PageNumber
           key={pageNumber}
           onClick={() => onPageChange(pageNumber)}
-          disabled={pageNumber === currentPageNumber}
+          disabled={currentPageNumber === pageNumber}
+          number
         >
           {pageNumber}
         </PageNumber>
@@ -90,6 +96,7 @@ const Pagination = ({
       <PageNumber
         onClick={() => onPageChange(totalPagesNumber)}
         title="Перейти на последнюю страницу"
+        disabled={currentPageNumber === totalPagesNumber}
       >
         &raquo;
       </PageNumber>

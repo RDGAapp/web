@@ -30,7 +30,7 @@ const Card = styled(motion.div)`
   flex-direction: column;
   max-width: 30rem;
   max-height: 80vh;
-  overflow-y: scroll;
+  overflow: hidden;
   background: ${({ theme }) => theme.colors.background};
   border-radius: 2rem;
   box-shadow: 0 0 0 200vw ${({ theme }) => theme.colors.backdrop};
@@ -72,6 +72,7 @@ const InfoContainer = styled.div`
   gap: 2rem;
   width: 100%;
   padding: 1rem 2rem 1.5rem;
+  overflow-y: auto;
 `;
 
 const InfoLine = styled.div`
