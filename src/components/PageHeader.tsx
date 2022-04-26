@@ -13,7 +13,7 @@ interface PageHeaderProps {
 }
 
 const PageHeader = ({ text }: PageHeaderProps): JSX.Element => (
-  <Header>{text}</Header>
+  <Header id="page-header">{text}</Header>
 );
 
 export default PageHeader;
