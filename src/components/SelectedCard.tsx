@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-import { ReactComponent as ChartSvg } from 'assets/chart.svg';
-import { ReactComponent as CloseSvg } from 'assets/cross.svg';
-import { ReactComponent as LocationSvg } from 'assets/location.svg';
-import MetrixImg from 'assets/metrix.png';
-import PdgaImg from 'assets/pdga.png';
+import { ReactComponent as ChartSvg } from 'assets/icons/chart.svg';
+import { ReactComponent as CloseSvg } from 'assets/icons/cross.svg';
+import { ReactComponent as LocationSvg } from 'assets/icons/location.svg';
+import MetrixImg from 'assets/images/metrix.webp';
+import PdgaImg from 'assets/images/pdga.webp';
 import Avatar from 'components/Avatar';
 import ServiceCard from 'components/ServiceCard';
 

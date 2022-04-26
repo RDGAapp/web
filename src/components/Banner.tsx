@@ -4,11 +4,11 @@ import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowDown } from 'assets/arrow-down.svg';
-import MainBackground from 'assets/banner-main.png';
-import ShopBackground from 'assets/banner-shop.png';
-import SponsorBackground from 'assets/banner-sponsor.png';
-import PlayersBackground from 'assets/players.jpg';
+import { ReactComponent as ArrowDown } from 'assets/icons/arrow-down.svg';
+import MainBackground from 'assets/images/banner-main.webp';
+import ShopBackground from 'assets/images/banner-shop.webp';
+import SponsorBackground from 'assets/images/banner-sponsor.webp';
+import PlayersBackground from 'assets/images/players.webp';
 import routes from 'helpers/routes';
 
 const Container = styled.div<{ image: string }>`
@@ -53,7 +53,7 @@ const bannerContent = new Map<string, Record<string, string>>([
   [routes.SHOP, { image: ShopBackground, text: 'Купить', link: routes.CONTACTS }],
   [routes.ABOUT, { image: PlayersBackground, text: 'Вступить в РДГА', link: routes.JOIN }],
   [routes.COMPANIES, { image: SponsorBackground, text: 'Заказать мероприятие', link: routes.CONTACTS }],
-  [routes.PLAYERS, { image: PlayersBackground, text: 'Пройти мастер-класс', link: `${routes.MASTER}${routes.MENU}` }],
+  [routes.PLAYERS, { image: PlayersBackground, text: 'Вступить в РДГА', link: `${routes.ABOUT}${routes.JOIN}` }],
 ]);
 
 const defaultBannerContent = { image: MainBackground, text: 'Пройти мастер-класс', link: `${routes.MASTER}${routes.MENU}` };

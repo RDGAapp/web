@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Image from 'assets/train-img.png';
+import Image from 'assets/images/train.webp';
 import ContentContainer from 'components/ContentContainer';
 import PageHeader from 'components/PageHeader';
 import RulesLink from 'components/RulesLink';

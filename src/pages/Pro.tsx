@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Image from 'assets/pro-img.png';
+import Image from 'assets/images/pro-img.webp';
 import CityEvent from 'components/CityEvent';
 import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';

@@ -1,7 +1,7 @@
 import { HashLink as Link } from 'react-router-hash-link';
 import styled from 'styled-components';
 
-import { ReactComponent as HomeSvg } from 'assets/home.svg';
+import { ReactComponent as HomeSvg } from 'assets/icons/home.svg';
 import routes from 'helpers/routes';
 
 const StyledLink = styled(Link)`

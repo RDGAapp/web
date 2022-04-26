@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import Image from 'assets/international-img.png';
-import { ReactComponent as YouTubeSvg } from 'assets/youtube.svg';
+import { ReactComponent as YouTubeSvg } from 'assets/icons/youtube.svg';
+import Image from 'assets/images/international.webp';
 import ContentContainer from 'components/ContentContainer';
 import OuterLink from 'components/OuterLink';
 import PageHeader from 'components/PageHeader';

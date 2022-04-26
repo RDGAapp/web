@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import PlaceholderImg from 'assets/calendar.jpg';
-import { ReactComponent as ClockSvg } from 'assets/clock.svg';
-import { ReactComponent as MapSvg } from 'assets/map.svg';
+import { ReactComponent as ClockSvg } from 'assets/icons/clock.svg';
+import { ReactComponent as MapSvg } from 'assets/icons/map.svg';
+import PlaceholderImg from 'assets/images/calendar.webp';
 import Text from 'components/Text';
 
 const Container = styled.div`

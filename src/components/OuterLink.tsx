@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReactComponent as LinkSvg } from 'assets/link.svg';
+import { ReactComponent as LinkSvg } from 'assets/icons/link.svg';
 
 const Link = styled.a`
   display: flex;

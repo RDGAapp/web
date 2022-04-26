@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReactComponent as FileSvg } from 'assets/file.svg';
+import { ReactComponent as FileSvg } from 'assets/icons/file.svg';
 import DiscGolfRules from 'assets/rules.pdf';
 
 const Container = styled.div`

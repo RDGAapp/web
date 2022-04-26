@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { ReactComponent as PlaceSvg } from 'assets/place.svg';
-import { ReactComponent as SelectSvg } from 'assets/select.svg';
+import { ReactComponent as PlaceSvg } from 'assets/icons/place.svg';
+import { ReactComponent as SelectSvg } from 'assets/icons/select.svg';
 import useCity from 'helpers/useCity';
 
 const Button = styled.button`

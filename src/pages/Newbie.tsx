@@ -1,7 +1,7 @@
 import { HashLink as Link } from 'react-router-hash-link';
 import styled from 'styled-components';
 
-import Image from 'assets/newbie-img.png';
+import Image from 'assets/images/newbie.webp';
 import CityEvent from 'components/CityEvent';
 import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';

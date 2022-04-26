@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReactComponent as AvatarSvg } from 'assets/avatar.svg';
+import { ReactComponent as AvatarSvg } from 'assets/icons/avatar.svg';
 
 const Background = styled.div`
   display: flex;

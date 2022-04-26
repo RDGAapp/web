@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import PlayerPackages from 'assets/player-packages.jpg';
+import PlayerPackages from 'assets/images/player-packages.webp';
 import ContentContainer from 'components/ContentContainer';
 import HomeLink from 'components/HomeLink';
 import PageHeader from 'components/PageHeader';

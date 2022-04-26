@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import AmericaVideo from 'assets/america-video.png';
-import Image from 'assets/main-page-img.png';
-import RussiaVideo from 'assets/russia-video.png';
+import AmericaVideo from 'assets/images/america-video.webp';
+import Image from 'assets/images/main-page.webp';
+import RussiaVideo from 'assets/images/russia-video.webp';
 import ContentContainer from 'components/ContentContainer';
 import PageHeader from 'components/PageHeader';
 import RulesLink from 'components/RulesLink';

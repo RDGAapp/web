@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { ReactComponent as LinkSvg } from 'assets/link.svg';
-import { ReactComponent as PlaySvg } from 'assets/play.svg';
+import { ReactComponent as LinkSvg } from 'assets/icons/link.svg';
+import { ReactComponent as PlaySvg } from 'assets/icons/play.svg';
 
 const Container = styled.div`
   display: flex;

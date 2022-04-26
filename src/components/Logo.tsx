@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReactComponent as LogoSvg } from 'assets/logo.svg';
+import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
 
 const Container = styled.div`
   display: flex;
