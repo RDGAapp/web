@@ -1,8 +1,10 @@
+import { useContext } from 'react';
+
 import styled from 'styled-components';
 
 import { ReactComponent as PlaceSvg } from 'assets/icons/place.svg';
 import { ReactComponent as SelectSvg } from 'assets/icons/select.svg';
-import useCity from 'hooks/useCity';
+import { CityContext } from 'hooks/CityContext';
 
 const Button = styled.button`
   display: flex;
@@ -34,7 +36,8 @@ interface CitySelectProps {
 }
 
 const CitySelect = ({ onClick }: CitySelectProps): JSX.Element => {
-  const city = useCity();
+  const { city } = useContext(CityContext);
+
   return (
     <Button onClick={onClick}>
       <PlaceSvg />
