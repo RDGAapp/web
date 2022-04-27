@@ -1,9 +1,10 @@
-FROM node:16.13 AS build
+FROM node:18-slim AS build
 
 LABEL maintainer="ilyakopeysk@gmail.com"
 
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
+COPY package.json ./
+COPY yarn.lock ./
 RUN yarn install --production
 COPY . ./
 RUN yarn build

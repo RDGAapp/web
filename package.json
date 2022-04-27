@@ -37,8 +37,10 @@
     "workbox-streams": "6.5.3"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.1.1",
     "@testing-library/user-event": "14.1.1",
+    "@types/jest": "27.4.1",
     "@typescript-eslint/eslint-plugin": "5.21.0",
     "@typescript-eslint/parser": "5.21.0",
     "eslint": "8.14.0",
@@ -48,6 +50,8 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.4.0",
+    "jest": "27.5.1",
+    "jest-styled-components": "7.0.8",
     "postcss-scss": "4.0.4",
     "stylelint": "14.7.1",
     "stylelint-config-rational-order": "0.1.2",
@@ -55,11 +59,15 @@
     "stylelint-config-standard-scss": "3.0.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-order": "5.0.0",
-    "stylelint-processor-styled-components": "1.10.0"
+    "stylelint-processor-styled-components": "1.10.0",
+    "ts-jest": "27.1.4",
+    "ts-node": "10.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
     "lint": "yarn eslint src --ext .js,.ts,.tsx",
     "lint:fix": "yarn eslint --fix src --ext .js,.ts,.tsx",
     "lint:css": "stylelint './src/**/*.(js|ts|tsx)'",

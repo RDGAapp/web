@@ -1,12 +1,14 @@
+const breakpoints = {
+  tablet: 1024,
+  mobile: 767,
+};
+
 const theme = {
   media: {
-    tablet: '@media (max-width: 1024px)',
-    mobile: '@media (max-width: 767px)',
+    tablet: `@media (max-width: ${breakpoints.tablet}px)`,
+    mobile: `@media (max-width: ${breakpoints.mobile}px)`,
   },
-  breakpoints: {
-    tablet: 1024,
-    mobile: 767,
-  },
+  breakpoints,
   colors: {
     primary: '#fbcd04',
     secondary: '#2a74ed',
