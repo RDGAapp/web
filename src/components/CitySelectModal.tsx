@@ -1,10 +1,12 @@
 import 'react-responsive-modal/styles.css';
+import { useContext } from 'react';
+
 import { Modal } from 'react-responsive-modal';
 import styled, { css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
-import useCity, { changeCity } from 'hooks/useCity';
+import { CityContext } from 'hooks/CityContext';
 
 const Header = styled.h1`
   display: flex;
@@ -66,7 +68,8 @@ const cities = [
 ];
 
 const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element => {
-  const city = useCity();
+  const { city, changeCity } = useContext(CityContext);
+
   return (
     <Modal
       open={isOpen}

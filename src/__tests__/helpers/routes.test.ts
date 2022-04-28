@@ -1,7 +1,7 @@
 import routes from 'helpers/routes';
 
 describe('routes helper', () => {
-  test('should return right routes', () => {
+  test('should return routes', () => {
     expect(routes.ABOUT).toBe('/about');
     expect(routes.COMPANIES).toBe('/companies');
     expect(routes.CONTACTS).toBe('#contacts');

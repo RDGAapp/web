@@ -1,7 +1,7 @@
 import routesList from 'helpers/routesList';
 
 describe('routesList helper', () => {
-  test('should return array of strings', () => {
+  test('should return array of routes', () => {
     expect(routesList).toEqual([
       '/',
       '/about',

@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
@@ -5,7 +7,7 @@ import ButtonUnderlined from 'components/ButtonUnderlined';
 import LinkOutlined from 'components/LinkOutlined';
 import Logo from 'components/Logo';
 import routes from 'helpers/routes';
-import useCity from 'hooks/useCity';
+import { CityContext } from 'hooks/CityContext';
 
 const Container = styled.nav`
   display: grid;
@@ -70,7 +72,8 @@ interface HeaderProps {
 }
 
 const Header = ({ openCitySelect }: HeaderProps): JSX.Element => {
-  const city = useCity();
+  const { city } = useContext(CityContext);
+
   return (
     <Container>
       <CommercialBlock>

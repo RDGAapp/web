@@ -1,4 +1,6 @@
-import useCity from 'hooks/useCity';
+import { useContext } from 'react';
+
+import { CityContext } from 'hooks/CityContext';
 
 const cityMapper: Record<string, Towns> = {
   Екатеринбург: 'ekb',
@@ -12,7 +14,7 @@ const cityMapper: Record<string, Towns> = {
 };
 
 export default function useShortCity(): Towns | null {
-  const city = useCity();
+  const { city } = useContext(CityContext);
 
   return city ? cityMapper[city] : null;
 }

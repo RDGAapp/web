@@ -1,7 +1,7 @@
 import contacts from 'helpers/contacts';
 
 describe('contacts helper', () => {
-  test('should be the array with set structure', () => {
+  test('should return array with set structure', () => {
     expect(contacts).toEqual([
       {
         city: 'Екатеринбург',
@@ -72,7 +72,7 @@ describe('contacts helper', () => {
     ]);
   });
 
-  test('should be sorted alphabetically', () => {
+  test('should return array sorted alphabetically', () => {
     expect(contacts).toEqual(contacts.sort((a, b) => a.city.localeCompare(b.city)));
   });
 });
