@@ -2,17 +2,13 @@ import {
   createContext, useState, useMemo,
 } from 'react';
 
-function getCity(): string | null {
-  return localStorage.getItem('city');
-}
-
 export const CityContext = createContext<CityContext>({
-  city: getCity(),
+  city: null,
   changeCity: () => { /* empty function */ },
 });
 
 export const CityProvider = ({ children }: { children: JSX.Element[] | JSX.Element }) => {
-  const [city, setCity] = useState(getCity());
+  const [city, setCity] = useState(localStorage.getItem('city'));
 
   const changeCity = (newCity: string) => {
     localStorage.setItem('city', newCity);

@@ -8,7 +8,7 @@ const Button = styled.button`
 `;
 
 describe('theme helper', () => {
-  test('should return correct object', () => {
+  test('should return theme', () => {
     expect(theme.media).toEqual({
       tablet: '@media (max-width: 1024px)',
       mobile: '@media (max-width: 767px)',
@@ -41,7 +41,7 @@ describe('theme helper', () => {
     });
   });
 
-  test('should use theme in components', () => {
+  test('should use set variable from theme', () => {
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
         <Button data-testid="test_button" />

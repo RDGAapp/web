@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 type Cities = Record<Towns, DgEvent | null>
 
 type Storage = Record<'master' | 'train' | 'newbie' | 'pro', Cities>;
@@ -13,13 +11,6 @@ const sampleCities: Cities = {
   psk: null,
   tlt: null,
   klg: null,
-};
-
-const defaultStorage: Storage = {
-  master: sampleCities,
-  train: sampleCities,
-  newbie: sampleCities,
-  pro: sampleCities,
 };
 
 const currentStorage: Storage = {
@@ -125,14 +116,6 @@ const currentStorage: Storage = {
   },
 };
 
-const useStorage = (): Storage => {
-  const [storage, setStorage] = useState<Storage>();
-
-  useEffect(() => {
-    setStorage(currentStorage);
-  }, []);
-
-  return storage || defaultStorage;
-};
+const useStorage = (): Storage => currentStorage;
 
 export default useStorage;
