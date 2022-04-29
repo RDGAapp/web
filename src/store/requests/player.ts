@@ -1,16 +1,33 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import getApiUrl from 'helpers/getApiUrl';
+import api from 'helpers/api';
 
 export const getPlayers = createAsyncThunk(
   'player/getAll',
-  async (pageNumber: number) => {
-    const response = await fetch(getApiUrl(`/players?page=${pageNumber}`));
+  async (pageNumber: number, { rejectWithValue }) => {
+    const response = await api.getPlayers(pageNumber);
 
-    const json = await response.json();
+    if (response.ok) {
+      const json = await response.json();
+      return json;
+    }
 
-    return json;
+    const errorMessage = await response.text();
+    return rejectWithValue(errorMessage);
   },
 );
 
-export const getPlayer = async () => null;
+export const getPlayer = createAsyncThunk(
+  'player/get',
+  async (rdgaNumber: number, { rejectWithValue }) => {
+    const response = await api.getPlayer(rdgaNumber);
+
+    if (response.ok) {
+      const json = await response.json();
+      return json;
+    }
+
+    const errorMessage = await response.text();
+    return rejectWithValue(errorMessage);
+  },
+);

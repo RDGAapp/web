@@ -29,6 +29,7 @@ const playerSlice = createSlice({
 
     [getPlayers.rejected.type]: (state, action: PayloadAction<string>) => {
       state.loading = false;
+      state.players = null;
       state.error = action.payload;
     },
   },
