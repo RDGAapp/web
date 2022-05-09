@@ -11,6 +11,8 @@ import PdgaImg from 'assets/images/pdga.webp';
 import Avatar from 'components/Avatar';
 import ServiceCard from 'components/ServiceCard';
 
+import RatingChangeBadge from './RatingChangeBadge';
+
 const Container = styled.div`
   position: fixed;
   top: 0;
@@ -78,6 +80,7 @@ const InfoContainer = styled.div`
 const InfoLine = styled.div`
   display: flex;
   gap: 1rem;
+  align-items: center;
   font-size: 1.2rem;
   line-height: 2rem;
 
@@ -127,6 +130,10 @@ const SelectedCard = ({ selected, resetSelected }: Props) => {
               <InfoLine>
                 <ChartSvg />
                 <p>{`Рейтинг: ${selected.rdgaRating}`}</p>
+                <RatingChangeBadge
+                  rating={selected.rdgaRating}
+                  ratingChange={selected.rdgaRatingChange}
+                />
               </InfoLine>
             )
             : ''}

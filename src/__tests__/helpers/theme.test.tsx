@@ -30,6 +30,7 @@ describe('theme helper', () => {
       avatarBackground: '#c8c8c8',
       text: {
         primary: '#000000',
+        contrast: '#ffffff',
       },
     });
     expect(theme.fontFamily).toEqual({

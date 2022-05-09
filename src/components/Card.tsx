@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import Avatar from 'components/Avatar';
+import RatingChangeBadge from 'components/RatingChangeBadge';
 
 const Container = styled(motion.div)`
   display: flex;
@@ -53,6 +54,9 @@ const MainInformation = styled.p`
 `;
 
 const AdditionalInformation = styled.p`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
   font-size: 0.8rem;
 `;
 
@@ -80,7 +84,12 @@ const Card = ({ player, setSelected }: Props) => (
       </MainInformation>
       <MainInformation>{`#${player.rdgaNumber}`}</MainInformation>
       {player.rdgaRating
-        ? <AdditionalInformation>{`Рейтинг: ${player.rdgaRating}`}</AdditionalInformation>
+        ? (
+          <AdditionalInformation>
+            {`Рейтинг: ${player.rdgaRating}`}
+            <RatingChangeBadge rating={player.rdgaRating} ratingChange={player.rdgaRatingChange} />
+          </AdditionalInformation>
+        )
         : ''}
     </TextContainer>
   </Container>
