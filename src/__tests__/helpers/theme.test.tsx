@@ -23,13 +23,15 @@ describe('theme helper', () => {
       background: '#ffffff',
       border: '#000000',
       borderContrast: '#ffffff',
-      error: '#ff7f7f',
-      success: '#90ee90',
+      error: '#ff4a4a',
+      success: '#1bbe1b',
       menuInactive: '#f3f3f3',
       backdrop: '#00000080',
       avatarBackground: '#c8c8c8',
       text: {
         primary: '#000000',
+        contrast: '#ffffff',
+        neutral: '#808080',
       },
     });
     expect(theme.fontFamily).toEqual({
