@@ -15,7 +15,7 @@ const Container = styled.article`
 `;
 interface LayoutProps {
   children: JSX.Element[] | JSX.Element,
-  openCitySelect: () => void,
+  openTownSelect: () => void,
 }
 
 const shouldNotShowMenuSet = new Set<string>([
@@ -25,14 +25,14 @@ const shouldNotShowMenuSet = new Set<string>([
   routes.PLAYERS,
 ]);
 
-const Layout = ({ children, openCitySelect }: LayoutProps): JSX.Element => {
+const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
   const location = useLocation();
 
   return (
     <>
       <SWNotification />
       <Container>
-        <Header openCitySelect={openCitySelect} />
+        <Header openTownSelect={openTownSelect} />
         <Banner />
         {!shouldNotShowMenuSet.has(location.pathname) && <Menu />}
         {children}

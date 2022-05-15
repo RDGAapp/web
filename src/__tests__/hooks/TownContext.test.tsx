@@ -2,15 +2,15 @@ import { useContext } from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { CityProvider, CityContext } from 'hooks/CityContext';
+import { TownProvider, TownContext } from 'hooks/TownContext';
 
 const Button = () => {
-  const { city, changeCity } = useContext(CityContext);
+  const { town, changeTown } = useContext(TownContext);
 
-  return (<button type="button" onClick={() => changeCity('test')}>{city}</button>);
+  return (<button type="button" onClick={() => changeTown('Белгород')}>{town}</button>);
 };
 
-describe('CityContext hook', () => {
+describe('TownContext hook', () => {
   beforeEach(() => localStorage.clear());
 
   describe('without Provider', () => {
@@ -27,18 +27,18 @@ describe('CityContext hook', () => {
 
   describe('with Provider', () => {
     test('should render empty and rerender on click', () => {
-      const { container } = render(<CityProvider><Button /></CityProvider>);
+      const { container } = render(<TownProvider><Button /></TownProvider>);
 
       expect(container.firstChild?.textContent).toBe('');
 
       fireEvent.click(container.firstChild as Element);
 
-      expect(container.firstChild?.textContent).toBe('test');
+      expect(container.firstChild?.textContent).toBe('Белгород');
     });
 
     test('should render value from localStorage', () => {
-      localStorage.setItem('city', 'predefined');
-      const { container } = render(<CityProvider><Button /></CityProvider>);
+      localStorage.setItem('town', 'predefined');
+      const { container } = render(<TownProvider><Button /></TownProvider>);
 
       expect(container.firstChild?.textContent).toBe('predefined');
     });

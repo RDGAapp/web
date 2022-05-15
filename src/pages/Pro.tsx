@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 import Image from 'assets/images/pro-img.webp';
-import CityEvent from 'components/CityEvent';
-import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
-import useShortCity from 'hooks/useShortCity';
+import TownEvent from 'components/TownEvent';
+import TownSelect from 'components/TownSelect';
+import useShortTown from 'hooks/useShortTown';
 import useStorage from 'hooks/useStorage';
 
 const StyledImage = styled.img`
@@ -25,18 +25,18 @@ const StyledImage = styled.img`
   }
 `;
 
-const CityContainer = styled.div`
+const TownContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
 interface ProProps {
-  openCitySelect: () => void,
+  openTownSelect: () => void,
 }
 
-const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
-  const city = useShortCity();
+const Pro = ({ openTownSelect }: ProProps): JSX.Element => {
+  const town = useShortTown();
   const { pro } = useStorage();
 
   return (
@@ -57,10 +57,10 @@ const Pro = ({ openCitySelect }: ProProps): JSX.Element => {
           Будь во время! Мы начинаем в указанное время!
         </Text>
         <StyledImage alt="" />
-        <CityContainer>
-          <CitySelect onClick={openCitySelect} />
-          {city && (<CityEvent data={pro[city]} header="Ближайший PRO-Турнир в твоем городе:" />)}
-        </CityContainer>
+        <TownContainer>
+          <TownSelect onClick={openTownSelect} />
+          {town && (<TownEvent data={pro[town]} header="Ближайший PRO-Турнир в твоем городе:" />)}
+        </TownContainer>
       </ContentContainer>
     </>
   );

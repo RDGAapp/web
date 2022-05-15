@@ -28,7 +28,9 @@ const Players = (): JSX.Element => {
   const loading = useAppSelector((state) => state.player.loading);
 
   const [selected, setSelected] = useState<Player | null>(null);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [surname, setSurname] = useState<string>('');
+  const [town, setTown] = useState<Town>();
   const pageHeader = document.getElementById('page-header');
 
   const scrollToPageHeader = () => {
@@ -36,7 +38,7 @@ const Players = (): JSX.Element => {
   };
 
   useEffect(() => {
-    dispatch(getPlayers(pageNumber));
+    dispatch(getPlayers({ pageNumber, surname, town }));
   }, [pageNumber]);
 
   useEffect(() => {

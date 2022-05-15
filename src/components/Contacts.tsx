@@ -14,11 +14,11 @@ const Contacts = () => (
   <Container>
     {contacts.map((contact) => (
       <Contact
-        key={contact.city}
+        key={contact.town}
         phone={contact.phone}
         phone2={contact.phone2}
         email={contact.email}
-        city={contact.city}
+        town={contact.town}
         site={contact.site}
         telegram={contact.telegram}
         vk={contact.vk}

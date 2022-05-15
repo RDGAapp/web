@@ -17,7 +17,7 @@ const TextStyle = css`
   line-height: 1;
 `;
 
-const City = styled.p`
+const Town = styled.p`
   margin: 0 0 1rem;
   ${TextStyle};
 `;
@@ -42,13 +42,13 @@ const Social = styled.div`
 `;
 
 const Contact = ({
-  city, phone, phone2, email, site, instagram, telegram, vk,
+  town, phone, phone2, email, site, instagram, telegram, vk,
 }: Contact): JSX.Element => (
   <Container>
-    <City>
-      {city.toUpperCase()}
+    <Town>
+      {town.toUpperCase()}
       :
-    </City>
+    </Town>
     <Text>{phone}</Text>
     {phone2 && <Text>{phone2}</Text>}
     <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>

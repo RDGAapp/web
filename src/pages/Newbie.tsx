@@ -2,13 +2,13 @@ import { HashLink as Link } from 'react-router-hash-link';
 import styled from 'styled-components';
 
 import Image from 'assets/images/newbie.webp';
-import CityEvent from 'components/CityEvent';
-import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
+import TownEvent from 'components/TownEvent';
+import TownSelect from 'components/TownSelect';
 import routes from 'helpers/routes';
-import useShortCity from 'hooks/useShortCity';
+import useShortTown from 'hooks/useShortTown';
 import useStorage from 'hooks/useStorage';
 
 const ArticleContainer = styled.article`
@@ -62,18 +62,18 @@ const StyledImage = styled.img`
   }
 `;
 
-const CityContainer = styled.div`
+const TownContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
 interface NewbieProps {
-  openCitySelect: () => void,
+  openTownSelect: () => void,
 }
 
-const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
-  const city = useShortCity();
+const Newbie = ({ openTownSelect }: NewbieProps): JSX.Element => {
+  const town = useShortTown();
   const { newbie } = useStorage();
 
   return (
@@ -106,10 +106,10 @@ const Newbie = ({ openCitySelect }: NewbieProps): JSX.Element => {
               Ждём тебя на каждом турнире из расписания.
               Будь вовремя, мы начинаем в указанное время!
             </Text>
-            <CityContainer>
-              <CitySelect onClick={openCitySelect} />
-              {city && (<CityEvent data={newbie[city]} header="Ближайший Турнир в твоем городе:" />)}
-            </CityContainer>
+            <TownContainer>
+              <TownSelect onClick={openTownSelect} />
+              {town && (<TownEvent data={newbie[town]} header="Ближайший Турнир в твоем городе:" />)}
+            </TownContainer>
           </TextContainer>
           <StyledImage alt="" />
         </ArticleContainer>

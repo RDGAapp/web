@@ -1,5 +1,5 @@
 interface Contact {
-  city: string,
+  town: string,
   phone: string,
   phone2?: string,
   email: string,

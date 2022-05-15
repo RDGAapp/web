@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 import Image from 'assets/images/master.webp';
-import CityEvent from 'components/CityEvent';
-import CitySelect from 'components/CitySelect';
 import ContentContainer from 'components/ContentContainer';
 import PageHeader from 'components/PageHeader';
 import Text from 'components/Text';
-import useShortCity from 'hooks/useShortCity';
+import TownEvent from 'components/TownEvent';
+import TownSelect from 'components/TownSelect';
+import useShortTown from 'hooks/useShortTown';
 import useStorage from 'hooks/useStorage';
 
 const ArticleContainer = styled.article`
@@ -42,11 +42,11 @@ const StyledImage = styled.img`
 `;
 
 interface MasterProps {
-  openCitySelect: () => void;
+  openTownSelect: () => void;
 }
 
-const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
-  const city = useShortCity();
+const Master = ({ openTownSelect }: MasterProps): JSX.Element => {
+  const town = useShortTown();
   const { master } = useStorage();
   return (
     <>
@@ -64,8 +64,8 @@ const Master = ({ openCitySelect }: MasterProps): JSX.Element => {
               кидать фрисби, насладись красотой запущенного тобой диска - это
               действительно клёво!
             </Text>
-            <CitySelect onClick={openCitySelect} />
-            {city && <CityEvent data={master[city]} header="Ближайший мастер класс в твоем городе:" />}
+            <TownSelect onClick={openTownSelect} />
+            {town && <TownEvent data={master[town]} header="Ближайший мастер класс в твоем городе:" />}
           </TextContainer>
           <StyledImage alt="" />
         </ArticleContainer>

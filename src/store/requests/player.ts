@@ -2,10 +2,19 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from 'helpers/api';
 
+interface GetPlayersPayload {
+  pageNumber: number,
+  surname?: string,
+  town?: Town,
+}
+
 export const getPlayers = createAsyncThunk(
   'player/getAll',
-  async (pageNumber: number, { rejectWithValue }) => {
-    const response = await api.getPlayers(pageNumber);
+  async (
+    { pageNumber, surname, town }: GetPlayersPayload,
+    { rejectWithValue },
+  ) => {
+    const response = await api.getPlayers(pageNumber, surname, town);
 
     if (response.ok) {
       const json = await response.json();
