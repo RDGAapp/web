@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import SelectSvg from 'assets/icons/select.svg';
 import Card from 'components/Card';
 import PageHeader from 'components/PageHeader';
 import Pagination from 'components/Pagination';
 import SelectedCard from 'components/SelectedCard';
 import Spinner from 'components/Spinner';
+import towns from 'helpers/townsList';
+import useDebounce from 'hooks/useDebounce';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getPlayers } from 'store/requests/player';
 
@@ -22,13 +25,51 @@ const Container = styled(motion.ul)`
   list-style: none;
 `;
 
+const InputStyles = css`
+  padding: 0.4rem 1rem;
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: 1rem;
+  background: none;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 1rem;
+`;
+
+const Filters = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+`;
+
+const Input = styled.input`
+  ${InputStyles};
+  display: flex;
+  flex-grow: 1;
+`;
+
+const Select = styled.select`
+  ${InputStyles};
+  width: 13rem;
+  background-image: url(${SelectSvg});
+  background-repeat: no-repeat;
+  background-position: center right 1rem;
+  background-size: 1rem;
+  cursor: pointer;
+  appearance: none;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
 const Players = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const players = useAppSelector((state) => state.player.players);
   const loading = useAppSelector((state) => state.player.loading);
 
   const [selected, setSelected] = useState<Player | null>(null);
-  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [pageNumber, setPageNumber] = useState<number>(0);
   const [surname, setSurname] = useState<string>('');
   const [town, setTown] = useState<Town>();
   const pageHeader = document.getElementById('page-header');
@@ -37,9 +78,15 @@ const Players = (): JSX.Element => {
     window.scrollTo({ top: pageHeader?.offsetTop, behavior: 'smooth' });
   };
 
+  useDebounce(
+    () => dispatch(getPlayers({ pageNumber, surname, town })),
+    1000,
+    [surname],
+  );
+
   useEffect(() => {
     dispatch(getPlayers({ pageNumber, surname, town }));
-  }, [pageNumber]);
+  }, [pageNumber, town]);
 
   useEffect(() => {
     if (players && !loading && pageNumber !== 0) {
@@ -47,9 +94,30 @@ const Players = (): JSX.Element => {
     }
   }, [players]);
 
+  const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setTown(event.target.value as Town);
+  };
+
+  const onSurnameInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSurname(event.target.value.replace(' ', ''));
+  };
+
   return (
     <>
-      <PageHeader text="Наши игроки" shouldLinkToMainPage />
+      <PageHeader text="Наши игроки" shouldLinkToMainPage>
+        <Filters>
+          <Input placeholder="Введите фамилию" value={surname} onChange={onSurnameInputChange} />
+          <Select
+            value={town}
+            onChange={onSelectTownChange}
+          >
+            <option value="">
+              Выберите город
+            </option>
+            {towns.map((town) => <option value={town} key={town}>{town}</option>)}
+          </Select>
+        </Filters>
+      </PageHeader>
       {loading && <Spinner />}
       <Container>
         {players?.data.map((player) => (
@@ -59,6 +127,7 @@ const Players = (): JSX.Element => {
             setSelected={() => setSelected(player)}
           />
         ))}
+        {(players?.pagination.total ?? 0) === 0 && 'Not found'}
       </Container>
 
       <AnimatePresence>

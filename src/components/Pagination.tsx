@@ -48,8 +48,13 @@ const Pagination = ({
   totalPagesNumber,
   onPageChange,
 }: Props) => {
+  if (totalPagesNumber <= 1) return null;
   const fillPagesNumberArray = (): number[] => {
-    if (totalPagesNumber <= 5 || currentPageNumber <= 3) {
+    if (totalPagesNumber < 5) {
+      return Array.from({ length: totalPagesNumber }, (_, i) => i + 1);
+    }
+
+    if (totalPagesNumber === 5 || currentPageNumber <= 3) {
       return [1, 2, 3, 4, 5];
     }
 

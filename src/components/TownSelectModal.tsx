@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
+import towns from 'helpers/townsList';
 import { TownContext } from 'hooks/TownContext';
 
 const Header = styled.h1`
@@ -55,17 +56,6 @@ interface TownSelectModalProps {
   isOpen: boolean,
   onClose: () => void,
 }
-
-const towns: Town[] = [
-  'Белгород',
-  'Екатеринбург',
-  'Калининград',
-  'Москва',
-  'Нижний Новгород',
-  'Псков',
-  'Санкт-Петербург',
-  'Тольятти',
-];
 
 const TownSelectModal = ({ isOpen, onClose }: TownSelectModalProps): JSX.Element => {
   const { town, changeTown } = useContext(TownContext);

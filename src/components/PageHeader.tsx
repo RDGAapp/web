@@ -5,12 +5,19 @@ import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
+  justify-content: space-between;
+  margin: 3rem 0;
+`;
+
+const Core = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 const Header = styled.h1`
-  margin: 3rem 0;
   font-weight: 400;
   font-size: 2.4rem;
   font-family: ${({ theme }) => theme.fontFamily.header};
@@ -30,17 +37,22 @@ const ArrowLeft = styled(ArrowSvg)`
 interface PageHeaderProps {
   text: string,
   shouldLinkToMainPage?: boolean,
+  children?: JSX.Element | JSX.Element[],
 }
 
-const PageHeader = ({ text, shouldLinkToMainPage }: PageHeaderProps): JSX.Element => (
+const PageHeader = ({ text, shouldLinkToMainPage, children }: PageHeaderProps): JSX.Element => (
   <Container>
-    {shouldLinkToMainPage && <Link to="/" title="Вернуться на главную"><ArrowLeft height={35} /></Link>}
-    <Header id="page-header">{text}</Header>
+    <Core>
+      {shouldLinkToMainPage && <Link to="/" title="Вернуться на главную"><ArrowLeft width={35} /></Link>}
+      <Header id="page-header">{text}</Header>
+    </Core>
+    {children}
   </Container>
 );
 
 PageHeader.defaultProps = {
   shouldLinkToMainPage: false,
+  children: null,
 };
 
 export default PageHeader;
