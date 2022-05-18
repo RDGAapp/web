@@ -40,6 +40,8 @@ describe('theme helper', () => {
     });
     expect(theme.zIndex).toEqual({
       swNotification: 1000,
+      selectedPlayerCard: 1000,
+      spinner: 1000,
     });
   });
 

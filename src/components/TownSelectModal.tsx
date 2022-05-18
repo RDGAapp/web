@@ -6,7 +6,8 @@ import styled, { css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
-import { CityContext } from 'hooks/CityContext';
+import towns from 'helpers/townsList';
+import { TownContext } from 'hooks/TownContext';
 
 const Header = styled.h1`
   display: flex;
@@ -51,24 +52,13 @@ const ListElement = styled.p<{ selected: boolean }>`
   }
 `;
 
-interface CitySelectModalProps {
+interface TownSelectModalProps {
   isOpen: boolean,
   onClose: () => void,
 }
 
-const cities = [
-  'Белгород',
-  'Екатеринбург',
-  'Калининград',
-  'Москва',
-  'Нижний Новгород',
-  'Псков',
-  'Санкт-Петербург',
-  'Тольятти',
-];
-
-const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element => {
-  const { city, changeCity } = useContext(CityContext);
+const TownSelectModal = ({ isOpen, onClose }: TownSelectModalProps): JSX.Element => {
+  const { town, changeTown } = useContext(TownContext);
 
   return (
     <Modal
@@ -98,22 +88,22 @@ const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element
         <CrossSvg height={17} onClick={onClose} />
       </Header>
       <List>
-        {!city && (
+        {!town && (
         <ListElement selected>
           <ArrowSvg width={20} height={19} />
           {'Город не выбран'.toUpperCase()}
         </ListElement>
         )}
-        {cities.map((item) => (
+        {towns.map((item) => (
           <ListElement
             key={item}
-            selected={item === city}
+            selected={item === town}
             onClick={() => {
-              changeCity(item);
+              changeTown(item);
               onClose();
             }}
           >
-            {item === city && <ArrowSvg width={20} height={19} />}
+            {item === town && <ArrowSvg width={20} height={19} />}
             {item.toUpperCase()}
           </ListElement>
         ))}
@@ -122,4 +112,4 @@ const CitySelectModal = ({ isOpen, onClose }: CitySelectModalProps): JSX.Element
   );
 };
 
-export default CitySelectModal;
+export default TownSelectModal;

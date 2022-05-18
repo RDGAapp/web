@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as PlaceSvg } from 'assets/icons/place.svg';
 import { ReactComponent as SelectSvg } from 'assets/icons/select.svg';
-import { CityContext } from 'hooks/CityContext';
+import { TownContext } from 'hooks/TownContext';
 
 const Button = styled.button`
   display: flex;
@@ -31,20 +31,20 @@ const Button = styled.button`
   }
 `;
 
-interface CitySelectProps {
+interface TownSelectProps {
   onClick: () => void,
 }
 
-const CitySelect = ({ onClick }: CitySelectProps): JSX.Element => {
-  const { city } = useContext(CityContext);
+const TownSelect = ({ onClick }: TownSelectProps): JSX.Element => {
+  const { town } = useContext(TownContext);
 
   return (
     <Button onClick={onClick}>
       <PlaceSvg />
-      {(city || 'Выберите город').toUpperCase()}
+      {(town || 'Выберите город').toUpperCase()}
       <SelectSvg />
     </Button>
   );
 };
 
-export default CitySelect;
+export default TownSelect;

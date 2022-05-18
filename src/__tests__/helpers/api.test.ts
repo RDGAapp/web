@@ -17,10 +17,16 @@ describe('api helper', () => {
   });
 
   describe('getPlayers function', () => {
-    test('should call fetch with right URL', () => {
+    test('should call fetch with empty surname and town', () => {
       api.getPlayers(1);
       expect(fetchMock).toBeCalledTimes(1);
-      expect(fetchMock).toBeCalledWith('/test/players?page=1');
+      expect(fetchMock).toBeCalledWith('/test/players?page=1&surname=&town=');
+    });
+
+    test('should call fetch with filled surname and town', () => {
+      api.getPlayers(1, 'test', 'Нижний Новгород');
+      expect(fetchMock).toBeCalledTimes(1);
+      expect(fetchMock).toBeCalledWith('/test/players?page=1&surname=test&town=Нижний%20Новгород');
     });
 
     describe('getPlayer function', () => {

@@ -1,8 +1,8 @@
-type Cities = Record<Towns, DgEvent | null>
+type Towns = Record<ShortTown, DgEvent | null>;
 
-type Storage = Record<'master' | 'train' | 'newbie' | 'pro', Cities>;
+type Storage = Record<'master' | 'train' | 'newbie' | 'pro', Towns>;
 
-const sampleCities: Cities = {
+const sampleTowns: Towns = {
   ekb: null,
   spb: null,
   nnov: null,
@@ -15,7 +15,7 @@ const sampleCities: Cities = {
 
 const currentStorage: Storage = {
   master: {
-    ...sampleCities,
+    ...sampleTowns,
     spb: {
       days: ['чт'],
       time: '19:00',
@@ -40,7 +40,8 @@ const currentStorage: Storage = {
       place: {
         town: 'Москва',
         street: 'Косыгина 17',
-        comment: 'Вход в Парк у Мальчиша-Кибальчиша.\nБлижайшее м. Воробьёвы горы',
+        comment:
+          'Вход в Парк у Мальчиша-Кибальчиша.\nБлижайшее м. Воробьёвы горы',
       },
     },
     blg: {
@@ -49,7 +50,8 @@ const currentStorage: Storage = {
       place: {
         town: 'Белгород',
         street: 'Городской диск-гольф парк',
-        comment: 'Свяжитесь с нами удобным вам способом(ниже) и мы проведём для вас мастер-класс!',
+        comment:
+          'Свяжитесь с нами удобным вам способом(ниже) и мы проведём для вас мастер-класс!',
       },
     },
     psk: {
@@ -58,13 +60,14 @@ const currentStorage: Storage = {
       place: {
         town: 'Псков',
         street: 'Парки города',
-        comment: 'Свяжитесь с нами удобным вам способом(ниже) и мы проведём для вас мастер-класс!',
+        comment:
+          'Свяжитесь с нами удобным вам способом(ниже) и мы проведём для вас мастер-класс!',
       },
     },
   },
-  train: sampleCities,
+  train: sampleTowns,
   newbie: {
-    ...sampleCities,
+    ...sampleTowns,
     ekb: {
       days: ['сб', 'вс'],
       time: '10:00',
@@ -80,7 +83,8 @@ const currentStorage: Storage = {
       place: {
         town: 'Санкт-Петербург',
         street: 'Туутари парк',
-        comment: '30 апреля, 2022 - первый этап Лиги СПб! Следи за подробностями в ТГ канале.',
+        comment:
+          '30 апреля, 2022 - первый этап Лиги СПб! Следи за подробностями в ТГ канале.',
       },
     },
     nnov: {
@@ -103,7 +107,7 @@ const currentStorage: Storage = {
     },
   },
   pro: {
-    ...sampleCities,
+    ...sampleTowns,
     psk: {
       days: ['сб', 'вс'],
       time: '9:00',

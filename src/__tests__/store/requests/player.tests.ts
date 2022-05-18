@@ -21,10 +21,26 @@ describe('player requests', () => {
     test('should fulfill', async () => {
       (api.getPlayers as jest.Mock).mockReturnValue({ ok: true, json: () => players });
 
-      const result = await store.dispatch(getPlayers(1));
+      const result = await store.dispatch(getPlayers({ pageNumber: 1 }));
 
       expect(api.getPlayers).toBeCalledTimes(1);
-      expect(api.getPlayers).toBeCalledWith(1);
+      expect(api.getPlayers).toBeCalledWith(1, undefined, undefined);
+      expect(result.payload).toEqual(players);
+      expect(result.meta.requestStatus).toBe('fulfilled');
+      expect(store.getState().player).toEqual({
+        players,
+        loading: false,
+        error: null,
+      });
+    });
+
+    test('should pass surname and town', async () => {
+      (api.getPlayers as jest.Mock).mockReturnValue({ ok: true, json: () => players });
+
+      const result = await store.dispatch(getPlayers({ pageNumber: 1, surname: 'test', town: 'Белгород' }));
+
+      expect(api.getPlayers).toBeCalledTimes(1);
+      expect(api.getPlayers).toBeCalledWith(1, 'test', 'Белгород');
       expect(result.payload).toEqual(players);
       expect(result.meta.requestStatus).toBe('fulfilled');
       expect(store.getState().player).toEqual({
@@ -37,10 +53,10 @@ describe('player requests', () => {
     test('should reject', async () => {
       (api.getPlayers as jest.Mock).mockResolvedValue({ ok: false, text: () => testError });
 
-      const result = await store.dispatch(getPlayers(1));
+      const result = await store.dispatch(getPlayers({ pageNumber: 1 }));
 
       expect(api.getPlayers).toBeCalledTimes(1);
-      expect(api.getPlayers).toBeCalledWith(1);
+      expect(api.getPlayers).toBeCalledWith(1, undefined, undefined);
       expect(result.payload).toBe(testError);
       expect(result.meta.requestStatus).toBe('rejected');
       expect(store.getState().player).toEqual({

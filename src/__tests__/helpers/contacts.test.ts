@@ -4,7 +4,7 @@ describe('contacts helper', () => {
   test('should return array with set structure', () => {
     expect(contacts).toEqual([
       {
-        city: 'Екатеринбург',
+        town: 'Екатеринбург',
         phone: '+7 (343) 328 92 31',
         email: 'discgolfekb@ya.ru',
         instagram: 'https://www.instagram.com/discgolf_ekb',
@@ -12,7 +12,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolf_ekb',
       },
       {
-        city: 'Санкт-Петербург',
+        town: 'Санкт-Петербург',
         phone: '+7 (981) 783 25 16',
         email: 'discgolfspb@gmail.com',
         instagram: 'https://www.instagram.com/discgolf_spb',
@@ -20,7 +20,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfspb',
       },
       {
-        city: 'Москва',
+        town: 'Москва',
         phone: '+7 (916) 780 81 68',
         email: 'Discgolf.msk@gmail.com',
         site: 'https://discgolf.me',
@@ -29,7 +29,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfmsk',
       },
       {
-        city: 'Нижний Новгород',
+        town: 'Нижний Новгород',
         phone: '+7 (930) 813 33 99',
         phone2: '+7 (831) 414 21 23',
         email: 'discgolfnn@gmail.com',
@@ -38,7 +38,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfnn',
       },
       {
-        city: 'Белгород',
+        town: 'Белгород',
         phone: '+7 (915) 566 68 08',
         email: 'discgolf31@mail.ru',
         instagram: 'https://www.instagram.com/discgolf31',
@@ -46,7 +46,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolf31',
       },
       {
-        city: 'Псков',
+        town: 'Псков',
         phone: '+7 (921) 004 07 24',
         email: 'discgolfpskov@gmail.com',
         instagram: 'https://www.instagram.com/discgolf.pskov',
@@ -54,7 +54,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfpskov',
       },
       {
-        city: 'Тольятти',
+        town: 'Тольятти',
         phone: '+7 (927) 687 97 50',
         email: 'tfdf63@yandex.ru',
         site: 'https://tfdf.ru',
@@ -63,7 +63,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/tfdf63',
       },
       {
-        city: 'Калининград',
+        town: 'Калининград',
         phone: '+7 (906) 239 00 58',
         email: 'elena_iskritskaya@mail.ru',
         telegram: 'https://t.me/discgolf_Kaliningrad',
@@ -73,6 +73,6 @@ describe('contacts helper', () => {
   });
 
   test('should return array sorted alphabetically', () => {
-    expect(contacts).toEqual(contacts.sort((a, b) => a.city.localeCompare(b.city)));
+    expect(contacts).toEqual(contacts.sort((a, b) => a.town.localeCompare(b.town)));
   });
 });

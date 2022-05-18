@@ -50,7 +50,7 @@ interface Props {
   header: string,
 }
 
-const CityEvent = ({ data, header }: Props): JSX.Element => {
+const TownEvent = ({ data, header }: Props): JSX.Element => {
   if (data) {
     return (
       <Container>
@@ -88,4 +88,4 @@ const CityEvent = ({ data, header }: Props): JSX.Element => {
   );
 };
 
-export default CityEvent;
+export default TownEvent;

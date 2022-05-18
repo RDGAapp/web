@@ -7,12 +7,12 @@ import {
 } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import CitySelectModal from 'components/CitySelectModal';
 import Layout from 'components/Layout';
+import TownSelectModal from 'components/TownSelectModal';
 import GlobalStyle from 'helpers/GlobalStyle';
 import routes from 'helpers/routes';
 import theme from 'helpers/theme';
-import { CityProvider } from 'hooks/CityContext';
+import { TownProvider } from 'hooks/TownContext';
 import About from 'pages/About';
 import Companies from 'pages/Companies';
 import Home from 'pages/Home';
@@ -31,22 +31,22 @@ const App = (): JSX.Element => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <CityProvider>
-          <Layout openCitySelect={() => setOpen(true)}>
+        <TownProvider>
+          <Layout openTownSelect={() => setOpen(true)}>
             <Routes>
               <Route path={routes.HOME} element={<Home />} />
               <Route
                 path={routes.MASTER}
-                element={<Master openCitySelect={() => setOpen(true)} />}
+                element={<Master openTownSelect={() => setOpen(true)} />}
               />
               <Route path={routes.TRAINING} element={<Train />} />
               <Route
                 path={routes.NEWBIE}
-                element={<Newbie openCitySelect={() => setOpen(true)} />}
+                element={<Newbie openTownSelect={() => setOpen(true)} />}
               />
               <Route
                 path={routes.PRO}
-                element={<Pro openCitySelect={() => setOpen(true)} />}
+                element={<Pro openTownSelect={() => setOpen(true)} />}
               />
               <Route path={routes.INTERNATIONAL} element={<International />} />
               <Route path={routes.SHOP} element={<Shop />} />
@@ -54,9 +54,9 @@ const App = (): JSX.Element => {
               <Route path={routes.ABOUT} element={<About />} />
               <Route path={routes.PLAYERS} element={<Players />} />
             </Routes>
-            <CitySelectModal isOpen={open} onClose={() => setOpen(false)} />
+            <TownSelectModal isOpen={open} onClose={() => setOpen(false)} />
           </Layout>
-        </CityProvider>
+        </TownProvider>
       </BrowserRouter>
     </ThemeProvider>
   );

@@ -7,7 +7,7 @@ import ButtonUnderlined from 'components/ButtonUnderlined';
 import LinkOutlined from 'components/LinkOutlined';
 import Logo from 'components/Logo';
 import routes from 'helpers/routes';
-import { CityContext } from 'hooks/CityContext';
+import { TownContext } from 'hooks/TownContext';
 
 const Container = styled.nav`
   display: grid;
@@ -68,11 +68,11 @@ const LogoBlock = styled(Link)`
 `;
 
 interface HeaderProps {
-  openCitySelect: () => void,
+  openTownSelect: () => void,
 }
 
-const Header = ({ openCitySelect }: HeaderProps): JSX.Element => {
-  const { city } = useContext(CityContext);
+const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
+  const { town } = useContext(TownContext);
 
   return (
     <Container>
@@ -87,7 +87,7 @@ const Header = ({ openCitySelect }: HeaderProps): JSX.Element => {
       <ContactBlock>
         <LinkOutlined route={routes.PLAYERS} text="Игроки" />
         <LinkOutlined route={routes.CONTACTS} text="Контакты" />
-        <ButtonUnderlined text={city?.toUpperCase() || 'Выберите город'} onClick={openCitySelect} />
+        <ButtonUnderlined text={town?.toUpperCase() || 'Выберите город'} onClick={openTownSelect} />
       </ContactBlock>
     </Container>
   );
