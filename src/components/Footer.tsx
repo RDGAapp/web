@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 import Contacts from 'components/Contacts';
 import Logo from 'components/Logo';
-import theme from 'helpers/theme';
-import useWindowDimensions from 'hooks/useWindowDimensions';
+import useMatchMedia from 'hooks/useMatchMedia';
 
 const PrimaryBackground = styled.footer`
   background: ${({ theme }) => theme.colors.primary};
@@ -49,14 +48,14 @@ const Copyright = styled.p`
 `;
 
 const Footer = (): JSX.Element => {
-  const { width } = useWindowDimensions();
+  const { isDesktop } = useMatchMedia();
   return (
     <PrimaryBackground>
       <Container id="contacts">
         <Header>Контакты</Header>
         <Contacts />
         <LogoContainer>
-          <Logo big={width >= theme.breakpoints.tablet} />
+          <Logo big={isDesktop} />
           <Copyright>© АССОЦИАЦИЯ ИГРОКОВ В ДИСК-ГОЛЬФ</Copyright>
         </LogoContainer>
       </Container>
