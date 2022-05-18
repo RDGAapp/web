@@ -52,6 +52,7 @@ const Select = styled.select`
   padding: 0.4rem 1rem;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1rem;
+  background-color: ${({ theme }) => theme.colors.background};
   background-image: url(${SelectSvg});
   background-repeat: no-repeat;
   background-position: center right 1rem;
@@ -81,6 +82,14 @@ const NotFoundText = styled.p`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
   transform: translate(-50%, -50%);
+
+  ${({ theme }) => theme.media.mobile} {
+    position: initial;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+    transform: translate(0, 0);
+  }
 `;
 
 const Players = (): JSX.Element => {
@@ -154,10 +163,10 @@ const Players = (): JSX.Element => {
         ))}
         {(players?.pagination.total ?? 0) === 0 && (
         <>
+          <NotFound src={NotFoundImage} alt="Игрок не найден" />
           <NotFoundText>
             Игрока с такими параметрами нет в нашей базе
           </NotFoundText>
-          <NotFound src={NotFoundImage} alt="Игрок не найден" />
         </>
         )}
       </Container>

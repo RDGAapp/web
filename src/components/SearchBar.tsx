@@ -48,6 +48,7 @@ const Input = styled.input`
   padding: 0.4rem 0 0.4rem 1rem;
   font-size: 1rem;
   line-height: 1.6rem;
+  background-color: ${({ theme }) => theme.background};
   border: none;
   opacity: 0;
 
@@ -62,6 +63,7 @@ const Button = styled.button`
   aspect-ratio: 1;
   margin: 0 0 0 auto;
   padding: 0;
+  color: ${({ theme }) => theme.colors.text.primary};
   background: transparent;
   border: none;
   border-radius: 100vh;
@@ -89,7 +91,7 @@ const SearchBar = ({
   return (
     <Container expanded={!!value || isMobile || isTablet}>
       <Input
-        type="search"
+        type="text"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
