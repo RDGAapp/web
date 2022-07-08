@@ -1,7 +1,5 @@
-import 'react-responsive-modal/styles.css';
 import { useContext } from 'react';
 
-import { Modal } from 'react-responsive-modal';
 import styled, { css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
@@ -53,36 +51,14 @@ const ListElement = styled.p<{ selected: boolean }>`
 `;
 
 interface TownSelectModalProps {
-  isOpen: boolean,
   onClose: () => void,
 }
 
-const TownSelectModal = ({ isOpen, onClose }: TownSelectModalProps): JSX.Element => {
+const TownSelectModal = ({ onClose }: TownSelectModalProps): JSX.Element => {
   const { town, changeTown } = useContext(TownContext);
 
   return (
-    <Modal
-      open={isOpen}
-      onClose={onClose}
-      center
-      showCloseIcon={false}
-      styles={{
-        modal: {
-          borderRadius: '2rem',
-          width: '90%',
-          maxWidth: '23rem',
-          padding: '1.5rem 2.5rem',
-        },
-        modalContainer: {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100vw',
-          height: '100vh',
-        },
-      }}
-      animationDuration={0}
-    >
+    <>
       <Header>
         {'Выберите город'.toUpperCase()}
         <CrossSvg height={17} onClick={onClose} />
@@ -108,7 +84,7 @@ const TownSelectModal = ({ isOpen, onClose }: TownSelectModalProps): JSX.Element
           </ListElement>
         ))}
       </List>
-    </Modal>
+    </>
   );
 };
 

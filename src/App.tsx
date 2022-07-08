@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import {
   BrowserRouter,
   Route,
@@ -24,29 +22,31 @@ import Pro from 'pages/Pro';
 import Shop from 'pages/Shop';
 import Train from 'pages/Train';
 
+import useDialog from './hooks/useDialog';
+
 const App = (): JSX.Element => {
-  const [open, setOpen] = useState<boolean>(false);
+  const { Dialog, openModal, closeModal } = useDialog();
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
         <TownProvider>
-          <Layout openTownSelect={() => setOpen(true)}>
+          <Layout openTownSelect={openModal}>
             <Routes>
               <Route path={routes.HOME} element={<Home />} />
               <Route
                 path={routes.MASTER}
-                element={<Master openTownSelect={() => setOpen(true)} />}
+                element={<Master openTownSelect={openModal} />}
               />
               <Route path={routes.TRAINING} element={<Train />} />
               <Route
                 path={routes.NEWBIE}
-                element={<Newbie openTownSelect={() => setOpen(true)} />}
+                element={<Newbie openTownSelect={openModal} />}
               />
               <Route
                 path={routes.PRO}
-                element={<Pro openTownSelect={() => setOpen(true)} />}
+                element={<Pro openTownSelect={openModal} />}
               />
               <Route path={routes.INTERNATIONAL} element={<International />} />
               <Route path={routes.SHOP} element={<Shop />} />
@@ -54,7 +54,9 @@ const App = (): JSX.Element => {
               <Route path={routes.ABOUT} element={<About />} />
               <Route path={routes.PLAYERS} element={<Players />} />
             </Routes>
-            <TownSelectModal isOpen={open} onClose={() => setOpen(false)} />
+            <Dialog>
+              <TownSelectModal onClose={closeModal} />
+            </Dialog>
           </Layout>
         </TownProvider>
       </BrowserRouter>
