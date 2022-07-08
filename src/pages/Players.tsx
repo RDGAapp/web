@@ -108,7 +108,10 @@ const Players = (): JSX.Element => {
   };
 
   useDebounce(
-    () => dispatch(getPlayers({ pageNumber, surname, town })),
+    () => {
+      dispatch(getPlayers({ pageNumber, surname, town }));
+      setPageNumber(1);
+    },
     1000,
     [surname],
   );
