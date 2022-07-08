@@ -15,13 +15,13 @@ const StyledImage = styled.img`
   height: 30rem;
   margin: 0 auto;
   background: center url(${Image});
-  background-size: 68rem 30rem;
+  background-size: cover;
   border-radius: 2rem;
 
   ${({ theme }) => theme.media.tablet} {
     flex-basis: 37rem;
     height: 16rem;
-    background-size: 37rem 16rem;
+    background-size: cover;
   }
 `;
 

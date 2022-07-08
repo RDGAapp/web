@@ -35,7 +35,7 @@ const StyledImage = styled.img`
   flex-grow: 0;
   height: 21rem;
   background: center url(${Image});
-  background-size: 37rem 21rem;
+  background-size: cover;
   border-radius: 2rem;
 
   ${({ theme }) => theme.media.tablet} {

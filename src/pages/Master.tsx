@@ -37,7 +37,7 @@ const StyledImage = styled.img`
   flex-grow: 0;
   height: 41rem;
   background: center url(${Image});
-  background-size: 26rem 41rem;
+  background-size: cover;
   border-radius: 2rem;
 `;
 

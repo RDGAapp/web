@@ -6,11 +6,10 @@ import RatingChangeBadge from 'components/RatingChangeBadge';
 
 const Container = styled(motion.div)`
   display: flex;
-  flex: 1 0 31.5%;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  max-width: 31.5%;
+  width: 100%;
   height: 8rem;
   margin: auto;
   padding: 1rem;
@@ -23,16 +22,6 @@ const Container = styled(motion.div)`
   :hover,
   :focus {
     background-color: ${({ theme }) => theme.colors.primary};
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    flex: 1 0 48%;
-    max-width: 48%;
-  }
-
-  ${({ theme }) => theme.media.mobile} {
-    flex: 1 0 100%;
-    max-width: calc(100% - 2rem);
   }
 `;
 

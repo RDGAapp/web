@@ -54,7 +54,7 @@ const StyledImage = styled.img`
   flex-basis: 26rem;
   height: 22rem;
   background: center url(${Image});
-  background-size: 37rem 22rem;
+  background-size: cover;
   border-radius: 2rem;
 
   ${({ theme }) => theme.breakpoints.tablet} {

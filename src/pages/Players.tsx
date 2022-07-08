@@ -18,14 +18,22 @@ import { getPlayers } from 'store/requests/player';
 
 const Container = styled(motion.ul)`
   position: relative;
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   justify-content: flex-start;
   width: calc(100% - 2rem);
   margin: auto;
   padding: 0 1rem 3rem;
   list-style: none;
+
+  ${({ theme }) => theme.media.tablet} {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  ${({ theme }) => theme.media.mobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Filters = styled.div`

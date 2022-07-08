@@ -35,14 +35,14 @@ const StyledImage = styled.img`
   width: 530px;
   height: 700px;
   background: center url(${Image});
-  background-size: 1100px 700px;
+  background-size: cover;
   border-radius: 20px;
 
   ${({ theme }) => theme.media.tablet} {
     width: 100%;
     max-width: 750px;
     height: 480px;
-    background-size: 750px 480px;
+    background-size: cover;
   }
 `;
 
