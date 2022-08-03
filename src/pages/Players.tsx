@@ -106,7 +106,7 @@ const Players = (): JSX.Element => {
 
   useDebounce(
     () => {
-      dispatch(getPlayers({ pageNumber, surname, town }));
+      dispatch(getPlayers({ pageNumber: 1, surname, town }));
       setPageNumber(1);
     },
     1000,
@@ -115,12 +115,7 @@ const Players = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getPlayers({ pageNumber, surname, town }));
-  }, [pageNumber]);
-
-  useEffect(() => {
-    dispatch(getPlayers({ pageNumber, surname, town }));
-    setPageNumber(1);
-  }, [town]);
+  }, []);
 
   useEffect(() => {
     if (players && !loading && pageNumber !== 0) {
@@ -130,10 +125,17 @@ const Players = (): JSX.Element => {
 
   const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setTown(event.target.value as Town);
+    setPageNumber(1);
+    dispatch(getPlayers({ pageNumber: 1, surname, town }));
   };
 
   const onSurnameInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSurname(event.target.value.replace(' ', ''));
+  };
+
+  const onPageNumberChange = (newPageNumber: number) => {
+    setPageNumber(newPageNumber);
+    dispatch(getPlayers({ pageNumber: newPageNumber, surname, town }));
   };
 
   return (
@@ -187,7 +189,7 @@ const Players = (): JSX.Element => {
         <Pagination
           currentPageNumber={players.pagination.currentPage}
           totalPagesNumber={players.pagination.lastPage}
-          onPageChange={setPageNumber}
+          onPageChange={onPageNumberChange}
         />
       )}
     </>

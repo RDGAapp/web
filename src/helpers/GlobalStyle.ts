@@ -93,6 +93,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  body {
+    background-color: ${theme.colors.background};
+  }
+
   svg {
     flex-shrink: 0;
     height: 100%;
