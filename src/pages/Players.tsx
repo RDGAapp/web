@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import SelectSvg from 'assets/icons/select.svg';
-import NotFoundImage from 'assets/images/not-found.webp';
 import Card from 'components/Card';
 import PageHeader from 'components/PageHeader';
 import Pagination from 'components/Pagination';
@@ -17,7 +16,6 @@ import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getPlayers } from 'store/requests/player';
 
 const Container = styled(motion.ul)`
-  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
@@ -75,29 +73,20 @@ const Select = styled.select`
   }
 `;
 
-const NotFound = styled.img`
-  border-radius: 2rem;
+const NotFoundContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
 
 const NotFoundText = styled.p`
-  position: absolute;
-  top: 50%;
-  left: 50%;
   padding: 0.5rem 1rem;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1.5rem;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
-  transform: translate(-50%, -50%);
-
-  ${({ theme }) => theme.media.mobile} {
-    position: initial;
-    width: 100%;
-    font-size: 1.2rem;
-    text-align: center;
-    transform: translate(0, 0);
-  }
 `;
 
 const Players = (): JSX.Element => {
@@ -126,7 +115,12 @@ const Players = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getPlayers({ pageNumber, surname, town }));
-  }, [pageNumber, town]);
+  }, [pageNumber]);
+
+  useEffect(() => {
+    dispatch(getPlayers({ pageNumber, surname, town }));
+    setPageNumber(1);
+  }, [town]);
 
   useEffect(() => {
     if (players && !loading && pageNumber !== 0) {
@@ -164,6 +158,13 @@ const Players = (): JSX.Element => {
         </Filters>
       </PageHeader>
       {loading && <Spinner />}
+      {(players?.pagination.total ?? 0) === 0 && (
+        <NotFoundContainer>
+          <NotFoundText>
+            Игрока с такими параметрами нет в нашей базе
+          </NotFoundText>
+        </NotFoundContainer>
+      )}
       <Container>
         {players?.data.map((player) => (
           <Card
@@ -172,14 +173,6 @@ const Players = (): JSX.Element => {
             setSelected={() => setSelected(player)}
           />
         ))}
-        {(players?.pagination.total ?? 0) === 0 && (
-        <>
-          <NotFound src={NotFoundImage} alt="Игрок не найден" />
-          <NotFoundText>
-            Игрока с такими параметрами нет в нашей базе
-          </NotFoundText>
-        </>
-        )}
       </Container>
 
       <AnimatePresence>

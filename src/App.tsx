@@ -11,18 +11,18 @@ import GlobalStyle from 'helpers/GlobalStyle';
 import routes from 'helpers/routes';
 import theme from 'helpers/theme';
 import { TownProvider } from 'hooks/TownContext';
+import useDialog from 'hooks/useDialog';
 import About from 'pages/About';
 import Companies from 'pages/Companies';
 import Home from 'pages/Home';
 import International from 'pages/International';
 import Master from 'pages/Master';
 import Newbie from 'pages/Newbie';
+import NotFound from 'pages/NotFound';
 import Players from 'pages/Players';
 import Pro from 'pages/Pro';
 import Shop from 'pages/Shop';
 import Train from 'pages/Train';
-
-import useDialog from './hooks/useDialog';
 
 const App = (): JSX.Element => {
   const { Dialog, openModal, closeModal } = useDialog();
@@ -53,6 +53,7 @@ const App = (): JSX.Element => {
               <Route path={routes.COMPANIES} element={<Companies />} />
               <Route path={routes.ABOUT} element={<About />} />
               <Route path={routes.PLAYERS} element={<Players />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
             <Dialog>
               <TownSelectModal onClose={closeModal} />
