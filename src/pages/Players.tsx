@@ -124,9 +124,10 @@ const Players = (): JSX.Element => {
   }, [players]);
 
   const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setTown(event.target.value as Town);
+    const newTown = event.target.value as Town;
+    setTown(newTown);
     setPageNumber(1);
-    dispatch(getPlayers({ pageNumber: 1, surname, town }));
+    dispatch(getPlayers({ pageNumber: 1, surname, town: newTown }));
   };
 
   const onSurnameInputChange = (event: ChangeEvent<HTMLInputElement>) => {
