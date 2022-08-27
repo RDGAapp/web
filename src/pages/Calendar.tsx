@@ -46,6 +46,7 @@ const CalendarWeek = styled.div`
 
 const CalendarDay = styled.div`
   height: 3rem;
+  padding: 0.2rem 0.3rem;
   border: 1px solid #f3f3f3;
   border-radius: 0.5rem;
 `;
