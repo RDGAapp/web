@@ -14,12 +14,13 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
   transform: translateX(-50%);
+  cursor: pointer;
   opacity: 0;
   transition: all 1s ease-in-out;
 `;
 
 const SWNotification = () => (
-  <Container id="reloadNotification" onClick={window.location.reload}>
+  <Container id="reloadNotification" onClick={() => window.location.reload()}>
     Доступна более новая версия сайта! Нажмите для обновления.
   </Container>
 );
