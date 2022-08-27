@@ -59,15 +59,29 @@ const TournamentList = styled.div`
 const Tournament = styled.div`
   display: flex;
   flex: 1;
+  flex-direction: column;
+  gap: 0.2rem;
   height: 3rem;
   overflow: hidden;
+  line-height: 1;
   white-space: nowrap;
   text-overflow: ellipsis;
-  border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
 
   :hover {
     min-width: min-content;
+  }
+
+  * {
+    font-size: 0.8rem;
+  }
+`;
+
+const ExtraTournamentInformation = styled.div`
+  font-size: 0.5rem;
+
+  * {
+    font-size: 0.6rem;
   }
 `;
 
@@ -129,7 +143,19 @@ const Calendar = () => {
                       )
                       .map((tournament) => (
                         <Tournament key={tournament.name}>
-                          {tournament.name}
+                          <b>{tournament.name}</b>
+                          <ExtraTournamentInformation>
+                            <i>{tournament.town}</i>
+                          </ExtraTournamentInformation>
+                          <ExtraTournamentInformation>
+                            {tournament.startDate.getDate()}
+                            {tournament.startDate.getDate() !== tournament.endDate.getDate() && (
+                            <>
+                              -
+                              {tournament.endDate.getDate()}
+                            </>
+                            )}
+                          </ExtraTournamentInformation>
                         </Tournament>
                       ))}
                   </TournamentList>

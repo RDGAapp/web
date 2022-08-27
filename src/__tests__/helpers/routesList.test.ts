@@ -10,13 +10,12 @@ describe('routesList helper', () => {
       '/newbie',
       '/pro',
       '/international',
-      '/shop',
-      '/companies',
       '/players',
       '#contacts',
       '#menu',
-      '#buy',
       '#join',
+      '/service',
+      '/calendar',
     ]);
   });
 });
