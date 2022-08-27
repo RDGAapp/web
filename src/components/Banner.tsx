@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import MainBackground from 'assets/images/banner-main.webp';
-import ShopBackground from 'assets/images/banner-shop.webp';
 import SponsorBackground from 'assets/images/banner-sponsor.webp';
 import PlayersBackground from 'assets/images/players.webp';
 import routes from 'helpers/routes';
@@ -54,9 +53,8 @@ const ArrowDown = styled(ArrowSvg)`
 `;
 
 const bannerContent = new Map<string, Record<string, string>>([
-  [routes.SHOP, { image: ShopBackground, text: 'Купить', link: routes.CONTACTS }],
   [routes.ABOUT, { image: PlayersBackground, text: 'Вступить в РДГА', link: routes.JOIN }],
-  [routes.COMPANIES, { image: SponsorBackground, text: 'Заказать мероприятие', link: routes.CONTACTS }],
+  [routes.SERVICE, { image: SponsorBackground, text: 'Заказать мероприятие', link: routes.CONTACTS }],
   [routes.PLAYERS, { image: PlayersBackground, text: 'Вступить в РДГА', link: `${routes.ABOUT}${routes.JOIN}` }],
 ]);
 

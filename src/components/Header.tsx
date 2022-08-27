@@ -77,16 +77,16 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
   return (
     <Container>
       <CommercialBlock>
-        <LinkOutlined route={routes.SHOP} text="Магазин" />
-        <LinkOutlined route={routes.COMPANIES} text="Компаниям" />
+        <LinkOutlined route={routes.SERVICE} text="Услуги" />
         <LinkOutlined route={routes.ABOUT} text="О нас" />
+        <LinkOutlined route={routes.CONTACTS} text="Контакты" />
       </CommercialBlock>
       <LogoBlock to={routes.HOME}>
         <Logo />
       </LogoBlock>
       <ContactBlock>
         <LinkOutlined route={routes.PLAYERS} text="Игроки" />
-        <LinkOutlined route={routes.CONTACTS} text="Контакты" />
+        <LinkOutlined route={routes.CALENDAR} text="Турниры" />
         <ButtonUnderlined text={town?.toUpperCase() || 'Выберите город'} onClick={openTownSelect} />
       </ContactBlock>
     </Container>

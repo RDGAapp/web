@@ -18,6 +18,18 @@ interface LayoutProps {
   openTownSelect: () => void,
 }
 
+const shouldShowBanner = new Set<string>([
+  routes.HOME,
+  routes.ABOUT,
+  routes.MASTER,
+  routes.TRAINING,
+  routes.NEWBIE,
+  routes.PRO,
+  routes.INTERNATIONAL,
+  routes.PLAYERS,
+  routes.SERVICE,
+]);
+
 const shouldShowMenuSet = new Set<string>([
   routes.HOME,
   routes.MASTER,
@@ -35,7 +47,7 @@ const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
       <SWNotification />
       <Container>
         <Header openTownSelect={openTownSelect} />
-        <Banner />
+        {shouldShowBanner.has(location.pathname) && <Banner />}
         {shouldShowMenuSet.has(location.pathname) && <Menu />}
         {children}
       </Container>

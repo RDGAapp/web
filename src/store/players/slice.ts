@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getPlayers } from 'store/requests/player';
+import { getPlayers } from 'store/players/thunks';
 
 interface PlayerState {
   players: Paginated<Player[]> | null,

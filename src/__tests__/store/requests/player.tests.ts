@@ -1,6 +1,6 @@
 import api from 'helpers/api';
 import { store } from 'store';
-import { getPlayers, getPlayer } from 'store/requests/player';
+import { getPlayers, getPlayer } from 'store/players/thunks';
 
 jest.mock('helpers/api');
 

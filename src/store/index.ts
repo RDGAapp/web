@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import playerSlice from 'store/player';
+import playerSlice from 'store/players/slice';
+import tournamentSlice from 'store/tournaments/slice';
 
 const rootReducer = combineReducers({
   player: playerSlice,
+  tournament: tournamentSlice,
 });
 
 export const store = configureStore({

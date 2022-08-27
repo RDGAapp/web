@@ -13,7 +13,7 @@ import theme from 'helpers/theme';
 import { TownProvider } from 'hooks/TownContext';
 import useDialog from 'hooks/useDialog';
 import About from 'pages/About';
-import Companies from 'pages/Companies';
+import Calendar from 'pages/Calendar';
 import Home from 'pages/Home';
 import International from 'pages/International';
 import Master from 'pages/Master';
@@ -21,7 +21,7 @@ import Newbie from 'pages/Newbie';
 import NotFound from 'pages/NotFound';
 import Players from 'pages/Players';
 import Pro from 'pages/Pro';
-import Shop from 'pages/Shop';
+import Service from 'pages/Service';
 import Train from 'pages/Train';
 
 const App = (): JSX.Element => {
@@ -49,9 +49,9 @@ const App = (): JSX.Element => {
                 element={<Pro openTownSelect={openModal} />}
               />
               <Route path={routes.INTERNATIONAL} element={<International />} />
-              <Route path={routes.SHOP} element={<Shop />} />
-              <Route path={routes.COMPANIES} element={<Companies />} />
+              <Route path={routes.SERVICE} element={<Service />} />
               <Route path={routes.ABOUT} element={<About />} />
+              <Route path={routes.CALENDAR} element={<Calendar />} />
               <Route path={routes.PLAYERS} element={<Players />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -13,7 +13,7 @@ import Spinner from 'components/Spinner';
 import towns from 'helpers/townsList';
 import useDebounce from 'hooks/useDebounce';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
-import { getPlayers } from 'store/requests/player';
+import { getPlayers } from 'store/players/thunks';
 
 const Container = styled(motion.ul)`
   display: grid;
