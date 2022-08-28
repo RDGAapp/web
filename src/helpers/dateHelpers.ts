@@ -70,3 +70,22 @@ export const getCalendarData = () => {
 
   return monthsArray;
 };
+
+export const spellMonth = (month: number) => {
+  const monthsSpellingArray = [
+    'Января',
+    'Февраля',
+    'Марта',
+    'Апреля',
+    'Мая',
+    'Июня',
+    'Июля',
+    'Августа',
+    'Сентября',
+    'Октября',
+    'Ноября',
+    'Декабря',
+  ];
+
+  return monthsSpellingArray[month];
+};

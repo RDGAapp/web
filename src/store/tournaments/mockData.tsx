@@ -48,6 +48,41 @@ const tournaments: Tournament[] = [
     type: 'лига',
     town: 'Санкт-Петербург',
   },
+  {
+    name: 'Этап региональной лиги',
+    startDate: new Date(2022, 8, 3, 10),
+    endDate: new Date(2022, 8, 3, 17),
+    type: 'лига',
+    town: 'Москва',
+  },
+  {
+    name: 'Этап региональной лиги',
+    startDate: new Date(2022, 9, 1, 10),
+    endDate: new Date(2022, 9, 1, 17),
+    type: 'лига',
+    town: 'Москва',
+  },
+  {
+    name: 'Этап региональной лиги',
+    startDate: new Date(2022, 9, 15, 10),
+    endDate: new Date(2022, 9, 15, 17),
+    type: 'лига',
+    town: 'Москва',
+  },
+  {
+    name: 'Этап региональной лиги',
+    startDate: new Date(2022, 9, 29, 10),
+    endDate: new Date(2022, 9, 29, 17),
+    type: 'лига',
+    town: 'Москва',
+  },
+  {
+    name: 'MDGC Bag Tag Challenge',
+    startDate: new Date(2022, 8, 17, 10),
+    endDate: new Date(2022, 8, 17, 17),
+    type: 'bag-tag',
+    town: 'Москва',
+  },
 ];
 
 export default tournaments;

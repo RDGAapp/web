@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import styled from 'styled-components';
 
 import PageHeader from 'components/PageHeader';
-import { getCalendarData, getMonthName } from 'helpers/dateHelpers';
+import { getCalendarData, getMonthName, spellMonth } from 'helpers/dateHelpers';
 import theme from 'helpers/theme';
 import { useAppSelector } from 'store/hooks';
 
@@ -41,10 +41,11 @@ const MonthCalendar = styled.div`
 const CalendarWeek = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 2px;
+  gap: 0.1rem;
 `;
 
 const CalendarDay = styled.div`
+  width: 3rem;
   height: 3rem;
   padding: 0.2rem 0.3rem;
   border: 1px solid #f3f3f3;
@@ -62,6 +63,7 @@ const Tournament = styled.div`
   flex: 1;
   flex-direction: column;
   gap: 0.2rem;
+  max-width: max-content;
   height: 3rem;
   overflow: hidden;
   line-height: 1;
@@ -149,12 +151,9 @@ const Calendar = () => {
                             <i>{tournament.town}</i>
                           </ExtraTournamentInformation>
                           <ExtraTournamentInformation>
-                            {tournament.startDate.getDate()}
+                            {`${tournament.startDate.getDate()} ${spellMonth(tournament.startDate.getMonth())}`}
                             {tournament.startDate.getDate() !== tournament.endDate.getDate() && (
-                            <>
-                              -
-                              {tournament.endDate.getDate()}
-                            </>
+                              ` - ${tournament.endDate.getDate()} ${spellMonth(tournament.endDate.getMonth())}`
                             )}
                           </ExtraTournamentInformation>
                         </Tournament>
