@@ -12,10 +12,12 @@ describe('theme helper', () => {
     expect(theme.media).toEqual({
       tablet: '@media (max-width: 1024px)',
       mobile: '@media (max-width: 767px)',
+      smallMobile: '@media (max-width: 600px)',
     });
     expect(theme.breakpoints).toEqual({
       tablet: 1024,
       mobile: 767,
+      smallMobile: 600,
     });
     expect(theme.colors).toEqual({
       primary: '#fbcd04',
