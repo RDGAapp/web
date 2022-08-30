@@ -18,7 +18,7 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: max-content;
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem;
 `;
 
 interface Props {

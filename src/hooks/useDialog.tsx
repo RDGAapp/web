@@ -12,7 +12,10 @@ const useDialog = () => {
     ) => (
       <Modal
         ref={dialogRef}
-        onClick={(event) => (event.target as HTMLElement).tagName === 'DIALOG' && dialogRef.current?.close()}
+        onClick={(event) => {
+          event.stopPropagation();
+          if ((event.target as HTMLElement).tagName === 'DIALOG') dialogRef.current?.close();
+        }}
       >
         {children}
       </Modal>

@@ -3,12 +3,14 @@ import { useLayoutEffect, useState } from 'react';
 import theme from 'helpers/theme';
 
 interface UseMatchMedia {
+  isSmallMobile: boolean;
   isMobile: boolean,
   isTablet: boolean,
   isDesktop: boolean,
 }
 
 const queries = [
+  `(max-width: ${theme.breakpoints.smallMobile}px)`,
   `(max-width: ${theme.breakpoints.mobile}px)`,
   `(max-width: ${theme.breakpoints.tablet}px) and (min-width: ${theme.breakpoints.mobile}px)`,
   `(min-width: ${theme.breakpoints.tablet}px)`,
@@ -17,7 +19,7 @@ const queries = [
 const useMatchMedia = (): UseMatchMedia => {
   const mediaQueryList = queries.map((query) => matchMedia(query));
 
-  const getValues = (): UseMatchMedia => ['isMobile', 'isTablet', 'isDesktop']
+  const getValues = (): UseMatchMedia => ['isSmallMobile', 'isMobile', 'isTablet', 'isDesktop']
     .reduce((result, screen, index) => ({
       ...result,
       [screen]: mediaQueryList[index].matches,

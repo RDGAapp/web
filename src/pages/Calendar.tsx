@@ -1,11 +1,28 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import styled from 'styled-components';
 
+import CalendarDay from 'components/CalendarDay';
 import PageHeader from 'components/PageHeader';
-import { getCalendarData, getMonthName, spellMonth } from 'helpers/dateHelpers';
-import theme from 'helpers/theme';
+import Tournament from 'components/Tournament';
+import TournamentType from 'enums/tournamentType';
+import { getCalendarData } from 'helpers/dateHelpers';
+import TournamentColorByType from 'helpers/tournamentColorByType';
 import { useAppSelector } from 'store/hooks';
+
+const Legend = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: center;
+  margin: 0 0 2rem;
+`;
+
+const LegendItem = styled.div`
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -18,6 +35,10 @@ const Month = styled.div`
   display: grid;
   grid-template-columns: 1fr 15fr;
   gap: 1rem;
+
+  ${({ theme }) => theme.media.tablet} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const MonthName = styled.div`
@@ -25,12 +46,17 @@ const MonthName = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   min-width: 5rem;
+  font-weight: 700;
 `;
 
 const CalendarRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
+
+  ${({ theme }) => theme.media.smallMobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const MonthCalendar = styled.div`
@@ -44,48 +70,21 @@ const CalendarWeek = styled.div`
   gap: 0.1rem;
 `;
 
-const CalendarDay = styled.div`
-  width: 3rem;
-  height: 3rem;
-  padding: 0.2rem 0.3rem;
-  border: 1px solid #f3f3f3;
-  border-radius: 0.5rem;
-`;
-
 const TournamentList = styled.div`
   display: flex;
   gap: 1rem;
   overflow: hidden;
-`;
 
-const Tournament = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 0.2rem;
-  max-width: max-content;
-  height: 3rem;
-  overflow: hidden;
-  line-height: 1;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  transition: all 0.3s ease-in-out;
-
-  :hover {
-    min-width: min-content;
-  }
-
-  * {
-    font-size: 0.8rem;
+  ${({ theme }) => theme.media.smallMobile} {
+    display: none;
   }
 `;
 
-const ExtraTournamentInformation = styled.div`
-  font-size: 0.5rem;
-
-  * {
-    font-size: 0.6rem;
-  }
+const TournamentCircle = styled.div<{ border: string }>`
+  height: 0.5rem;
+  aspect-ratio: 1 / 1;
+  background-color: ${(props) => props.border};
+  border-radius: 100vh;
 `;
 
 const Calendar = () => {
@@ -93,31 +92,43 @@ const Calendar = () => {
 
   const calendarData = useMemo(getCalendarData, []);
 
-  const getDayColor = (day: Date, monthName: string, shouldGreyOut: boolean) => {
-    const tournamentsForThisDay = tournaments.filter((tournament) => {
-      const tournamentStartDay = new Date(tournament.startDate);
-      tournamentStartDay.setHours(0, 0, 0, 0);
-      const tournamentEndDay = new Date(tournament.endDate);
-      tournamentEndDay.setHours(0, 0, 0, 0);
+  const getTournamentsForThisDay = useCallback((day: Date) => tournaments.filter((tournament) => {
+    const tournamentStartDay = new Date(tournament.startDate);
+    tournamentStartDay.setHours(0, 0, 0, 0);
+    const tournamentEndDay = new Date(tournament.endDate);
+    tournamentEndDay.setHours(0, 0, 0, 0);
 
-      const dayStart = new Date(day);
-      dayStart.setHours(0, 0, 0, 0);
+    const dayStart = new Date(day);
+    dayStart.setHours(0, 0, 0, 0);
 
-      return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
-    });
-
-    if (tournamentsForThisDay.length !== 0) {
-      return theme.colors.primary;
-    }
-    if (getMonthName(day) === monthName) {
-      return shouldGreyOut ? '#eaeaea' : 'white';
-    }
-    return shouldGreyOut ? 'white' : '#eaeaea';
-  };
+    return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
+  }), [tournaments]);
 
   return (
     <>
       <PageHeader text="Календарь турниров" />
+      <Legend>
+        <LegendItem>
+          <TournamentCircle border={TournamentColorByType[TournamentType.AllStar]} />
+          - Матч Всех Звезд
+        </LegendItem>
+        <LegendItem>
+          <TournamentCircle border={TournamentColorByType[TournamentType.National]} />
+          - Национальный Тур
+        </LegendItem>
+        <LegendItem>
+          <TournamentCircle border={TournamentColorByType[TournamentType.Regional]} />
+          - Региональный Турнир
+        </LegendItem>
+        <LegendItem>
+          <TournamentCircle border={TournamentColorByType[TournamentType.League]} />
+          - Этап региональной лиги
+        </LegendItem>
+        <LegendItem>
+          <TournamentCircle border={TournamentColorByType[TournamentType.BagTag]} />
+          - Bag Tag Challenge
+        </LegendItem>
+      </Legend>
       <Container>
         {calendarData.map((month) => (
           <Month key={month.monthName}>
@@ -129,12 +140,10 @@ const Calendar = () => {
                     {week.map((day) => (
                       <CalendarDay
                         key={`day-${day.toDateString()}`}
-                        style={{
-                          backgroundColor: getDayColor(day, month.monthName, month.shouldGreyOut),
-                        }}
-                      >
-                        {day.getDate()}
-                      </CalendarDay>
+                        day={day}
+                        month={month}
+                        tournaments={getTournamentsForThisDay(day)}
+                      />
                     ))}
                   </CalendarWeek>
                   <TournamentList>
@@ -145,18 +154,14 @@ const Calendar = () => {
                         || (tournament.endDate >= week[0] && tournament.endDate <= week[6]),
                       )
                       .map((tournament) => (
-                        <Tournament key={tournament.name}>
-                          <b>{tournament.name}</b>
-                          <ExtraTournamentInformation>
-                            <i>{tournament.town}</i>
-                          </ExtraTournamentInformation>
-                          <ExtraTournamentInformation>
-                            {`${tournament.startDate.getDate()} ${spellMonth(tournament.startDate.getMonth())}`}
-                            {tournament.startDate.getDate() !== tournament.endDate.getDate() && (
-                              ` - ${tournament.endDate.getDate()} ${spellMonth(tournament.endDate.getMonth())}`
-                            )}
-                          </ExtraTournamentInformation>
-                        </Tournament>
+                        <Tournament
+                          key={`${tournament.name}-${tournament.town}`}
+                          name={tournament.name}
+                          type={tournament.type}
+                          town={tournament.town}
+                          startDate={tournament.startDate}
+                          endDate={tournament.endDate}
+                        />
                       ))}
                   </TournamentList>
                 </CalendarRow>
