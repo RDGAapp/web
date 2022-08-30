@@ -92,7 +92,7 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
       style={{
         backgroundColor: getDayColor(day, month.monthName, month.shouldGreyOut),
       }}
-      onClick={isSmallMobile ? openModal : () => { /* do nothing */ }}
+      onClick={isSmallMobile ? openModal : undefined}
     >
       {day.getDate()}
       <TournamentCirclesContainer>
@@ -105,24 +105,26 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
             />
           ))}
       </TournamentCirclesContainer>
-      <Dialog>
-        <Header>
-          {`Турниры ${day.getDate()} ${spellMonth(day.getMonth())}`}
-          <CrossSvg height={17} onClick={closeModal} />
-        </Header>
-        <TournamentsList>
-          {tournaments.map((tournament) => (
-            <Tournament
-              key={`${tournament.name}-${tournament.town}`}
-              name={tournament.name}
-              type={tournament.type}
-              town={tournament.town}
-              startDate={tournament.startDate}
-              endDate={tournament.endDate}
-            />
-          ))}
-        </TournamentsList>
-      </Dialog>
+      {tournaments.length > 0 && (
+        <Dialog>
+          <Header>
+            {`Турниры ${day.getDate()} ${spellMonth(day.getMonth())}`}
+            <CrossSvg height={17} onClick={closeModal} />
+          </Header>
+          <TournamentsList>
+            {tournaments.map((tournament) => (
+              <Tournament
+                key={`${tournament.name}-${tournament.town}`}
+                name={tournament.name}
+                type={tournament.type}
+                town={tournament.town}
+                startDate={tournament.startDate}
+                endDate={tournament.endDate}
+              />
+            ))}
+          </TournamentsList>
+        </Dialog>
+      )}
     </Container>
   );
 };
