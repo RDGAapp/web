@@ -4,7 +4,9 @@ import MatchMediaMock from 'jest-matchmedia-mock';
 import useMatchMedia from 'hooks/useMatchMedia';
 
 const Container = () => {
-  const { isSmallMobile, isMobile, isTablet, isDesktop } = useMatchMedia();
+  const {
+    isSmallMobile, isMobile, isTablet, isDesktop,
+  } = useMatchMedia();
 
   return (<div>{`smallMobile: ${isSmallMobile}, mobile: ${isMobile}, tablet: ${isTablet}, desktop: ${isDesktop}`}</div>);
 };
