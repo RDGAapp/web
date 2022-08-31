@@ -55,14 +55,10 @@ const Header = styled.h1`
 
 const TournamentsList = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: column;
   gap: 1rem;
   align-items: center;
   justify-content: center;
-
-  * {
-    flex-basis: max-content;
-  }
 `;
 
 interface Props {
