@@ -87,6 +87,7 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
       key={`day-${day.toDateString()}`}
       style={{
         backgroundColor: getDayColor(day, month.monthName, month.shouldGreyOut),
+        cursor: isSmallMobile && tournaments.length > 0 ? 'pointer' : 'default',
       }}
       onClick={isSmallMobile ? openModal : undefined}
     >

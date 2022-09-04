@@ -1,27 +1,95 @@
-import { useRef } from 'react';
+import {
+  RefObject, useEffect, useRef, useState,
+} from 'react';
+
+import styled from 'styled-components';
 
 import Modal from 'components/Modal';
+
+const OldModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.backdrop};
+`;
+
+const OldModalContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 100%;
+  max-width: 23rem;
+  height: max-content;
+  padding: 1.5rem;
+  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: 1rem;
+  transform: translate(-50%, -50%);
+`;
 
 const useDialog = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
+  if (typeof HTMLDialogElement === 'function') {
+    return {
+      Dialog:
+      (
+        { children }: { children: JSX.Element | JSX.Element[] | string },
+      ) => (
+        <Modal
+          ref={dialogRef}
+          onClick={(event) => {
+            event.stopPropagation();
+            if ((event.target as HTMLElement).tagName === 'DIALOG') dialogRef.current?.close();
+          }}
+        >
+          {children}
+        </Modal>
+      ),
+      openModal: () => dialogRef.current?.showModal(),
+      closeModal: () => dialogRef.current?.close(),
+    };
+  }
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      dialogRef.current?.focus();
+      document.body.style.overflow = 'hidden';
+      return;
+    }
+    document.body.style.overflow = 'auto';
+  }, [isOpen]);
+
   return {
-    Dialog:
-    (
-      { children }: {children: JSX.Element | JSX.Element[] | string},
-    ) => (
-      <Modal
-        ref={dialogRef}
-        onClick={(event) => {
-          event.stopPropagation();
-          if ((event.target as HTMLElement).tagName === 'DIALOG') dialogRef.current?.close();
-        }}
-      >
-        {children}
-      </Modal>
-    ),
-    openModal: () => dialogRef.current?.showModal(),
-    closeModal: () => dialogRef.current?.close(),
+    Dialog: ({ children }: { children: JSX.Element | JSX.Element[] | string }) => (isOpen
+      ? (
+        <OldModal
+          ref={dialogRef as unknown as RefObject<HTMLDivElement>}
+          id="old_modal"
+          tabIndex={0}
+          onClick={(event) => {
+            event.stopPropagation();
+            if ((event.target as HTMLElement).id === 'old_modal') setIsOpen(false);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') {
+              setIsOpen(false);
+            }
+          }}
+        >
+          <OldModalContainer>
+            {children}
+          </OldModalContainer>
+        </OldModal>
+      )
+      : null),
+    openModal: () => setIsOpen(true),
+    closeModal: () => setIsOpen(false),
   };
 };
 
