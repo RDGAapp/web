@@ -15,8 +15,4 @@ const SubHeader = ({ children, id }: SubHeaderProps): JSX.Element => (
   <Header id={id}>{children.toUpperCase()}</Header>
 );
 
-SubHeader.defaultProps = {
-  id: '',
-};
-
 export default SubHeader;

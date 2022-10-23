@@ -1,0 +1,9 @@
+{
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "typescriptreact",
+    "javascriptreact"
+  ]
+}

@@ -20,7 +20,7 @@ interface LogoProps {
   big?: boolean,
 }
 
-const Logo = ({ big }: LogoProps): JSX.Element => (
+const Logo = ({ big = false }: LogoProps): JSX.Element => (
   <Container>
     <LogoSvg width={big ? 120 : 64} height={big ? 115 : 60} />
     <Text fontSize={big ? 1.8 : 1.2}>
@@ -28,9 +28,5 @@ const Logo = ({ big }: LogoProps): JSX.Element => (
     </Text>
   </Container>
 );
-
-Logo.defaultProps = {
-  big: false,
-};
 
 export default Logo;

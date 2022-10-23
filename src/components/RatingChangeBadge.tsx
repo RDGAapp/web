@@ -48,8 +48,4 @@ const RatingChangeBadge = ({ rating, ratingChange }: Props) => {
   );
 };
 
-RatingChangeBadge.defaultProps = {
-  ratingChange: null,
-};
-
 export default RatingChangeBadge;

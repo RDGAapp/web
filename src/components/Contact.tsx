@@ -42,7 +42,7 @@ const Social = styled.div`
 `;
 
 const Contact = ({
-  town, phone, phone2, email, site, instagram, telegram, vk,
+  town, phone, phone2 = '', email, site = '', instagram = '', telegram, vk,
 }: Contact): JSX.Element => (
   <Container>
     <Town>
@@ -60,11 +60,5 @@ const Contact = ({
     </Social>
   </Container>
 );
-
-Contact.defaultProps = {
-  phone2: '',
-  instagram: '',
-  site: '',
-};
 
 export default Contact;

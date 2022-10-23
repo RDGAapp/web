@@ -1,6 +1,4 @@
-import {
-  RefObject, useEffect, useRef, useState,
-} from 'react';
+import { ReactNode, RefObject, useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -30,21 +28,20 @@ const OldModalContainer = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const useDialog = () => {
+const useDialog = (onClose?: () => void) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   if (typeof HTMLDialogElement === 'function') {
     return {
-      Dialog:
-      (
-        { children }: { children: JSX.Element | JSX.Element[] | string },
-      ) => (
+      Dialog: ({ children }: { children: ReactNode }) => (
         <Modal
           ref={dialogRef}
           onClick={(event) => {
             event.stopPropagation();
-            if ((event.target as HTMLElement).tagName === 'DIALOG') dialogRef.current?.close();
+            if ((event.target as HTMLElement).tagName === 'DIALOG')
+              dialogRef.current?.close();
           }}
+          onClose={onClose}
         >
           {children}
         </Modal>
@@ -63,18 +60,20 @@ const useDialog = () => {
       return;
     }
     document.body.style.overflow = 'auto';
+    onClose?.();
   }, [isOpen]);
 
   return {
-    Dialog: ({ children }: { children: JSX.Element | JSX.Element[] | string }) => (isOpen
-      ? (
+    Dialog: ({ children }: { children: ReactNode }) =>
+      isOpen ? (
         <OldModal
           ref={dialogRef as unknown as RefObject<HTMLDivElement>}
-          id="old_modal"
+          id='old_modal'
           tabIndex={0}
           onClick={(event) => {
             event.stopPropagation();
-            if ((event.target as HTMLElement).id === 'old_modal') setIsOpen(false);
+            if ((event.target as HTMLElement).id === 'old_modal')
+              setIsOpen(false);
           }}
           onKeyDown={(event) => {
             if (event.key === 'Escape') {
@@ -82,12 +81,9 @@ const useDialog = () => {
             }
           }}
         >
-          <OldModalContainer>
-            {children}
-          </OldModalContainer>
+          <OldModalContainer>{children}</OldModalContainer>
         </OldModal>
-      )
-      : null),
+      ) : null,
     openModal: () => setIsOpen(true),
     closeModal: () => setIsOpen(false),
   };

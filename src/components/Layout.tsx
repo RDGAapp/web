@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
 
@@ -14,8 +16,8 @@ const Container = styled.article`
   padding: 0 1rem;
 `;
 interface LayoutProps {
-  children: JSX.Element[] | JSX.Element,
-  openTownSelect: () => void,
+  children: ReactNode;
+  openTownSelect: () => void;
 }
 
 const shouldShowBanner = new Set<string>([

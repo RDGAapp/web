@@ -21,8 +21,4 @@ const Text = ({ children, id }: TextProps): JSX.Element => (
   <TextDiv id={id}>{children}</TextDiv>
 );
 
-Text.defaultProps = {
-  id: '',
-};
-
 export default Text;

@@ -1,11 +1,13 @@
-import { forwardRef, MouseEvent } from 'react';
+import { forwardRef, MouseEvent, ReactNode } from 'react';
 
 import styled from 'styled-components';
 
 const Dialog = styled.dialog`
-  width: 90%;
-  max-width: 23rem;
+  width: max-content;
+  height: max-content;
+  max-height: 100%;
   padding: 0;
+  overflow: auto;
   border: none;
   border-radius: 2rem;
 
@@ -22,16 +24,17 @@ const Container = styled.div`
 `;
 
 interface Props {
-  children: JSX.Element | JSX.Element[] | string
-  onClick: (event: MouseEvent) => void
+  children: ReactNode;
+  onClick: (event: MouseEvent) => void;
+  onClose?: () => void;
 }
 
-const Modal = forwardRef<HTMLDialogElement, Props>(({ children, onClick }, ref) => (
-  <Dialog ref={ref} onClick={onClick}>
-    <Container>
-      { children }
-    </Container>
-  </Dialog>
-));
+const Modal = forwardRef<HTMLDialogElement, Props>(
+  ({ children, onClick, onClose }, ref) => (
+    <Dialog ref={ref} onClick={onClick} onClose={onClose}>
+      <Container>{children}</Container>
+    </Dialog>
+  )
+);
 
 export default Modal;

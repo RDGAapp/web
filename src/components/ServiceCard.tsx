@@ -18,7 +18,7 @@ interface Props {
   rating?: number | null,
 }
 
-const ServiceCard = ({ img, number, rating }: Props) => (
+const ServiceCard = ({ img, number, rating = 0 }: Props) => (
   <Container>
     <Header src={img} />
     <p>
@@ -31,9 +31,5 @@ const ServiceCard = ({ img, number, rating }: Props) => (
     )}
   </Container>
 );
-
-ServiceCard.defaultProps = {
-  rating: 0,
-};
 
 export default ServiceCard;

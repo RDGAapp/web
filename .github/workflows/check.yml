@@ -1,7 +1,9 @@
 name: Check Code Quality
 
 on:
-  push
+  push:
+    branches:
+      - '!dependabot/**'
 
 jobs:
   check-code:

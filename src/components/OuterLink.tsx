@@ -34,8 +34,4 @@ const OuterLink = ({ link, children }: OuterLinkProps): JSX.Element => (
   </Link>
 );
 
-OuterLink.defaultProps = {
-  children: null,
-};
-
 export default OuterLink;

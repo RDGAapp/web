@@ -14,6 +14,13 @@ const ButtonOutlined = css`
   :hover {
     background-color: ${({ theme }) => theme.colors.primary};
   }
+
+  :disabled {
+    color: ${({ theme }) => theme.colors.text.neutral};
+    background-color: ${({ theme }) => theme.colors.background};
+    border-color: ${({ theme }) => theme.colors.text.neutral};
+    cursor: not-allowed;
+  }
 `;
 
 export default ButtonOutlined;

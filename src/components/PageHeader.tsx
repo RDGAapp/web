@@ -40,7 +40,11 @@ interface PageHeaderProps {
   children?: JSX.Element | JSX.Element[],
 }
 
-const PageHeader = ({ text, shouldLinkToMainPage, children }: PageHeaderProps): JSX.Element => (
+const PageHeader = ({
+  text,
+  shouldLinkToMainPage = false,
+  children,
+}: PageHeaderProps): JSX.Element => (
   <Container>
     <Core>
       {shouldLinkToMainPage && <Link to="/" title="Вернуться на главную"><ArrowLeft width={35} /></Link>}
@@ -49,10 +53,5 @@ const PageHeader = ({ text, shouldLinkToMainPage, children }: PageHeaderProps): 
     {children}
   </Container>
 );
-
-PageHeader.defaultProps = {
-  shouldLinkToMainPage: false,
-  children: null,
-};
 
 export default PageHeader;

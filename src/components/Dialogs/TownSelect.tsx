@@ -9,6 +9,7 @@ import { TownContext } from 'hooks/TownContext';
 
 const Header = styled.h1`
   display: flex;
+  gap: 4rem;
   align-items: center;
   justify-content: space-between;
   margin: 0 0 2rem;
@@ -37,13 +38,15 @@ const ListElement = styled.p<{ selected: boolean }>`
   align-items: center;
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
   line-height: 1;
-  ${({ selected }) => !selected && css`
-    cursor: pointer;
+  ${({ selected }) =>
+    !selected &&
+    css`
+      cursor: pointer;
 
-    :hover {
-      text-decoration: underline;
-    }
-  `}
+      :hover {
+        text-decoration: underline;
+      }
+    `}
 
   svg {
     margin-right: 1rem;
@@ -51,7 +54,7 @@ const ListElement = styled.p<{ selected: boolean }>`
 `;
 
 interface TownSelectModalProps {
-  onClose: () => void,
+  onClose: () => void;
 }
 
 const TownSelectModal = ({ onClose }: TownSelectModalProps): JSX.Element => {
@@ -65,10 +68,10 @@ const TownSelectModal = ({ onClose }: TownSelectModalProps): JSX.Element => {
       </Header>
       <List>
         {!town && (
-        <ListElement selected>
-          <ArrowSvg width={20} height={19} />
-          {'Город не выбран'.toUpperCase()}
-        </ListElement>
+          <ListElement selected>
+            <ArrowSvg width={20} height={19} />
+            {'Город не выбран'.toUpperCase()}
+          </ListElement>
         )}
         {towns.map((item) => (
           <ListElement
