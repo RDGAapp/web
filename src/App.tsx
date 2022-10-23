@@ -40,7 +40,7 @@ const App = (): JSX.Element => {
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (
-        event.code === 'Backquote' &&
+        (event.key === '`' || event.key === '~') &&
         event.altKey &&
         event.ctrlKey &&
         event.metaKey &&
