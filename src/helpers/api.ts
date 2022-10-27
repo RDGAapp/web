@@ -20,3 +20,8 @@ export const createPlayer = (player: Player) =>
     },
     body: JSON.stringify(player),
   });
+
+export const deletePlayer = (playerRdgaNumber: number) =>
+  fetch(getApiUrl(`/players/${playerRdgaNumber}`), {
+    method: 'DELETE',
+  });

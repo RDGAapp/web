@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 import ButtonOutlined from 'components/ButtonOutlined';
 import CreatePlayer from 'components/Dialogs/CreatePlayer';
+import DeletePlayer from 'components/Dialogs/DeletePlayer';
 import useDialog from 'hooks/useDialog';
 
 const Header = styled.h1`
@@ -67,6 +68,11 @@ const AdminPanel = ({ onClose }: AdminPanelProps): JSX.Element => {
     openModal: openCreatePlayerModal,
     closeModal: closeCreatePlayerModal,
   } = useDialog();
+  const {
+    Dialog: DeletePlayerDialog,
+    openModal: openDeletePlayerModal,
+    closeModal: closeDeletePlayerModal,
+  } = useDialog();
 
   return (
     <>
@@ -77,10 +83,18 @@ const AdminPanel = ({ onClose }: AdminPanelProps): JSX.Element => {
       <Sections>
         <Section>
           <SubHeader>Действия с игроками</SubHeader>
-          <Button type='button' onClick={openCreatePlayerModal}>Создать игрока</Button>
-          <Button type='button'>Обновить игрока</Button>
-          <Button type='button'>Удалить игрока</Button>
-          <Button type='button'>Обновить рейтинг</Button>
+          <Button type='button' onClick={openCreatePlayerModal}>
+            Создать игрока
+          </Button>
+          <Button type='button' disabled>
+            Обновить игрока
+          </Button>
+          <Button type='button' onClick={openDeletePlayerModal}>
+            Удалить игрока
+          </Button>
+          <Button type='button' disabled>
+            Обновить рейтинг
+          </Button>
         </Section>
         <Section>
           <SubHeader>Действия с турнирами</SubHeader>
@@ -97,6 +111,9 @@ const AdminPanel = ({ onClose }: AdminPanelProps): JSX.Element => {
         <CreatePlayerDialog>
           <CreatePlayer onClose={closeCreatePlayerModal} />
         </CreatePlayerDialog>
+        <DeletePlayerDialog>
+          <DeletePlayer onClose={closeDeletePlayerModal} />
+        </DeletePlayerDialog>
       </Sections>
     </>
   );
