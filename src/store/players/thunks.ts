@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import api from 'helpers/api';
+import * as api from 'helpers/api';
 
 interface GetPlayersPayload {
   pageNumber: number,

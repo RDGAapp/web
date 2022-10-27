@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Dialog = styled.dialog`
   width: max-content;
   height: max-content;
-  max-height: 100%;
+  max-height: calc(100vh - 1rem);
   padding: 0;
   overflow: auto;
   border: none;

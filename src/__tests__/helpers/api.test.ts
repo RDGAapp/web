@@ -1,4 +1,4 @@
-import api from 'helpers/api';
+import * as api from 'helpers/api';
 
 describe('api helper', () => {
   const realFetch = global.fetch;
@@ -26,7 +26,9 @@ describe('api helper', () => {
     test('should call fetch with filled surname and town', () => {
       api.getPlayers(1, 'test', 'Нижний Новгород');
       expect(fetchMock).toBeCalledTimes(1);
-      expect(fetchMock).toBeCalledWith('/test/players?page=1&surname=test&town=Нижний%20Новгород');
+      expect(fetchMock).toBeCalledWith(
+        '/test/players?page=1&surname=test&town=Нижний%20Новгород'
+      );
     });
 
     describe('getPlayer function', () => {

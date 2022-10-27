@@ -1,14 +1,15 @@
 import getApiUrl from 'helpers/getApiUrl';
 
-const getPlayers = (pageNumber: number, surname?: string, town?: Town) => fetch(
-  getApiUrl(
-    `/players?page=${pageNumber}&surname=${surname ?? ''}&town=${town?.replace(' ', '%20') ?? ''}`,
-  ),
-);
+export const getPlayers = (pageNumber: number, surname?: string, town?: Town) =>
+  fetch(
+    getApiUrl(
+      `/players?page=${pageNumber}&surname=${surname ?? ''}&town=${
+        town?.replace(' ', '%20') ?? ''
+      }`
+    )
+  );
 
-const getPlayer = (playerRdgaNumber: number) => fetch(getApiUrl(`/players/${playerRdgaNumber}`));
+export const getPlayer = (playerRdgaNumber: number) =>
+  fetch(getApiUrl(`/players/${playerRdgaNumber}`));
 
-export default {
-  getPlayers,
-  getPlayer,
-};
+export const createPlayer = (player: Player) => fetch(getApiUrl('/players'), { method: 'POST', body: JSON.stringify(player) });

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 import ButtonOutlined from 'components/ButtonOutlined';
+import CreatePlayer from 'components/Dialogs/CreatePlayer';
+import useDialog from 'hooks/useDialog';
 
 const Header = styled.h1`
   display: flex;
@@ -59,34 +61,45 @@ interface AdminPanelProps {
   onClose: () => void;
 }
 
-const AdminPanel = ({ onClose }: AdminPanelProps): JSX.Element => (
-  <>
-    <Header>
-      Админ консоль
-      <CrossSvg height={17} onClick={onClose} />
-    </Header>
-    <Sections>
-      <Section>
-        <SubHeader>Действия с игроками</SubHeader>
-        <Button type='button'>Создать игрока</Button>
-        <Button type='button'>Обновить игрока</Button>
-        <Button type='button'>Удалить игрока</Button>
-        <Button type='button'>Обновить рейтинг</Button>
-      </Section>
-      <Section>
-        <SubHeader>Действия с турнирами</SubHeader>
-        <Button type='button' disabled>
-          Создать турнир
-        </Button>
-        <Button type='button' disabled>
-          Обновить турнир
-        </Button>
-        <Button type='button' disabled>
-          Удалить турнир
-        </Button>
-      </Section>
-    </Sections>
-  </>
-);
+const AdminPanel = ({ onClose }: AdminPanelProps): JSX.Element => {
+  const {
+    Dialog: CreatePlayerDialog,
+    openModal: openCreatePlayerModal,
+    closeModal: closeCreatePlayerModal,
+  } = useDialog();
+
+  return (
+    <>
+      <Header>
+        Админ консоль
+        <CrossSvg height={17} onClick={onClose} />
+      </Header>
+      <Sections>
+        <Section>
+          <SubHeader>Действия с игроками</SubHeader>
+          <Button type='button' onClick={openCreatePlayerModal}>Создать игрока</Button>
+          <Button type='button'>Обновить игрока</Button>
+          <Button type='button'>Удалить игрока</Button>
+          <Button type='button'>Обновить рейтинг</Button>
+        </Section>
+        <Section>
+          <SubHeader>Действия с турнирами</SubHeader>
+          <Button type='button' disabled>
+            Создать турнир
+          </Button>
+          <Button type='button' disabled>
+            Обновить турнир
+          </Button>
+          <Button type='button' disabled>
+            Удалить турнир
+          </Button>
+        </Section>
+        <CreatePlayerDialog>
+          <CreatePlayer onClose={closeCreatePlayerModal} />
+        </CreatePlayerDialog>
+      </Sections>
+    </>
+  );
+};
 
 export default AdminPanel;

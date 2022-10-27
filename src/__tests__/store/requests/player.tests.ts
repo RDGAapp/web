@@ -1,4 +1,4 @@
-import api from 'helpers/api';
+import * as api from 'helpers/api';
 import { store } from 'store';
 import { getPlayers, getPlayer } from 'store/players/thunks';
 

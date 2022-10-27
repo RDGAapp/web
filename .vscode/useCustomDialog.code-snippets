@@ -1,0 +1,14 @@
+{
+	"useDialog with custom names": {
+		"scope": "typescriptreact,javascriptreact",
+		"prefix": "usedi",
+		"body": [
+			"const {",
+			"  Dialog: $1Dialog,",
+			"  openModal: open$1Modal,",
+			"  closeModal: close$1Modal,",
+			"} = useDialog()"
+		],
+		"description": "snippet for custom hook useDialog"
+	}
+}
