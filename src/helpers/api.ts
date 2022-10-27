@@ -12,4 +12,11 @@ export const getPlayers = (pageNumber: number, surname?: string, town?: Town) =>
 export const getPlayer = (playerRdgaNumber: number) =>
   fetch(getApiUrl(`/players/${playerRdgaNumber}`));
 
-export const createPlayer = (player: Player) => fetch(getApiUrl('/players'), { method: 'POST', body: JSON.stringify(player) });
+export const createPlayer = (player: Player) =>
+  fetch(getApiUrl('/players'), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(player),
+  });
