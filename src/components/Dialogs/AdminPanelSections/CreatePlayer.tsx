@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import AdminFormLayout from 'components/Dialogs/AdminFormLayout';
+import AdminFormLayout from 'components/Dialogs/AdminPanelSections/AdminFormLayout';
 import { createPlayer } from 'helpers/api';
 
 interface CreatePlayerProps {

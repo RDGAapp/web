@@ -25,3 +25,24 @@ export const deletePlayer = (playerRdgaNumber: number) =>
   fetch(getApiUrl(`/players/${playerRdgaNumber}`), {
     method: 'DELETE',
   });
+
+export const updatePlayer = (
+  player: Omit<Player, 'rdgaNumber'>,
+  rdgaNumber: number
+) =>
+  fetch(getApiUrl(`/players/${rdgaNumber}`), {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(player),
+  });
+
+export const updatePlayerRating = (rdgaNumber: number, newRating: number) =>
+  fetch(getApiUrl(`/players/${rdgaNumber}/rdgaNumber`), {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ rating: newRating }),
+  });
