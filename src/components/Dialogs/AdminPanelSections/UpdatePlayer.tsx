@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import AdminFormLayout from 'components/Dialogs/AdminPanelSections/AdminFormLayout';
-import { updatePlayer } from 'helpers/api';
+import { updatePlayer, getPlayer } from 'helpers/api';
 
 interface CreatePlayerProps {
   onClose: () => void;
@@ -34,13 +34,6 @@ const UpdatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
       onChange: setSurname,
       label: 'Фамилия',
       type: 'text',
-    },
-    {
-      value: rdgaNumber,
-      onChange: setRdgaNumber,
-      label: 'Номер РДГА',
-      type: 'number',
-      required: true,
     },
     {
       value: rdgaRating,
@@ -118,13 +111,46 @@ const UpdatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
     return updatePlayer(player, Number(rdgaNumber));
   };
 
+  const getAllPlayerDataByRdgaNumber = async () => {
+    const response = await getPlayer(Number(rdgaNumber));
+    const json = await response.json();
+    setName(json.name);
+    setSurname(json.surname || '');
+    setRdgaRating(json.rdgaRating);
+    setRdgaRatingChange(json.rdgaRatingChange);
+    setTown(json.town);
+    setEmail(json.email);
+    setPdgaNumber(json.pdgaNumber || '');
+    setPdgaRating(json.pdgaRating || '');
+    setMetrixNumber(json.metrixNumber || '');
+    setMetrixRating(json.metrixRating || '');
+    setPriority(json.priority);
+
+    return response;
+  };
+
   return (
-    <AdminFormLayout
-      header='Обновление игрока'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <AdminFormLayout
+        header='Загрузить данные игрока'
+        inputs={[
+          {
+            value: rdgaNumber,
+            onChange: setRdgaNumber,
+            label: 'Номер РДГА',
+            type: 'number',
+            required: true,
+          },
+        ]}
+        onClose={onClose}
+        onSubmit={getAllPlayerDataByRdgaNumber}
+      />
+      <AdminFormLayout
+        header='Обновление игрока'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 

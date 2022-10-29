@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useId, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -52,7 +52,7 @@ interface CreatePlayerProps {
   header: string;
   inputs: any[];
   onSubmit: () => Promise<Response>;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const AdminFormLayout = ({
@@ -64,6 +64,7 @@ const AdminFormLayout = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const formId = useId();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -88,9 +89,9 @@ const AdminFormLayout = ({
     <>
       <Header>
         {header}
-        <CrossSvg height={17} onClick={onClose} />
+        {onClose && <CrossSvg height={17} onClick={onClose} />}
       </Header>
-      <Form id='adminForm' onSubmit={handleSubmit}>
+      <Form id={formId} onSubmit={handleSubmit}>
         {inputs.map((input) => (
           <Input
             key={input.label}
@@ -102,8 +103,8 @@ const AdminFormLayout = ({
           />
         ))}
       </Form>
-      <Button type='submit' form='adminForm' disabled={loading}>
-        Создать
+      <Button type='submit' form={formId} disabled={loading}>
+        Отправить
       </Button>
       {error && <Error>{error}</Error>}
       {message && <Success>{message}</Success>}
