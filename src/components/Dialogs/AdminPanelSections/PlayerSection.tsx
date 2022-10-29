@@ -7,6 +7,7 @@ import CreatePlayer from 'components/Dialogs/AdminPanelSections/CreatePlayer';
 import DeletePlayer from 'components/Dialogs/AdminPanelSections/DeletePlayer';
 import Section from 'components/Dialogs/AdminPanelSections/Section';
 import SubHeader from 'components/Dialogs/AdminPanelSections/Subheader';
+import UpdatePlayer from 'components/Dialogs/AdminPanelSections/UpdatePlayer';
 import UpdateRating from 'components/Dialogs/AdminPanelSections/UpdateRating';
 import useDialog from 'hooks/useDialog';
 
@@ -31,6 +32,11 @@ const PlayerSection = () => {
     openModal: openUpdateRatingModal,
     closeModal: closeUpdateRatingModal,
   } = useDialog();
+  const {
+    Dialog: UpdatePlayerDialog,
+    openModal: openUpdatePlayerModal,
+    closeModal: closeUpdatePlayerModal,
+  } = useDialog();
 
   return (
     <>
@@ -39,7 +45,7 @@ const PlayerSection = () => {
         <Button type='button' onClick={openCreatePlayerModal}>
           Создать игрока
         </Button>
-        <Button type='button' disabled>
+        <Button type='button' onClick={openUpdatePlayerModal}>
           Обновить игрока
         </Button>
         <Button type='button' onClick={openDeletePlayerModal}>
@@ -61,6 +67,9 @@ const PlayerSection = () => {
       <UpdateRatingDialog>
         <UpdateRating onClose={closeUpdateRatingModal} />
       </UpdateRatingDialog>
+      <UpdatePlayerDialog>
+        <UpdatePlayer onClose={closeUpdatePlayerModal} />
+      </UpdatePlayerDialog>
     </>
   );
 };
