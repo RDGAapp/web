@@ -39,7 +39,7 @@ export const updatePlayer = (
   });
 
 export const updatePlayerRating = (rdgaNumber: number, newRating: number) =>
-  fetch(getApiUrl(`/players/${rdgaNumber}/rdgaNumber`), {
+  fetch(getApiUrl(`/players/${rdgaNumber}/rdgaRating`), {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

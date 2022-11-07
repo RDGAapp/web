@@ -21,7 +21,7 @@ const CustomInput = styled.input`
 interface Props
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label: string;
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
 }
 
 const Input = ({ label, onChange, ...props }: Props) => (
@@ -29,7 +29,7 @@ const Input = ({ label, onChange, ...props }: Props) => (
     {label}:
     <CustomInput
       onChange={(event: ChangeEvent<HTMLInputElement>) =>
-        onChange(event.target.value)
+        props.type === 'file' ? onChange(event.target.files) : onChange(event.target.value)
       }
       value={props.value}
       required={props.required}

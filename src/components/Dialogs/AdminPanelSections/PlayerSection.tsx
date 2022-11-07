@@ -9,6 +9,7 @@ import Section from 'components/Dialogs/AdminPanelSections/Section';
 import SubHeader from 'components/Dialogs/AdminPanelSections/Subheader';
 import UpdatePlayer from 'components/Dialogs/AdminPanelSections/UpdatePlayer';
 import UpdateRating from 'components/Dialogs/AdminPanelSections/UpdateRating';
+import UpdateRatingJson from 'components/Dialogs/AdminPanelSections/UpdateRatingJson';
 import useDialog from 'hooks/useDialog';
 
 const Button = styled.button`
@@ -37,6 +38,11 @@ const PlayerSection = () => {
     openModal: openUpdatePlayerModal,
     closeModal: closeUpdatePlayerModal,
   } = useDialog();
+  const {
+    Dialog: UpdateRatingJsonDialog,
+    openModal: openUpdateRatingJsonModal,
+    closeModal: closeUpdateRatingJsonModal,
+  } = useDialog();
 
   return (
     <>
@@ -54,8 +60,8 @@ const PlayerSection = () => {
         <Button type='button' onClick={openUpdateRatingModal}>
           Обновить рейтинг
         </Button>
-        <Button type='button' disabled>
-          Обновить рейтинг (xlsx)
+        <Button type='button' onClick={openUpdateRatingJsonModal}>
+          Обновить рейтинг (json)
         </Button>
       </Section>
       <CreatePlayerDialog>
@@ -70,6 +76,9 @@ const PlayerSection = () => {
       <UpdatePlayerDialog>
         <UpdatePlayer onClose={closeUpdatePlayerModal} />
       </UpdatePlayerDialog>
+      <UpdateRatingJsonDialog>
+        <UpdateRatingJson onClose={closeUpdateRatingJsonModal} />
+      </UpdateRatingJsonDialog>
     </>
   );
 };

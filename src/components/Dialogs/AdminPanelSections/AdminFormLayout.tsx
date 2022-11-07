@@ -1,4 +1,4 @@
-import { FormEvent, useId, useState } from 'react';
+import { FormEvent, ReactNode, useId, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -51,33 +51,52 @@ const Success = styled.p`
 interface CreatePlayerProps {
   header: string;
   inputs: any[];
-  onSubmit: () => Promise<Response>;
+  onSubmit: () => Promise<Response | Response[]>;
+  additionalContent?: ReactNode;
   onClose?: () => void;
 }
 
 const AdminFormLayout = ({
   header,
   inputs,
+  additionalContent,
   onSubmit,
   onClose,
 }: CreatePlayerProps): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [errors, setErrors] = useState<string[]>([]);
   const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState<string[]>([]);
   const formId = useId();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setLoading(true);
+    setError('');
+    setMessage('');
+    setErrors([]);
+    setMessages([]);
 
     try {
       const response = await onSubmit();
 
-      const text = await response.text();
-      if (response.ok) {
-        setMessage(`Вы успешны: ${text}`);
+      if (Array.isArray(response)) {
+        response.forEach(async (value) => {
+          const text = await value.text();
+          if (value.ok) {
+            setMessages((previous) => [...previous, text]);
+          } else {
+            setErrors((previous) => [...previous, text]);
+          }
+        });
       } else {
-        setError(`Что-то явно не так: ${text}`);
+        const text = await response.text();
+        if (response.ok) {
+          setMessage(`Вы успешны: ${text}`);
+        } else {
+          setError(`Что-то явно не так: ${text}`);
+        }
       }
     } catch (err: any) {
       setError(err.message);
@@ -91,6 +110,7 @@ const AdminFormLayout = ({
         {header}
         {onClose && <CrossSvg height={17} onClick={onClose} />}
       </Header>
+      {additionalContent}
       <Form id={formId} onSubmit={handleSubmit}>
         {inputs.map((input) => (
           <Input
@@ -100,6 +120,7 @@ const AdminFormLayout = ({
             onChange={input.onChange}
             type={input.type}
             required={input.required}
+            accept={input.accept}
           />
         ))}
       </Form>
@@ -107,7 +128,13 @@ const AdminFormLayout = ({
         Отправить
       </Button>
       {error && <Error>{error}</Error>}
+      {errors.map((errorString) => (
+        <Error key={errorString}>{errorString}</Error>
+      ))}
       {message && <Success>{message}</Success>}
+      {messages.map((successString) => (
+        <Success key={successString}>{successString}</Success>
+      ))}
     </>
   );
 };
