@@ -1,11 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { getPlayers } from 'store/players/thunks';
 
 interface PlayerState {
-  players: Paginated<Player[]> | null,
-  loading: boolean,
-  error: string | null,
+  players: Paginated<Player[]> | null;
+  loading: boolean;
+  error: string | null;
 }
 
 const playerSlice = createSlice({
@@ -16,22 +16,24 @@ const playerSlice = createSlice({
     error: null,
   } as PlayerState,
   reducers: {},
-  extraReducers: {
-    [getPlayers.pending.type]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-
-    [getPlayers.fulfilled.type]: (state, action: PayloadAction<Paginated<Player[]>>) => {
-      state.loading = false;
-      state.players = action.payload;
-    },
-
-    [getPlayers.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.loading = false;
-      state.players = null;
-      state.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getPlayers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getPlayers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.players = action.payload;
+      })
+      .addCase(getPlayers.rejected, (state, action) => {
+        state.loading = false;
+        state.players = null;
+        state.error = action.payload as string;
+      })
+      .addDefaultCase(() => {
+        /* do nothing */
+      });
   },
 });
 

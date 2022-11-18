@@ -1,14 +1,12 @@
-import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 
 import ButtonOutlined from 'components/ButtonOutlined';
 import theme from 'helpers/theme';
 
-const Link = styled(HashLink)<{ $active: boolean; hovercolor: string }>`
+const Link = styled(HashLink)<{ hovercolor: string }>`
   ${ButtonOutlined}
   font-weight: 500;
-  ${({ $active, theme }) => $active && `background-color: ${theme.colors.primary};`}
   transition: background-color 0.3s ease;
 
   :hover {
@@ -17,23 +15,21 @@ const Link = styled(HashLink)<{ $active: boolean; hovercolor: string }>`
 `;
 
 interface ButtonOutlinedProps {
-  text: string,
-  route: string,
-  hoverColor?: string,
+  text: string;
+  route: string;
+  hoverColor?: string;
+  onClick?: () => void;
 }
 
 const LinkOutlined = ({
   text,
   route,
   hoverColor = theme.colors.primary,
-}: ButtonOutlinedProps): JSX.Element => {
-  const location = useLocation();
-
-  return (
-    <Link smooth to={route} $active={location.pathname === route || false} hovercolor={hoverColor}>
-      {text.toUpperCase()}
-    </Link>
-  );
-};
+  onClick,
+}: ButtonOutlinedProps): JSX.Element => (
+  <Link smooth to={route} hovercolor={hoverColor} onClick={onClick}>
+    {text.toUpperCase()}
+  </Link>
+);
 
 export default LinkOutlined;

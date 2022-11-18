@@ -47,8 +47,8 @@ const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
   return (
     <>
       <SWNotification />
+      <Header openTownSelect={openTownSelect} />
       <Container>
-        <Header openTownSelect={openTownSelect} />
         {shouldShowBanner.has(location.pathname) && <Banner />}
         {shouldShowMenuSet.has(location.pathname) && <Menu />}
         {children}

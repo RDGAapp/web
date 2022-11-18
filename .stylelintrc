@@ -2,14 +2,17 @@
   "processors": [
     "stylelint-processor-styled-components"
   ],
+  "plugins": ["stylelint-prettier"],
   "extends": [
     "stylelint-config-recommended",
     "stylelint-config-standard-scss",
     "stylelint-config-styled-components",
-    "stylelint-config-rational-order"
+    "stylelint-config-rational-order",
+    "stylelint-prettier/recommended"
   ],
   "customSyntax": "postcss-scss",
   "rules": {
+    "prettier/prettier": true,
     "value-keyword-case": null
   }
 }

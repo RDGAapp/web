@@ -51,7 +51,7 @@ const Footer = (): JSX.Element => {
   const { isDesktop } = useMatchMedia();
   return (
     <PrimaryBackground>
-      <Container id="contacts">
+      <Container id='contacts'>
         <Header>Контакты</Header>
         <Contacts />
         <LogoContainer>

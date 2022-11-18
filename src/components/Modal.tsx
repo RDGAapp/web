@@ -1,8 +1,9 @@
 import { forwardRef, MouseEvent, ReactNode } from 'react';
 
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-const Dialog = styled.dialog`
+const Dialog = styled(motion.dialog)`
   width: max-content;
   height: max-content;
   max-height: calc(100vh - 1rem);
@@ -31,7 +32,19 @@ interface Props {
 
 const Modal = forwardRef<HTMLDialogElement, Props>(
   ({ children, onClick, onClose }, ref) => (
-    <Dialog ref={ref} onClick={onClick} onClose={onClose}>
+    <Dialog
+      ref={ref}
+      onClick={onClick}
+      onClose={onClose}
+      variants={{
+        hidden: { scale: 0 },
+        visible: { scale: 1 },
+      }}
+      initial='hidden'
+      whileInView='visible'
+      exit='hidden'
+      transition={{ duration: 0.3 }}
+    >
       <Container>{children}</Container>
     </Dialog>
   )

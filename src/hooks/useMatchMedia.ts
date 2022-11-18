@@ -11,8 +11,8 @@ interface UseMatchMedia {
 
 const queries = [
   `(max-width: ${theme.breakpoints.smallMobile}px)`,
-  `(max-width: ${theme.breakpoints.mobile}px)`,
-  `(max-width: ${theme.breakpoints.tablet}px) and (min-width: ${theme.breakpoints.mobile}px)`,
+  `(max-width: ${theme.breakpoints.mobile }px)`,
+  `(max-width: ${theme.breakpoints.tablet}px) and (min-width: ${theme.breakpoints.mobile - 1}px)`,
   `(min-width: ${theme.breakpoints.tablet}px)`,
 ];
 

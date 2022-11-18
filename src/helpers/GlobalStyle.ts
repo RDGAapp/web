@@ -94,6 +94,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background-color: ${theme.colors.primary};
+  }
+
+  #root {
     background-color: ${theme.colors.background};
   }
 
@@ -107,6 +111,7 @@ const GlobalStyle = createGlobalStyle`
   ol,
   ul {
     margin: 0;
+    padding: 0;
   }
 `;
 
