@@ -27,8 +27,12 @@ const OpenedButton = css`
 `;
 
 const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
+  color: ${({ theme }) => theme.colors.text.primary};
   background: ${({ theme }) => theme.colors.background};
   border: transparent;
   border-radius: 100vh;
@@ -54,6 +58,12 @@ const Button = styled.button`
     scale: 0.9;
   }
 
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: currentColor;
+  }
+
   ${(props) => props['aria-expanded'] && OpenedButton}
 `;
 
@@ -68,7 +78,7 @@ const HamburgerButton = ({ open, onClick }: Props) => (
     aria-expanded={open}
     onClick={onClick}
   >
-    <svg viewBox='0 0 100 100' width='1.75rem' height='1.75rem'>
+    <svg viewBox='0 0 100 100'>
       <rect
         className='top'
         x='8'
@@ -76,7 +86,6 @@ const HamburgerButton = ({ open, onClick }: Props) => (
         width='80'
         height='10'
         rx='5'
-        fill='currentColor'
       />
       <rect
         className='mid'
@@ -85,7 +94,6 @@ const HamburgerButton = ({ open, onClick }: Props) => (
         width='80'
         height='10'
         rx='5'
-        fill='currentColor'
       />
       <rect
         className='bot'
@@ -94,7 +102,6 @@ const HamburgerButton = ({ open, onClick }: Props) => (
         width='80'
         height='10'
         rx='5'
-        fill='currentColor'
       />
     </svg>
   </Button>

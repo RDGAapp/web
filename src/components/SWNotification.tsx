@@ -13,6 +13,7 @@ const Container = styled.div`
   text-align: center;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
+  box-shadow: 0 0 1px black;
   transform: translateX(-50%);
   cursor: pointer;
   opacity: 0;
