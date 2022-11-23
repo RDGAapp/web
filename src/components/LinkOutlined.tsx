@@ -7,10 +7,15 @@ import theme from 'helpers/theme';
 const Link = styled(HashLink)<{ hovercolor: string }>`
   ${ButtonOutlined}
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, scale 0.2s ease-in-out;
 
   :hover {
     background-color: ${({ hovercolor }) => hovercolor};
+    scale: 1.1;
+  }
+
+  :active {
+    scale: 0.9
   }
 `;
 

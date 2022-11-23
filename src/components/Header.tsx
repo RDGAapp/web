@@ -48,7 +48,7 @@ const NavigationBackground = styled.div<{ open: boolean }>`
   box-shadow: 0 0 1px black;
   transition: clip-path 0.5s ease-in-out;
   clip-path: ${({ open }) =>
-    open ? 'circle(120vh at 0 0)' : 'circle(1.25rem at 2.25rem 2.25rem)'};
+    open ? 'circle(120vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};
 `;
 
 const LinksList = styled.ul`
