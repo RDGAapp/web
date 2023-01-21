@@ -18,23 +18,51 @@ const CustomInput = styled.input`
   }
 `;
 
+const CustomSelect = styled.select`
+  padding: 0.2rem 0.6rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+
+  &:invalid {
+    border-color: red;
+  }
+`;
+
 interface Props
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label: string;
+  variants: { value: string; text: string }[];
   onChange: (value: any) => void;
 }
 
-const Input = ({ label, onChange, ...props }: Props) => (
+const Input = ({ label, onChange, type, ...props }: Props) => (
   <Label>
     {label}:
-    <CustomInput
-      onChange={(event: ChangeEvent<HTMLInputElement>) =>
-        props.type === 'file' ? onChange(event.target.files) : onChange(event.target.value)
-      }
-      value={props.value}
-      required={props.required}
-      type={props.type}
-    />
+    {type === 'select' ? (
+      <CustomSelect
+        value={props.value}
+        required={props.required}
+        onChange={(event: ChangeEvent<HTMLSelectElement>) => onChange(event.target.value)}
+      >
+        <option value='' />
+        {props.variants.map((variant) => (
+          <option key={variant.value} value={variant.value}>
+            {variant.text}
+          </option>
+        ))}
+      </CustomSelect>
+    ) : (
+      <CustomInput
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          type === 'file'
+            ? onChange(event.target.files)
+            : onChange(event.target.value)
+        }
+        value={props.value}
+        required={props.required}
+        type={type}
+      />
+    )}
   </Label>
 );
 

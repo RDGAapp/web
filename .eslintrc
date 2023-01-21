@@ -107,14 +107,19 @@
         ],
         // allow usage of not required props without defaultProps
         "react/require-default-props": 0,
-
-        "jsx-a11y/label-has-associated-control": [ 2, {
-            "required": {
-                "some": [ "nesting", "id" ]
+        "jsx-a11y/label-has-associated-control": [
+            2,
+            {
+                "required": {
+                    "some": [
+                        "nesting",
+                        "id"
+                    ]
+                }
             }
-          }],
-
-          "@typescript-eslint/no-explicit-any": 0,
-          "react/jsx-props-no-spreading": 0
+        ],
+        "@typescript-eslint/no-explicit-any": 0,
+        "react/jsx-props-no-spreading": 0,
+        "jsx-a11y/control-has-associated-label": 0
     }
 }

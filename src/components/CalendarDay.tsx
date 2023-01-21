@@ -98,7 +98,7 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
             <TournamentCircle
               key={`calendar-${tournament.name}-${tournament.town}`}
               title={tournament.name}
-              border={TournamentColorByType[tournament.type as TournamentType]}
+              border={TournamentColorByType[tournament.tournamentType as TournamentType]}
             />
           ))}
       </TournamentCirclesContainer>
@@ -113,10 +113,10 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
               <Tournament
                 key={`${tournament.name}-${tournament.town}`}
                 name={tournament.name}
-                type={tournament.type}
+                type={tournament.tournamentType}
                 town={tournament.town}
-                startDate={tournament.startDate}
-                endDate={tournament.endDate}
+                startDate={new Date(tournament.startDate)}
+                endDate={new Date(tournament.endDate)}
               />
             ))}
           </TournamentsList>

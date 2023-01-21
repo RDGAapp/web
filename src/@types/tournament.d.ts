@@ -1,7 +1,8 @@
 interface Tournament {
+  code: string;
   name: string;
-  startDate: Date;
-  endDate: Date;
-  type: string;
+  startDate: string;
+  endDate: string;
+  tournamentType: string;
   town: string;
 }

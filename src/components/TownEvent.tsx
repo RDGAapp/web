@@ -41,7 +41,7 @@ const Badge = styled.p`
   border-radius: 2rem;
 `;
 
-const Calendar = styled.img`
+const CalendarImg = styled.img`
   width: 100%;
 `;
 
@@ -80,7 +80,7 @@ const TownEvent = ({ data, header }: Props): JSX.Element => {
 
   return (
     <>
-      <Calendar src={PlaceholderImg} alt="Календарь на сезон" />
+      <CalendarImg src={PlaceholderImg} alt="Календарь на сезон" />
       <Text>
         Для более подробной информации свяжитесь с нами любым из способов, указанных ниже.
       </Text>

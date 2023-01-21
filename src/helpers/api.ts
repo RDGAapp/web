@@ -46,3 +46,19 @@ export const updatePlayerRating = (rdgaNumber: number, newRating: number) =>
     },
     body: JSON.stringify({ rating: newRating }),
   });
+
+export const getTournaments = () => fetch(getApiUrl(`/tournaments`));
+
+export const createTournament = (tournament: Tournament) =>
+  fetch(getApiUrl('/tournaments'), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(tournament),
+  });
+
+  export const deleteTournament = (tournamentCode: string) =>
+    fetch(getApiUrl(`/tournaments/${tournamentCode}`), {
+      method: 'DELETE',
+    });

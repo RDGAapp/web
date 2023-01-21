@@ -8,7 +8,7 @@ const getMonday = (date: Date) => {
   return monday;
 };
 
-const weeksToDisplay = 16;
+const weeksToDisplay = 51;
 
 const addDays = (date: Date, number: number) => {
   const newDate = new Date(date.valueOf());
@@ -30,7 +30,7 @@ const getWeekDaysArray = (mondayDate: Date) => {
   return array;
 };
 
-export const getMonthName = (date: Date) => capitalizeFirstLetter(date.toLocaleString('default', { month: 'long' }));
+export const getMonthName = (date: Date) => capitalizeFirstLetter(date.toLocaleString('ru-RU', { month: 'long' }));
 
 const getMonthNameForWeek = (weekStartDate: Date) => getMonthName(addDays(weekStartDate, 6));
 

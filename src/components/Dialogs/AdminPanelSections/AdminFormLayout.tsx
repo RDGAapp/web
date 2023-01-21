@@ -121,6 +121,7 @@ const AdminFormLayout = ({
             type={input.type}
             required={input.required}
             accept={input.accept}
+            variants={input.variants}
           />
         ))}
       </Form>

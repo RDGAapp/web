@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,7 +8,9 @@ import Tournament from 'components/Tournament';
 import TournamentType from 'enums/tournamentType';
 import { getCalendarData } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournamentColorByType';
-import { useAppSelector } from 'store/hooks';
+import Loading from 'pages/Loading';
+import { useAppSelector, useAppDispatch } from 'store/hooks';
+import { getTournaments } from 'store/tournaments/thunk';
 
 const Legend = styled.div`
   display: flex;
@@ -88,88 +90,116 @@ const TournamentCircle = styled.div<{ border: string }>`
 `;
 
 const Calendar = () => {
-  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  const dispatch = useAppDispatch();
+
+  const { tournaments, loading } = useAppSelector((state) => state.tournament);
 
   const calendarData = useMemo(getCalendarData, []);
 
-  const getTournamentsForThisDay = useCallback((day: Date) => tournaments.filter((tournament) => {
-    const tournamentStartDay = new Date(tournament.startDate);
-    tournamentStartDay.setHours(0, 0, 0, 0);
-    const tournamentEndDay = new Date(tournament.endDate);
-    tournamentEndDay.setHours(0, 0, 0, 0);
+  useEffect(() => {
+    dispatch(getTournaments());
+  }, []);
 
-    const dayStart = new Date(day);
-    dayStart.setHours(0, 0, 0, 0);
+  const getTournamentsForThisDay = useCallback(
+    (day: Date) =>
+      tournaments.filter((tournament) => {
+        const tournamentStartDay = new Date(tournament.startDate);
+        tournamentStartDay.setHours(0, 0, 0, 0);
+        const tournamentEndDay = new Date(tournament.endDate);
+        tournamentEndDay.setHours(0, 0, 0, 0);
 
-    return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
-  }), [tournaments]);
+        const dayStart = new Date(day);
+        dayStart.setHours(0, 0, 0, 0);
+
+        return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
+      }),
+    [tournaments]
+  );
 
   return (
     <>
-      <PageHeader text="Календарь турниров" />
-      <Legend>
-        <LegendItem>
-          <TournamentCircle border={TournamentColorByType[TournamentType.AllStar]} />
-          - Матч Всех Звезд
-        </LegendItem>
-        <LegendItem>
-          <TournamentCircle border={TournamentColorByType[TournamentType.National]} />
-          - Национальный Тур
-        </LegendItem>
-        <LegendItem>
-          <TournamentCircle border={TournamentColorByType[TournamentType.Regional]} />
-          - Региональный Турнир
-        </LegendItem>
-        <LegendItem>
-          <TournamentCircle border={TournamentColorByType[TournamentType.League]} />
-          - Этап региональной лиги
-        </LegendItem>
-        <LegendItem>
-          <TournamentCircle border={TournamentColorByType[TournamentType.BagTag]} />
-          - Bag Tag Challenge
-        </LegendItem>
-      </Legend>
-      <Container>
-        {calendarData.map((month) => (
-          <Month key={month.monthName}>
-            <MonthName>{month.monthName}</MonthName>
-            <MonthCalendar>
-              {month.weeks.map((week) => (
-                <CalendarRow key={`week-${week[0].toDateString()}`}>
-                  <CalendarWeek>
-                    {week.map((day) => (
-                      <CalendarDay
-                        key={`day-${day.toDateString()}`}
-                        day={day}
-                        month={month}
-                        tournaments={getTournamentsForThisDay(day)}
-                      />
-                    ))}
-                  </CalendarWeek>
-                  <TournamentList>
-                    {tournaments
-                      .filter(
-                        (tournament) => (tournament.startDate >= week[0]
-                          && tournament.startDate <= week[6])
-                        || (tournament.endDate >= week[0] && tournament.endDate <= week[6]),
-                      )
-                      .map((tournament) => (
-                        <Tournament
-                          key={`${tournament.name}-${tournament.town}`}
-                          name={tournament.name}
-                          type={tournament.type}
-                          town={tournament.town}
-                          startDate={tournament.startDate}
-                          endDate={tournament.endDate}
-                        />
-                      ))}
-                  </TournamentList>
-                </CalendarRow>
-              ))}
-            </MonthCalendar>
-          </Month>
-        ))}
-      </Container>
+      <PageHeader text='Календарь турниров' />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Legend>
+            <LegendItem>
+              <TournamentCircle
+                border={TournamentColorByType[TournamentType.AllStar]}
+              />
+              - Матч Всех Звезд
+            </LegendItem>
+            <LegendItem>
+              <TournamentCircle
+                border={TournamentColorByType[TournamentType.National]}
+              />
+              - Национальный Тур
+            </LegendItem>
+            <LegendItem>
+              <TournamentCircle
+                border={TournamentColorByType[TournamentType.Regional]}
+              />
+              - Региональный Турнир
+            </LegendItem>
+            <LegendItem>
+              <TournamentCircle
+                border={TournamentColorByType[TournamentType.League]}
+              />
+              - Этап региональной лиги
+            </LegendItem>
+            <LegendItem>
+              <TournamentCircle
+                border={TournamentColorByType[TournamentType.BagTag]}
+              />
+              - Bag Tag Challenge
+            </LegendItem>
+          </Legend>
+          <Container>
+            {calendarData.map((month) => (
+              <Month key={`month-${month.weeks[0][0].toDateString()}`}>
+                <MonthName>{month.monthName}</MonthName>
+                <MonthCalendar>
+                  {month.weeks.map((week) => (
+                    <CalendarRow key={`week-${week[0].toDateString()}`}>
+                      <CalendarWeek>
+                        {week.map((day) => (
+                          <CalendarDay
+                            key={`day-${day.toDateString()}`}
+                            day={day}
+                            month={month}
+                            tournaments={getTournamentsForThisDay(day)}
+                          />
+                        ))}
+                      </CalendarWeek>
+                      <TournamentList>
+                        {tournaments
+                          .filter(
+                            (tournament) =>
+                              (new Date(tournament.startDate) >= week[0] &&
+                                new Date(tournament.startDate) <= week[6]) ||
+                              (new Date(tournament.endDate) >= week[0] &&
+                                new Date(tournament.endDate) <= week[6])
+                          )
+                          .map((tournament) => (
+                            <Tournament
+                              key={`${tournament.name}-${tournament.town}`}
+                              name={tournament.name}
+                              type={tournament.tournamentType}
+                              town={tournament.town}
+                              startDate={new Date(tournament.startDate)}
+                              endDate={new Date(tournament.endDate)}
+                            />
+                          ))}
+                      </TournamentList>
+                    </CalendarRow>
+                  ))}
+                </MonthCalendar>
+              </Month>
+            ))}
+          </Container>
+        </>
+      )}
     </>
   );
 };
