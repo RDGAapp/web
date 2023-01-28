@@ -17,6 +17,7 @@ const Container = styled.div`
   z-index: ${({ theme }) => theme.zIndex.header};
   background-color: ${({ theme }) => theme.colors.primary};
   border: 1px solid ${({ theme }) => theme.colors.text.primary};
+  border-top: none;
   border-radius: 0 0 100vh 100vh;
   backdrop-filter: blur(15px);
 
