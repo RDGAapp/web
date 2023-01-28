@@ -15,6 +15,7 @@ const Container = styled.div`
   overflow: hidden;
   background-size: cover;
   border-radius: 2.5rem;
+  isolation: isolate;
 `;
 
 const Video = styled.video`
@@ -26,9 +27,9 @@ const Video = styled.video`
 
 const VideoBanner = () => (
   <Container>
-    <Video muted poster={VideoPreview} autoPlay>
-      <source src={VideoWebm} />
-      <source src={VideoMp4} />
+    <Video muted poster={VideoPreview} autoPlay loop playsInline>
+      <source src={VideoWebm} type='video/webm' />
+      <source src={VideoMp4} type='video/mp4' />
     </Video>
   </Container>
 );
