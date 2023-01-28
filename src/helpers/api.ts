@@ -49,9 +49,20 @@ export const updatePlayerRating = (rdgaNumber: number, newRating: number) =>
 
 export const getTournaments = () => fetch(getApiUrl(`/tournaments`));
 
+export const getTournament = (code: string) => fetch(getApiUrl(`/tournaments/${code}`));
+
 export const createTournament = (tournament: Tournament) =>
   fetch(getApiUrl('/tournaments'), {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(tournament),
+  });
+
+export const updateTournament = (tournament: Omit<Tournament, 'code'>, code: string) =>
+  fetch(getApiUrl(`/tournaments/${code}`), {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },

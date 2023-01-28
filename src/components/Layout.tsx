@@ -13,7 +13,7 @@ import routes from 'helpers/routes';
 const Container = styled.article`
   max-width: 72rem;
   margin: auto;
-  padding: 0 1rem;
+  padding: 1rem 1rem 0;
 `;
 interface LayoutProps {
   children: ReactNode;

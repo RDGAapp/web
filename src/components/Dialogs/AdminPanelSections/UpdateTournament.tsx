@@ -2,13 +2,13 @@ import { useState } from 'react';
 
 import AdminFormLayout from 'components/Dialogs/AdminPanelSections/AdminFormLayout';
 import TournamentType from 'enums/tournamentType';
-import { createTournament } from 'helpers/api';
+import { updateTournament, getTournament } from 'helpers/api';
 
-interface CreateTournamentProps {
+interface UpdateTournamentProps {
   onClose: () => void;
 }
 
-const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
+const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
   const [town, setTown] = useState('');
@@ -17,14 +17,6 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
   const [tournamentType, setTournamentType] = useState('');
 
   const inputs = [
-    {
-      value: code,
-      onChange: setCode,
-      label:
-        'Код турнира (должен быть уникальным, читай ключ для взаимодействия)',
-      type: 'text',
-      required: true,
-    },
     {
       value: name,
       onChange: setName,
@@ -73,7 +65,6 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
 
   const onSubmit = async () => {
     const tournament = {
-      code,
       name,
       town,
       startDate,
@@ -81,17 +72,44 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
       tournamentType,
     };
 
-    return createTournament(tournament);
+    return updateTournament(tournament, code);
+  };
+
+  const getAllTournamentDataByCode = async () => {
+    const response = await getTournament(code);
+    const json = await response.json();
+    setName(json.name);
+    setTown(json.town);
+    setStartDate(json.startDate.slice(0, 19));
+    setEndDate(json.endDate.slice(0, 19));
+    setTournamentType(json.tournamentType);
+
+    return response;
   };
 
   return (
-    <AdminFormLayout
-      header='Создание турнира'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <AdminFormLayout
+        header='Загрузить данные турнира'
+        inputs={[
+          {
+            value: code,
+            onChange: setCode,
+            label: 'Код турнира',
+            type: 'text',
+            required: true,
+          },
+        ]}
+        onClose={onClose}
+        onSubmit={getAllTournamentDataByCode}
+      />
+      <AdminFormLayout
+        header='Обновление турнира'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 
-export default CreateTournament;
+export default UpdateTournament;

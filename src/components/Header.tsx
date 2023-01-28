@@ -3,17 +3,17 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import { ReactComponent as LocationSvg } from 'assets/icons/location-simple.svg';
 import ButtonUnderlined from 'components/ButtonUnderlined';
 import HamburgerButton from 'components/HamburgerButton';
-import LinkOutlined from 'components/LinkOutlined';
 import Logo from 'components/Logo';
 import routes from 'helpers/routes';
 import { TownContext } from 'hooks/TownContext';
-import useMatchMedia from 'hooks/useMatchMedia';
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 0 0 100vh 100vh;
   backdrop-filter: blur(15px);
 `;
 
@@ -23,7 +23,7 @@ const Navigation = styled.div`
   gap: 0.5rem;
   max-width: 67rem;
   margin: 0 auto;
-  padding: 1rem 0 0;
+  padding: 1rem;
 `;
 
 const NavigationContainer = styled.nav`
@@ -45,7 +45,7 @@ const NavigationBackground = styled.div<{ open: boolean }>`
   height: max-content;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 0 0 1rem 1rem;
-  box-shadow: 0 0 1px black;
+  outline: 1px solid ${({ theme }) => theme.colors.text.primary};
   transition: clip-path 0.5s ease-in-out;
   clip-path: ${({ open }) =>
     open ? 'circle(120vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};
@@ -83,16 +83,40 @@ const LogoBlock = styled(Link)`
   }
 `;
 
-const WaveContainer = styled.div`
-  display: flex;
-  overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.background};
-`;
+const CustomLink = styled(Link)`
+  position: relative;
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: scale 0.2s ease-in-out, padding 0.2s ease-in-out;
 
-const Wave = styled.svg`
-  width: 259%;
-  height: 2rem;
-  fill: ${({ theme }) => theme.colors.primary};
+  svg {
+    position: absolute;
+    top: 50%;
+    left: -1rem;
+    width: 17px;
+    height: 17px;
+    translate: 0 -50%;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+  }
+
+  :hover {
+    padding-left: 2rem;
+    scale: 1.1;
+
+    svg {
+      left: 0.5rem;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  :active {
+    scale: 0.9;
+  }
 `;
 
 interface HeaderProps {
@@ -101,14 +125,13 @@ interface HeaderProps {
 
 const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
   const { town } = useContext(TownContext);
-  const { isMobile, isTablet, isDesktop } = useMatchMedia();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
     { route: routes.HOME, text: 'На главную' },
     { route: routes.PLAYERS, text: 'Игроки' },
-    { route: routes.CALENDAR, text: 'Календарь турниров' },
+    { route: routes.CALENDAR, text: 'Календарь' },
     { route: routes.ABOUT, text: 'О нас' },
     { route: routes.SERVICE, text: 'Услуги' },
     { route: routes.CONTACTS, text: 'Контакты' },
@@ -121,12 +144,15 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
           <NavigationBackground open={isMenuOpen}>
             <LinksList>
               {links.map((link) => (
-                <LinkOutlined
+                <CustomLink
                   key={link.route}
-                  route={link.route}
-                  text={link.text}
+                  to={link.route}
                   onClick={() => setIsMenuOpen(false)}
-                />
+                  title={link.text}
+                >
+                  <ArrowSvg />
+                  {link.text}
+                </CustomLink>
               ))}
             </LinksList>
           </NavigationBackground>
@@ -136,11 +162,7 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
           />
         </NavigationContainer>
         <LogoBlock to={routes.HOME}>
-          <Logo
-            withoutImage={isTablet || isDesktop}
-            withoutText={isMobile}
-            textAlign='center'
-          />
+          <Logo withoutImage textAlign='center' />
         </LogoBlock>
         <UserContainer>
           <ButtonUnderlined onClick={openTownSelect}>
@@ -149,15 +171,6 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
           </ButtonUnderlined>
         </UserContainer>
       </Navigation>
-      <WaveContainer>
-        <Wave
-          preserveAspectRatio='none'
-          viewBox='0 0 1200 120'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path d='M321.39 56.44c58-10.79 114.16-30.13 172-41.86 82.39-16.72 168.19-17.73 250.45-.39C823.78 31 906.67 72 985.66 92.83c70.05 18.48 146.53 26.09 214.34 3V0H0v27.35a600.21 600.21 0 00321.39 29.09z' />
-        </Wave>
-      </WaveContainer>
     </Container>
   );
 };

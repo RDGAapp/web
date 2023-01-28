@@ -1,11 +1,13 @@
 import TournamentType from 'enums/tournamentType';
 
 const TournamentColorByType: Record<TournamentType, string> = {
-  [TournamentType.National]: '#e94560',
+  [TournamentType.RussianChampionship]: '#FD9F34',
   [TournamentType.AllStar]: '#2a74ed',
-  [TournamentType.Regional]: '#542583',
+  [TournamentType.National]: '#e94560',
+  [TournamentType.Federal]: '#000000',
+  [TournamentType.Regional]: '#803A93',
   [TournamentType.League]: '#4e9f3d',
-  [TournamentType.BagTag]: '#808080',
+  [TournamentType.BagTag]: '#fff',
 };
 
 export default TournamentColorByType;

@@ -87,6 +87,7 @@ const TournamentCircle = styled.div<{ border: string }>`
   aspect-ratio: 1 / 1;
   background-color: ${(props) => props.border};
   border-radius: 100vh;
+  outline: 1px solid ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Calendar = () => {
@@ -126,6 +127,14 @@ const Calendar = () => {
           <Legend>
             <LegendItem>
               <TournamentCircle
+                border={
+                  TournamentColorByType[TournamentType.RussianChampionship]
+                }
+              />
+              - Чемпионат России
+            </LegendItem>
+            <LegendItem>
+              <TournamentCircle
                 border={TournamentColorByType[TournamentType.AllStar]}
               />
               - Матч Всех Звезд
@@ -135,6 +144,12 @@ const Calendar = () => {
                 border={TournamentColorByType[TournamentType.National]}
               />
               - Национальный Тур
+            </LegendItem>
+            <LegendItem>
+              <TournamentCircle
+                border={TournamentColorByType[TournamentType.Federal]}
+              />
+              - Федеральный Турнир
             </LegendItem>
             <LegendItem>
               <TournamentCircle
@@ -179,7 +194,9 @@ const Calendar = () => {
                               (new Date(tournament.startDate) >= week[0] &&
                                 new Date(tournament.startDate) <= week[6]) ||
                               (new Date(tournament.endDate) >= week[0] &&
-                                new Date(tournament.endDate) <= week[6])
+                                new Date(tournament.endDate) <= week[6]) ||
+                              (new Date(tournament.startDate) <= week[0] &&
+                                new Date(tournament.endDate) >= week[6])
                           )
                           .map((tournament) => (
                             <Tournament

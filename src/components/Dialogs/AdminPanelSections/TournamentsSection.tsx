@@ -7,6 +7,7 @@ import DeleteTournament from 'components/Dialogs/AdminPanelSections//DeleteTourn
 import CreateTournament from 'components/Dialogs/AdminPanelSections/CreateTournament';
 import Section from 'components/Dialogs/AdminPanelSections/Section';
 import SubHeader from 'components/Dialogs/AdminPanelSections/Subheader';
+import UpdateTournament from 'components/Dialogs/AdminPanelSections/UpdateTournament';
 import useDialog from 'hooks/useDialog';
 
 const Button = styled.button`
@@ -27,6 +28,12 @@ const TournamentsSection = () => {
     closeModal: closeDeleteTournamentModal,
   } = useDialog();
 
+  const {
+    Dialog: UpdateTournamentDialog,
+    openModal: openUpdateTournamentModal,
+    closeModal: closeUpdateTournamentModal,
+  } = useDialog();
+
   return (
     <>
       <Section>
@@ -34,7 +41,7 @@ const TournamentsSection = () => {
         <Button type='button' onClick={openCreateTournamentModal}>
           Создать турнир
         </Button>
-        <Button type='button' disabled>
+        <Button type='button' onClick={openUpdateTournamentModal}>
           Обновить турнир
         </Button>
         <Button type='button' onClick={openDeleteTournamentModal}>
@@ -47,6 +54,9 @@ const TournamentsSection = () => {
       <DeleteTournamentDialog>
         <DeleteTournament onClose={closeDeleteTournamentModal} />
       </DeleteTournamentDialog>
+      <UpdateTournamentDialog>
+        <UpdateTournament onClose={closeUpdateTournamentModal} />
+      </UpdateTournamentDialog>
     </>
   );
 };

@@ -91,11 +91,19 @@ const AdminFormLayout = ({
           }
         });
       } else {
-        const text = await response.text();
-        if (response.ok) {
-          setMessage(`Вы успешны: ${text}`);
-        } else {
-          setError(`Что-то явно не так: ${text}`);
+        try {
+          const text = await response.text();
+          if (response.ok) {
+            setMessage(`Вы успешны: ${text}`);
+          } else {
+            setError(`Что-то явно не так: ${text}`);
+          }
+        } catch (e) {
+          if (response.ok) {
+            setMessage(`Вы успешны`);
+          } else {
+            setError(`Что-то явно не так`);
+          }
         }
       }
     } catch (err: any) {

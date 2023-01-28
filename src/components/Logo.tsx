@@ -20,25 +20,21 @@ const Text = styled.h1<{ fontSize: number; textAlign: string }>`
 interface LogoProps {
   big?: boolean;
   withoutImage?: boolean;
-  withoutText?: boolean;
   textAlign?: string;
 }
 
 const Logo = ({
   big = false,
   withoutImage = false,
-  withoutText = false,
   textAlign = 'start',
 }: LogoProps): JSX.Element => (
   <Container>
     {!withoutImage && (
       <LogoSvg width={big ? 120 : 40} height={big ? 115 : 36} />
     )}
-    {!withoutText && (
-      <Text fontSize={big ? 1.8 : 1.2} textAlign={textAlign}>
-        РОССИЙСКАЯ ДИСК-ГОЛЬФ АССОЦИАЦИЯ
-      </Text>
-    )}
+    <Text fontSize={big ? 1.8 : 1.2} textAlign={textAlign}>
+      РОССИЙСКАЯ ДИСК-ГОЛЬФ АССОЦИАЦИЯ
+    </Text>
   </Container>
 );
 

@@ -33,7 +33,7 @@ const Button = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   color: ${({ theme }) => theme.colors.text.primary};
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.text.contrast};
   border: transparent;
   border-radius: 100vh;
   cursor: pointer;
