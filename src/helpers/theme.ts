@@ -35,6 +35,7 @@ const theme = {
   },
   zIndex: {
     swNotification: 1000,
+    header: 999,
     selectedPlayerCard: 800,
     spinner: 900,
   },

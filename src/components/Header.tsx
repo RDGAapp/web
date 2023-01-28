@@ -12,9 +12,17 @@ import routes from 'helpers/routes';
 import { TownContext } from 'hooks/TownContext';
 
 const Container = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: ${({ theme }) => theme.zIndex.header};
   background-color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.text.primary};
   border-radius: 0 0 100vh 100vh;
   backdrop-filter: blur(15px);
+
+  ${({ theme }) => theme.media.mobile} {
+    border-radius: 0 0 3rem 3rem;
+  }
 `;
 
 const Navigation = styled.div`
@@ -44,8 +52,9 @@ const NavigationBackground = styled.div<{ open: boolean }>`
   width: min(15rem, 100vw);
   height: max-content;
   background-color: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.text.primary};
+  border-top: none;
   border-radius: 0 0 1rem 1rem;
-  outline: 1px solid ${({ theme }) => theme.colors.text.primary};
   transition: clip-path 0.5s ease-in-out;
   clip-path: ${({ open }) =>
     open ? 'circle(120vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};

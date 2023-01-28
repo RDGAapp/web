@@ -31,8 +31,8 @@ const TournamentCircle = styled.div<{ border: string }>`
   height: 0.5rem;
   aspect-ratio: 1 / 1;
   background-color: ${(props) => props.border};
+  border: 1px solid ${({ theme }) => theme.colors.text.primary};
   border-radius: 100vh;
-  outline: 1px solid ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Header = styled.h1`
