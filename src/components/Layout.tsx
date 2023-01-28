@@ -8,6 +8,7 @@ import Footer from 'components/Footer';
 import Header from 'components/Header';
 import Menu from 'components/Menu';
 import SWNotification from 'components/SWNotification';
+import VideoBanner from 'components/VideoBanner';
 import routes from 'helpers/routes';
 
 const Container = styled.article`
@@ -21,7 +22,6 @@ interface LayoutProps {
 }
 
 const shouldShowBanner = new Set<string>([
-  routes.HOME,
   routes.ABOUT,
   routes.MASTER,
   routes.TRAINING,
@@ -41,6 +41,8 @@ const shouldShowMenuSet = new Set<string>([
   routes.INTERNATIONAL,
 ]);
 
+const shouldShowVideo = new Set<string>([routes.HOME]);
+
 const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
   const location = useLocation();
 
@@ -49,6 +51,7 @@ const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
       <SWNotification />
       <Header openTownSelect={openTownSelect} />
       <Container>
+        {shouldShowVideo.has(location.pathname) && <VideoBanner />}
         {shouldShowBanner.has(location.pathname) && <Banner />}
         {shouldShowMenuSet.has(location.pathname) && <Menu />}
         {children}
