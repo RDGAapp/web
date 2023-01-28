@@ -12,8 +12,8 @@ const Container = styled.div`
   font-size: 1rem;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.text.primary};
   border-radius: 2rem;
-  box-shadow: 0 0 1px black;
   transform: translateX(-50%);
   cursor: pointer;
   opacity: 0;
