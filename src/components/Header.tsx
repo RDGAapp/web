@@ -59,7 +59,7 @@ const LinksList = styled.ul`
   margin-bottom: 0;
   padding: 0 1rem 1rem 1.5rem;
 
-  @media (width < 555px) {
+  @media (max-width: 554px) {
     margin-top: 5.1rem;
   }
 `;
