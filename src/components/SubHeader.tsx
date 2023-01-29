@@ -12,7 +12,7 @@ interface SubHeaderProps {
 }
 
 const SubHeader = ({ children, id }: SubHeaderProps): JSX.Element => (
-  <Header id={id}>{children.toUpperCase()}</Header>
+  <Header id={id}>{children}</Header>
 );
 
 export default SubHeader;

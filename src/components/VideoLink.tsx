@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import { ReactComponent as LinkSvg } from 'assets/icons/link.svg';
 import { ReactComponent as PlaySvg } from 'assets/icons/play.svg';
 
-const Container = styled.div`
+const Container = styled.div<{ position: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   gap: 0.5rem;
-  padding: 2rem;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  align-items: ${({ position }) => (position === 'left' ? 'flex-end' : 'flex-start')};
   border-radius: 2rem;
+
+  ${({ theme }) => theme.media.mobile} {
+    align-items: center;
+  }
 `;
 
 const Header = styled.h3`
@@ -18,10 +20,9 @@ const Header = styled.h3`
   font-size: 1.2rem;
 `;
 
-const VideoPreview = styled.a<{ image: string }>`
+const VideoPreview = styled.div<{ image: string }>`
   display: flex;
   align-items: center;
-  align-self: center;
   justify-content: center;
   width: 100%;
   max-width: 28rem;
@@ -29,62 +30,80 @@ const VideoPreview = styled.a<{ image: string }>`
   color: transparent;
   background: left center url(${({ image }) => image});
   border-radius: 1rem;
-
-  :hover > button {
-    box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primary};
-    transition: box-shadow 0.3s ease-in-out;
-  }
 `;
 
-const PlayButton = styled.button`
+const PlayButton = styled.a`
+  display: grid;
+  align-items: center;
+  justify-content: center;
   width: 7rem;
   height: 7rem;
-  color: inherit;
+  color: ${({ theme }) => theme.colors.primary};
   background: none;
-  border: 1px solid ${({ theme }) => theme.colors.borderContrast};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 100vh;
   cursor: pointer;
+  transition: scale 0.3s ease-in-out;
+
+  :hover {
+    scale: 1.1;
+  }
+
+  :active {
+    scale: 0.9;
+  }
 
   svg {
     width: 2.1rem;
     margin-left: 0.5rem;
     aspect-ratio: 3 / 4;
-    stroke: ${({ theme }) => theme.colors.borderContrast};
+    stroke: ${({ theme }) => theme.colors.primary};
   }
 `;
 
 const VideoName = styled.a`
   display: flex;
   gap: 1rem;
-  max-width: max-content;
   color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 1;
   text-decoration: none;
+  transition: scale 0.3s ease-in-out;
 
   :hover {
-    text-decoration: underline;
+    scale: 1.1;
+  }
+
+  :active {
+    scale: 0.9;
   }
 `;
 
 interface VideoLinkProps {
-  header: string,
-  image: string,
-  link: string,
-  name: string,
+  header: string;
+  image: string;
+  link: string;
+  name: string;
+  position: 'left' | 'right';
 }
 
 const VideoLink = ({
-  header, image, link, name,
+  header,
+  image,
+  link,
+  name,
+  position,
 }: VideoLinkProps): JSX.Element => (
-  <Container>
-    <Header>{header.toUpperCase()}</Header>
-    <VideoPreview href={link} image={image} target="_blank">
-      <PlayButton><PlaySvg /></PlayButton>
+  <Container position={position}>
+    <Header>{header}</Header>
+    <VideoPreview image={image}>
+      <PlayButton href={link} target='_blank' rel='noreferrer'>
+        <PlaySvg />
+      </PlayButton>
     </VideoPreview>
-    <VideoName href={link} target="_blank" rel="noreferrer">
-      <i>{name.toUpperCase()}</i>
+    <VideoName href={link} target='_blank' rel='noreferrer'>
+      <i>{name}</i>
       <LinkSvg width={20} height={20} />
     </VideoName>
   </Container>

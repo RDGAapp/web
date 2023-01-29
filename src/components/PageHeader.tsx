@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Header = styled.h1`
   font-weight: 400;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-family: ${({ theme }) => theme.fontFamily.header};
   line-height: 1;
 `;

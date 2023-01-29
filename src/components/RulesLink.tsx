@@ -17,10 +17,14 @@ const Container = styled.div`
   a {
     color: ${({ theme }) => theme.colors.text.primary};
     font-weight: 600;
-    transition: color 0.3s ease-in-out;
+    transition: scale 0.3s ease-in-out;
 
     :hover {
-      color: ${({ theme }) => theme.colors.secondary};
+      scale: 1.1;
+    }
+
+    :active {
+      scale: 0.9;
     }
   }
 `;
@@ -35,8 +39,8 @@ const LinkDescription = styled.div`
 
 const RulesLink = (): JSX.Element => (
   <Container>
-    <a href={DiscGolfRules} download="disc-golf-rules">
-      {'Скачать полные правила диск-гольфа'.toUpperCase()}
+    <a href={DiscGolfRules} download='disc-golf-rules'>
+      Скачать полные правила диск-гольфа
     </a>
     <LinkDescription>
       <FileSvg width={24} height={24} />
