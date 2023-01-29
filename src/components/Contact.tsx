@@ -17,9 +17,12 @@ const TextStyle = css`
   line-height: 1;
 `;
 
-const Town = styled.p`
+const Town = styled.h6`
   margin: 0 0 1rem;
   ${TextStyle};
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: underline;
 `;
 
 const Text = styled.p`
@@ -46,7 +49,7 @@ const Contact = ({
 }: Contact): JSX.Element => (
   <Container>
     <Town>
-      {town.toUpperCase()}
+      {town}
       :
     </Town>
     <Text>{phone}</Text>

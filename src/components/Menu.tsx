@@ -26,32 +26,32 @@ const menuItemsList = [
   {
     name: 'Диск-гольф',
     description: 'Узнать подробнее о спорте и правилах',
-    route: routes.HOME,
+    route: routes.Home,
   },
   {
     name: 'Мастер-класс',
     description: 'Попробовать и полюбить',
-    route: routes.MASTER,
+    route: routes.Master,
   },
   {
     name: 'Потренироваться',
     description: 'Играть самому и с друзьями',
-    route: routes.TRAINING,
+    route: routes.Training,
   },
   {
     name: 'Начинающий',
     description: 'Участвовать в турнирах!',
-    route: routes.NEWBIE,
+    route: routes.Newbie,
   },
   {
     name: 'Профессионал',
     description: 'Соревнуйся с профи!',
-    route: routes.PRO,
+    route: routes.Pro,
   },
   {
     name: 'Международный',
     description: 'Играй за границей!',
-    route: routes.INTERNATIONAL,
+    route: routes.International,
   },
 ];
 

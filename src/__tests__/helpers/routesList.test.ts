@@ -11,7 +11,7 @@ describe('routesList helper', () => {
       '/pro',
       '/international',
       '/players',
-      '#contacts',
+      '/contacts',
       '#menu',
       '#join',
       '/service',

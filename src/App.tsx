@@ -24,6 +24,7 @@ const Players = lazy(() => import('pages/Players'));
 const Pro = lazy(() => import('pages/Pro'));
 const Service = lazy(() => import('pages/Service'));
 const Train = lazy(() => import('pages/Train'));
+const ContactsPage = lazy(() => import('pages/Contacts'));
 
 const App = (): JSX.Element => {
   const [isAdminAccessible, setIsAdminAccessible] = useState<boolean>(false);
@@ -71,28 +72,29 @@ const App = (): JSX.Element => {
           <Layout openTownSelect={openTownModal}>
             <Suspense fallback={<Loading />}>
               <Routes>
-                <Route path={routes.HOME} element={<Home />} />
+                <Route path={routes.Home} element={<Home />} />
                 <Route
-                  path={routes.MASTER}
+                  path={routes.Master}
                   element={<Master openTownSelect={openTownModal} />}
                 />
-                <Route path={routes.TRAINING} element={<Train />} />
+                <Route path={routes.Training} element={<Train />} />
                 <Route
-                  path={routes.NEWBIE}
+                  path={routes.Newbie}
                   element={<Newbie openTownSelect={openTownModal} />}
                 />
                 <Route
-                  path={routes.PRO}
+                  path={routes.Pro}
                   element={<Pro openTownSelect={openTownModal} />}
                 />
                 <Route
-                  path={routes.INTERNATIONAL}
+                  path={routes.International}
                   element={<International />}
                 />
-                <Route path={routes.SERVICE} element={<Service />} />
-                <Route path={routes.ABOUT} element={<About />} />
-                <Route path={routes.CALENDAR} element={<Calendar />} />
-                <Route path={routes.PLAYERS} element={<Players />} />
+                <Route path={routes.Service} element={<Service />} />
+                <Route path={routes.About} element={<About />} />
+                <Route path={routes.Calendar} element={<Calendar />} />
+                <Route path={routes.Players} element={<Players />} />
+                <Route path={routes.Contacts} element={<ContactsPage />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
               <TownDialog>

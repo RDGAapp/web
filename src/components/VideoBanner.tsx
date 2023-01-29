@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styled from 'styled-components';
 
 import VideoPreview from 'assets/images/preview.webp';
@@ -11,7 +9,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   max-height: 28rem;
-  margin: 0 0 3rem;
+  margin: 0 0 1rem;
   overflow: hidden;
   background-size: cover;
   border-radius: 2.5rem;

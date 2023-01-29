@@ -14,7 +14,7 @@ import routes from 'helpers/routes';
 const Container = styled.article`
   max-width: 72rem;
   margin: auto;
-  padding: 1rem 1rem 0;
+  padding: 1rem 1rem 2rem;
 `;
 interface LayoutProps {
   children: ReactNode;
@@ -22,26 +22,26 @@ interface LayoutProps {
 }
 
 const shouldShowBanner = new Set<string>([
-  routes.ABOUT,
-  routes.MASTER,
-  routes.TRAINING,
-  routes.NEWBIE,
-  routes.PRO,
-  routes.INTERNATIONAL,
-  routes.PLAYERS,
-  routes.SERVICE,
+  routes.About,
+  routes.Master,
+  routes.Training,
+  routes.Newbie,
+  routes.Pro,
+  routes.International,
+  routes.Players,
+  routes.Service,
 ]);
 
 const shouldShowMenuSet = new Set<string>([
-  routes.HOME,
-  routes.MASTER,
-  routes.TRAINING,
-  routes.NEWBIE,
-  routes.PRO,
-  routes.INTERNATIONAL,
+  routes.Home,
+  routes.Master,
+  routes.Training,
+  routes.Newbie,
+  routes.Pro,
+  routes.International,
 ]);
 
-const shouldShowVideo = new Set<string>([routes.HOME]);
+const shouldShowVideo = new Set<string>([routes.Home]);
 
 const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
   const location = useLocation();

@@ -8,10 +8,10 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Text = styled.h1<{ fontSize: number; textAlign: string }>`
+const Text = styled.h1<{ textAlign: string }>`
   max-width: 22ch;
   font-weight: 500;
-  font-size: ${({ fontSize }) => fontSize}rem;
+  font-size: 1.2rem;
   font-family: ${({ theme }) => theme.fontFamily.header};
   line-height: 1;
   text-align: ${({ textAlign }) => textAlign};
@@ -30,9 +30,9 @@ const Logo = ({
 }: LogoProps): JSX.Element => (
   <Container>
     {!withoutImage && (
-      <LogoSvg width={big ? 120 : 40} height={big ? 115 : 36} />
+      <LogoSvg width={big ? 80 : 40} height={big ? 72 : 36} />
     )}
-    <Text fontSize={big ? 1.8 : 1.2} textAlign={textAlign}>
+    <Text textAlign={textAlign}>
       РОССИЙСКАЯ ДИСК-ГОЛЬФ АССОЦИАЦИЯ
     </Text>
   </Container>

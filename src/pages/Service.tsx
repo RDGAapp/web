@@ -19,7 +19,7 @@ const Header = styled.h3`
 
 const Service = (): JSX.Element => (
   <>
-    <PageHeader text="Наши услуги" shouldLinkToMainPage />
+    <PageHeader text="Наши услуги" />
     <PageHeader text="Диски для точных попаданий и невероятных траекторий!" />
     <ContentContainer>
       <TextContainer>

@@ -5,7 +5,7 @@ import Text from 'components/Text';
 
 const Companies = (): JSX.Element => (
   <>
-    <PageHeader text="Диск-гольф против дивана: сделай диск-гольф сильней!" shouldLinkToMainPage />
+    <PageHeader text="Диск-гольф против дивана: сделай диск-гольф сильней!" />
     <ContentContainer>
       <SubHeader>
         Корпоративному сектору в любой точке РФ и стран СНГ мы предлагаем:

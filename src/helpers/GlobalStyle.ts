@@ -107,12 +107,6 @@ const GlobalStyle = createGlobalStyle`
     aspect-ratio: 1 / 1;
     fill: currentColor;
   }
-
-  ol,
-  ul {
-    margin: 0;
-    padding: 0;
-  }
 `;
 
 export default GlobalStyle;

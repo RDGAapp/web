@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
@@ -141,7 +141,7 @@ const Players = (): JSX.Element => {
 
   return (
     <>
-      <PageHeader text="Наши игроки" shouldLinkToMainPage>
+      <PageHeader text="Наши игроки">
         <Filters>
           <SearchBar
             value={surname}

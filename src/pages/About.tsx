@@ -22,7 +22,7 @@ const Img = styled.img`
 
 const About = (): JSX.Element => (
   <>
-    <PageHeader text="Что такое РДГА?" shouldLinkToMainPage />
+    <PageHeader text="Что такое РДГА?" />
     <ContentContainer>
       <Text>
         <dfn>Российская Диск-Гольф Ассоциация</dfn>

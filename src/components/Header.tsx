@@ -16,14 +16,7 @@ const Container = styled.div`
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.header};
   background-color: ${({ theme }) => theme.colors.primary};
-  border-top: none;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.text.primary};
-  border-radius: 0 0 100vh 100vh;
-  backdrop-filter: blur(15px);
-
-  ${({ theme }) => theme.media.mobile} {
-    border-radius: 0 0 3rem 3rem;
-  }
+  isolation: isolate;
 `;
 
 const Navigation = styled.div`
@@ -42,19 +35,16 @@ const NavigationContainer = styled.nav`
   align-items: center;
   justify-content: flex-start;
   padding-left: 1rem;
-  isolation: isolate;
 `;
 
 const NavigationBackground = styled.div<{ open: boolean }>`
   position: absolute;
-  top: -1rem;
+  top: -0.5rem;
   left: 0;
   z-index: -1;
   width: min(15rem, 100vw);
   height: max-content;
-  background-color: ${({ theme }) => theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.text.primary};
-  border-top: none;
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 0 0 1rem 1rem;
   transition: clip-path 0.5s ease-in-out;
   clip-path: ${({ open }) =>
@@ -65,8 +55,13 @@ const LinksList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  margin-top: 60px;
-  padding: 20px;
+  margin-top: 4rem;
+  margin-bottom: 0;
+  padding: 0 1rem 1rem 1.5rem;
+
+  @media (width < 555px) {
+    margin-top: 5.1rem;
+  }
 `;
 
 const UserContainer = styled.div`
@@ -78,6 +73,8 @@ const UserContainer = styled.div`
 `;
 
 const LogoBlock = styled(Link)`
+  position: relative;
+  z-index: 1;
   grid-area: logo;
   margin: auto;
   color: ${({ theme }) => theme.colors.text.primary};
@@ -139,12 +136,12 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
-    { route: routes.HOME, text: 'На главную' },
-    { route: routes.PLAYERS, text: 'Игроки' },
-    { route: routes.CALENDAR, text: 'Календарь' },
-    { route: routes.ABOUT, text: 'О нас' },
-    { route: routes.SERVICE, text: 'Услуги' },
-    { route: routes.CONTACTS, text: 'Контакты' },
+    { route: routes.Home, text: 'На главную' },
+    { route: routes.Players, text: 'Игроки' },
+    { route: routes.Calendar, text: 'Календарь' },
+    { route: routes.About, text: 'О нас' },
+    { route: routes.Service, text: 'Услуги' },
+    { route: routes.Contacts, text: 'Контакты' },
   ];
 
   return (
@@ -171,7 +168,7 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
             onClick={() => setIsMenuOpen((current) => !current)}
           />
         </NavigationContainer>
-        <LogoBlock to={routes.HOME}>
+        <LogoBlock to={routes.Home}>
           <Logo withoutImage textAlign='center' />
         </LogoBlock>
         <UserContainer>

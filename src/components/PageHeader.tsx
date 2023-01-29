@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 
 const Container = styled.div`
   display: flex;
@@ -9,12 +6,7 @@ const Container = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  margin: 3rem 0;
-`;
-
-const Core = styled.div`
-  display: flex;
-  gap: 1rem;
+  margin: 1.5rem 0;
 `;
 
 const Header = styled.h1`
@@ -24,32 +16,14 @@ const Header = styled.h1`
   line-height: 1;
 `;
 
-const ArrowLeft = styled(ArrowSvg)`
-  color: ${({ theme }) => theme.colors.text.primary};
-  transform: rotate(180deg);
-  transition: color 0.3s ease-in-out;
-
-  :hover {
-    color: ${({ theme }) => theme.colors.primary};
-  }
-`;
-
 interface PageHeaderProps {
-  text: string,
-  shouldLinkToMainPage?: boolean,
-  children?: JSX.Element | JSX.Element[],
+  text: string;
+  children?: JSX.Element | JSX.Element[];
 }
 
-const PageHeader = ({
-  text,
-  shouldLinkToMainPage = false,
-  children,
-}: PageHeaderProps): JSX.Element => (
+const PageHeader = ({ text, children }: PageHeaderProps): JSX.Element => (
   <Container>
-    <Core>
-      {shouldLinkToMainPage && <Link to="/" title="Вернуться на главную"><ArrowLeft width={35} /></Link>}
-      <Header id="page-header">{text}</Header>
-    </Core>
+    <Header id='page-header'>{text}</Header>
     {children}
   </Container>
 );

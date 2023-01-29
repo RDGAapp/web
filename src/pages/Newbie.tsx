@@ -91,7 +91,7 @@ const Newbie = ({ openTownSelect }: NewbieProps): JSX.Element => {
             <Header>
               {'Внимание! К турнирам допускаются игроки, прошедшие минимум два '.toUpperCase()}
               <Link
-                to={`${routes.MASTER}${routes.MENU}`}
+                to={`${routes.Master}${routes.Menu}`}
                 smooth
               >
                 {'мастер-класса!'.toUpperCase()}

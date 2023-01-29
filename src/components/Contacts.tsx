@@ -4,10 +4,9 @@ import Contact from 'components/Contact';
 import contacts from 'helpers/contacts';
 
 const Container = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  gap: 60px;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
 `;
 
 const Contacts = () => (
