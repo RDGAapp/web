@@ -8,6 +8,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   max-width: max-content;
+
+  ${({ theme }) => theme.media.smallMobile} {
+    margin: auto;
+  }
 `;
 
 const TextStyle = css`
@@ -21,7 +25,7 @@ const Town = styled.h6`
   margin: 0 0 1rem;
   ${TextStyle};
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-decoration: underline;
 `;
 
