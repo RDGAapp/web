@@ -3,9 +3,9 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import { ReactComponent as LocationSvg } from 'assets/icons/location-simple.svg';
 import ButtonUnderlined from 'components/ButtonUnderlined';
+import CustomLink from 'components/CustomLink';
 import HamburgerButton from 'components/HamburgerButton';
 import Logo from 'components/Logo';
 import routes from 'helpers/routes';
@@ -90,42 +90,6 @@ const LogoBlock = styled(Link)`
   }
 `;
 
-const CustomLink = styled(Link)`
-  position: relative;
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-size: 1.2rem;
-  white-space: nowrap;
-  text-decoration: none;
-  transition: scale 0.2s ease-in-out, padding 0.2s ease-in-out;
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: -1rem;
-    width: 17px;
-    height: 17px;
-    translate: 0 -50%;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    pointer-events: none;
-  }
-
-  :hover {
-    padding-left: 2rem;
-    scale: 1.1;
-
-    svg {
-      left: 0.5rem;
-      opacity: 1;
-      pointer-events: all;
-    }
-  }
-
-  :active {
-    scale: 0.9;
-  }
-`;
-
 interface HeaderProps {
   openTownSelect: () => void;
 }
@@ -153,13 +117,10 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
               {links.map((link) => (
                 <CustomLink
                   key={link.route}
-                  to={link.route}
+                  route={link.route}
                   onClick={() => setIsMenuOpen(false)}
-                  title={link.text}
-                >
-                  <ArrowSvg />
-                  {link.text}
-                </CustomLink>
+                  text={link.text}
+                />
               ))}
             </LinksList>
           </NavigationBackground>
@@ -173,7 +134,7 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
         </LogoBlock>
         <UserContainer>
           <ButtonUnderlined onClick={openTownSelect}>
-            {town?.toUpperCase() || 'ВЫБЕРИТЕ ГОРОД'}
+            {town?.toUpperCase() || 'Выберите город'}
             <LocationSvg width={20} />
           </ButtonUnderlined>
         </UserContainer>

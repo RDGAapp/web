@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import Banner from 'components/Banner';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
-import Menu from 'components/Menu';
 import SWNotification from 'components/SWNotification';
 import VideoBanner from 'components/VideoBanner';
 import routes from 'helpers/routes';
@@ -32,15 +31,6 @@ const shouldShowBanner = new Set<string>([
   routes.Service,
 ]);
 
-const shouldShowMenuSet = new Set<string>([
-  routes.Home,
-  routes.Master,
-  routes.Training,
-  routes.Newbie,
-  routes.Pro,
-  routes.International,
-]);
-
 const shouldShowVideo = new Set<string>([routes.Home]);
 
 const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
@@ -53,7 +43,6 @@ const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
       <Container>
         {shouldShowVideo.has(location.pathname) && <VideoBanner />}
         {shouldShowBanner.has(location.pathname) && <Banner />}
-        {shouldShowMenuSet.has(location.pathname) && <Menu />}
         {children}
       </Container>
       <Footer />

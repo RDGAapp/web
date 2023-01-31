@@ -15,9 +15,9 @@ const Container = styled.div<{ image: string }>`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 28rem;
+  width: 100%;
+  aspect-ratio: 16/9;
   margin: 0 0 1rem;
-  padding-bottom: 5rem;
   background: center url(${({ image }) => image});
   background-size: cover;
   border-radius: 2.5rem;
@@ -27,6 +27,7 @@ const LinkCta = styled(HashLink)`
   display: flex;
   gap: 0.7rem;
   align-items: center;
+  margin-bottom: 7%;
   padding: 0.8rem 1.2rem;
   color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 400;

@@ -16,14 +16,9 @@ import Loading from 'pages/Loading';
 const About = lazy(() => import('pages/About'));
 const Calendar = lazy(() => import('pages/Calendar'));
 const Home = lazy(() => import('pages/Home'));
-const International = lazy(() => import('pages/International'));
-const Master = lazy(() => import('pages/Master'));
-const Newbie = lazy(() => import('pages/Newbie'));
 const NotFound = lazy(() => import('pages/NotFound'));
 const Players = lazy(() => import('pages/Players'));
-const Pro = lazy(() => import('pages/Pro'));
 const Service = lazy(() => import('pages/Service'));
-const Train = lazy(() => import('pages/Train'));
 const ContactsPage = lazy(() => import('pages/Contacts'));
 
 const App = (): JSX.Element => {
@@ -73,23 +68,6 @@ const App = (): JSX.Element => {
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path={routes.Home} element={<Home />} />
-                <Route
-                  path={routes.Master}
-                  element={<Master openTownSelect={openTownModal} />}
-                />
-                <Route path={routes.Training} element={<Train />} />
-                <Route
-                  path={routes.Newbie}
-                  element={<Newbie openTownSelect={openTownModal} />}
-                />
-                <Route
-                  path={routes.Pro}
-                  element={<Pro openTownSelect={openTownModal} />}
-                />
-                <Route
-                  path={routes.International}
-                  element={<International />}
-                />
                 <Route path={routes.Service} element={<Service />} />
                 <Route path={routes.About} element={<About />} />
                 <Route path={routes.Calendar} element={<Calendar />} />

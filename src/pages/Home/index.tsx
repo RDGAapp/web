@@ -8,6 +8,7 @@ import RussiaVideo from 'assets/images/russia-video.webp';
 import RulesLink from 'components/RulesLink';
 import SubHeader from 'components/SubHeader';
 import VideoLink from 'components/VideoLink';
+import Stepper from 'pages/Home/Stepper';
 
 const ArticleContainer = styled.article`
   display: grid;
@@ -174,6 +175,7 @@ const Home = (): JSX.Element => (
         <RulesLink />
       </TextContainer>
     </Row>
+    <Stepper />
   </ArticleContainer>
 );
 

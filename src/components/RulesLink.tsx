@@ -15,7 +15,7 @@ const Container = styled.div`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.text.primary};
+    color: inherit;
     font-weight: 600;
     transition: scale 0.3s ease-in-out;
 
@@ -40,7 +40,7 @@ const LinkDescription = styled.div`
 const RulesLink = (): JSX.Element => (
   <Container>
     <a href={DiscGolfRules} download='disc-golf-rules'>
-      Скачать полные правила диск-гольфа
+      Скачать правила диск-гольфа
     </a>
     <LinkDescription>
       <FileSvg width={24} height={24} />
