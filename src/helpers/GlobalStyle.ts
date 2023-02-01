@@ -27,8 +27,8 @@ const ModernCssReset = css`
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-  ul[role="list"],
-  ol[role="list"] {
+  ul[role='list'],
+  ol[role='list'] {
     list-style: none;
   }
 
@@ -85,6 +85,7 @@ const GlobalStyle = createGlobalStyle`
   ${ModernCssReset}
 
   * {
+    /* color: ${theme.colors.text.primary}; */
     font-size: 20px;
     font-family: ${theme.fontFamily.primary};
 
@@ -106,6 +107,10 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     aspect-ratio: 1 / 1;
     fill: currentColor;
+  }
+
+  p, ul, ol, h1, h2, h3, h4, h5, h6, span {
+    color: ${theme.colors.text.primary};
   }
 `;
 

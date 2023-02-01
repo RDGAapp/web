@@ -5,9 +5,9 @@ import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
-import MainBackground from 'assets/images/banner-main.webp';
 import SponsorBackground from 'assets/images/banner-sponsor.webp';
 import CalendarImage from 'assets/images/calendar.webp';
+import MainBackground from 'assets/images/neutral-rdga.webp';
 import PlayersBackground from 'assets/images/players.webp';
 import routes from 'helpers/routes';
 
@@ -16,6 +16,7 @@ const Container = styled.div<{ image: string }>`
   align-items: flex-end;
   justify-content: center;
   width: 100%;
+  max-height: 28rem;
   aspect-ratio: 16/9;
   margin: 0 0 1rem;
   background: center url(${({ image }) => image});
@@ -37,16 +38,19 @@ const LinkCta = styled(HashLink)`
   text-decoration: none;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
-  box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  transition: scale 0.3s ease;
 
   :hover {
-    box-shadow: 0 0 1rem ${({ theme }) => theme.colors.border};
+    scale: 1.1;
+  }
+
+  :active {
+    scale: 0.9;
   }
 
   svg {
-    height: 1.2rem;
+    height: 1rem;
   }
 `;
 
@@ -108,8 +112,8 @@ const Banner = (): JSX.Element => {
   return (
     <Container image={image}>
       <LinkCta to={link} smooth>
+        {text}
         <ArrowDown />
-        {text.toUpperCase()}
       </LinkCta>
     </Container>
   );
