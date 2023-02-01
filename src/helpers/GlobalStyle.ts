@@ -85,7 +85,7 @@ const GlobalStyle = createGlobalStyle`
   ${ModernCssReset}
 
   * {
-    /* color: ${theme.colors.text.primary}; */
+    color: inherit;
     font-size: 20px;
     font-family: ${theme.fontFamily.primary};
 
@@ -95,6 +95,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    color: ${theme.colors.text.primary};
     background-color: ${theme.colors.primary};
   }
 
@@ -107,10 +108,6 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     aspect-ratio: 1 / 1;
     fill: currentColor;
-  }
-
-  p, ul, ol, h1, h2, h3, h4, h5, h6, span {
-    color: ${theme.colors.text.primary};
   }
 `;
 
