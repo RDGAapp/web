@@ -22,6 +22,7 @@ describe('theme helper', () => {
     expect(theme.colors).toEqual({
       primary: '#fbcd04',
       secondary: '#2a74ed',
+      additional: '#e30020',
       background: '#ffffff',
       border: '#000000',
       borderContrast: '#ffffff',
@@ -42,16 +43,17 @@ describe('theme helper', () => {
     });
     expect(theme.zIndex).toEqual({
       swNotification: 1000,
-      selectedPlayerCard: 1000,
-      spinner: 1000,
+      header: 101,
+      selectedPlayerCard: 800,
+      spinner: 100,
     });
   });
 
   test('should use set variable from theme', () => {
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Button data-testid="test_button" />
-      </ThemeProvider>,
+        <Button data-testid='test_button' />
+      </ThemeProvider>
     );
     expect(getByTestId('test_button')).toHaveStyle('background-color: #fbcd04');
   });

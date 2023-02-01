@@ -30,13 +30,13 @@ describe('useMatchMedia hook', () => {
     expect(matchMedia.getMediaQueries()).toEqual([
       '(max-width: 600px)',
       '(max-width: 767px)',
-      '(max-width: 1024px) and (min-width: 767px)',
+      '(max-width: 1024px) and (min-width: 766px)',
       '(min-width: 1024px)',
     ]);
 
     expect(matchMedia.getListeners('(max-width: 600px)')).toEqual([expect.any(Function)]);
     expect(matchMedia.getListeners('(max-width: 767px)')).toEqual([expect.any(Function)]);
-    expect(matchMedia.getListeners('(max-width: 1024px) and (min-width: 767px)')).toEqual([expect.any(Function)]);
+    expect(matchMedia.getListeners('(max-width: 1024px) and (min-width: 766px)')).toEqual([expect.any(Function)]);
     expect(matchMedia.getListeners('(min-width: 1024px)')).toEqual([expect.any(Function)]);
 
     matchMedia.useMediaQuery('(max-width: 600px)');

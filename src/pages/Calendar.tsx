@@ -13,16 +13,22 @@ import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getTournaments } from 'store/tournaments/thunk';
 
 const Legend = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
   align-items: center;
-  margin: 0 0 2rem;
+  width: calc(100% - 3rem);
+  margin: 0 0 1rem;
+  padding: 1rem;
+
+  ${({ theme }) => theme.media.mobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const LegendItem = styled.div`
   display: flex;
-  gap: 0.2rem;
+  gap: 0.5rem;
   align-items: center;
 `;
 
@@ -131,43 +137,43 @@ const Calendar = () => {
                   TournamentColorByType[TournamentType.RussianChampionship]
                 }
               />
-              - Чемпионат России
+              Чемпионат России
             </LegendItem>
             <LegendItem>
               <TournamentCircle
                 border={TournamentColorByType[TournamentType.AllStar]}
               />
-              - Матч Всех Звезд
+              Матч Всех Звезд
             </LegendItem>
             <LegendItem>
               <TournamentCircle
                 border={TournamentColorByType[TournamentType.National]}
               />
-              - Национальный Тур
+              Национальный Тур
             </LegendItem>
             <LegendItem>
               <TournamentCircle
                 border={TournamentColorByType[TournamentType.Federal]}
               />
-              - Федеральный Турнир
+              Федеральный Турнир
             </LegendItem>
             <LegendItem>
               <TournamentCircle
                 border={TournamentColorByType[TournamentType.Regional]}
               />
-              - Региональный Турнир
+              Региональный Турнир
             </LegendItem>
             <LegendItem>
               <TournamentCircle
                 border={TournamentColorByType[TournamentType.League]}
               />
-              - Этап региональной лиги
+              Этап региональной лиги
             </LegendItem>
             <LegendItem>
               <TournamentCircle
                 border={TournamentColorByType[TournamentType.BagTag]}
               />
-              - Bag Tag Challenge
+              Bag Tag Challenge
             </LegendItem>
           </Legend>
           <Container>

@@ -5,10 +5,9 @@ import styled from 'styled-components';
 import RdgaImg from 'assets/images/neutral-rdga.webp';
 import CustomLink from 'components/CustomLink';
 import { spell } from 'helpers/wordHelpers';
+import NewbieCard from 'pages/About/NewbieCard';
 import { PlanContent, PlanContentType } from 'pages/About/planContent';
 import PlanPart from 'pages/About/PlanPart';
-
-import NewbieCard from './NewbieCard';
 
 const PageContainer = styled.div`
   display: grid;
