@@ -3,7 +3,13 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { ReactComponent as PlayersSvg } from 'assets/icons/avatar.svg';
+import { ReactComponent as CalendarSvg } from 'assets/icons/calendar.svg';
+import { ReactComponent as ContactsSvg } from 'assets/icons/contacts.svg';
+import { ReactComponent as HomeSvg } from 'assets/icons/home.svg';
+import { ReactComponent as InfoSvg } from 'assets/icons/info.svg';
 import { ReactComponent as LocationSvg } from 'assets/icons/location-simple.svg';
+import { ReactComponent as ShopSvg } from 'assets/icons/shop.svg';
 import ButtonUnderlined from 'components/ButtonUnderlined';
 import CustomLink from 'components/CustomLink';
 import HamburgerButton from 'components/HamburgerButton';
@@ -94,19 +100,19 @@ interface HeaderProps {
   openTownSelect: () => void;
 }
 
+const links = [
+  { route: routes.Home, text: 'На главную', svg: HomeSvg },
+  { route: routes.Players, text: 'Игроки', svg: PlayersSvg },
+  { route: routes.Calendar, text: 'Календарь', svg: CalendarSvg },
+  { route: routes.About, text: 'О нас', svg: InfoSvg },
+  { route: routes.Service, text: 'Услуги', svg: ShopSvg },
+  { route: routes.Contacts, text: 'Контакты', svg: ContactsSvg },
+];
+
 const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
   const { town } = useContext(TownContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const links = [
-    { route: routes.Home, text: 'На главную' },
-    { route: routes.Players, text: 'Игроки' },
-    { route: routes.Calendar, text: 'Календарь' },
-    { route: routes.About, text: 'О нас' },
-    { route: routes.Service, text: 'Услуги' },
-    { route: routes.Contacts, text: 'Контакты' },
-  ];
 
   return (
     <Container>
@@ -120,6 +126,7 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
                   route={link.route}
                   onClick={() => setIsMenuOpen(false)}
                   text={link.text}
+                  CustomImage={link.svg}
                 />
               ))}
             </LinksList>

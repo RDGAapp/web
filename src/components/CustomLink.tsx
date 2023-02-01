@@ -1,3 +1,5 @@
+import { FunctionComponent, SVGProps } from 'react';
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -63,6 +65,9 @@ interface ICustomLinkProps {
   text: string;
   isExternal?: boolean;
   onClick?: () => void;
+  CustomImage?: FunctionComponent<
+    SVGProps<SVGSVGElement> & { title?: string }
+  >;
 }
 
 const CustomLink = ({
@@ -70,6 +75,7 @@ const CustomLink = ({
   text,
   onClick,
   isExternal = false,
+  CustomImage,
 }: ICustomLinkProps) => (
   <StyledLink
     to={route}
@@ -78,8 +84,10 @@ const CustomLink = ({
     rel={isExternal ? 'noreferrer' : ''}
     target={isExternal ? '_blank' : ''}
   >
-    <ArrowSvg />
-    {text}
+    <>
+      {CustomImage ? <CustomImage /> : <ArrowSvg />}
+      {text}
+    </>
   </StyledLink>
 );
 
