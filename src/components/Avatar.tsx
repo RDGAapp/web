@@ -10,9 +10,8 @@ const Background = styled.div`
   width: 3rem;
   height: 3rem;
   padding: 1rem;
-  background: ${({ theme }) => theme.colors.avatarBackground};
+  background: ${({ theme }) => theme.colors.primary};
   border-radius: 100vh;
-  box-shadow: 0 0 0.1rem;
 
   svg {
     height: 1.5rem;

@@ -11,7 +11,7 @@ import PdgaImg from 'assets/images/pdga.webp';
 import Avatar from 'components/Avatar';
 import ServiceCard from 'components/ServiceCard';
 
-import RatingChangeBadge from './RatingChangeBadge';
+import RatingChangeBadge from '../../components/RatingChangeBadge';
 
 const Container = styled.div`
   position: fixed;
@@ -40,13 +40,15 @@ const Card = styled(motion.div)`
 `;
 
 const Header = styled.div`
+  position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
   align-items: center;
   width: 100%;
   padding: 1.5rem 1rem 1rem;
   background-color: ${({ theme }) => theme.colors.primary};
+  isolation: isolate;
 `;
 
 const CloseButton = styled.button`
@@ -57,16 +59,38 @@ const CloseButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  transition: color 0.3s ease-in-out;
+  transition: scale 0.2s ease-in-out;
 
   svg {
     width: 1rem;
   }
 
-  :hover,
-  :focus {
-    color: ${({ theme }) => theme.colors.background};
+  :hover {
+    scale: 1.1;
   }
+
+  :active {
+    scale: 0.9;
+  }
+`;
+
+const RdgaNumber = styled.p`
+  position: absolute;
+  top: 50%;
+  right: 3rem;
+  z-index: -1;
+  width: fit-content;
+  color: ${({ theme }) => theme.colors.background};
+  font-weight: bolder;
+  font-size: 5rem;
+  font-style: italic;
+  line-height: 1;
+  pointer-events: none;
+  translate: 0 -50%;
+`;
+
+const UserName = styled.h2`
+  font-size: 1.2rem;
 `;
 
 const InfoContainer = styled.div`
@@ -82,6 +106,7 @@ const InfoLine = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
   font-size: 1.2rem;
   line-height: 2rem;
 
@@ -96,8 +121,8 @@ const CardsLine = styled(InfoLine)`
 `;
 
 interface Props {
-  selected: Player,
-  resetSelected: () => void,
+  selected: Player;
+  resetSelected: () => void;
 }
 
 const SelectedCard = ({ selected, resetSelected }: Props) => {
@@ -114,38 +139,44 @@ const SelectedCard = ({ selected, resetSelected }: Props) => {
 
   return (
     <Container onClick={resetSelected}>
-      <Card layoutId={selected.rdgaNumber.toString()} onClick={(e) => e.stopPropagation()}>
+      <Card
+        layoutId={selected.rdgaNumber.toString()}
+        onClick={(e) => e.stopPropagation()}
+      >
         <Header>
           <div>
             <Avatar />
           </div>
-          <h2>{`${selected.name} ${selected.surname || ''}`}</h2>
-          <h2>{`#${selected.rdgaNumber}`}</h2>
+          <div>
+            <UserName>{selected.surname || ''}</UserName>
+            <UserName>{selected.name}</UserName>
+          </div>
+          <RdgaNumber>{`#${selected.rdgaNumber}`}</RdgaNumber>
           <CloseButton onClick={resetSelected}>
             <CloseSvg />
           </CloseButton>
         </Header>
         <InfoContainer>
-          {selected.rdgaRating
-            ? (
-              <InfoLine>
-                <ChartSvg />
-                <p>{`Рейтинг: ${selected.rdgaRating}`}</p>
-                <RatingChangeBadge
-                  rating={selected.rdgaRating}
-                  ratingChange={selected.rdgaRatingChange}
-                />
-              </InfoLine>
-            )
-            : ''}
-          {selected.town
-            ? (
-              <InfoLine>
-                <LocationSvg />
-                <p>{`Город: ${selected.town}`}</p>
-              </InfoLine>
-            )
-            : ''}
+          {selected.rdgaRating ? (
+            <InfoLine>
+              <ChartSvg />
+              <p>{`Рейтинг: ${selected.rdgaRating}`}</p>
+              <RatingChangeBadge
+                rating={selected.rdgaRating}
+                ratingChange={selected.rdgaRatingChange}
+              />
+            </InfoLine>
+          ) : (
+            ''
+          )}
+          {selected.town ? (
+            <InfoLine>
+              <LocationSvg />
+              <p>{`Город: ${selected.town}`}</p>
+            </InfoLine>
+          ) : (
+            ''
+          )}
           <CardsLine>
             {selected.metrixNumber && (
               <ServiceCard

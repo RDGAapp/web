@@ -18,8 +18,8 @@ const Legend = styled.div`
   gap: 0.5rem;
   align-items: center;
   width: calc(100% - 3rem);
-  margin: 0 0 1rem;
-  padding: 1rem;
+  margin: auto auto 2rem;
+  padding: 1rem 0;
 
   ${({ theme }) => theme.media.mobile} {
     grid-template-columns: 1fr;
@@ -30,6 +30,10 @@ const LegendItem = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
+
+  ${({ theme }) => theme.media.mobile} {
+    justify-content: center;
+  }
 `;
 
 const Container = styled.div`

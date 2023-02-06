@@ -4,14 +4,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import SelectSvg from 'assets/icons/select.svg';
-import Card from 'components/Card';
 import PageHeader from 'components/PageHeader';
 import Pagination from 'components/Pagination';
 import SearchBar from 'components/SearchBar';
-import SelectedCard from 'components/SelectedCard';
 import Spinner from 'components/Spinner';
 import towns from 'helpers/townsList';
 import useDebounce from 'hooks/useDebounce';
+import Card from 'pages/Players/Card';
+import SelectedCard from 'pages/Players/SelectedCard';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getPlayers } from 'store/players/thunks';
 
@@ -66,10 +66,15 @@ const Select = styled.select`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 1rem;
   cursor: pointer;
+  transition: scale 0.2s ease-in-out;
   appearance: none;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.primary};
+    scale: 1.1;
+  }
+
+  :active {
+    scale: 0.9;
   }
 `;
 
@@ -110,7 +115,7 @@ const Players = (): JSX.Element => {
       setPageNumber(1);
     },
     1000,
-    [surname],
+    [surname]
   );
 
   useEffect(() => {
@@ -141,22 +146,21 @@ const Players = (): JSX.Element => {
 
   return (
     <>
-      <PageHeader text="Наши игроки">
+      <PageHeader text='Наши игроки'>
         <Filters>
           <SearchBar
             value={surname}
-            placeholder="Введите фамилию"
+            placeholder='Введите фамилию'
             onChange={onSurnameInputChange}
-            ariaLabel="surname-search"
+            ariaLabel='surname-search'
           />
-          <Select
-            value={town}
-            onChange={onSelectTownChange}
-          >
-            <option value="">
-              Выберите город
-            </option>
-            {towns.map((town) => <option value={town} key={town}>{town}</option>)}
+          <Select value={town} onChange={onSelectTownChange}>
+            <option value=''>Выберите город</option>
+            {towns.map((town) => (
+              <option value={town} key={town}>
+                {town}
+              </option>
+            ))}
           </Select>
         </Filters>
       </PageHeader>

@@ -29,6 +29,7 @@ const shouldShowBanner = new Set<string>([
   routes.International,
   routes.Players,
   routes.Service,
+  routes.Calendar,
 ]);
 
 const shouldShowVideo = new Set<string>([routes.Home]);

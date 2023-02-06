@@ -7,6 +7,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 1.5rem 0;
+
+  ${({ theme }) => theme.media.mobile} {
+    justify-content: center;
+  }
 `;
 
 const Header = styled.h1`

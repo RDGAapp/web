@@ -11,6 +11,10 @@ const ModernCssReset = css`
     box-sizing: border-box;
   }
 
+  * {
+    scroll-margin-top: 6rem;
+  }
+
   /* Remove default margin */
   body,
   h1,

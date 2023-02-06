@@ -13,15 +13,20 @@ const Container = styled(motion.div)`
   height: 8rem;
   margin: auto;
   padding: 1rem;
+  overflow: hidden;
   background-color: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
-  box-shadow: 0 0 0.3rem ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.2s ease-in-out, border 0.3s ease-in-out;
 
   :hover,
   :focus {
     background-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  :active {
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
   }
 `;
 
@@ -50,8 +55,8 @@ const AdditionalInformation = styled.p`
 `;
 
 interface Props {
-  player: Player,
-  setSelected: (player: Player) => void,
+  player: Player;
+  setSelected: (player: Player) => void;
 }
 
 const Card = ({ player, setSelected }: Props) => (
@@ -61,8 +66,8 @@ const Card = ({ player, setSelected }: Props) => (
       hidden: { y: 100, opacity: 0 },
       visible: { y: 0, opacity: 1 },
     }}
-    initial="hidden"
-    whileInView="visible"
+    initial='hidden'
+    whileInView='visible'
     viewport={{ once: true }}
     onClick={() => setSelected(player)}
   >
@@ -72,14 +77,17 @@ const Card = ({ player, setSelected }: Props) => (
         {`${player.name} ${player.surname || ''}`}
       </MainInformation>
       <MainInformation>{`#${player.rdgaNumber}`}</MainInformation>
-      {player.rdgaRating
-        ? (
-          <AdditionalInformation>
-            {`Рейтинг: ${player.rdgaRating}`}
-            <RatingChangeBadge rating={player.rdgaRating} ratingChange={player.rdgaRatingChange} />
-          </AdditionalInformation>
-        )
-        : ''}
+      {player.rdgaRating ? (
+        <AdditionalInformation>
+          {`Рейтинг: ${player.rdgaRating}`}
+          <RatingChangeBadge
+            rating={player.rdgaRating}
+            ratingChange={player.rdgaRatingChange}
+          />
+        </AdditionalInformation>
+      ) : (
+        ''
+      )}
     </TextContainer>
   </Container>
 );

@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import SponsorBackground from 'assets/images/banner-sponsor.webp';
-import CalendarImage from 'assets/images/calendar.webp';
 import MainBackground from 'assets/images/neutral-rdga.webp';
 import PlayersBackground from 'assets/images/players.webp';
 import routes from 'helpers/routes';
@@ -82,7 +81,7 @@ const bannerContent = new Map<string, Record<string, string>>([
   [
     routes.Calendar,
     {
-      image: CalendarImage,
+      image: SponsorBackground,
       text: 'Вступить в РДГА',
       link: `${routes.About}${routes.Join}`,
     },
