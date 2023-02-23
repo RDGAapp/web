@@ -63,6 +63,10 @@ const Header = styled.h1`
 const TextContainer = styled.div`
   display: grid;
   gap: 1rem;
+
+  ${({ theme }) => theme.media.mobile} {
+    text-align: center;
+  }
 `;
 
 const PlanContainer = styled.div`
@@ -162,6 +166,12 @@ const About = (): JSX.Element => {
             стартовый пакет игрока, и получает право участия во всех турнирах
             под эгидой{' '}
             <abbr title='Российская Диск-Гольф Ассоциация'>РДГА</abbr>.
+            <br />
+            <CustomLink
+              route='https://www.tinkoff.ru/cf/9mJN821ed7D'
+              text='Поддержать РДГА'
+              isExternal
+            />
           </div>
         </TextContainer>
       </Container>

@@ -36,6 +36,10 @@ const ModernCssReset = css`
     list-style: none;
   }
 
+  li {
+    text-align: left;
+  }
+
   /* Set core root defaults */
   html:focus-within {
     scroll-behavior: smooth;
