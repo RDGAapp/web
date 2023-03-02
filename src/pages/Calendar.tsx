@@ -145,15 +145,9 @@ const Calendar = () => {
             </LegendItem>
             <LegendItem>
               <TournamentCircle
-                border={TournamentColorByType[TournamentType.AllStar]}
+                border={TournamentColorByType[TournamentType.Pro]}
               />
-              Матч Всех Звезд
-            </LegendItem>
-            <LegendItem>
-              <TournamentCircle
-                border={TournamentColorByType[TournamentType.National]}
-              />
-              Национальный Тур
+              Этап Про Тура
             </LegendItem>
             <LegendItem>
               <TournamentCircle
@@ -172,12 +166,6 @@ const Calendar = () => {
                 border={TournamentColorByType[TournamentType.League]}
               />
               Этап региональной лиги
-            </LegendItem>
-            <LegendItem>
-              <TournamentCircle
-                border={TournamentColorByType[TournamentType.BagTag]}
-              />
-              Bag Tag Challenge
             </LegendItem>
           </Legend>
           <Container>
