@@ -157,12 +157,6 @@ const Calendar = () => {
             </LegendItem>
             <LegendItem>
               <TournamentCircle
-                border={TournamentColorByType[TournamentType.Regional]}
-              />
-              Региональный Турнир
-            </LegendItem>
-            <LegendItem>
-              <TournamentCircle
                 border={TournamentColorByType[TournamentType.League]}
               />
               Этап региональной лиги

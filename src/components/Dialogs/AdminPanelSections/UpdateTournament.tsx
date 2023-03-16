@@ -53,10 +53,8 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
       required: true,
       variants: [
         { value: TournamentType.AllStar, text: 'Матч Всех Звезд' },
-        { value: TournamentType.BagTag, text: 'Bag Tag Challenge' },
         { value: TournamentType.League, text: 'Лига' },
-        { value: TournamentType.National, text: 'Национальный тур' },
-        { value: TournamentType.Regional, text: 'Региональный турнир' },
+        { value: TournamentType.Pro, text: 'Pro тур' },
         { value: TournamentType.RussianChampionship, text: 'Чемпионат России' },
         { value: TournamentType.Federal, text: 'Федеральный турнир' },
       ],
