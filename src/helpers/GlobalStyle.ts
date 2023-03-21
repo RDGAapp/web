@@ -95,7 +95,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     color: inherit;
     font-size: 20px;
-    font-family: ${theme.fontFamily.primary};
+    font-family: "${theme.fontFamily.primary}", sans-serif;
 
     ${theme.media.mobile} {
       font-size: 16px;
@@ -116,6 +116,10 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     aspect-ratio: 1 / 1;
     fill: currentColor;
+  }
+
+  ul {
+    margin: 0;
   }
 `;
 

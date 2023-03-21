@@ -24,6 +24,7 @@ const PageNumber = styled.button<{ number?: boolean }>`
   :disabled {
     background-color: none;
     cursor: not-allowed;
+
     ${({ number, theme }) => number && css`
       color: inherit;
       background-color: ${theme.colors.primary};

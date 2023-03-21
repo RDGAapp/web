@@ -38,8 +38,8 @@ describe('theme helper', () => {
       },
     });
     expect(theme.fontFamily).toEqual({
-      primary: 'Inter, sans-serif',
-      header: 'Oswald, sans-serif',
+      primary: 'Inter',
+      header: 'Oswald',
     });
     expect(theme.zIndex).toEqual({
       swNotification: 1000,

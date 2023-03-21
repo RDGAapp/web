@@ -14,7 +14,7 @@ const Container = styled.div<{ image: string }>`
   max-height: 70vh;
   margin: auto;
   padding: 2rem;
-  background: linear-gradient(#0008, #0008), url(${({ image }) => image});
+  background: linear-gradient(#0008, #0008), url("${({ image }) => image}");
   background-position: center, center;
   background-size: cover;
   border-radius: 3rem;
@@ -46,6 +46,7 @@ const StepNumber = styled.p<{ selected: boolean }>`
   border-radius: 1.5rem;
   cursor: not-allowed;
   transition: all 0.3s ease-in-out;
+
   ${({ selected, theme }) =>
     selected
       ? `background-color: ${theme.colors.primary}`

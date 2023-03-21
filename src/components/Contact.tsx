@@ -23,6 +23,7 @@ const TextStyle = css`
 
 const Town = styled.h6`
   margin: 0 0 1rem;
+
   ${TextStyle};
   font-weight: bold;
   font-size: 1rem;

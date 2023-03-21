@@ -120,6 +120,7 @@
         ],
         "@typescript-eslint/no-explicit-any": 0,
         "react/jsx-props-no-spreading": 0,
-        "jsx-a11y/control-has-associated-label": 0
+        "jsx-a11y/control-has-associated-label": 0,
+        "consistent-return": 0
     }
 }

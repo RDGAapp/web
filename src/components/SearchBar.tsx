@@ -27,6 +27,7 @@ const Container = styled.div<{expanded: boolean}>`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 100vh;
   transition: max-width 0.3s ease-in-out;
+
   ${({ expanded }) => expanded && ExpandedContainerStyle};
 
   ${({ theme }) => theme.media.tablet} {

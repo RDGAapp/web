@@ -54,7 +54,14 @@ const PlanPart = ({
         {yesText}
       </p>
     ) : (
-      <p style={{ color: theme.colors.error }}>{noText}</p>
+      <p
+        style={{
+          color: theme.colors.error,
+          fontWeight: isSame ? '100' : '900',
+        }}
+      >
+        {noText}
+      </p>
     )}
   </Container>
 );

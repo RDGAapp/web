@@ -1,107 +1,47 @@
 export enum PlanContentType {
+  Junior = 'Юниор',
+  Newbie = 'Новичок',
   Base = 'Базовый',
-  Active = 'Активный',
   Sponsor = 'Спонсор',
   Maecenas = 'Меценат',
-  Newbie = 'Новичок',
 }
 
 export interface IPlanContent {
-  canChooseNumber: boolean;
-  federalTournamentsDiscount: {
-    all: boolean;
-    discount: null | number;
-  };
-  souvenir: string;
-  prodiscusDiscount: {
-    discsNumber: number;
-    discount: null | number;
-  };
-  rdgaRating: boolean;
-  rdgaParticipation: boolean;
-  accessToRdgaMerch: boolean;
-  accessToRdgaReport: boolean;
+  markerType: string;
+  buddy: boolean;
+  individualUniform: string;
+  discsDiscount: boolean;
 }
 
 export const PlanContent: Record<PlanContentType, IPlanContent> = {
-  [PlanContentType.Base]: {
-    canChooseNumber: false,
-    federalTournamentsDiscount: {
-      all: false,
-      discount: null,
-    },
-    souvenir: 'Сувенир №1',
-    prodiscusDiscount: {
-      discsNumber: 0,
-      discount: null,
-    },
-    rdgaRating: true,
-    rdgaParticipation: true,
-    accessToRdgaMerch: true,
-    accessToRdgaReport: true,
-  },
-  [PlanContentType.Active]: {
-    canChooseNumber: true,
-    federalTournamentsDiscount: {
-      all: false,
-      discount: 500,
-    },
-    souvenir: 'Сувенир №2',
-    prodiscusDiscount: {
-      discsNumber: 1,
-      discount: 50,
-    },
-    rdgaRating: true,
-    rdgaParticipation: true,
-    accessToRdgaMerch: true,
-    accessToRdgaReport: true,
-  },
-  [PlanContentType.Sponsor]: {
-    canChooseNumber: true,
-    federalTournamentsDiscount: {
-      all: true,
-      discount: 500,
-    },
-    souvenir: 'Сувенир №2',
-    prodiscusDiscount: {
-      discsNumber: 2,
-      discount: 50,
-    },
-    rdgaRating: true,
-    rdgaParticipation: true,
-    accessToRdgaMerch: true,
-    accessToRdgaReport: true,
-  },
-  [PlanContentType.Maecenas]: {
-    canChooseNumber: true,
-    federalTournamentsDiscount: {
-      all: true,
-      discount: 500,
-    },
-    souvenir: 'Сувенир №2',
-    prodiscusDiscount: {
-      discsNumber: 3,
-      discount: 50,
-    },
-    rdgaRating: true,
-    rdgaParticipation: true,
-    accessToRdgaMerch: true,
-    accessToRdgaReport: true,
+  [PlanContentType.Junior]: {
+    markerType: 'Белый',
+    buddy: true,
+    individualUniform: '',
+    discsDiscount: false,
   },
   [PlanContentType.Newbie]: {
-    canChooseNumber: true,
-    federalTournamentsDiscount: {
-      all: false,
-      discount: null,
-    },
-    souvenir: 'Сувенир №1',
-    prodiscusDiscount: {
-      discsNumber: 2,
-      discount: 100,
-    },
-    rdgaRating: true,
-    rdgaParticipation: true,
-    accessToRdgaMerch: true,
-    accessToRdgaReport: true,
+    markerType: 'Белый',
+    buddy: true,
+    individualUniform: '',
+    discsDiscount: true,
+  },
+  [PlanContentType.Base]: {
+    markerType: 'Белый',
+    buddy: false,
+    individualUniform: '',
+    discsDiscount: true,
+  },
+  [PlanContentType.Sponsor]: {
+    markerType: 'Синий',
+    buddy: true,
+    individualUniform: 'Вариант 1',
+    discsDiscount: true,
+  },
+  [PlanContentType.Maecenas]: {
+    markerType: 'Красный',
+    buddy: true,
+    individualUniform: 'Вариант 2',
+    discsDiscount: true,
   },
 };

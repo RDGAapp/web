@@ -59,7 +59,7 @@ const Select = styled.select`
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1rem;
   background-color: ${({ theme }) => theme.colors.background};
-  background-image: url(${SelectSvg});
+  background-image: url("${SelectSvg}");
   background-repeat: no-repeat;
   background-position: center right 1rem;
   background-size: 1rem;

@@ -13,10 +13,12 @@ const PageContainer = styled.div`
 `;
 const Row = styled.div<{ imagePosition: 'left' | 'right' }>`
   display: grid;
+
   ${({ imagePosition }) =>
     imagePosition === 'left'
       ? "grid-template-areas: 'picture description'"
       : "grid-template-areas: 'description picture'"};
+
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
@@ -75,7 +77,7 @@ const CustomImage = styled.img<{ position: 'left' | 'right' }>`
 const Header = styled.h3`
   font-weight: 400;
   font-size: 2rem;
-  font-family: ${({ theme }) => theme.fontFamily.header};
+  font-family: "${({ theme }) => theme.fontFamily.header}", sans-serif;
   line-height: 1;
 `;
 

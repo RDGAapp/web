@@ -1,8 +1,8 @@
 {
-  "processors": [
-    "stylelint-processor-styled-components"
+  "customSyntax": "postcss-styled-components",
+  "plugins": [
+    "stylelint-prettier"
   ],
-  "plugins": ["stylelint-prettier"],
   "extends": [
     "stylelint-config-recommended",
     "stylelint-config-standard-scss",
@@ -10,9 +10,11 @@
     "stylelint-config-rational-order",
     "stylelint-prettier/recommended"
   ],
-  "customSyntax": "postcss-scss",
   "rules": {
     "prettier/prettier": true,
-    "value-keyword-case": null
+    "value-keyword-case": null,
+    "selector-type-no-unknown": null,
+    "selector-type-case": null,
+    "no-duplicate-selectors": null
   }
 }

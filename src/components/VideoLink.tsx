@@ -28,7 +28,7 @@ const VideoPreview = styled.div<{ image: string }>`
   max-width: 28rem;
   height: 16rem;
   color: transparent;
-  background: left center url(${({ image }) => image});
+  background: left center url("${({ image }) => image}");
   border-radius: 1rem;
 `;
 

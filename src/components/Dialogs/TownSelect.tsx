@@ -38,6 +38,7 @@ const ListElement = styled.p<{ selected: boolean }>`
   align-items: center;
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
   line-height: 1;
+
   ${({ selected }) =>
     !selected &&
     css`

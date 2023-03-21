@@ -30,8 +30,8 @@ const theme = {
     },
   },
   fontFamily: {
-    primary: 'Inter, sans-serif',
-    header: 'Oswald, sans-serif',
+    primary: 'Inter',
+    header: 'Oswald',
   },
   zIndex: {
     swNotification: 1000,

@@ -12,7 +12,7 @@ const Text = styled.h1<{ textAlign: string }>`
   max-width: 22ch;
   font-weight: 500;
   font-size: 1.2rem;
-  font-family: ${({ theme }) => theme.fontFamily.header};
+  font-family: "${({ theme }) => theme.fontFamily.header}", sans-serif;
   line-height: 1;
   text-align: ${({ textAlign }) => textAlign};
 `;
