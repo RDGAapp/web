@@ -148,6 +148,7 @@ const PlanCardHeader = styled.div`
 
 const Step = styled.p`
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   align-items: center;
   font-size: 1.3rem;
@@ -374,15 +375,20 @@ const About = (): JSX.Element => {
             <PlanPart text='Публикация рейтинга игрока' isSame isAllowed />
           </div>
         </PlanCardContainer>
-        <ArrowDown />
+        <div>
+          <ArrowDown />
+        </div>
         <Step>
           <CustomLink
             route='https://www.tinkoff.ru/cf/9mJN821ed7D'
-            text='Оплати взнос, указав ФИО и текст "2023"'
+            text='Оплати взнос'
             isExternal
           />
+          <p>указав ФИО и текст &quot;2023&quot;</p>
         </Step>
-        <ArrowDown />
+        <div>
+          <ArrowDown />
+        </div>
         <Step>
           <CustomLink
             route='https://forms.gle/a8xHLmxURYeZ6ZY47'
@@ -390,7 +396,9 @@ const About = (): JSX.Element => {
             isExternal
           />
         </Step>
-        <ArrowDown />
+        <div>
+          <ArrowDown />
+        </div>
         <Step>
           Получи пакет члена РДГА на федеральном мероприятии или у региональных
           представителей РДГА.
