@@ -6,6 +6,7 @@ import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import RdgaImg from 'assets/images/neutral-rdga.webp';
 import PartnersImg from 'assets/images/partners.webp';
 import CustomLink from 'components/CustomLink';
+import RdgaDocLink from 'components/RdgaDocLink';
 import { PlanContent, PlanContentType } from 'pages/About/planContent';
 import PlanPart from 'pages/About/PlanPart';
 
@@ -43,6 +44,8 @@ const TextContainer = styled.div<{ position: 'left' | 'right' }>`
   flex-direction: column;
   grid-area: description;
   gap: 0.8rem;
+  align-items: ${({ position }) =>
+    position === 'left' ? 'flex-end' : 'flex-start'};
   align-self: flex-start;
   width: 90%;
   margin: auto;
@@ -52,6 +55,7 @@ const TextContainer = styled.div<{ position: 'left' | 'right' }>`
   text-align: ${({ position }) => (position === 'left' ? 'end' : 'start')};
 
   ${({ theme }) => theme.media.mobile} {
+    align-items: center;
     text-align: center;
   }
 
@@ -151,8 +155,17 @@ const Step = styled.p`
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
+`;
+
+const StepNumber = styled.div`
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+  font-variant: tabular-nums;
+  border: 0.3rem solid ${({ theme }) => theme.colors.primary};
+  border-radius: 100vh;
 `;
 
 const ArrowDown = styled(ArrowSvg)`
@@ -221,12 +234,6 @@ const About = (): JSX.Element => {
             развития диск-гольфа в России.
           </p>
           <p>
-            Цель на 2023 год: сформировать фундамент для системного развития и
-            обеспечения преемственности в работе РДГА, зафиксировать основные
-            понятия, сформировать регламенты ключевых процессов, реализовать
-            работу по ним в сезоне 2023.
-          </p>
-          <p>
             Членство в{' '}
             <abbr title='Российская Диск-Гольф Ассоциация'>РДГА</abbr> - участие
             в федеральном объединении игроков в диск-гольф и получение
@@ -234,6 +241,7 @@ const About = (): JSX.Element => {
             рейтинга, отражающего ваши спортивные достижения, а также приобщение
             к развитию диск-гольфа в стране.
           </p>
+          <RdgaDocLink />
           <p>
             <CustomLink
               route='https://www.tinkoff.ru/cf/9mJN821ed7D'
@@ -243,49 +251,9 @@ const About = (): JSX.Element => {
           </p>
         </TextContainer>
       </Row>
-      <Row imagePosition='left'>
-        <ImageContainer>
-          <CustomImage src={PartnersImg} />
-        </ImageContainer>
-        <TextContainer position='right'>
-          <Header>Наши партнеры</Header>
-          <p>Магазины дисков:</p>
-          <ul>
-            <li>
-              <CustomLink
-                route='https://ahoydiscs.ru'
-                text='Магазин Ahoy Discs'
-                isExternal
-              />
-              <br />
-              скидка на товары с отметкой &quot;РДГА&quot;
-            </li>
-            <li>
-              Скидка все диски Prodiscus у представителей компании в регионах
-              (Сартаков Иван, Макаров Александр, Ярмушевич Иван)
-            </li>
-          </ul>
-          <p>Изготовители корзин:</p>
-          <ul>
-            <li>
-              <CustomLink
-                route='https://t.me/makarov_discgolf'
-                text='Макаров Александр'
-                isExternal
-              />
-            </li>
-            <li>
-              <CustomLink
-                route='https://t.me/Vladimirli1'
-                text='Владимир Ли'
-                isExternal
-              />
-            </li>
-          </ul>
-        </TextContainer>
-      </Row>
       <Header id='join'>Порядок вступления или продления членства РДГА</Header>
       <PlanContainer>
+        <StepNumber>1</StepNumber>
         <Step>Выбери тариф вступления в РДГА</Step>
         <InputDescription>
           <p>← 500 ₽</p>
@@ -313,6 +281,7 @@ const About = (): JSX.Element => {
               text='Взнос'
               isAllowed
               isSimpleText
+              isBigger
               yesText={`${price} ₽`}
             />
             <PlanPart
@@ -378,17 +347,19 @@ const About = (): JSX.Element => {
         <div>
           <ArrowDown />
         </div>
+        <StepNumber>2</StepNumber>
         <Step>
           <CustomLink
             route='https://www.tinkoff.ru/cf/9mJN821ed7D'
             text='Оплати взнос'
             isExternal
           />
-          <p>указав ФИО и текст &quot;2023&quot;</p>
+          <span>указав ФИО и текст &quot;2023&quot;</span>
         </Step>
         <div>
           <ArrowDown />
         </div>
+        <StepNumber>3</StepNumber>
         <Step>
           <CustomLink
             route='https://forms.gle/a8xHLmxURYeZ6ZY47'
@@ -399,11 +370,53 @@ const About = (): JSX.Element => {
         <div>
           <ArrowDown />
         </div>
+        <StepNumber>4</StepNumber>
         <Step>
           Получи пакет члена РДГА на федеральном мероприятии или у региональных
           представителей РДГА.
         </Step>
       </PlanContainer>
+      <Row imagePosition='left'>
+        <ImageContainer>
+          <CustomImage src={PartnersImg} />
+        </ImageContainer>
+        <TextContainer position='right'>
+          <Header>Наши партнеры</Header>
+          <p>Магазины дисков:</p>
+          <ul>
+            <li>
+              <CustomLink
+                route='https://ahoydiscs.ru'
+                text='Магазин Ahoy Discs'
+                isExternal
+              />
+              <br />
+              скидка на товары с отметкой &quot;РДГА&quot;
+            </li>
+            <li>
+              Скидка все диски Prodiscus у представителей компании в регионах
+              (Сартаков Иван, Макаров Александр, Ярмушевич Иван)
+            </li>
+          </ul>
+          <p>Изготовители корзин:</p>
+          <ul>
+            <li>
+              <CustomLink
+                route='https://t.me/makarov_discgolf'
+                text='Макаров Александр'
+                isExternal
+              />
+            </li>
+            <li>
+              <CustomLink
+                route='https://t.me/Vladimirli1'
+                text='Владимир Ли'
+                isExternal
+              />
+            </li>
+          </ul>
+        </TextContainer>
+      </Row>
     </PageContainer>
   );
 };

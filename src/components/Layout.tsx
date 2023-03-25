@@ -17,7 +17,6 @@ const Container = styled.article`
 `;
 interface LayoutProps {
   children: ReactNode;
-  openTownSelect: () => void;
 }
 
 const shouldShowBanner = new Set<string>([
@@ -34,13 +33,13 @@ const shouldShowBanner = new Set<string>([
 
 const shouldShowVideo = new Set<string>([routes.Home]);
 
-const Layout = ({ children, openTownSelect }: LayoutProps): JSX.Element => {
+const Layout = ({ children }: LayoutProps): JSX.Element => {
   const location = useLocation();
 
   return (
     <>
       <SWNotification />
-      <Header openTownSelect={openTownSelect} />
+      <Header />
       <Container>
         {shouldShowVideo.has(location.pathname) && <VideoBanner />}
         {shouldShowBanner.has(location.pathname) && <Banner />}

@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import AdminPanel from 'components/Dialogs/AdminPanel';
-import TownSelectModal from 'components/Dialogs/TownSelect';
 import Layout from 'components/Layout';
 import GlobalStyle from 'helpers/GlobalStyle';
 import routes from 'helpers/routes';
@@ -24,11 +23,6 @@ const ContactsPage = lazy(() => import('pages/Contacts'));
 const App = (): JSX.Element => {
   const [isAdminAccessible, setIsAdminAccessible] = useState<boolean>(false);
 
-  const {
-    Dialog: TownDialog,
-    openModal: openTownModal,
-    closeModal: closeTownModal,
-  } = useDialog();
   const {
     Dialog: AdminDialog,
     openModal: openAdminModal,
@@ -64,7 +58,7 @@ const App = (): JSX.Element => {
       <GlobalStyle />
       <BrowserRouter>
         <TownProvider>
-          <Layout openTownSelect={openTownModal}>
+          <Layout>
             <Suspense fallback={<Loading />}>
               <Routes>
                 <Route path={routes.Home} element={<Home />} />
@@ -75,9 +69,6 @@ const App = (): JSX.Element => {
                 <Route path={routes.Contacts} element={<ContactsPage />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
-              <TownDialog>
-                <TownSelectModal onClose={closeTownModal} />
-              </TownDialog>
               {isAdminAccessible && (
                 <AdminDialog>
                   <AdminPanel onClose={closeAdminModal} />

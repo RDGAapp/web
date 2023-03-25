@@ -16,6 +16,9 @@ import HamburgerButton from 'components/HamburgerButton';
 import Logo from 'components/Logo';
 import routes from 'helpers/routes';
 import { TownContext } from 'hooks/TownContext';
+import useDialog from 'hooks/useDialog';
+
+import TownSelectModal from './Dialogs/TownSelect';
 
 const Container = styled.div`
   position: sticky;
@@ -96,10 +99,6 @@ const LogoBlock = styled(Link)`
   }
 `;
 
-interface HeaderProps {
-  openTownSelect: () => void;
-}
-
 const links = [
   { route: routes.Home, text: 'На главную', svg: HomeSvg },
   { route: routes.Players, text: 'Игроки', svg: PlayersSvg },
@@ -109,10 +108,16 @@ const links = [
   { route: routes.Contacts, text: 'Контакты', svg: ContactsSvg },
 ];
 
-const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
+const Header = (): JSX.Element => {
   const { town } = useContext(TownContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const {
+    Dialog: TownDialog,
+    openModal: openTownModal,
+    closeModal: closeTownModal,
+  } = useDialog();
 
   return (
     <Container>
@@ -140,12 +145,15 @@ const Header = ({ openTownSelect }: HeaderProps): JSX.Element => {
           <Logo withoutImage textAlign='center' />
         </LogoBlock>
         <UserContainer>
-          <ButtonUnderlined onClick={openTownSelect}>
+          <ButtonUnderlined onClick={openTownModal}>
             {town?.toUpperCase() || 'Выберите город'}
             <LocationSvg width={20} />
           </ButtonUnderlined>
         </UserContainer>
       </Navigation>
+      <TownDialog>
+        <TownSelectModal onClose={closeTownModal} />
+      </TownDialog>
     </Container>
   );
 };

@@ -30,6 +30,7 @@ interface IPlanPartProps {
   isSame?: boolean;
   isAllowed?: boolean;
   isSimpleText?: boolean;
+  isBigger?: boolean;
 }
 
 const PlanPart = ({
@@ -39,6 +40,7 @@ const PlanPart = ({
   isSame,
   isAllowed,
   isSimpleText,
+  isBigger,
 }: IPlanPartProps) => (
   <Container>
     <p>{text}</p>
@@ -49,6 +51,7 @@ const PlanPart = ({
             ? theme.colors.text.primary
             : theme.colors.success,
           fontWeight: isSame ? '100' : '900',
+          fontSize: isBigger ? '2rem' : '1rem',
         }}
       >
         {yesText}
