@@ -76,8 +76,8 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
       code,
       name,
       town,
-      startDate,
-      endDate,
+      startDate: new Date(startDate).toISOString(),
+      endDate: new Date(endDate).toISOString(),
       tournamentType,
     };
 
