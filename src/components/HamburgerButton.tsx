@@ -3,16 +3,13 @@ import { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
 const OpenedButton = css`
-  .top,
-  .bot {
-    y: 45;
-  }
-
   .top {
+    y: 43.5px;
     transform: rotate(-45deg);
   }
 
   .bot {
+    y: 46.5px;
     transform: rotate(45deg);
   }
 
