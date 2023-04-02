@@ -23,7 +23,7 @@ const OldModalContainer = styled.div`
   width: auto;
   max-width: 90vw;
   height: max-content;
-  max-height: 90vh;
+  max-height: 70vh;
   padding: 1.5rem;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1rem;

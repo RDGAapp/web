@@ -5,9 +5,9 @@ import AccreditationDocPdf from 'assets/tournamentAccreditation.pdf';
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
-  width: max-content;
   font-style: italic;
   line-height: 1;
 

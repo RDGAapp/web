@@ -9,8 +9,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 80vw;
-  max-height: 80vh;
+  max-height: 50vh;
+  overflow-x: hidden;
   overflow-y: auto;
 
   a {
