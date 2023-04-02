@@ -8,6 +8,10 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   max-width: max-content;
+  height: max-content;
+  padding: 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 1rem;
 
   ${({ theme }) => theme.media.smallMobile} {
     margin: auto;
@@ -50,21 +54,25 @@ const Social = styled.div`
 `;
 
 const Contact = ({
-  town, phone, phone2 = '', email, site = '', instagram = '', telegram, vk,
+  town,
+  phone,
+  phone2 = '',
+  email,
+  site = '',
+  instagram = '',
+  telegram,
+  vk,
 }: Contact): JSX.Element => (
   <Container>
-    <Town>
-      {town}
-      :
-    </Town>
+    <Town>{town}:</Town>
     <Text>{phone}</Text>
     {phone2 && <Text>{phone2}</Text>}
     <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>
     {site && <Link href={site}>{site.split('//')[1].toUpperCase()}</Link>}
     <Social>
-      {instagram && (<SocialLink name="INSTAGRAM" value={instagram} />)}
-      <SocialLink name="TELEGRAM" value={telegram} />
-      <SocialLink name="VK" value={vk} />
+      {instagram && <SocialLink name='INSTAGRAM' value={instagram} />}
+      <SocialLink name='TELEGRAM' value={telegram} />
+      <SocialLink name='VK' value={vk} />
     </Social>
   </Container>
 );

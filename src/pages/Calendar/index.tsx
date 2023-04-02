@@ -55,8 +55,8 @@ const Legend = styled.div`
   width: max-content;
   max-width: calc(100% - 3rem);
   padding: 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 1rem;
-  box-shadow: 0 0 0.5rem ${({ theme }) => theme.colors.primary};
 
   ${({ theme }) => theme.media.mobile} {
     grid-template-columns: 1fr;
