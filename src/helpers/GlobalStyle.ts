@@ -118,7 +118,7 @@ const GlobalStyle = createGlobalStyle`
     fill: currentColor;
   }
 
-  ul {
+  ul, ol {
     margin: 0;
   }
 `;

@@ -2,24 +2,61 @@ import { useCallback, useEffect, useMemo } from 'react';
 
 import styled from 'styled-components';
 
+import { ReactComponent as InfoSvg } from 'assets/icons/info.svg';
 import CalendarDay from 'components/CalendarDay';
 import PageHeader from 'components/PageHeader';
 import Tournament from 'components/Tournament';
 import TournamentType from 'enums/tournamentType';
 import { getCalendarData } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournamentColorByType';
+import useDialog from 'hooks/useDialog';
 import Loading from 'pages/Loading';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getTournaments } from 'store/tournaments/thunk';
+
+import AccreditationDialog from './AccreditationDialog';
+
+const PreContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+
+  ${({ theme }) => theme.media.mobile} {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const AccreditationButton = styled.button`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: scale 0.2s ease-in-out;
+
+  :hover {
+    scale: 1.1;
+  }
+
+  :active {
+    scale: 0.9;
+  }
+`;
 
 const Legend = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
   align-items: center;
-  width: calc(100% - 3rem);
-  margin: auto auto 2rem;
-  padding: 1rem 0;
+  width: max-content;
+  max-width: calc(100% - 3rem);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5rem ${({ theme }) => theme.colors.primary};
 
   ${({ theme }) => theme.media.mobile} {
     grid-template-columns: 1fr;
@@ -107,6 +144,12 @@ const Calendar = () => {
 
   const calendarData = useMemo(getCalendarData, []);
 
+  const {
+    Dialog: DialogAccreditation,
+    openModal: openModalAccreditation,
+    closeModal: closeModalAccreditation,
+  } = useDialog();
+
   useEffect(() => {
     dispatch(getTournaments());
   }, []);
@@ -134,34 +177,40 @@ const Calendar = () => {
         <Loading />
       ) : (
         <>
-          <Legend>
-            <LegendItem>
-              <TournamentCircle
-                border={
-                  TournamentColorByType[TournamentType.RussianChampionship]
-                }
-              />
-              Чемпионат России
-            </LegendItem>
-            <LegendItem>
-              <TournamentCircle
-                border={TournamentColorByType[TournamentType.Pro]}
-              />
-              Этап Про Тура
-            </LegendItem>
-            <LegendItem>
-              <TournamentCircle
-                border={TournamentColorByType[TournamentType.Federal]}
-              />
-              Федеральный Турнир
-            </LegendItem>
-            <LegendItem>
-              <TournamentCircle
-                border={TournamentColorByType[TournamentType.League]}
-              />
-              Этап региональной лиги
-            </LegendItem>
-          </Legend>
+          <PreContent>
+            <AccreditationButton type='button' onClick={openModalAccreditation}>
+              <InfoSvg height={20} />
+              Как аккредитовать турнир?
+            </AccreditationButton>
+            <Legend>
+              <LegendItem>
+                <TournamentCircle
+                  border={
+                    TournamentColorByType[TournamentType.RussianChampionship]
+                  }
+                />
+                Чемпионат России
+              </LegendItem>
+              <LegendItem>
+                <TournamentCircle
+                  border={TournamentColorByType[TournamentType.Pro]}
+                />
+                Этап Про Тура
+              </LegendItem>
+              <LegendItem>
+                <TournamentCircle
+                  border={TournamentColorByType[TournamentType.Federal]}
+                />
+                Федеральный Турнир
+              </LegendItem>
+              <LegendItem>
+                <TournamentCircle
+                  border={TournamentColorByType[TournamentType.League]}
+                />
+                Этап региональной лиги
+              </LegendItem>
+            </Legend>
+          </PreContent>
           <Container>
             {calendarData.map((month) => (
               <Month key={`month-${month.weeks[0][0].toDateString()}`}>
@@ -207,6 +256,9 @@ const Calendar = () => {
               </Month>
             ))}
           </Container>
+          <DialogAccreditation>
+            <AccreditationDialog onClose={closeModalAccreditation} />
+          </DialogAccreditation>
         </>
       )}
     </>

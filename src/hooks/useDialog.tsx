@@ -2,7 +2,8 @@ import { ReactNode, RefObject, useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
-import Modal from 'components/Modal';
+// * wait 4 better times
+// import Modal from 'components/Modal';
 
 const OldModal = styled.div`
   position: fixed;
@@ -19,9 +20,10 @@ const OldModalContainer = styled.div`
   top: 50%;
   left: 50%;
   z-index: 2;
-  width: 100%;
-  max-width: 23rem;
+  width: auto;
+  max-width: 90vw;
   height: max-content;
+  max-height: 90vh;
   padding: 1.5rem;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1rem;
@@ -31,25 +33,26 @@ const OldModalContainer = styled.div`
 const useDialog = (onClose?: () => void) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  if (typeof HTMLDialogElement === 'function') {
-    return {
-      Dialog: ({ children }: { children: ReactNode }) => (
-        <Modal
-          ref={dialogRef}
-          onClick={(event) => {
-            event.stopPropagation();
-            if ((event.target as HTMLElement).tagName === 'DIALOG')
-              dialogRef.current?.close();
-          }}
-          onClose={onClose}
-        >
-          {children}
-        </Modal>
-      ),
-      openModal: () => dialogRef.current?.showModal(),
-      closeModal: () => dialogRef.current?.close(),
-    };
-  }
+  // * wait 4 better times
+  // if (typeof HTMLDialogElement !== 'function') {
+  //   return {
+  //     Dialog: ({ children }: { children: ReactNode }) => (
+  //       <Modal
+  //         ref={dialogRef}
+  //         onClick={(event) => {
+  //           event.stopPropagation();
+  //           if ((event.target as HTMLElement).tagName === 'DIALOG')
+  //             dialogRef.current?.close();
+  //         }}
+  //         onClose={onClose}
+  //       >
+  //         {children}
+  //       </Modal>
+  //     ),
+  //     openModal: () => dialogRef.current?.showModal(),
+  //     closeModal: () => dialogRef.current?.close(),
+  //   };
+  // }
 
   const [isOpen, setIsOpen] = useState(false);
 

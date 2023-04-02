@@ -59,6 +59,10 @@ const TextContainer = styled.div<{ position: 'left' | 'right' }>`
     text-align: center;
   }
 
+  ul {
+    align-self: flex-start;
+  }
+
   li::marker {
     content: ' 🥏 ';
   }
@@ -263,6 +267,7 @@ const About = (): JSX.Element => {
           type='range'
           min={500}
           max={15000}
+          step={100}
           onChange={(e) => {
             if (!manuallyChanged) {
               setManuallyChanged(true);
