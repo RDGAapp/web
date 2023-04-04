@@ -1,5 +1,6 @@
 import { ReactNode, RefObject, useEffect, useRef, useState } from 'react';
 
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 // * wait 4 better times
@@ -20,11 +21,12 @@ const OldModalContainer = styled.div`
   top: 50%;
   left: 50%;
   z-index: 2;
-  width: auto;
+  width: max-content;
   max-width: 90vw;
   height: max-content;
   max-height: 70vh;
   padding: 1.5rem;
+  overflow-y: auto;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1rem;
   transform: translate(-50%, -50%);
@@ -68,25 +70,28 @@ const useDialog = (onClose?: () => void) => {
 
   return {
     Dialog: ({ children }: { children: ReactNode }) =>
-      isOpen ? (
-        <OldModal
-          ref={dialogRef as unknown as RefObject<HTMLDivElement>}
-          id='old_modal'
-          tabIndex={0}
-          onClick={(event) => {
-            event.stopPropagation();
-            if ((event.target as HTMLElement).id === 'old_modal')
-              setIsOpen(false);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Escape') {
-              setIsOpen(false);
-            }
-          }}
-        >
-          <OldModalContainer>{children}</OldModalContainer>
-        </OldModal>
-      ) : null,
+      isOpen
+        ? createPortal(
+            <OldModal
+              ref={dialogRef as unknown as RefObject<HTMLDivElement>}
+              id='old_modal'
+              tabIndex={0}
+              onClick={(event) => {
+                event.stopPropagation();
+                if ((event.target as HTMLElement).id === 'old_modal')
+                  setIsOpen(false);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Escape') {
+                  setIsOpen(false);
+                }
+              }}
+            >
+              <OldModalContainer>{children}</OldModalContainer>
+            </OldModal>,
+            document.body
+          )
+        : null,
     openModal: () => setIsOpen(true),
     closeModal: () => setIsOpen(false),
   };
