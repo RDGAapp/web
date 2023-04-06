@@ -1,94 +1,130 @@
-import { ReactNode, RefObject, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-// * wait 4 better times
-// import Modal from 'components/Modal';
+import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 
-const OldModal = styled.div`
+const Modal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: ${({ theme }) => theme.zIndex.modal};
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.backdrop};
 `;
 
-const OldModalContainer = styled.div`
+const ModalContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: max-content;
   max-width: 90vw;
   height: max-content;
-  max-height: 70vh;
+  max-height: 90vh;
   padding: 1.5rem;
-  overflow-y: auto;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1rem;
   transform: translate(-50%, -50%);
 `;
 
-const useDialog = (onClose?: () => void) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+const ModalHeader = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
 
-  // * wait 4 better times
-  // if (typeof HTMLDialogElement !== 'function') {
-  //   return {
-  //     Dialog: ({ children }: { children: ReactNode }) => (
-  //       <Modal
-  //         ref={dialogRef}
-  //         onClick={(event) => {
-  //           event.stopPropagation();
-  //           if ((event.target as HTMLElement).tagName === 'DIALOG')
-  //             dialogRef.current?.close();
-  //         }}
-  //         onClose={onClose}
-  //       >
-  //         {children}
-  //       </Modal>
-  //     ),
-  //     openModal: () => dialogRef.current?.showModal(),
-  //     closeModal: () => dialogRef.current?.close(),
-  //   };
-  // }
+  svg {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+
+    :hover {
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+
+  h1 {
+    overflow: hidden;
+    font-weight: 600;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
+
+const ModalContentContainer = styled.div`
+  overflow-y: auto;
+`;
+
+interface IUseDialog {
+  headerText?: string;
+  onClose?: () => void;
+}
+
+const useDialog = ({ headerText, onClose }: IUseDialog) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [shouldChangeBodyStyle, setShouldChangeBodyStyle] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
-      dialogRef.current?.focus();
       document.body.style.overflow = 'hidden';
+      setShouldChangeBodyStyle(true);
       return;
     }
+
+    if (!shouldChangeBodyStyle) return;
+
     document.body.style.overflow = 'auto';
+    setShouldChangeBodyStyle(false);
     onClose?.();
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    dialogRef.current?.focus();
+  }, [dialogRef.current]);
 
   return {
     Dialog: ({ children }: { children: ReactNode }) =>
       isOpen
         ? createPortal(
-            <OldModal
-              ref={dialogRef as unknown as RefObject<HTMLDivElement>}
-              id='old_modal'
+            <Modal
+              ref={dialogRef}
               tabIndex={0}
               onClick={(event) => {
                 event.stopPropagation();
-                if ((event.target as HTMLElement).id === 'old_modal')
+                if (event.target === dialogRef.current)
                   setIsOpen(false);
               }}
               onKeyDown={(event) => {
+                event.stopPropagation();
                 if (event.key === 'Escape') {
                   setIsOpen(false);
                 }
               }}
             >
-              <OldModalContainer>{children}</OldModalContainer>
-            </OldModal>,
+              <ModalContainer>
+                {headerText && (
+                  <ModalHeader>
+                    <h1>{headerText}</h1>
+                    <CrossSvg
+                      height={17}
+                      width={17}
+                      onClick={() => setIsOpen(false)}
+                    />
+                  </ModalHeader>
+                )}
+                <ModalContentContainer>{children}</ModalContentContainer>
+              </ModalContainer>
+            </Modal>,
             document.body
           )
         : null,

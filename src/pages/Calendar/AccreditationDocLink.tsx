@@ -18,24 +18,20 @@ const Container = styled.div`
   a {
     color: ${({ theme }) => theme.colors.secondary};
     font-weight: 600;
-    transition: scale 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
 
     :hover {
-      scale: 1.1;
-    }
-
-    :active {
-      scale: 0.9;
+    color: ${({ theme }) => theme.colors.primary};
     }
   }
 `;
 
 const AccreditationDocLink = (): JSX.Element => (
   <Container>
-    <FileSvg width={24} height={24} />
     <a href={AccreditationDocPdf} download='rdga-tournament-accreditation'>
       Изучить весь порядок Аккредитации
     </a>
+    <FileSvg width={24} height={24} />
     .pdf / 332 КБ
   </Container>
 );

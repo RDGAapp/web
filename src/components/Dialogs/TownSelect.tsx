@@ -3,40 +3,21 @@ import { useContext } from 'react';
 import styled, { css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
-import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 import towns from 'helpers/townsList';
 import { TownContext } from 'hooks/TownContext';
-
-const Header = styled.h1`
-  display: flex;
-  gap: 4rem;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 0 2rem;
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 1;
-
-  svg {
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-
-    :hover {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-  }
-`;
 
 const List = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.5rem;
 `;
 
 const ListElement = styled.p<{ selected: boolean }>`
   display: flex;
   align-items: center;
+  height: 1.2rem;
   font-weight: ${({ selected }) => (selected ? 700 : 400)};
+  font-size: 1rem;
   line-height: 1;
 
   ${({ selected }) =>
@@ -62,33 +43,27 @@ const TownSelectModal = ({ onClose }: TownSelectModalProps): JSX.Element => {
   const { town, changeTown } = useContext(TownContext);
 
   return (
-    <>
-      <Header>
-        {'Выберите город'.toUpperCase()}
-        <CrossSvg height={17} onClick={onClose} />
-      </Header>
-      <List>
-        {!town && (
-          <ListElement selected>
-            <ArrowSvg width={20} height={19} />
-            {'Город не выбран'.toUpperCase()}
-          </ListElement>
-        )}
-        {towns.map((item) => (
-          <ListElement
-            key={item}
-            selected={item === town}
-            onClick={() => {
-              changeTown(item);
-              onClose();
-            }}
-          >
-            {item === town && <ArrowSvg width={20} height={19} />}
-            {item.toUpperCase()}
-          </ListElement>
-        ))}
-      </List>
-    </>
+    <List>
+      {!town && (
+        <ListElement selected>
+          <ArrowSvg width={20} height={19} />
+          Город не выбран
+        </ListElement>
+      )}
+      {towns.map((item) => (
+        <ListElement
+          key={item}
+          selected={item === town}
+          onClick={() => {
+            changeTown(item);
+            onClose();
+          }}
+        >
+          {item === town && <ArrowSvg width={20} height={19} />}
+          {item}
+        </ListElement>
+      ))}
+    </List>
   );
 };
 

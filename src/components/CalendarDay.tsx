@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 import Tournament from 'components/Tournament';
 import TournamentType from 'enums/tournamentType';
 import { getMonthName, spellMonth } from 'helpers/dateHelpers';
@@ -35,25 +34,6 @@ const TournamentCircle = styled.div<{ border: string }>`
   border-radius: 100vh;
 `;
 
-const Header = styled.h1`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 0 2rem;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-
-  svg {
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-
-    :hover {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-  }
-`;
-
 const TournamentsList = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,16 +44,22 @@ const TournamentsList = styled.div`
 
 interface Props {
   day: Date;
-  month: { monthName: string, shouldGreyOut: boolean };
+  month: { monthName: string; shouldGreyOut: boolean };
   tournaments: Tournament[];
 }
 
 const CalendarDay = ({ day, month, tournaments }: Props) => {
   const { isSmallMobile } = useMatchMedia();
 
-  const { Dialog, openModal, closeModal } = useDialog();
+  const { Dialog, openModal } = useDialog({
+    headerText: `Турниры ${day.getDate()} ${spellMonth(day.getMonth())}`,
+  });
 
-  const getDayColor = (day: Date, monthName: string, shouldGreyOut: boolean) => {
+  const getDayColor = (
+    day: Date,
+    monthName: string,
+    shouldGreyOut: boolean
+  ) => {
     if (tournaments.length !== 0) {
       return theme.colors.primary;
     }
@@ -94,21 +80,18 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
     >
       {day.getDate()}
       <TournamentCirclesContainer>
-        {tournaments
-          .map((tournament) => (
-            <TournamentCircle
-              key={`calendar-${tournament.name}-${tournament.town}`}
-              title={tournament.name}
-              border={TournamentColorByType[tournament.tournamentType as TournamentType]}
-            />
-          ))}
+        {tournaments.map((tournament) => (
+          <TournamentCircle
+            key={`calendar-${tournament.name}-${tournament.town}`}
+            title={tournament.name}
+            border={
+              TournamentColorByType[tournament.tournamentType as TournamentType]
+            }
+          />
+        ))}
       </TournamentCirclesContainer>
       {tournaments.length > 0 && (
         <Dialog>
-          <Header>
-            {`Турниры ${day.getDate()} ${spellMonth(day.getMonth())}`}
-            <CrossSvg height={17} onClick={closeModal} />
-          </Header>
           <TournamentsList>
             {tournaments.map((tournament) => (
               <Tournament

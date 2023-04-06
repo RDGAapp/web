@@ -18,19 +18,19 @@ const TournamentsSection = () => {
     Dialog: CreateTournamentDialog,
     openModal: openCreateTournamentModal,
     closeModal: closeCreateTournamentModal,
-  } = useDialog();
+  } = useDialog({});
 
   const {
     Dialog: DeleteTournamentDialog,
     openModal: openDeleteTournamentModal,
     closeModal: closeDeleteTournamentModal,
-  } = useDialog();
+  } = useDialog({});
 
   const {
     Dialog: UpdateTournamentDialog,
     openModal: openUpdateTournamentModal,
     closeModal: closeUpdateTournamentModal,
-  } = useDialog();
+  } = useDialog({});
 
   return (
     <>

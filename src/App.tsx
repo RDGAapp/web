@@ -1,9 +1,9 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import AdminPanel from 'components/Dialogs/AdminPanel';
+import AdminPanelSections from 'components/Dialogs/AdminPanelSections';
 import Layout from 'components/Layout';
 import GlobalStyle from 'helpers/GlobalStyle';
 import routes from 'helpers/routes';
@@ -21,13 +21,9 @@ const Service = lazy(() => import('pages/Service'));
 const ContactsPage = lazy(() => import('pages/Contacts'));
 
 const App = (): JSX.Element => {
-  const [isAdminAccessible, setIsAdminAccessible] = useState<boolean>(false);
-
-  const {
-    Dialog: AdminDialog,
-    openModal: openAdminModal,
-    closeModal: closeAdminModal,
-  } = useDialog(() => setIsAdminAccessible(false));
+  const { Dialog: AdminDialog, openModal: openAdminModal } = useDialog({
+    headerText: 'Админ консоль',
+  });
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -38,20 +34,14 @@ const App = (): JSX.Element => {
         event.metaKey &&
         event.shiftKey
       ) {
-        setIsAdminAccessible(true);
+        openAdminModal();
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
 
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [setIsAdminAccessible]);
-
-  useEffect(() => {
-    if (!isAdminAccessible) return;
-
-    openAdminModal();
-  }, [isAdminAccessible, openAdminModal]);
+  }, [openAdminModal]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -69,12 +59,10 @@ const App = (): JSX.Element => {
                 <Route path={routes.Contacts} element={<ContactsPage />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
-              {isAdminAccessible && (
-                <AdminDialog>
-                  <AdminPanel onClose={closeAdminModal} />
-                </AdminDialog>
-              )}
             </Suspense>
+            <AdminDialog>
+              <AdminPanelSections />
+            </AdminDialog>
           </Layout>
         </TownProvider>
       </BrowserRouter>

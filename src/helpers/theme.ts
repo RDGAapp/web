@@ -38,6 +38,7 @@ const theme = {
     header: 101,
     selectedPlayerCard: 800,
     spinner: 100,
+    modal: 999,
   },
 };
 

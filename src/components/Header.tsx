@@ -117,7 +117,7 @@ const Header = (): JSX.Element => {
     Dialog: TownDialog,
     openModal: openTownModal,
     closeModal: closeTownModal,
-  } = useDialog();
+  } = useDialog({ headerText: 'Выберите город' });
 
   return (
     <Container>

@@ -144,11 +144,8 @@ const Calendar = () => {
 
   const calendarData = useMemo(getCalendarData, []);
 
-  const {
-    Dialog: DialogAccreditation,
-    openModal: openModalAccreditation,
-    closeModal: closeModalAccreditation,
-  } = useDialog();
+  const { Dialog: DialogAccreditation, openModal: openModalAccreditation } =
+    useDialog({ headerText: 'Аккредитовать свой турнир' });
 
   useEffect(() => {
     dispatch(getTournaments());
@@ -257,7 +254,7 @@ const Calendar = () => {
             ))}
           </Container>
           <DialogAccreditation>
-            <AccreditationDialog onClose={closeModalAccreditation} />
+            <AccreditationDialog />
           </DialogAccreditation>
         </>
       )}

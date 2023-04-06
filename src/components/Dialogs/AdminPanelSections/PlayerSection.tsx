@@ -20,27 +20,27 @@ const PlayerSection = () => {
     Dialog: CreatePlayerDialog,
     openModal: openCreatePlayerModal,
     closeModal: closeCreatePlayerModal,
-  } = useDialog();
+  } = useDialog({});
   const {
     Dialog: DeletePlayerDialog,
     openModal: openDeletePlayerModal,
     closeModal: closeDeletePlayerModal,
-  } = useDialog();
+  } = useDialog({});
   const {
     Dialog: UpdateRatingDialog,
     openModal: openUpdateRatingModal,
     closeModal: closeUpdateRatingModal,
-  } = useDialog();
+  } = useDialog({});
   const {
     Dialog: UpdatePlayerDialog,
     openModal: openUpdatePlayerModal,
     closeModal: closeUpdatePlayerModal,
-  } = useDialog();
+  } = useDialog({});
   const {
     Dialog: UpdateRatingJsonDialog,
     openModal: openUpdateRatingJsonModal,
     closeModal: closeUpdateRatingJsonModal,
-  } = useDialog();
+  } = useDialog({});
 
   return (
     <>

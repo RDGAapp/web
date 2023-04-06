@@ -55,7 +55,13 @@ const ContactsPage = () => (
       <PresidentTextContainer>
         <h3>Сартаков Иван</h3>
         <h4>Руководитель РДГА</h4>
-        <a href='mailto:sartakov@yandex.ru'>sartakov@yandeх.ru</a>
+        <a href='mailto:sartakov@yandex.ru' target='_blank' rel='noreferrer'>
+          sartakov@yandeх.ru
+        </a>
+        <br />
+        <a href='https://t.me/Sartakov_Ivan' target='_blank' rel='noreferrer'>
+          Telegram
+        </a>
       </PresidentTextContainer>
     </PresidentContainer>
     <Contacts />
