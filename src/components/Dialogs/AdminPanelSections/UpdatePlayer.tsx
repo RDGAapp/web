@@ -20,6 +20,7 @@ const UpdatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
   const [metrixNumber, setMetrixNumber] = useState('');
   const [metrixRating, setMetrixRating] = useState('');
   const [priority, setPriority] = useState('0');
+  const [activeTo, setActiveTo] = useState(new Date().getFullYear());
 
   const inputs = [
     {
@@ -91,6 +92,15 @@ const UpdatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
       label: 'Приоритет (пока что не используется, на вырост)',
       type: 'number',
     },
+    {
+      value: activeTo,
+      onChange: setActiveTo,
+      label: 'Год, до которого активно членство игрока',
+      type: 'number',
+      min: new Date().getFullYear(),
+      step: 1,
+      required: true,
+    },
   ];
 
   const onSubmit = async () => {
@@ -106,6 +116,7 @@ const UpdatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
       metrixNumber: Number(metrixNumber) || null,
       metrixRating: Number(metrixRating) || null,
       priority: Number(priority) || 0,
+      activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
     } as Player;
 
     return updatePlayer(player, Number(rdgaNumber));
@@ -125,6 +136,7 @@ const UpdatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
     setMetrixNumber(json.metrixNumber || '');
     setMetrixRating(json.metrixRating || '');
     setPriority(json.priority);
+    setActiveTo(new Date(json.activeTo).getFullYear());
 
     return response;
   };

@@ -130,6 +130,9 @@ const AdminFormLayout = ({
             required={input.required}
             accept={input.accept}
             variants={input.variants}
+            min={input.min}
+            max={input.max}
+            step={input.step}
           />
         ))}
       </Form>

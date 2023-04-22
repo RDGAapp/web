@@ -49,7 +49,8 @@ export const updatePlayerRating = (rdgaNumber: number, newRating: number) =>
 
 export const getTournaments = () => fetch(getApiUrl(`/tournaments`));
 
-export const getTournament = (code: string) => fetch(getApiUrl(`/tournaments/${code}`));
+export const getTournament = (code: string) =>
+  fetch(getApiUrl(`/tournaments/${code}`));
 
 export const createTournament = (tournament: Tournament) =>
   fetch(getApiUrl('/tournaments'), {
@@ -60,7 +61,10 @@ export const createTournament = (tournament: Tournament) =>
     body: JSON.stringify(tournament),
   });
 
-export const updateTournament = (tournament: Omit<Tournament, 'code'>, code: string) =>
+export const updateTournament = (
+  tournament: Omit<Tournament, 'code'>,
+  code: string
+) =>
   fetch(getApiUrl(`/tournaments/${code}`), {
     method: 'PUT',
     headers: {
@@ -69,7 +73,12 @@ export const updateTournament = (tournament: Omit<Tournament, 'code'>, code: str
     body: JSON.stringify(tournament),
   });
 
-  export const deleteTournament = (tournamentCode: string) =>
-    fetch(getApiUrl(`/tournaments/${tournamentCode}`), {
-      method: 'DELETE',
-    });
+export const deleteTournament = (tournamentCode: string) =>
+  fetch(getApiUrl(`/tournaments/${tournamentCode}`), {
+    method: 'DELETE',
+  });
+
+export const activatePlayer = (rdgaNumber: number) =>
+  fetch(getApiUrl(`/players/${rdgaNumber}/activate`), {
+    method: 'PATCH',
+  });

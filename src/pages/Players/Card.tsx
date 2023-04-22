@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Avatar from 'components/Avatar';
 import RatingChangeBadge from 'components/RatingChangeBadge';
 
-const Container = styled(motion.div)`
+const Container = styled(motion.button)`
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -28,6 +28,13 @@ const Container = styled(motion.div)`
   :active {
     border: 1px solid ${({ theme }) => theme.colors.secondary};
   }
+
+  :disabled {
+    color: white;
+    background-color: #b2b1b1af;
+    border: 1px solid grey;
+    cursor: not-allowed;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -44,6 +51,7 @@ const MainInformation = styled.p`
   font-weight: bold;
   font-size: 1rem;
   white-space: nowrap;
+  text-align: start;
   text-overflow: ellipsis;
 `;
 
@@ -59,37 +67,42 @@ interface Props {
   setSelected: (player: Player) => void;
 }
 
-const Card = ({ player, setSelected }: Props) => (
-  <Container
-    layoutId={player.rdgaNumber.toString()}
-    variants={{
-      hidden: { y: 100, opacity: 0 },
-      visible: { y: 0, opacity: 1 },
-    }}
-    initial='hidden'
-    whileInView='visible'
-    viewport={{ once: true }}
-    onClick={() => setSelected(player)}
-  >
-    <Avatar />
-    <TextContainer>
-      <MainInformation title={`${player.name} ${player.surname || ''}`}>
-        {`${player.name} ${player.surname || ''}`}
-      </MainInformation>
-      <MainInformation>{`#${player.rdgaNumber}`}</MainInformation>
-      {player.rdgaRating ? (
-        <AdditionalInformation>
-          {`Рейтинг: ${player.rdgaRating}`}
-          <RatingChangeBadge
-            rating={player.rdgaRating}
-            ratingChange={player.rdgaRatingChange}
-          />
-        </AdditionalInformation>
-      ) : (
-        ''
-      )}
-    </TextContainer>
-  </Container>
-);
+const Card = ({ player, setSelected }: Props) => {
+  const disabled = player.activeTo < new Date().toISOString();
+
+  return (
+    <Container
+      layoutId={player.rdgaNumber.toString()}
+      variants={{
+        hidden: { y: 100, opacity: 0 },
+        visible: { y: 0, opacity: 1 },
+      }}
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true }}
+      onClick={() => setSelected(player)}
+      disabled={disabled}
+    >
+      <Avatar disabled={disabled} />
+      <TextContainer>
+        <MainInformation title={`${player.name} ${player.surname || ''}`}>
+          {`${player.name} ${player.surname || ''}`}
+        </MainInformation>
+        <MainInformation>{`#${player.rdgaNumber}`}</MainInformation>
+        {player.rdgaRating ? (
+          <AdditionalInformation>
+            {`Рейтинг: ${player.rdgaRating}`}
+            <RatingChangeBadge
+              rating={player.rdgaRating}
+              ratingChange={player.rdgaRatingChange}
+            />
+          </AdditionalInformation>
+        ) : (
+          ''
+        )}
+      </TextContainer>
+    </Container>
+  );
+};
 
 export default Card;

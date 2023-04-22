@@ -10,6 +10,8 @@ import UpdateRating from 'components/Dialogs/AdminPanelSections/UpdateRating';
 import UpdateRatingJson from 'components/Dialogs/AdminPanelSections/UpdateRatingJson';
 import useDialog from 'hooks/useDialog';
 
+import ActivatePlayer from './ActivatePlayer';
+
 const Button = styled.button`
   ${ButtonOutlined}
   width: max-content;
@@ -41,6 +43,11 @@ const PlayerSection = () => {
     openModal: openUpdateRatingJsonModal,
     closeModal: closeUpdateRatingJsonModal,
   } = useDialog({});
+  const {
+    Dialog: ActivatePlayerDialog,
+    openModal: openActivatePlayerModal,
+    closeModal: closeActivatePlayerModal,
+  } = useDialog({});
 
   return (
     <>
@@ -61,6 +68,9 @@ const PlayerSection = () => {
         <Button type='button' onClick={openUpdateRatingJsonModal}>
           Обновить рейтинг (json)
         </Button>
+        <Button type='button' onClick={openActivatePlayerModal}>
+          Активировать подписку игрока
+        </Button>
       </Section>
       <CreatePlayerDialog>
         <CreatePlayer onClose={closeCreatePlayerModal} />
@@ -77,6 +87,9 @@ const PlayerSection = () => {
       <UpdateRatingJsonDialog>
         <UpdateRatingJson onClose={closeUpdateRatingJsonModal} />
       </UpdateRatingJsonDialog>
+      <ActivatePlayerDialog>
+        <ActivatePlayer onClose={closeActivatePlayerModal} />
+      </ActivatePlayerDialog>
     </>
   );
 };

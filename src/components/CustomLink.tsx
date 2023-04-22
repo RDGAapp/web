@@ -1,11 +1,12 @@
 import { FunctionComponent, SVGProps } from 'react';
 
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { HashLink } from 'react-router-hash-link';
+import styled, { css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 
-const StyledLink = styled(Link)`
+const LinkStyles = css`
   position: relative;
   width: fit-content;
   color: inherit;
@@ -60,14 +61,20 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  ${LinkStyles}
+`;
+
+const StyledHashLink = styled(HashLink)`
+  ${LinkStyles}
+`;
+
 interface ICustomLinkProps {
   route: string;
   text: string;
   isExternal?: boolean;
   onClick?: () => void;
-  CustomImage?: FunctionComponent<
-    SVGProps<SVGSVGElement> & { title?: string }
-  >;
+  CustomImage?: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string }>;
 }
 
 const CustomLink = ({
@@ -76,19 +83,34 @@ const CustomLink = ({
   onClick,
   isExternal = false,
   CustomImage,
-}: ICustomLinkProps) => (
-  <StyledLink
-    to={route}
-    onClick={() => onClick?.()}
-    title={text}
-    rel={isExternal ? 'noreferrer' : ''}
-    target={isExternal ? '_blank' : ''}
-  >
-    <>
-      {CustomImage ? <CustomImage /> : <ArrowSvg />}
-      {text}
-    </>
-  </StyledLink>
-);
+}: ICustomLinkProps) =>
+  route.includes('#') ? (
+    <StyledHashLink
+      to={route}
+      onClick={() => onClick?.()}
+      title={text}
+      rel={isExternal ? 'noreferrer' : ''}
+      target={isExternal ? '_blank' : ''}
+      smooth
+    >
+      <>
+        {CustomImage ? <CustomImage /> : <ArrowSvg />}
+        {text}
+      </>
+    </StyledHashLink>
+  ) : (
+    <StyledLink
+      to={route}
+      onClick={() => onClick?.()}
+      title={text}
+      rel={isExternal ? 'noreferrer' : ''}
+      target={isExternal ? '_blank' : ''}
+    >
+      <>
+        {CustomImage ? <CustomImage /> : <ArrowSvg />}
+        {text}
+      </>
+    </StyledLink>
+  );
 
 export default CustomLink;

@@ -69,14 +69,16 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
     return shouldGreyOut ? 'white' : '#eaeaea';
   };
 
+  const shouldOpenModal = isSmallMobile && tournaments.length > 0;
+
   return (
     <Container
       key={`day-${day.toDateString()}`}
       style={{
         backgroundColor: getDayColor(day, month.monthName, month.shouldGreyOut),
-        cursor: isSmallMobile && tournaments.length > 0 ? 'pointer' : 'default',
+        cursor: shouldOpenModal ? 'pointer' : 'default',
       }}
-      onClick={isSmallMobile ? openModal : undefined}
+      onClick={shouldOpenModal ? openModal : undefined}
     >
       {day.getDate()}
       <TournamentCirclesContainer>

@@ -7,5 +7,7 @@ interface Paginated<T> {
     to: number,
     total: number
     lastPage: number,
+    nextPage: null | number,
+    prevPage: null | number,
   }
 }

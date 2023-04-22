@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useLayoutEffect } from 'react';
 
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
@@ -35,6 +35,10 @@ const shouldShowVideo = new Set<string>([routes.Home]);
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   const location = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [location.pathname]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useLayoutEffect } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -25,7 +25,7 @@ const App = (): JSX.Element => {
     headerText: 'Админ консоль',
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (
         (event.key === '`' || event.key === '~') &&

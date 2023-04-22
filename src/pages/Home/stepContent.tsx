@@ -106,7 +106,10 @@ const StepContent: Record<number, IStepContent> = {
           то становись членом РДГА и тогда твой рейтинг будет обновляться раз в
           месяц вместе со всеми!
         </p>
-        <CustomLink route={routes.About} text='Вступить в РДГА' />
+        <CustomLink
+          route={`${routes.About}${routes.Join}`}
+          text='Вступить в РДГА'
+        />
         <p>Ближайший турнир можно найти на странице турниров по ссылке ниже</p>
         <CustomLink route={routes.Calendar} text='Найти ближайший турнир' />
       </>
