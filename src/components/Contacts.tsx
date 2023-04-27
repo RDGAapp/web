@@ -22,6 +22,7 @@ const Contacts = () => (
     {contacts.map((contact) => (
       <Contact
         key={contact.town}
+        Image={contact.Image}
         phone={contact.phone}
         phone2={contact.phone2}
         email={contact.email}
