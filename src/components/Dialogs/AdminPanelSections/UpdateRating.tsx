@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import AdminFormLayout from 'components/Dialogs/AdminPanelSections/AdminFormLayout';
-import { deletePlayer } from 'helpers/api';
+import { updatePlayerRating } from 'helpers/api';
 
 interface UpdateRatingProps {
   onClose: () => void;
@@ -28,7 +28,7 @@ const UpdateRating = ({ onClose }: UpdateRatingProps): JSX.Element => {
     },
   ];
 
-  const onSubmit = () => deletePlayer(Number(playerRating));
+  const onSubmit = () => updatePlayerRating(Number(rdgaNumber), Number(playerRating));
 
   return (
     <AdminFormLayout
