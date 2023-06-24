@@ -10,6 +10,7 @@ import { ReactComponent as HomeSvg } from 'assets/icons/home.svg';
 import { ReactComponent as InfoSvg } from 'assets/icons/info.svg';
 import { ReactComponent as LocationSvg } from 'assets/icons/location-simple.svg';
 import { ReactComponent as ShopSvg } from 'assets/icons/shop.svg';
+import { ReactComponent as SponsorSvg } from 'assets/icons/sponsor.svg';
 import ButtonUnderlined from 'components/ButtonUnderlined';
 import CustomLink from 'components/CustomLink';
 import HamburgerButton from 'components/HamburgerButton';
@@ -106,6 +107,7 @@ const links = [
   { route: routes.About, text: 'О нас', svg: InfoSvg },
   { route: routes.Service, text: 'Услуги', svg: ShopSvg },
   { route: routes.Contacts, text: 'Контакты', svg: ContactsSvg },
+  { route: routes.Partners, text: 'Наши партнеры', svg: SponsorSvg },
 ];
 
 const Header = (): JSX.Element => {

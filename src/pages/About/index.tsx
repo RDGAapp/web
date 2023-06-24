@@ -4,97 +4,18 @@ import styled from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import RdgaImg from 'assets/images/neutral-rdga.webp';
-import PartnersImg from 'assets/images/partners.webp';
 import CustomLink from 'components/CustomLink';
+import {
+  Header,
+  TextContainer,
+  Row,
+  PageContainer,
+  ImageContainer,
+  CustomImage,
+} from 'components/PageContent';
 import RdgaDocLink from 'components/RdgaDocLink';
 import { PlanContent, PlanContentType } from 'pages/About/planContent';
 import PlanPart from 'pages/About/PlanPart';
-
-const PageContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  justify-items: center;
-  margin-top: 2rem;
-  padding: 1rem;
-
-  a {
-    color: ${({ theme }) => theme.colors.secondary};
-  }
-`;
-
-const Row = styled.div<{ imagePosition: 'left' | 'right' }>`
-  display: grid;
-
-  ${({ imagePosition }) =>
-    imagePosition === 'left'
-      ? "grid-template-areas: 'picture description'"
-      : "grid-template-areas: 'description picture'"};
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-
-  ${({ theme }) => theme.media.mobile} {
-    grid-template-areas: 'picture' 'description';
-    grid-template-columns: 1fr;
-  }
-`;
-
-const TextContainer = styled.div<{ position: 'left' | 'right' }>`
-  display: flex;
-  flex-direction: column;
-  grid-area: description;
-  gap: 0.8rem;
-  align-items: ${({ position }) =>
-    position === 'left' ? 'flex-end' : 'flex-start'};
-  align-self: flex-start;
-  width: 90%;
-  margin: auto;
-  font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 1.5rem;
-  text-align: ${({ position }) => (position === 'left' ? 'end' : 'start')};
-
-  ${({ theme }) => theme.media.mobile} {
-    align-items: center;
-    text-align: center;
-  }
-
-  ul {
-    align-self: flex-start;
-  }
-
-  li::marker {
-    content: ' 🥏 ';
-  }
-`;
-
-const ImageContainer = styled.div`
-  grid-area: picture;
-  width: 65%;
-  margin: auto;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 1rem;
-`;
-
-const CustomImage = styled.img`
-  width: 100%;
-  object-fit: cover;
-  border-radius: 1rem;
-  aspect-ratio: 1;
-  rotate: 5deg;
-  transition: rotate 0.3s ease-in-out;
-
-  :hover {
-    rotate: 0deg;
-  }
-`;
-
-const Header = styled.h1`
-  font-weight: 400;
-  font-size: 2rem;
-  font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
-  line-height: 1;
-`;
 
 const PlanContainer = styled.div`
   display: grid;
@@ -223,7 +144,7 @@ const About = (): JSX.Element => {
     <PageContainer>
       <Row imagePosition='right'>
         <ImageContainer>
-          <CustomImage src={RdgaImg} />
+          <CustomImage src={RdgaImg} position='left' />
         </ImageContainer>
         <TextContainer position='left'>
           <Header>Что такое РДГА?</Header>
@@ -381,47 +302,6 @@ const About = (): JSX.Element => {
           представителей РДГА.
         </Step>
       </PlanContainer>
-      <Row imagePosition='left'>
-        <ImageContainer>
-          <CustomImage src={PartnersImg} />
-        </ImageContainer>
-        <TextContainer position='right'>
-          <Header>Наши партнеры</Header>
-          <p>Магазины дисков:</p>
-          <ul>
-            <li>
-              <CustomLink
-                route='https://ahoydiscs.ru'
-                text='Магазин Ahoy Discs'
-                isExternal
-              />
-              <br />
-              скидка на товары с отметкой &quot;РДГА&quot;
-            </li>
-            <li>
-              Скидка все диски Prodiscus у представителей компании в регионах
-              (Сартаков Иван, Макаров Александр, Ярмушевич Иван)
-            </li>
-          </ul>
-          <p>Изготовители корзин:</p>
-          <ul>
-            <li>
-              <CustomLink
-                route='https://t.me/makarov_discgolf'
-                text='Макаров Александр'
-                isExternal
-              />
-            </li>
-            <li>
-              <CustomLink
-                route='https://t.me/Vladimirli1'
-                text='Владимир Ли'
-                isExternal
-              />
-            </li>
-          </ul>
-        </TextContainer>
-      </Row>
     </PageContainer>
   );
 };

@@ -5,6 +5,12 @@ import Image1 from 'assets/images/home1.webp';
 import Image2 from 'assets/images/home2.webp';
 import Image3 from 'assets/images/home3.webp';
 import RussiaVideo from 'assets/images/russia-video.webp';
+import {
+  TextContainer,
+  Row,
+  ImageContainer,
+  CustomImage,
+} from 'components/PageContent';
 import RulesLink from 'components/RulesLink';
 import SubHeader from 'components/SubHeader';
 import Stepper from 'pages/Home/Stepper';
@@ -27,65 +33,6 @@ const VideoContainer = styled.div`
 
   ${({ theme }) => theme.media.mobile} {
     grid-template-columns: 1fr;
-  }
-`;
-
-const Row = styled.div<{ imagePosition: 'left' | 'right' }>`
-  display: grid;
-
-  ${({ imagePosition }) =>
-    imagePosition === 'left'
-      ? "grid-template-areas: 'picture description'"
-      : "grid-template-areas: 'description picture'"};
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-
-  ${({ theme }) => theme.media.mobile} {
-    grid-template-areas: 'picture' 'description';
-    grid-template-columns: 1fr;
-  }
-`;
-
-const TextContainer = styled.div<{ position: 'left' | 'right' }>`
-  display: flex;
-  flex-direction: column;
-  grid-area: description;
-  gap: 0.8rem;
-  align-self: flex-start;
-  width: 90%;
-  margin: auto;
-  font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 1.5rem;
-  text-align: ${({ position }) => (position === 'left' ? 'end' : 'start')};
-
-  ${({ theme }) => theme.media.mobile} {
-    text-align: center;
-  }
-
-  li::marker {
-    content: ' 🥏 ';
-  }
-`;
-
-const ImageContainer = styled.div`
-  grid-area: picture;
-  width: 65%;
-  margin: auto;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 1rem;
-`;
-
-const CustomImage = styled.img<{ position: 'left' | 'right' }>`
-  width: 100%;
-  object-fit: cover;
-  border-radius: 1rem;
-  aspect-ratio: 1;
-  rotate: ${({ position }) => (position === 'left' ? '5deg' : '-5deg')};
-  transition: rotate 0.3s ease-in-out;
-
-  :hover {
-    rotate: 0deg;
   }
 `;
 

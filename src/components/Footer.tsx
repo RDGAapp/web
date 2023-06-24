@@ -53,17 +53,16 @@ const Footer = (): JSX.Element => {
         <CopyrightContainer>
           <Copyright>© АССОЦИАЦИЯ ИГРОКОВ В ДИСК-ГОЛЬФ</Copyright>
           <Copyright>
-            Designed by{' '}
-            <a href='https://www.akh.digital/' rel='noreferrer' target='_blank'>
-              Aleks Kholopov
-            </a>{' '}
-            and{' '}
+            Наши соц сети:{' '}
+            <a href='https://vk.com/discgolf' rel='noreferrer' target='_blank'>
+              Telegram
+            </a>{', '}
             <a
-              href='https://ilyacherkasov.github.io'
+              href='https://t.me/discgolf_russia'
               rel='noreferrer'
               target='_blank'
             >
-              Ilya Cherkasov
+              ВКонтакте
             </a>
           </Copyright>
         </CopyrightContainer>

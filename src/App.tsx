@@ -19,6 +19,7 @@ const NotFound = lazy(() => import('pages/NotFound'));
 const Players = lazy(() => import('pages/Players'));
 const Service = lazy(() => import('pages/Service'));
 const ContactsPage = lazy(() => import('pages/Contacts'));
+const PartnersPage = lazy(() => import('pages/Partners'));
 
 const App = (): JSX.Element => {
   const { Dialog: AdminDialog, openModal: openAdminModal } = useDialog({
@@ -57,6 +58,7 @@ const App = (): JSX.Element => {
                 <Route path={routes.Calendar} element={<Calendar />} />
                 <Route path={routes.Players} element={<Players />} />
                 <Route path={routes.Contacts} element={<ContactsPage />} />
+                <Route path={routes.Partners} element={<PartnersPage />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Suspense>

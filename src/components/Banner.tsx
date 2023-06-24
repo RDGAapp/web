@@ -18,7 +18,7 @@ const Container = styled.div<{ image: string }>`
   max-height: 28rem;
   aspect-ratio: 16/9;
   margin: 0 0 1rem;
-  background: center url("${({ image }) => image}");
+  background: center url('${({ image }) => image}');
   background-size: cover;
   border-radius: 2.5rem;
 `;
@@ -32,7 +32,7 @@ const LinkCta = styled(HashLink)`
   color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 400;
   font-size: 1.2rem;
-  font-family: "${({ theme }) => theme.fontFamily.header}", sans-serif;
+  font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
   line-height: 1;
   text-decoration: none;
   background-color: ${({ theme }) => theme.colors.primary};
@@ -86,6 +86,14 @@ const bannerContent = new Map<string, Record<string, string>>([
       link: `${routes.About}${routes.Join}`,
     },
   ],
+  [
+    routes.Partners,
+    {
+      image: SponsorBackground,
+      text: 'Поддержать РДГА',
+      link: 'https://www.tinkoff.ru/cf/9mJN821ed7D',
+    },
+  ],
 ]);
 
 const defaultBannerContent = {
@@ -110,7 +118,12 @@ const Banner = (): JSX.Element => {
 
   return (
     <Container image={image}>
-      <LinkCta to={link} smooth>
+      <LinkCta
+        to={link}
+        smooth
+        rel={link.startsWith('/') ? '' : 'noreferrer'}
+        target={link.startsWith('/') ? '' : '_blank'}
+      >
         {text}
         <ArrowDown />
       </LinkCta>

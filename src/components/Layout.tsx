@@ -29,15 +29,40 @@ const shouldShowBanner = new Set<string>([
   routes.Players,
   routes.Service,
   routes.Calendar,
+  routes.Partners,
 ]);
 
 const shouldShowVideo = new Set<string>([routes.Home]);
+
+let scrollToTimeout: null | NodeJS.Timeout = null;
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   const location = useLocation();
 
   useLayoutEffect(() => {
+    if (location.hash) {
+      const tryToScrollToElement = () => {
+        const elementId = location.hash.replaceAll('#', '');
+
+        if (elementId) {
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.scrollIntoView();
+            return;
+          }
+        }
+
+        scrollToTimeout = setTimeout(tryToScrollToElement, 500);
+      };
+
+      tryToScrollToElement();
+    }
+
     window.scrollTo({ top: 0 });
+
+    return () => {
+      if (scrollToTimeout) clearTimeout(scrollToTimeout);
+    };
   }, [location.pathname]);
 
   return (

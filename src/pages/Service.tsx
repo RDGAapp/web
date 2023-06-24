@@ -1,85 +1,13 @@
-import styled from 'styled-components';
-
 import DiscsShopImg from 'assets/images/service1.webp';
 import ServiceImg from 'assets/images/service2.webp';
-
-const PageContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  justify-items: center;
-  margin-top: 2rem;
-  padding: 1rem;
-`;
-const Row = styled.div<{ imagePosition: 'left' | 'right' }>`
-  display: grid;
-
-  ${({ imagePosition }) =>
-    imagePosition === 'left'
-      ? "grid-template-areas: 'picture description'"
-      : "grid-template-areas: 'description picture'"};
-
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-
-  ${({ theme }) => theme.media.mobile} {
-    grid-template-areas: 'picture' 'description';
-    grid-template-columns: 1fr;
-  }
-`;
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  grid-area: description;
-  gap: 0.8rem;
-  align-self: flex-start;
-  width: 90%;
-  margin: auto;
-  font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 1.5rem;
-
-  ${({ theme }) => theme.media.mobile} {
-    text-align: center;
-  }
-
-  li::marker {
-    content: ' 🥏 ';
-  }
-
-  ul {
-    margin: 0;
-  }
-`;
-
-const ImageContainer = styled.div`
-  grid-area: picture;
-  width: 65%;
-  margin: auto;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 1rem;
-`;
-
-const CustomImage = styled.img<{ position: 'left' | 'right' }>`
-  width: 100%;
-  object-fit: cover;
-  border-radius: 1rem;
-  aspect-ratio: 1;
-  rotate: ${({ position }) => (position === 'left' ? '5deg' : '-5deg')};
-  transition: rotate 0.3s ease-in-out;
-
-  :hover {
-    rotate: 0deg;
-  }
-`;
-
-const Header = styled.h3`
-  font-weight: 400;
-  font-size: 2rem;
-  font-family: "${({ theme }) => theme.fontFamily.header}", sans-serif;
-  line-height: 1;
-`;
+import {
+  CustomImage,
+  Header,
+  ImageContainer,
+  PageContainer,
+  Row,
+  TextContainer,
+} from 'components/PageContent';
 
 const Service = (): JSX.Element => (
   <PageContainer>
@@ -87,7 +15,7 @@ const Service = (): JSX.Element => (
       <ImageContainer>
         <CustomImage src={DiscsShopImg} position='left' />
       </ImageContainer>
-      <TextContainer>
+      <TextContainer position='right'>
         <Header>Диски для точных попаданий и невероятных траекторий!</Header>
         <p>
           Возможно твой первый диск был куплен в спорттоварах или найден на
@@ -108,7 +36,7 @@ const Service = (): JSX.Element => (
       </TextContainer>
     </Row>
     <Row imagePosition='right'>
-      <TextContainer>
+      <TextContainer position='left'>
         <Header>Предоставляемые услуги:</Header>
         <ul>
           <li>
