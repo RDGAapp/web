@@ -16,7 +16,7 @@ describe('routesList helper', () => {
       '#join',
       '/service',
       '/calendar',
-      '/sponsors',
+      '/partners',
     ]);
   });
 });

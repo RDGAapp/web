@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
+import { ReactComponent as AhoySvg } from 'assets/icons/ahoy.svg';
 import { ReactComponent as ZhilyByliSvg } from 'assets/icons/zhilybyli.svg';
+import AhoyImg from 'assets/images/ahoy.webp';
 import PartnersImg from 'assets/images/partners1.webp';
 import ZhilyByliImg from 'assets/images/partners2.webp';
 import CustomLink from 'components/CustomLink';
@@ -21,12 +23,16 @@ const LooperContent = styled.div`
   height: 3rem;
   margin-right: 1rem;
   overflow: hidden;
+
+  a {
+    color: transparent;
+  }
 `;
 
 const PartnersPage = () => (
   <PageContainer>
     <Header>Наши партнеры</Header>
-    <InfiniteLooper speed={2} direction='left'>
+    <InfiniteLooper speed={5} direction='left'>
       <LooperContent>
         <a
           href='https://zhilibyli.ru?a=afa5f8'
@@ -34,6 +40,9 @@ const PartnersPage = () => (
           target='_blank'
         >
           <ZhilyByliSvg width={200} />
+        </a>
+        <a href='https://ahoydiscs.ru' rel='noreferrer' target='_blank'>
+          <AhoySvg width={200} />
         </a>
       </LooperContent>
     </InfiniteLooper>
@@ -90,7 +99,7 @@ const PartnersPage = () => (
     </Row>
     <Row imagePosition='right'>
       <ImageContainer>
-        <CustomImage src={ZhilyByliImg} position='left' />
+        <CustomImage src={ZhilyByliImg} position='right' />
       </ImageContainer>
       <TextContainer position='left'>
         <Header>ЖилиБыли</Header>
@@ -104,6 +113,21 @@ const PartnersPage = () => (
         поддержку и большой выбор предложений в 12 странах мира. И это все в
         несколько кликов! Присоединяйся к нам и твои путешествия станут ярче и
         выгоднее с сервисом бронирования отелей &quot;ЖилиБыли&quot;.
+      </TextContainer>
+    </Row>
+    <Row imagePosition='left'>
+      <ImageContainer>
+        <CustomImage src={AhoyImg} position='left' />
+      </ImageContainer>
+      <TextContainer position='right'>
+        <Header>AhoyDiscs</Header>
+        <p>
+          Первый онлайн диск гольф магазин в России. Всё, что может вам
+          понадобиться для любимой игры, можете найти на сайте{' '}
+          <a href='https://ahoydiscs.ru' rel='noreferrer' target='_blank'>
+            ahoydiscs.ru
+          </a>
+        </p>
       </TextContainer>
     </Row>
   </PageContainer>
