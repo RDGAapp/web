@@ -44,7 +44,7 @@ const RulesLink = (): JSX.Element => (
     </a>
     <LinkDescription>
       <FileSvg width={24} height={24} />
-      .pdf / 258 КБ
+      .pdf / 324 КБ
     </LinkDescription>
   </Container>
 );
