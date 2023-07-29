@@ -3,13 +3,16 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 
+import { ReactComponent as FilterSvg } from 'assets/icons/filter.svg';
 import SelectSvg from 'assets/icons/select.svg';
+import ButtonOutlined from 'components/ButtonOutlined';
 import PageHeader from 'components/PageHeader';
 import Pagination from 'components/Pagination';
 import SearchBar from 'components/SearchBar';
 import Spinner from 'components/Spinner';
 import towns from 'helpers/townsList';
 import useDebounce from 'hooks/useDebounce';
+import useDialog from 'hooks/useDialog';
 import Card from 'pages/Players/Card';
 import SelectedCard from 'pages/Players/SelectedCard';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
@@ -49,6 +52,7 @@ const Filters = styled.div`
   }
 
   ${({ theme }) => theme.media.mobile} {
+    flex-flow: row nowrap;
     align-items: center;
   }
 `;
@@ -59,22 +63,22 @@ const Select = styled.select`
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1rem;
   background-color: ${({ theme }) => theme.colors.background};
-  background-image: url("${SelectSvg}");
+  background-image: url('${SelectSvg}');
   background-repeat: no-repeat;
   background-position: center right 1rem;
   background-size: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 1rem;
   cursor: pointer;
-  transition: scale 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
   appearance: none;
 
   :hover {
-    scale: 1.1;
+    border-color: ${({ theme }) => theme.colors.primary};
   }
 
   :active {
-    scale: 0.9;
+    border-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
@@ -94,6 +98,32 @@ const NotFoundText = styled.p`
   border-radius: 2rem;
 `;
 
+const Button = styled.button`
+  ${ButtonOutlined}
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+
+  svg {
+    width: 1rem;
+  }
+`;
+
+const FiltersBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+`;
+
+const CheckboxContainer = styled.label`
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  height: 2rem;
+  cursor: pointer;
+`;
+
 const Players = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const players = useAppSelector((state) => state.player.players);
@@ -103,7 +133,17 @@ const Players = (): JSX.Element => {
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [surname, setSurname] = useState<string>('');
   const [town, setTown] = useState<Town>();
+  const [onlyActive, setOnlyActive] = useState<boolean>(true);
+
   const pageHeader = document.getElementById('page-header');
+
+  const { Dialog: FiltersDialog, openModal: openFiltersModal } = useDialog({
+    headerText: 'Фильтры по игрокам',
+    onClose: () => {
+      dispatch(getPlayers({ pageNumber: 1, surname, town, onlyActive }));
+      setPageNumber(1);
+    },
+  });
 
   const scrollToPageHeader = () => {
     window.scrollTo({ top: pageHeader?.offsetTop, behavior: 'smooth' });
@@ -111,7 +151,7 @@ const Players = (): JSX.Element => {
 
   useDebounce(
     () => {
-      dispatch(getPlayers({ pageNumber: 1, surname, town }));
+      dispatch(getPlayers({ pageNumber: 1, surname, town, onlyActive }));
       setPageNumber(1);
     },
     1000,
@@ -119,7 +159,7 @@ const Players = (): JSX.Element => {
   );
 
   useEffect(() => {
-    dispatch(getPlayers({ pageNumber, surname, town }));
+    dispatch(getPlayers({ pageNumber, surname, town, onlyActive }));
   }, []);
 
   useEffect(() => {
@@ -131,8 +171,6 @@ const Players = (): JSX.Element => {
   const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const newTown = event.target.value as Town;
     setTown(newTown);
-    setPageNumber(1);
-    dispatch(getPlayers({ pageNumber: 1, surname, town: newTown }));
   };
 
   const onSurnameInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -154,14 +192,10 @@ const Players = (): JSX.Element => {
             onChange={onSurnameInputChange}
             ariaLabel='surname-search'
           />
-          <Select value={town} onChange={onSelectTownChange}>
-            <option value=''>Выберите город</option>
-            {towns.map((town) => (
-              <option value={town} key={town}>
-                {town}
-              </option>
-            ))}
-          </Select>
+          <Button onClick={openFiltersModal}>
+            {/* TODO: сменить иконку */}
+            <FilterSvg />
+          </Button>
         </Filters>
       </PageHeader>
       {loading && <Spinner />}
@@ -197,6 +231,26 @@ const Players = (): JSX.Element => {
           onPageChange={onPageNumberChange}
         />
       )}
+      <FiltersDialog>
+        <FiltersBody>
+          <CheckboxContainer>
+            <input
+              type='checkbox'
+              checked={onlyActive}
+              onChange={(event) => setOnlyActive(event.target.checked)}
+            />
+            Только активные
+          </CheckboxContainer>
+          <Select value={town} onChange={onSelectTownChange}>
+            <option value=''>Выберите город</option>
+            {towns.map((town) => (
+              <option value={town} key={town}>
+                {town}
+              </option>
+            ))}
+          </Select>
+        </FiltersBody>
+      </FiltersDialog>
     </>
   );
 };

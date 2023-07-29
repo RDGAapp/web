@@ -1,13 +1,19 @@
 import getApiUrl from 'helpers/getApiUrl';
 
-export const getPlayers = (pageNumber: number, surname?: string, town?: Town) =>
-  fetch(
-    getApiUrl(
-      `/players?page=${pageNumber}&surname=${surname ?? ''}&town=${
-        town?.replace(' ', '%20') ?? ''
-      }`
-    )
-  );
+export const getPlayers = (
+  pageNumber: number,
+  surname?: string,
+  town?: Town,
+  onlyActive?: boolean
+) => {
+  const query = new URLSearchParams();
+  query.append('page', pageNumber.toString());
+  query.append('surname', surname ?? '');
+  query.append('town', town?.replace(' ', '%20') ?? '');
+  query.append('onlyActive', (onlyActive ?? true).toString());
+
+  return fetch(getApiUrl(`/players?${query.toString()}`));
+};
 
 export const getPlayer = (playerRdgaNumber: number) =>
   fetch(getApiUrl(`/players/${playerRdgaNumber}`));

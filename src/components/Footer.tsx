@@ -55,14 +55,15 @@ const Footer = (): JSX.Element => {
           <Copyright>
             Наши соц сети:{' '}
             <a href='https://vk.com/discgolf' rel='noreferrer' target='_blank'>
-              Telegram
-            </a>{', '}
+              ВКонтакте
+            </a>
+            {', '}
             <a
               href='https://t.me/discgolf_russia'
               rel='noreferrer'
               target='_blank'
             >
-              ВКонтакте
+              Telegram
             </a>
           </Copyright>
         </CopyrightContainer>
