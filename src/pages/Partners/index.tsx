@@ -35,7 +35,7 @@ const PartnersPage = () => (
     <InfiniteLooper speed={5} direction='left'>
       <LooperContent>
         <a
-          href='https://zhilibyli.ru?a=afa5f8'
+          href='https://zhilibyli.ru?a=970f80'
           rel='noreferrer'
           target='_blank'
         >
@@ -54,7 +54,7 @@ const PartnersPage = () => (
         <ul>
           <li>
             <CustomLink
-              route='https://zhilibyli.ru?a=afa5f8'
+              route='https://zhilibyli.ru?a=970f80'
               text='ЖилиБыли'
               isExternal
             />
