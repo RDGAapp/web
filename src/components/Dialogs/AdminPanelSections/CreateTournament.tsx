@@ -15,6 +15,7 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [tournamentType, setTournamentType] = useState('');
+  const [metrixId, setMetrixId] = useState('');
 
   const inputs = [
     {
@@ -69,6 +70,13 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
         { value: TournamentType.Federal, text: 'Федеральный турнир' },
       ],
     },
+    {
+      value: metrixId,
+      onChange: setMetrixId,
+      label: 'ID Metrix',
+      type: 'text',
+      required: false,
+    },
   ];
 
   const onSubmit = async () => {
@@ -79,6 +87,7 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
       startDate: new Date(startDate).toISOString(),
       endDate: new Date(endDate).toISOString(),
       tournamentType,
+      metrixId,
     };
 
     return createTournament(tournament);

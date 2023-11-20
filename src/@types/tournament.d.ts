@@ -5,4 +5,5 @@ interface Tournament {
   endDate: string;
   tournamentType: string;
   town: string;
+  metrixId: string | null;
 }

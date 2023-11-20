@@ -88,3 +88,14 @@ export const activatePlayer = (rdgaNumber: number) =>
   fetch(getApiUrl(`/players/${rdgaNumber}/activate`), {
     method: 'PATCH',
   });
+
+export const updatePlayerRatingMultiple = (
+  values: { rdgaNumber: number; rating: number }[]
+) =>
+  fetch(getApiUrl(`/players/rdgaRating/multiple`), {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(values),
+  });

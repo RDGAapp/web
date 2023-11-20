@@ -15,6 +15,7 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [tournamentType, setTournamentType] = useState('');
+  const [metrixId, setMetrixId] = useState('');
 
   const inputs = [
     {
@@ -59,6 +60,13 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
         { value: TournamentType.Federal, text: 'Федеральный турнир' },
       ],
     },
+    {
+      value: metrixId,
+      onChange: setMetrixId,
+      label: 'ID Metrix',
+      type: 'text',
+      required: false,
+    },
   ];
 
   const onSubmit = async () => {
@@ -68,6 +76,7 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
       startDate: new Date(startDate).toISOString(),
       endDate: new Date(endDate).toISOString(),
       tournamentType,
+      metrixId,
     };
 
     return updateTournament(tournament, code);
@@ -75,12 +84,13 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
 
   const getAllTournamentDataByCode = async () => {
     const response = await getTournament(code);
-    const json = await response.json();
+    const json = (await response.json()) as Tournament;
     setName(json.name);
     setTown(json.town);
     setStartDate(json.startDate.slice(0, 19));
     setEndDate(json.endDate.slice(0, 19));
     setTournamentType(json.tournamentType);
+    setMetrixId(json.metrixId ?? '');
 
     return response;
   };
