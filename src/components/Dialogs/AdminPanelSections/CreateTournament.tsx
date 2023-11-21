@@ -87,7 +87,7 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
       startDate: new Date(startDate).toISOString(),
       endDate: new Date(endDate).toISOString(),
       tournamentType,
-      metrixId,
+      metrixId: metrixId || null,
     };
 
     return createTournament(tournament);

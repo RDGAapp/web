@@ -76,7 +76,7 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
       startDate: new Date(startDate).toISOString(),
       endDate: new Date(endDate).toISOString(),
       tournamentType,
-      metrixId,
+      metrixId: metrixId || null,
     };
 
     return updateTournament(tournament, code);
