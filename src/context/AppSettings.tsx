@@ -25,8 +25,7 @@ const updateRoles = (newRoles: Role[]) => {
 
 const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
   const [roles, setRoles] = useState<Role[]>(
-    JSON.parse(localStorage.getItem('appSettings') || '{ roles: [] }').roles ??
-      []
+    JSON.parse(localStorage.getItem('appSettings') || '{}').roles ?? []
   );
 
   const contextValue = useMemo(
