@@ -11,8 +11,10 @@ import VideoBanner from 'components/VideoBanner';
 import routes from 'helpers/routes';
 
 const Container = styled.article`
+  flex-grow: 1;
+  width: 100%;
   max-width: 72rem;
-  margin: auto;
+  margin: 0 auto;
   padding: 1rem 1rem 2rem;
 `;
 interface LayoutProps {
@@ -66,7 +68,9 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
   }, [location.pathname]);
 
   return (
-    <>
+    <div
+      style={{ minHeight: '100vmin', display: 'flex', flexDirection: 'column' }}
+    >
       <SWNotification />
       <Header />
       <Container>
@@ -75,7 +79,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
         {children}
       </Container>
       <Footer />
-    </>
+    </div>
   );
 };
 

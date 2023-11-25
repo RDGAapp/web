@@ -78,6 +78,12 @@ const App = (): JSX.Element => {
             </Suspense>
             <AdminDialog>
               <div
+                style={{
+                  display: 'flex',
+                  gap: '10px',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                }}
                 onClick={() =>
                   isAdmin ? removeRole(Role.Admin) : addRoles([Role.Admin])
                 }
@@ -88,8 +94,14 @@ const App = (): JSX.Element => {
                   name='isAdmin'
                   checked={isAdmin}
                   onChange={() => {}}
+                  style={{ cursor: 'pointer' }}
                 />
-                <label htmlFor='isAdmin'>Режим администратора</label>
+                <label
+                  htmlFor='isAdmin'
+                  style={{ cursor: 'pointer' }}
+                >
+                  Режим администратора
+                </label>
               </div>
             </AdminDialog>
           </Layout>
