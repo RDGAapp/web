@@ -1,10 +1,12 @@
-import { lazy, Suspense, useLayoutEffect } from 'react';
+import { lazy, Suspense, useContext, useLayoutEffect } from 'react';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import AdminPanelSections from 'components/Dialogs/AdminPanelSections';
+import Authorized from 'components/Authorized';
 import Layout from 'components/Layout';
+import { AppSettingsContext } from 'context/AppSettings';
+import Role from 'enums/roles';
 import GlobalStyle from 'helpers/GlobalStyle';
 import routes from 'helpers/routes';
 import theme from 'helpers/theme';
@@ -13,6 +15,7 @@ import useDialog from 'hooks/useDialog';
 import Loading from 'pages/Loading';
 
 const About = lazy(() => import('pages/About'));
+const Admin = lazy(() => import('pages/Admin'));
 const Calendar = lazy(() => import('pages/Calendar'));
 const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
@@ -23,8 +26,11 @@ const PartnersPage = lazy(() => import('pages/Partners'));
 
 const App = (): JSX.Element => {
   const { Dialog: AdminDialog, openModal: openAdminModal } = useDialog({
-    headerText: 'Админ консоль',
+    headerText: 'Feature-флаги',
   });
+
+  const { roles, addRoles, removeRole } = useContext(AppSettingsContext);
+  const isAdmin = roles.includes(Role.Admin);
 
   useLayoutEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -59,11 +65,32 @@ const App = (): JSX.Element => {
                 <Route path={routes.Players} element={<Players />} />
                 <Route path={routes.Contacts} element={<ContactsPage />} />
                 <Route path={routes.Partners} element={<PartnersPage />} />
+                <Route
+                  path={routes.AdminHome}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <Admin />
+                    </Authorized>
+                  }
+                />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Suspense>
             <AdminDialog>
-              <AdminPanelSections />
+              <div
+                onClick={() =>
+                  isAdmin ? removeRole(Role.Admin) : addRoles([Role.Admin])
+                }
+              >
+                <input
+                  id='isAdmin'
+                  type='checkbox'
+                  name='isAdmin'
+                  checked={isAdmin}
+                  onChange={() => {}}
+                />
+                <label htmlFor='isAdmin'>Режим администратора</label>
+              </div>
             </AdminDialog>
           </Layout>
         </TownProvider>

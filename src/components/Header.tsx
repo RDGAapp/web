@@ -15,6 +15,8 @@ import ButtonUnderlined from 'components/ButtonUnderlined';
 import CustomLink from 'components/CustomLink';
 import HamburgerButton from 'components/HamburgerButton';
 import Logo from 'components/Logo';
+import { AppSettingsContext } from 'context/AppSettings';
+import Role from 'enums/roles';
 import routes from 'helpers/routes';
 import { TownContext } from 'hooks/TownContext';
 import useDialog from 'hooks/useDialog';
@@ -110,8 +112,15 @@ const links = [
   { route: routes.Partners, text: 'Наши партнеры', svg: SponsorSvg },
 ];
 
+const adminLink = {
+  route: routes.AdminHome,
+  text: 'Админка',
+  svg: InfoSvg,
+};
+
 const Header = (): JSX.Element => {
   const { town } = useContext(TownContext);
+  const { roles } = useContext(AppSettingsContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -121,13 +130,19 @@ const Header = (): JSX.Element => {
     closeModal: closeTownModal,
   } = useDialog({ headerText: 'Выберите город' });
 
+  const linksToShow = [...links];
+
+  if (roles.includes(Role.Admin)) {
+    linksToShow.push(adminLink);
+  }
+
   return (
     <Container>
       <Navigation>
         <NavigationContainer>
           <NavigationBackground open={isMenuOpen}>
             <LinksList>
-              {links.map((link) => (
+              {linksToShow.map((link) => (
                 <CustomLink
                   key={link.route}
                   route={link.route}

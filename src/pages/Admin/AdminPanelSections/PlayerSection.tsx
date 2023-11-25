@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 import ButtonOutlined from 'components/ButtonOutlined';
-import CreatePlayer from 'components/Dialogs/AdminPanelSections/CreatePlayer';
-import DeletePlayer from 'components/Dialogs/AdminPanelSections/DeletePlayer';
-import Section from 'components/Dialogs/AdminPanelSections/Section';
-import SubHeader from 'components/Dialogs/AdminPanelSections/Subheader';
-import UpdatePlayer from 'components/Dialogs/AdminPanelSections/UpdatePlayer';
-import UpdateRating from 'components/Dialogs/AdminPanelSections/UpdateRating';
-import UpdateRatingJson from 'components/Dialogs/AdminPanelSections/UpdateRatingJson';
 import useDialog from 'hooks/useDialog';
+import CreatePlayer from 'pages/Admin/AdminPanelSections/CreatePlayer';
+import DeletePlayer from 'pages/Admin/AdminPanelSections/DeletePlayer';
+import Section from 'pages/Admin/AdminPanelSections/Section';
+import SubHeader from 'pages/Admin/AdminPanelSections/Subheader';
+import UpdatePlayer from 'pages/Admin/AdminPanelSections/UpdatePlayer';
+import UpdateRating from 'pages/Admin/AdminPanelSections/UpdateRating';
+import UpdateRatingJson from 'pages/Admin/AdminPanelSections/UpdateRatingJson';
 
 import ActivatePlayer from './ActivatePlayer';
 

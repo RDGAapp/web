@@ -17,6 +17,7 @@ describe('routesList helper', () => {
       '/service',
       '/calendar',
       '/partners',
+      '/admin'
     ]);
   });
 });

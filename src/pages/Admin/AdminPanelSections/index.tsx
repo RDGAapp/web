@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import PlayerSection from 'components/Dialogs/AdminPanelSections/PlayerSection';
-import TournamentsSection from 'components/Dialogs/AdminPanelSections/TournamentsSection';
+import PlayerSection from 'pages/Admin/AdminPanelSections/PlayerSection';
+import TournamentsSection from 'pages/Admin/AdminPanelSections/TournamentsSection';
 
 const Sections = styled.div`
   display: flex;

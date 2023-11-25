@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-import AdminFormLayout from 'components/Dialogs/AdminPanelSections/AdminFormLayout';
 import TournamentType from 'enums/tournamentType';
-import { createTournament } from 'helpers/api';
+import { updateTournament, getTournament } from 'helpers/api';
+import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
 
-interface CreateTournamentProps {
+interface UpdateTournamentProps {
   onClose: () => void;
 }
 
-const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
+const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
   const [town, setTown] = useState('');
@@ -18,14 +18,6 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
   const [metrixId, setMetrixId] = useState('');
 
   const inputs = [
-    {
-      value: code,
-      onChange: setCode,
-      label:
-        'Код турнира (должен быть уникальным, читай ключ для взаимодействия)',
-      type: 'text',
-      required: true,
-    },
     {
       value: name,
       onChange: setName,
@@ -62,10 +54,8 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
       required: true,
       variants: [
         { value: TournamentType.AllStar, text: 'Матч Всех Звезд' },
-        { value: TournamentType.BagTag, text: 'Bag Tag Challenge' },
         { value: TournamentType.League, text: 'Лига' },
-        { value: TournamentType.National, text: 'Национальный тур' },
-        { value: TournamentType.Regional, text: 'Региональный турнир' },
+        { value: TournamentType.Pro, text: 'Pro тур' },
         { value: TournamentType.RussianChampionship, text: 'Чемпионат России' },
         { value: TournamentType.Federal, text: 'Федеральный турнир' },
       ],
@@ -81,7 +71,6 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
 
   const onSubmit = async () => {
     const tournament = {
-      code,
       name,
       town,
       startDate: new Date(startDate).toISOString(),
@@ -90,17 +79,45 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
       metrixId: metrixId || null,
     };
 
-    return createTournament(tournament);
+    return updateTournament(tournament, code);
+  };
+
+  const getAllTournamentDataByCode = async () => {
+    const response = await getTournament(code);
+    const json = (await response.json()) as Tournament;
+    setName(json.name);
+    setTown(json.town);
+    setStartDate(json.startDate.slice(0, 19));
+    setEndDate(json.endDate.slice(0, 19));
+    setTournamentType(json.tournamentType);
+    setMetrixId(json.metrixId ?? '');
+
+    return response;
   };
 
   return (
-    <AdminFormLayout
-      header='Создание турнира'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <AdminFormLayout
+        header='Загрузить данные турнира'
+        inputs={[
+          {
+            value: code,
+            onChange: setCode,
+            label: 'Код турнира',
+            type: 'text',
+            required: true,
+          },
+        ]}
+        onClose={onClose}
+        onSubmit={getAllTournamentDataByCode}
+      />
+      <AdminFormLayout
+        header='Обновление турнира'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 
-export default CreateTournament;
+export default UpdateTournament;

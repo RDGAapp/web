@@ -12,7 +12,8 @@ enum routes {
   Join = '#join',
   Service = '/service',
   Calendar = '/calendar',
-  Partners = '/partners'
+  Partners = '/partners',
+  AdminHome = '/admin'
 }
 
 export default routes;

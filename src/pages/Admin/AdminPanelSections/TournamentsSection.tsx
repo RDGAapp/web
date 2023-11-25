@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 import ButtonOutlined from 'components/ButtonOutlined';
-import DeleteTournament from 'components/Dialogs/AdminPanelSections//DeleteTournament';
-import CreateTournament from 'components/Dialogs/AdminPanelSections/CreateTournament';
-import Section from 'components/Dialogs/AdminPanelSections/Section';
-import SubHeader from 'components/Dialogs/AdminPanelSections/Subheader';
-import UpdateTournament from 'components/Dialogs/AdminPanelSections/UpdateTournament';
 import useDialog from 'hooks/useDialog';
+import CreateTournament from 'pages/Admin/AdminPanelSections/CreateTournament';
+import DeleteTournament from 'pages/Admin/AdminPanelSections/DeleteTournament';
+import Section from 'pages/Admin/AdminPanelSections/Section';
+import SubHeader from 'pages/Admin/AdminPanelSections/Subheader';
+import UpdateTournament from 'pages/Admin/AdminPanelSections/UpdateTournament';
 
 const Button = styled.button`
   ${ButtonOutlined}

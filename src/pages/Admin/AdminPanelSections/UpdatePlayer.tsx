@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import AdminFormLayout from 'components/Dialogs/AdminPanelSections/AdminFormLayout';
 import { updatePlayer, getPlayer } from 'helpers/api';
+import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
 
 interface CreatePlayerProps {
   onClose: () => void;

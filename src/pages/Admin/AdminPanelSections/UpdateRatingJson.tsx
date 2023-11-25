@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import AdminFormLayout from 'components/Dialogs/AdminPanelSections/AdminFormLayout';
 import * as api from 'helpers/api';
+import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
 
 interface UpdateRatingProps {
   onClose: () => void;
