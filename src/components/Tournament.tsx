@@ -4,13 +4,13 @@ import TournamentType from 'enums/tournamentType';
 import { spellMonth } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournamentColorByType';
 
-const Container = styled.div<{ border: string }>`
+const Container = styled.div<{ border: string; maxWidth: string }>`
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  max-width: max-content;
+  max-width: ${(props) => props.maxWidth};
   height: 3rem;
   padding: 0 0.3rem;
   overflow: hidden;
@@ -19,7 +19,7 @@ const Container = styled.div<{ border: string }>`
   transition: all 0.3s ease-in-out;
 
   :hover {
-    flex-basis: max-content;
+    flex-basis: ${(props) => props.maxWidth};
   }
 
   * {
@@ -48,14 +48,21 @@ interface Props {
   town: string;
   startDate: Date;
   endDate: Date;
+  maxWidth?: string;
 }
 
 const Tournament = ({
-  name, type, town, startDate, endDate,
+  name,
+  type,
+  town,
+  startDate,
+  endDate,
+  maxWidth = 'max-content',
 }: Props) => (
   <Container
     title={name}
     border={TournamentColorByType[type as TournamentType]}
+    maxWidth={maxWidth}
   >
     <b>{name}</b>
     <ExtraTournamentInformation>
@@ -63,9 +70,8 @@ const Tournament = ({
     </ExtraTournamentInformation>
     <ExtraTournamentInformation>
       {`${startDate.getDate()} ${spellMonth(startDate.getMonth())}`}
-      {startDate.getDate() !== endDate.getDate() && (
-        ` - ${endDate.getDate()} ${spellMonth(endDate.getMonth())}`
-      )}
+      {startDate.getDate() !== endDate.getDate() &&
+        ` - ${endDate.getDate()} ${spellMonth(endDate.getMonth())}`}
     </ExtraTournamentInformation>
   </Container>
 );

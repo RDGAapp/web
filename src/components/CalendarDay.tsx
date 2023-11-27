@@ -103,6 +103,7 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
                 town={tournament.town}
                 startDate={new Date(tournament.startDate)}
                 endDate={new Date(tournament.endDate)}
+                maxWidth='100%'
               />
             ))}
           </TournamentsList>
