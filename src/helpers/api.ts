@@ -9,7 +9,7 @@ export const getPlayers = (
   const query = new URLSearchParams();
   query.append('page', pageNumber.toString());
   query.append('surname', surname ?? '');
-  query.append('town', town?.replace(' ', '%20') ?? '');
+  query.append('town', town ?? '');
   query.append('onlyActive', (onlyActive ?? true).toString());
 
   return fetch(getApiUrl(`/players?${query.toString()}`));

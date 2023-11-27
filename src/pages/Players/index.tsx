@@ -193,7 +193,6 @@ const Players = (): JSX.Element => {
             ariaLabel='surname-search'
           />
           <Button onClick={openFiltersModal}>
-            {/* TODO: сменить иконку */}
             <FilterSvg />
           </Button>
         </Filters>
