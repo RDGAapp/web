@@ -15,7 +15,7 @@ const LinkStyles = css`
   text-decoration: none;
   transition: scale 0.2s ease-in-out, padding 0.2s ease-in-out;
 
-  svg {
+  & svg {
     position: absolute;
     top: 50%;
     left: -1rem;
@@ -27,7 +27,7 @@ const LinkStyles = css`
     pointer-events: none;
   }
 
-  ::before {
+  &::before {
     position: absolute;
     bottom: 0;
     left: 2rem;
@@ -40,23 +40,23 @@ const LinkStyles = css`
     content: '';
   }
 
-  :hover {
+  &:hover {
     padding-left: 2rem;
     scale: 1.1;
 
-    svg {
+    & svg {
       left: 0.5rem;
       opacity: 1;
       pointer-events: all;
     }
 
-    ::before {
+    &::before {
       width: calc(100% - 2rem);
       opacity: 1;
     }
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 `;

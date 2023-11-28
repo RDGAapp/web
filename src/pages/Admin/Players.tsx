@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import ButtonOutlined from 'components/ButtonOutlined';
+import { Header } from 'components/PageContent';
 import useDialog from 'hooks/useDialog';
 import CreatePlayer from 'pages/Admin/AdminPanelSections/CreatePlayer';
 import DeletePlayer from 'pages/Admin/AdminPanelSections/DeletePlayer';
 import Section from 'pages/Admin/AdminPanelSections/Section';
-import SubHeader from 'pages/Admin/AdminPanelSections/Subheader';
 import UpdatePlayer from 'pages/Admin/AdminPanelSections/UpdatePlayer';
 import UpdateRating from 'pages/Admin/AdminPanelSections/UpdateRating';
 import UpdateRatingJson from 'pages/Admin/AdminPanelSections/UpdateRatingJson';
 
-import ActivatePlayer from './ActivatePlayer';
+import ActivatePlayer from './AdminPanelSections/ActivatePlayer';
 
 const Button = styled.button`
   ${ButtonOutlined}
   width: max-content;
 `;
 
-const PlayerSection = () => {
+const Players = () => {
   const {
     Dialog: CreatePlayerDialog,
     openModal: openCreatePlayerModal,
@@ -51,8 +52,9 @@ const PlayerSection = () => {
 
   return (
     <>
+      <Breadcrumbs />
+      <Header>Действия над игроком</Header>
       <Section>
-        <SubHeader>Действия с игроками</SubHeader>
         <Button type='button' onClick={openCreatePlayerModal}>
           Создать игрока
         </Button>
@@ -94,4 +96,4 @@ const PlayerSection = () => {
   );
 };
 
-export default PlayerSection;
+export default Players;

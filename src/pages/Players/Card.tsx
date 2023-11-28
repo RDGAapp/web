@@ -20,16 +20,16 @@ const Container = styled(motion.button)`
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, border 0.3s ease-in-out;
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.primary};
   }
 
-  :active {
+  &:active {
     border: 1px solid ${({ theme }) => theme.colors.secondary};
   }
 
-  :disabled {
+  &:disabled {
     color: white;
     background-color: #b2b1b1af;
     border: 1px solid grey;

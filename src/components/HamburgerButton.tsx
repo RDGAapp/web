@@ -3,21 +3,21 @@ import { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
 const OpenedButton = css`
-  .top {
+  & .top {
     y: 43.5px;
     transform: rotate(-45deg);
   }
 
-  .bot {
+  & .bot {
     y: 46.5px;
     transform: rotate(45deg);
   }
 
-  .mid {
+  & .mid {
     opacity: 0;
   }
 
-  rect {
+  & rect {
     transition: y 0.2s ease-in-out, transform 0.2s ease-in-out 0.2s,
       opacity 0s 0.2s;
   }
@@ -36,26 +36,26 @@ const Button = styled.button`
   cursor: pointer;
   transition: scale 0.2s ease-in-out;
 
-  rect {
+  & rect {
     transform-origin: center;
     transition: y 0.2s ease-in-out 0.2s, transform 0.2s ease-in-out,
       opacity 0s 0.2s;
 
-    .top,
-    .bot {
+    & .top,
+    & .bot {
       transform: rotate(0deg);
     }
   }
 
-  :hover {
+  &:hover {
     scale: 1.1;
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 
-  svg {
+  & svg {
     width: 1.75rem;
     height: 1.75rem;
     fill: currentColor;

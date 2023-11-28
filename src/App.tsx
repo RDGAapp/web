@@ -16,6 +16,8 @@ import Loading from 'pages/Loading';
 
 const About = lazy(() => import('pages/About'));
 const Admin = lazy(() => import('pages/Admin'));
+const AdminPlayers = lazy(() => import('pages/Admin/Players'));
+const AdminTournaments = lazy(() => import('pages/Admin/Tournaments'));
 const Calendar = lazy(() => import('pages/Calendar'));
 const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
@@ -70,6 +72,22 @@ const App = (): JSX.Element => {
                   element={
                     <Authorized requiredRoles={[Role.Admin]}>
                       <Admin />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminPlayers}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminPlayers />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminTournaments}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminTournaments />
                     </Authorized>
                   }
                 />

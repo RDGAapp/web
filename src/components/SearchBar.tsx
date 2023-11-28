@@ -8,11 +8,11 @@ import useMatchMedia from 'hooks/useMatchMedia';
 const ExpandedContainerStyle = css`
   max-width: 100%;
 
-  input {
+  & input {
     opacity: 1;
   }
 
-  button {
+  & button {
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
@@ -34,7 +34,7 @@ const Container = styled.div<{expanded: boolean}>`
     width: 100%;
   }
 
-  :focus-within {
+  &:focus-within {
     ${ExpandedContainerStyle};
   }
 `;
@@ -53,7 +53,7 @@ const Input = styled.input`
   border: none;
   opacity: 0;
 
-  :focus {
+  &:focus {
     outline: none;
   }
 `;
@@ -71,7 +71,7 @@ const Button = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 
-  :hover {
+  &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;

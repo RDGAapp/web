@@ -38,11 +38,11 @@ const VideoContainer = styled.div`
 
 const Home = (): JSX.Element => (
   <ArticleContainer>
-    <Row imagePosition='left'>
+    <Row $imagePosition='left'>
       <ImageContainer>
-        <CustomImage src={Image1} position='left' />
+        <CustomImage src={Image1} $position='left' />
       </ImageContainer>
-      <TextContainer position='right'>
+      <TextContainer $position='right'>
         <SubHeader>Что такое диск-гольф?</SubHeader>
         <p>
           Индивидуальный вид спорта с диском, где игроки, соревнуясь, пытаются
@@ -77,8 +77,8 @@ const Home = (): JSX.Element => (
       />
     </VideoContainer>
 
-    <Row imagePosition='right'>
-      <TextContainer position='left'>
+    <Row $imagePosition='right'>
+      <TextContainer $position='left'>
         <SubHeader>Почему это увлекает?</SubHeader>
         <p>
           Вы заметили в видео, что диски летят (будто плывут в воздухе) очень
@@ -89,15 +89,15 @@ const Home = (): JSX.Element => (
         </p>
       </TextContainer>
       <ImageContainer>
-        <CustomImage src={Image2} position='right' />
+        <CustomImage src={Image2} $position='right' />
       </ImageContainer>
     </Row>
 
-    <Row imagePosition='left'>
+    <Row $imagePosition='left'>
       <ImageContainer>
-        <CustomImage src={Image3} position='left' />
+        <CustomImage src={Image3} $position='left' />
       </ImageContainer>
-      <TextContainer position='right'>
+      <TextContainer $position='right'>
         <SubHeader>А теперь в 2-х словах о правилах:</SubHeader>
         <p>
           Цель игры: попасть в мишень (корзину), сделав меньшее количество

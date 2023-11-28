@@ -23,11 +23,6 @@ interface LayoutProps {
 
 const shouldShowBanner = new Set<string>([
   routes.About,
-  routes.Master,
-  routes.Training,
-  routes.Newbie,
-  routes.Pro,
-  routes.International,
   routes.Players,
   routes.Service,
   routes.Calendar,

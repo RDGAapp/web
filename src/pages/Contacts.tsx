@@ -24,11 +24,11 @@ const PresidentTextContainer = styled.div`
   height: max-content;
   margin: auto 2rem auto 0;
 
-  h3 {
+  & h3 {
     font-size: 2.2rem;
   }
 
-  h4 {
+  & h4 {
     font-weight: normal;
     font-size: 1.5rem;
     font-style: italic;
@@ -37,11 +37,11 @@ const PresidentTextContainer = styled.div`
   ${({ theme }) => theme.media.mobile} {
     margin: auto 1rem auto 0;
 
-    h3 {
+    & h3 {
       font-size: 1.35rem;
     }
 
-    h4 {
+    & h4 {
       font-size: 1rem;
     }
   }

@@ -26,20 +26,20 @@ const WhiteText = styled.div`
   gap: 0.5rem;
   color: #fff;
 
-  p {
+  & p {
     font-size: 1rem;
     font-style: italic;
   }
 
-  ul {
+  & ul {
     margin: 0;
   }
 
-  li::marker {
+  & li::marker {
     content: ' 🥏 ';
   }
 
-  a {
+  & a {
     color: ${({ theme }) => theme.colors.primary};
   }
 `;

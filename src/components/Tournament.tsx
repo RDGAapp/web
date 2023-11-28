@@ -18,11 +18,11 @@ const Container = styled.div<{ border: string; maxWidth: string }>`
   border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
 
-  :hover {
+  &:hover {
     flex-basis: ${(props) => props.maxWidth};
   }
 
-  * {
+  & * {
     max-width: 100%;
     overflow: hidden;
     font-size: 0.8rem;
@@ -36,7 +36,7 @@ const ExtraTournamentInformation = styled.div`
   font-size: 0.5rem;
   line-height: 1.5;
 
-  * {
+  & * {
     font-size: 0.6rem;
     line-height: 1;
   }

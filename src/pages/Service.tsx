@@ -11,11 +11,11 @@ import {
 
 const Service = (): JSX.Element => (
   <PageContainer>
-    <Row imagePosition='left'>
+    <Row $imagePosition='left'>
       <ImageContainer>
-        <CustomImage src={DiscsShopImg} position='left' />
+        <CustomImage src={DiscsShopImg} $position='left' />
       </ImageContainer>
-      <TextContainer position='right'>
+      <TextContainer $position='right'>
         <Header>Диски для точных попаданий и невероятных траекторий!</Header>
         <p>
           Возможно твой первый диск был куплен в спорттоварах или найден на
@@ -35,8 +35,8 @@ const Service = (): JSX.Element => (
         </ul>
       </TextContainer>
     </Row>
-    <Row imagePosition='right'>
-      <TextContainer position='left'>
+    <Row $imagePosition='right'>
+      <TextContainer $position='left'>
         <Header>Предоставляемые услуги:</Header>
         <ul>
           <li>
@@ -61,7 +61,7 @@ const Service = (): JSX.Element => (
         <p>Мы всегда ждем звонка от Вас!</p>
       </TextContainer>
       <ImageContainer>
-        <CustomImage src={ServiceImg} position='right' />
+        <CustomImage src={ServiceImg} $position='right' />
       </ImageContainer>
     </Row>
   </PageContainer>

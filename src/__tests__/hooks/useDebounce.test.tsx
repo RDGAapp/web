@@ -12,7 +12,7 @@ const Button = () => {
   useDebounce(functionMock, 1000, [value]);
 
   return (
-    <button type="button" onClick={() => setValue(value + 1)}>
+    <button type='button' onClick={() => setValue(value + 1)}>
       increase
     </button>
   );
@@ -27,13 +27,13 @@ describe('useDebounce hook', () => {
     const button = getByText('increase');
 
     expect(button).toBeDefined();
-    expect(functionMock).toBeCalledTimes(0);
+    expect(functionMock).toHaveBeenCalledTimes(0);
 
     for (let i = 0; i < 5; i += 1) {
       fireEvent.click(button);
     }
-    expect(functionMock).toBeCalledTimes(0);
+    expect(functionMock).toHaveBeenCalledTimes(0);
     jest.runAllTimers();
-    expect(functionMock).toBeCalledTimes(1);
+    expect(functionMock).toHaveBeenCalledTimes(1);
   });
 });

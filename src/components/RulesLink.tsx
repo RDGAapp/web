@@ -14,16 +14,16 @@ const Container = styled.div`
     margin: auto;
   }
 
-  a {
+  & a {
     color: inherit;
     font-weight: 600;
     transition: scale 0.3s ease-in-out;
 
-    :hover {
+    &:hover {
       scale: 1.1;
     }
 
-    :active {
+    &:active {
       scale: 0.9;
     }
   }

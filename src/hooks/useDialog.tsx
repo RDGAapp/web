@@ -39,16 +39,16 @@ const ModalHeader = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  svg {
+  & svg {
     cursor: pointer;
     transition: color 0.2s ease-in-out;
 
-    :hover {
+    &:hover {
       color: ${({ theme }) => theme.colors.primary};
     }
   }
 
-  h1 {
+  & h1 {
     overflow: hidden;
     font-weight: 600;
     font-size: 1.5rem;

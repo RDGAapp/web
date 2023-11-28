@@ -25,12 +25,12 @@ const ListElement = styled.p<{ selected: boolean }>`
     css`
       cursor: pointer;
 
-      :hover {
+      &:hover {
         text-decoration: underline;
       }
     `}
 
-  svg {
+  & svg {
     margin-right: 1rem;
   }
 `;

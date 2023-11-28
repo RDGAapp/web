@@ -26,8 +26,13 @@ describe('player requests', () => {
 
       const result = await store.dispatch(getPlayers({ pageNumber: 1 }));
 
-      expect(api.getPlayers).toBeCalledTimes(1);
-      expect(api.getPlayers).toBeCalledWith(1, undefined, undefined, undefined);
+      expect(api.getPlayers).toHaveBeenCalledTimes(1);
+      expect(api.getPlayers).toHaveBeenCalledWith(
+        1,
+        undefined,
+        undefined,
+        undefined,
+      );
       expect(result.payload).toEqual(players);
       expect(result.meta.requestStatus).toBe('fulfilled');
       expect(store.getState().player).toEqual({
@@ -49,11 +54,11 @@ describe('player requests', () => {
           surname: 'test',
           town: 'Белгород',
           onlyActive: true,
-        })
+        }),
       );
 
-      expect(api.getPlayers).toBeCalledTimes(1);
-      expect(api.getPlayers).toBeCalledWith(1, 'test', 'Белгород', true);
+      expect(api.getPlayers).toHaveBeenCalledTimes(1);
+      expect(api.getPlayers).toHaveBeenCalledWith(1, 'test', 'Белгород', true);
       expect(result.payload).toEqual(players);
       expect(result.meta.requestStatus).toBe('fulfilled');
       expect(store.getState().player).toEqual({
@@ -71,8 +76,13 @@ describe('player requests', () => {
 
       const result = await store.dispatch(getPlayers({ pageNumber: 1 }));
 
-      expect(api.getPlayers).toBeCalledTimes(1);
-      expect(api.getPlayers).toBeCalledWith(1, undefined, undefined, undefined);
+      expect(api.getPlayers).toHaveBeenCalledTimes(1);
+      expect(api.getPlayers).toHaveBeenCalledWith(
+        1,
+        undefined,
+        undefined,
+        undefined,
+      );
       expect(result.payload).toBe(testError);
       expect(result.meta.requestStatus).toBe('rejected');
       expect(store.getState().player).toEqual({
@@ -93,8 +103,8 @@ describe('player requests', () => {
       });
       const result = await store.dispatch(getPlayer(1));
 
-      expect(api.getPlayer).toBeCalledTimes(1);
-      expect(api.getPlayer).toBeCalledWith(1);
+      expect(api.getPlayer).toHaveBeenCalledTimes(1);
+      expect(api.getPlayer).toHaveBeenCalledWith(1);
       expect(result.payload).toEqual(player);
       expect(result.meta.requestStatus).toBe('fulfilled');
     });
@@ -107,8 +117,8 @@ describe('player requests', () => {
 
       const result = await store.dispatch(getPlayer(1));
 
-      expect(api.getPlayer).toBeCalledTimes(1);
-      expect(api.getPlayer).toBeCalledWith(1);
+      expect(api.getPlayer).toHaveBeenCalledTimes(1);
+      expect(api.getPlayer).toHaveBeenCalledWith(1);
       expect(result.payload).toBe(testError);
       expect(result.meta.requestStatus).toBe('rejected');
     });

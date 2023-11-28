@@ -7,17 +7,17 @@ const Container = styled.div`
   text-align: center;
   border-bottom: 2px solid ${({ theme }) => theme.colors.secondary};
 
-  :last-of-type {
+  &:last-of-type {
     border: none;
   }
 
-  p {
+  & p {
     margin: auto;
     font-size: 1rem;
     transition: all 0.3s ease-in-out;
   }
 
-  p:first-of-type {
+  & p:first-of-type {
     font-weight: bold;
     font-size: 1.2rem;
   }

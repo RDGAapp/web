@@ -73,11 +73,11 @@ const Select = styled.select`
   transition: border-color 0.2s ease-in-out;
   appearance: none;
 
-  :hover {
+  &:hover {
     border-color: ${({ theme }) => theme.colors.primary};
   }
 
-  :active {
+  &:active {
     border-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
@@ -105,7 +105,7 @@ const Button = styled.button`
   height: 2.5rem;
   padding: 0;
 
-  svg {
+  & svg {
     width: 1rem;
   }
 `;

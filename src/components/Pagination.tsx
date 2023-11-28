@@ -21,7 +21,7 @@ const PageNumber = styled.button<{ number?: boolean }>`
   box-shadow: 0 0 0.1rem;
   cursor: pointer;
 
-  :disabled {
+  &:disabled {
     background-color: none;
     cursor: not-allowed;
 
@@ -33,7 +33,7 @@ const PageNumber = styled.button<{ number?: boolean }>`
     `}
   }
 
-  :hover:not(:disabled) {
+  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;

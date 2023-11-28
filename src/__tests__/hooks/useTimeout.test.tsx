@@ -9,10 +9,10 @@ const Button = () => {
 
   return (
     <>
-      <button type="button" onClick={reset}>
+      <button type='button' onClick={reset}>
         reset
       </button>
-      <button type="button" onClick={clear}>
+      <button type='button' onClick={clear}>
         clear
       </button>
     </>
@@ -30,12 +30,12 @@ describe('useTimeout hook', () => {
     jest.spyOn(global, 'setTimeout');
 
     render(<Button />);
-    expect(setTimeout).toBeCalledTimes(1);
-    expect(setTimeout).toBeCalledWith(expect.any(Function), 1000);
-    expect(timeoutCallback).toBeCalledTimes(0);
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
+    expect(timeoutCallback).toHaveBeenCalledTimes(0);
 
     jest.runAllTimers();
-    expect(timeoutCallback).toBeCalledTimes(1);
+    expect(timeoutCallback).toHaveBeenCalledTimes(1);
   });
 
   test('should call clearTimeout on reset and clear function calls', () => {
@@ -47,26 +47,28 @@ describe('useTimeout hook', () => {
 
     expect(resetButton).toBeDefined();
     expect(clearButton).toBeDefined();
-    expect(clearTimeout).toBeCalledTimes(0);
+    expect(clearTimeout).toHaveBeenCalledTimes(0);
 
     fireEvent.click(resetButton);
-    expect(clearTimeout).toBeCalledTimes(1);
+    expect(clearTimeout).toHaveBeenCalledTimes(1);
 
     fireEvent.click(clearButton);
-    expect(clearTimeout).toBeCalledTimes(2);
+    expect(clearTimeout).toHaveBeenCalledTimes(2);
   });
 
   test('should not call clearTimeout as timer is undefined', () => {
     jest.spyOn(global, 'clearTimeout');
-    global.setTimeout = (() => { /* do nothing */ }) as unknown as typeof setTimeout;
+    global.setTimeout = (() => {
+      /* do nothing */
+    }) as unknown as typeof setTimeout;
 
     const { getByText } = render(<Button />);
     const clearButton = getByText('clear');
 
     expect(clearButton).toBeDefined();
-    expect(clearTimeout).toBeCalledTimes(0);
+    expect(clearTimeout).toHaveBeenCalledTimes(0);
 
     fireEvent.click(clearButton);
-    expect(clearTimeout).toBeCalledTimes(0);
+    expect(clearTimeout).toHaveBeenCalledTimes(0);
   });
 });

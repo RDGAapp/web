@@ -22,11 +22,11 @@ const Button = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
 
-  :hover {
+  &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
   }
 
-  svg {
+  & svg {
     height: 1.2rem;
   }
 `;

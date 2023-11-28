@@ -2,9 +2,7 @@ import { createContext, useState, useMemo } from 'react';
 
 export const TownContext = createContext<TownContext>({
   town: null,
-  changeTown: () => {
-    /* empty function */
-  },
+  changeTown: () => {},
 });
 
 export const TownProvider = ({

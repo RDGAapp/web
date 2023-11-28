@@ -15,13 +15,13 @@ const Container = styled.div`
     margin: auto;
   }
 
-  a {
+  & a {
     color: ${({ theme }) => theme.colors.secondary};
     font-weight: 600;
     transition: color 0.3s ease-in-out;
 
-    :hover {
-    color: ${({ theme }) => theme.colors.primary};
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
 `;

@@ -7,6 +7,7 @@ const CustomSection = styled.section`
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  margin-top: 1rem;
   padding: 1rem;
   border: 1px solid black;
   border-radius: 1rem;

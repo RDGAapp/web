@@ -10,7 +10,7 @@ import MainBackground from 'assets/images/neutral-rdga.webp';
 import PlayersBackground from 'assets/images/players.webp';
 import routes from 'helpers/routes';
 
-const Container = styled.div<{ image: string }>`
+const Container = styled.div<{ $image: string }>`
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -18,7 +18,7 @@ const Container = styled.div<{ image: string }>`
   max-height: 28rem;
   aspect-ratio: 16/9;
   margin: 0 0 1rem;
-  background: center url('${({ image }) => image}');
+  background: center url('${({ $image }) => $image}');
   background-size: cover;
   border-radius: 2.5rem;
 `;
@@ -40,15 +40,15 @@ const LinkCta = styled(HashLink)`
   cursor: pointer;
   transition: scale 0.3s ease;
 
-  :hover {
+  &:hover {
     scale: 1.1;
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 
-  svg {
+  & svg {
     height: 1rem;
   }
 `;
@@ -98,8 +98,8 @@ const bannerContent = new Map<string, Record<string, string>>([
 
 const defaultBannerContent = {
   image: MainBackground,
-  text: 'Пройти мастер-класс',
-  link: `${routes.Master}${routes.Menu}`,
+  text: 'Вступить в РДГА',
+  link: `${routes.About}${routes.Join}`,
 };
 
 const Banner = (): JSX.Element => {
@@ -117,7 +117,7 @@ const Banner = (): JSX.Element => {
   }, [location.pathname]);
 
   return (
-    <Container image={image}>
+    <Container $image={image}>
       <LinkCta
         to={link}
         smooth

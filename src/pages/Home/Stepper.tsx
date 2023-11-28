@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Step from 'pages/Home/Step';
 import StepContent from 'pages/Home/stepContent';
 
-const Container = styled.div<{ image: string }>`
+const Container = styled.div<{ $image: string }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -14,7 +14,7 @@ const Container = styled.div<{ image: string }>`
   max-height: 70vh;
   margin: auto;
   padding: 2rem;
-  background: linear-gradient(#0008, #0008), url("${({ image }) => image}");
+  background: linear-gradient(#0008, #0008), url("${({ $image }) => $image}");
   background-position: center, center;
   background-size: cover;
   border-radius: 3rem;
@@ -53,11 +53,11 @@ const StepNumber = styled.p<{ selected: boolean }>`
       : `
         cursor: pointer;
 
-        :hover {
+        &:hover {
           scale: 1.1;
         }
 
-        :active {
+        &:active {
           scale: 0.9;
         }
       `};
@@ -71,7 +71,7 @@ const Stepper = () => {
   if (!currentStepContent) return null;
 
   return (
-    <Container image={currentStepContent.backgroundImage}>
+    <Container $image={currentStepContent.backgroundImage}>
       <Step currentStepContent={currentStepContent} />
       <StepNumbers>
         {Object.keys(StepContent).map((key) => (

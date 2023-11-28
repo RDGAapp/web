@@ -13,7 +13,7 @@ const Background = styled.div<{ disabled: boolean }>`
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 100vh;
 
-  svg {
+  & svg {
     height: 1.5rem;
   }
 

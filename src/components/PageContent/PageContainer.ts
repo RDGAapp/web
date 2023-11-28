@@ -8,7 +8,7 @@ const PageContainer = styled.article`
   margin-top: 2rem;
   padding: 1rem;
 
-  a {
+  & a {
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;

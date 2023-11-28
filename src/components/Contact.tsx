@@ -61,7 +61,7 @@ const Link = styled.a`
   color: ${({ theme }) => theme.colors.text.primary};
   transition: color 0.3s ease-in-out;
 
-  :hover {
+  &:hover {
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;

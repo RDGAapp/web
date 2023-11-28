@@ -24,7 +24,7 @@ const LooperContent = styled.div`
   margin-right: 1rem;
   overflow: hidden;
 
-  a {
+  & a {
     color: transparent;
   }
 `;
@@ -46,11 +46,11 @@ const PartnersPage = () => (
         </a>
       </LooperContent>
     </InfiniteLooper>
-    <Row imagePosition='left'>
+    <Row $imagePosition='left'>
       <ImageContainer>
-        <CustomImage src={PartnersImg} position='left' />
+        <CustomImage src={PartnersImg} $position='left' />
       </ImageContainer>
-      <TextContainer position='right'>
+      <TextContainer $position='right'>
         <ul>
           <li>
             <CustomLink
@@ -97,11 +97,11 @@ const PartnersPage = () => (
         </ul>
       </TextContainer>
     </Row>
-    <Row imagePosition='right'>
+    <Row $imagePosition='right'>
       <ImageContainer>
-        <CustomImage src={ZhilyByliImg} position='right' />
+        <CustomImage src={ZhilyByliImg} $position='right' />
       </ImageContainer>
-      <TextContainer position='left'>
+      <TextContainer $position='left'>
         <Header>ЖилиБыли</Header>
         &quot;ЖилиБыли&quot; – это один из лучших сервисов по бронированию
         отелей с самыми низкими ценами. Мы предлагаем инновационное средство
@@ -115,11 +115,11 @@ const PartnersPage = () => (
         выгоднее с сервисом бронирования отелей &quot;ЖилиБыли&quot;.
       </TextContainer>
     </Row>
-    <Row imagePosition='left'>
+    <Row $imagePosition='left'>
       <ImageContainer>
-        <CustomImage src={AhoyImg} position='left' />
+        <CustomImage src={AhoyImg} $position='left' />
       </ImageContainer>
-      <TextContainer position='right'>
+      <TextContainer $position='right'>
         <Header>AhoyDiscs</Header>
         <p>
           Первый онлайн диск гольф магазин в России. Всё, что может вам

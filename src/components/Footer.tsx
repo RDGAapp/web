@@ -27,7 +27,7 @@ const Copyright = styled.p`
   font-size: 0.7rem;
   line-height: 1;
 
-  a {
+  & a {
     color: ${({ theme }) => theme.colors.secondary};
     font-size: 0.7rem;
     line-height: 1;

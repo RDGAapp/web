@@ -61,15 +61,15 @@ const CloseButton = styled.button`
   cursor: pointer;
   transition: scale 0.2s ease-in-out;
 
-  svg {
+  & svg {
     width: 1rem;
   }
 
-  :hover {
+  &:hover {
     scale: 1.1;
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 `;
@@ -110,7 +110,7 @@ const InfoLine = styled.div`
   font-size: 1.2rem;
   line-height: 2rem;
 
-  svg {
+  & svg {
     width: 2rem;
   }
 `;

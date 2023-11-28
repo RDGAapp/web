@@ -93,11 +93,11 @@ const LogoBlock = styled(Link)`
   text-decoration: none;
   transition: scale 0.2s ease-in-out;
 
-  :hover {
+  &:hover {
     scale: 1.1;
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 `;

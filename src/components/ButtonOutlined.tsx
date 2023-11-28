@@ -11,11 +11,11 @@ const ButtonOutlined = css`
   cursor: pointer;
   transition: background-color 0.3s ease;
 
-  :hover {
+  &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
   }
 
-  :disabled {
+  &:disabled {
     color: ${({ theme }) => theme.colors.text.neutral};
     background-color: ${({ theme }) => theme.colors.background};
     border-color: ${({ theme }) => theme.colors.text.neutral};

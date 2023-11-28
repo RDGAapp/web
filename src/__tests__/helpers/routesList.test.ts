@@ -5,19 +5,15 @@ describe('routesList helper', () => {
     expect(routesList).toEqual([
       '/',
       '/about',
-      '/master',
-      '/training',
-      '/newbie',
-      '/pro',
-      '/international',
       '/players',
       '/contacts',
-      '#menu',
       '#join',
       '/service',
       '/calendar',
       '/partners',
-      '/admin'
+      '/admin',
+      '/admin/players',
+      '/admin/tournaments',
     ]);
   });
 });

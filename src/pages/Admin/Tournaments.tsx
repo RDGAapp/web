@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import ButtonOutlined from 'components/ButtonOutlined';
+import { Header } from 'components/PageContent';
 import useDialog from 'hooks/useDialog';
 import CreateTournament from 'pages/Admin/AdminPanelSections/CreateTournament';
 import DeleteTournament from 'pages/Admin/AdminPanelSections/DeleteTournament';
 import Section from 'pages/Admin/AdminPanelSections/Section';
-import SubHeader from 'pages/Admin/AdminPanelSections/Subheader';
 import UpdateTournament from 'pages/Admin/AdminPanelSections/UpdateTournament';
 
 const Button = styled.button`
@@ -13,7 +14,7 @@ const Button = styled.button`
   width: max-content;
 `;
 
-const TournamentsSection = () => {
+const Tournaments = () => {
   const {
     Dialog: CreateTournamentDialog,
     openModal: openCreateTournamentModal,
@@ -34,8 +35,9 @@ const TournamentsSection = () => {
 
   return (
     <>
+      <Breadcrumbs />
+      <Header>Действия над турниром</Header>
       <Section>
-        <SubHeader>Действия с турнирами</SubHeader>
         <Button type='button' onClick={openCreateTournamentModal}>
           Создать турнир
         </Button>
@@ -59,4 +61,4 @@ const TournamentsSection = () => {
   );
 };
 
-export default TournamentsSection;
+export default Tournaments;

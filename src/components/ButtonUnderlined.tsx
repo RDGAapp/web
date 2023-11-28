@@ -15,11 +15,11 @@ const Button = styled.button`
   cursor: pointer;
   transition: scale 0.2s ease-in-out;
 
-  :hover {
+  &:hover {
     scale: 1.1;
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 `;

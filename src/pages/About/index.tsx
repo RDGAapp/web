@@ -24,7 +24,7 @@ const PlanContainer = styled.div`
   justify-items: center;
   width: 100%;
 
-  p {
+  & p {
     width: fit-content;
   }
 `;
@@ -63,7 +63,7 @@ const PlanCardHeader = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   isolation: isolate;
 
-  p {
+  & p {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -142,11 +142,11 @@ const About = (): JSX.Element => {
 
   return (
     <PageContainer>
-      <Row imagePosition='right'>
+      <Row $imagePosition='right'>
         <ImageContainer>
-          <CustomImage src={RdgaImg} position='left' />
+          <CustomImage src={RdgaImg} $position='left' />
         </ImageContainer>
-        <TextContainer position='left'>
+        <TextContainer $position='left'>
           <Header>Что такое РДГА?</Header>
           <p>
             <dfn>Российская Диск-Гольф Ассоциация</dfn> - добровольное

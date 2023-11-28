@@ -1,9 +1,18 @@
+import { ReactComponent as BlgSvg } from 'assets/icons/blg.svg';
+import { ReactComponent as EkbSvg } from 'assets/icons/ekb.svg';
+import { ReactComponent as KlgSvg } from 'assets/icons/klg.svg';
+import { ReactComponent as MscSvg } from 'assets/icons/msc.svg';
+import { ReactComponent as NnSvg } from 'assets/icons/nn.svg';
+import { ReactComponent as PskSvg } from 'assets/icons/psk.svg';
+import { ReactComponent as SpbSvg } from 'assets/icons/spb.svg';
+import { ReactComponent as TltSvg } from 'assets/icons/tlt.svg';
 import contacts from 'helpers/contacts';
 
 describe('contacts helper', () => {
   test('should return array with set structure', () => {
     expect(contacts).toEqual([
       {
+        Image: EkbSvg,
         town: 'Екатеринбург',
         phone: '+7 (343) 328 92 31',
         email: 'discgolfekb@ya.ru',
@@ -12,6 +21,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolf_ekb',
       },
       {
+        Image: SpbSvg,
         town: 'Санкт-Петербург',
         phone: '+7 (981) 783 25 16',
         email: 'discgolfspb@gmail.com',
@@ -20,6 +30,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfspb',
       },
       {
+        Image: MscSvg,
         town: 'Москва',
         phone: '+7 (916) 780 81 68',
         email: 'Discgolf.msk@gmail.com',
@@ -29,6 +40,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfmsk',
       },
       {
+        Image: NnSvg,
         town: 'Нижний Новгород',
         phone: '+7 (930) 813 33 99',
         phone2: '+7 (831) 414 21 23',
@@ -38,6 +50,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfnn',
       },
       {
+        Image: BlgSvg,
         town: 'Белгород',
         phone: '+7 (915) 566 68 08',
         email: 'discgolf31@mail.ru',
@@ -46,6 +59,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolf31',
       },
       {
+        Image: PskSvg,
         town: 'Псков',
         phone: '+7 (921) 004 07 24',
         email: 'discgolfpskov@gmail.com',
@@ -54,6 +68,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/discgolfpskov',
       },
       {
+        Image: TltSvg,
         town: 'Тольятти',
         phone: '+7 (927) 687 97 50',
         email: 'tfdf63@yandex.ru',
@@ -63,6 +78,7 @@ describe('contacts helper', () => {
         vk: 'https://vk.com/tfdf63',
       },
       {
+        Image: KlgSvg,
         town: 'Калининград',
         phone: '+7 (906) 239 00 58',
         email: 'elena_iskritskaya@mail.ru',
@@ -73,6 +89,8 @@ describe('contacts helper', () => {
   });
 
   test('should return array sorted alphabetically', () => {
-    expect(contacts).toEqual(contacts.sort((a, b) => a.town.localeCompare(b.town)));
+    expect(contacts).toEqual(
+      contacts.sort((a, b) => a.town.localeCompare(b.town)),
+    );
   });
 });

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { ReactComponent as LinkSvg } from 'assets/icons/link.svg';
 import { ReactComponent as PlaySvg } from 'assets/icons/play.svg';
 
-const Container = styled.div<{ position: 'left' | 'right' }>`
+const Container = styled.div<{ $position: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: ${({ position }) => (position === 'left' ? 'flex-end' : 'flex-start')};
+  align-items: ${({ $position }) => ($position === 'left' ? 'flex-end' : 'flex-start')};
   border-radius: 2rem;
 
   ${({ theme }) => theme.media.mobile} {
@@ -20,7 +20,7 @@ const Header = styled.h3`
   font-size: 1.2rem;
 `;
 
-const VideoPreview = styled.div<{ image: string }>`
+const VideoPreview = styled.div<{ $image: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +28,7 @@ const VideoPreview = styled.div<{ image: string }>`
   max-width: 28rem;
   height: 16rem;
   color: transparent;
-  background: left center url("${({ image }) => image}");
+  background: left center url("${({ $image }) => $image}");
   background-size: cover;
   border-radius: 1rem;
 `;
@@ -46,15 +46,15 @@ const PlayButton = styled.a`
   cursor: pointer;
   transition: scale 0.3s ease-in-out;
 
-  :hover {
+  &:hover {
     scale: 1.1;
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 
-  svg {
+  & svg {
     width: 2.1rem;
     margin-left: 0.5rem;
     aspect-ratio: 3 / 4;
@@ -72,11 +72,11 @@ const VideoName = styled.a`
   text-decoration: none;
   transition: scale 0.3s ease-in-out;
 
-  :hover {
+  &:hover {
     scale: 1.1;
   }
 
-  :active {
+  &:active {
     scale: 0.9;
   }
 `;
@@ -96,9 +96,9 @@ const VideoLink = ({
   name,
   position,
 }: VideoLinkProps): JSX.Element => (
-  <Container position={position}>
+  <Container $position={position}>
     <Header>{header}</Header>
-    <VideoPreview image={image}>
+    <VideoPreview $image={image}>
       <PlayButton href={link} target='_blank' rel='noreferrer'>
         <PlaySvg />
       </PlayButton>

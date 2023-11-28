@@ -11,13 +11,13 @@ const Link = styled.a`
   line-height: 1;
   transition: color 0.3s ease-in-out;
 
-  :hover {
+  &:hover {
     color: ${({ theme }) => theme.colors.secondary};
   }
-`;
 
-const LinkIcon = styled(LinkSvg)`
-  height: 0.7rem;
+  & svg {
+    height: 0.7rem;
+  }
 `;
 
 interface SocialLinkProps {
@@ -28,7 +28,7 @@ interface SocialLinkProps {
 const SocialLink = ({ name, value }: SocialLinkProps): JSX.Element => (
   <Link href={value} target="_blank" rel="noreferrer">
     {name}
-    <LinkIcon />
+    <LinkSvg />
   </Link>
 );
 
