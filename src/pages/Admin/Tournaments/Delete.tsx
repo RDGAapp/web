@@ -1,13 +1,10 @@
 import { useState } from 'react';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import { deleteTournament } from 'helpers/api';
-import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
+import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
-interface DeleteTournamentProps {
-  onClose: () => void;
-}
-
-const DeleteTournament = ({ onClose }: DeleteTournamentProps): JSX.Element => {
+const DeleteTournament = (): JSX.Element => {
   const [code, setCode] = useState('');
 
   const inputs = [
@@ -23,12 +20,14 @@ const DeleteTournament = ({ onClose }: DeleteTournamentProps): JSX.Element => {
   const onSubmit = () => deleteTournament(code);
 
   return (
-    <AdminFormLayout
-      header='Удаление турнира'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <Breadcrumbs />
+      <AdminFormLayout
+        header='Удаление турнира'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 

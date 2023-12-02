@@ -1,13 +1,10 @@
 import { useState } from 'react';
 
-import { createPlayer } from 'helpers/api';
-import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
+import Breadcrumbs from 'components/Breadcrumbs';
+import { updatePlayer, getPlayer } from 'helpers/api';
+import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
-interface CreatePlayerProps {
-  onClose: () => void;
-}
-
-const CreatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
+const UpdatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [rdgaNumber, setRdgaNumber] = useState('');
@@ -35,13 +32,6 @@ const CreatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
       onChange: setSurname,
       label: 'Фамилия',
       type: 'text',
-    },
-    {
-      value: rdgaNumber,
-      onChange: setRdgaNumber,
-      label: 'Номер РДГА',
-      type: 'number',
-      required: true,
     },
     {
       value: rdgaRating,
@@ -114,7 +104,6 @@ const CreatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
     const player = {
       name,
       surname: surname || null,
-      rdgaNumber: Number(rdgaNumber),
       rdgaRating: Number(rdgaRating) || 0,
       rdgaRatingChange: Number(rdgaRatingChange) || 0,
       town,
@@ -127,17 +116,51 @@ const CreatePlayer = ({ onClose }: CreatePlayerProps): JSX.Element => {
       activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
     } as Player;
 
-    return createPlayer(player);
+    return updatePlayer(player, Number(rdgaNumber));
+  };
+
+  const getAllPlayerDataByRdgaNumber = async () => {
+    const response = await getPlayer(Number(rdgaNumber));
+    const json = await response.json();
+    setName(json.name);
+    setSurname(json.surname || '');
+    setRdgaRating(json.rdgaRating);
+    setRdgaRatingChange(json.rdgaRatingChange);
+    setTown(json.town);
+    setEmail(json.email);
+    setPdgaNumber(json.pdgaNumber || '');
+    setPdgaRating(json.pdgaRating || '');
+    setMetrixNumber(json.metrixNumber || '');
+    setMetrixRating(json.metrixRating || '');
+    setPriority(json.priority);
+    setActiveTo(new Date(json.activeTo).getFullYear());
+
+    return response;
   };
 
   return (
-    <AdminFormLayout
-      header='Создание игрока'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <Breadcrumbs />
+      <AdminFormLayout
+        header='Загрузить данные игрока'
+        inputs={[
+          {
+            value: rdgaNumber,
+            onChange: setRdgaNumber,
+            label: 'Номер РДГА',
+            type: 'number',
+            required: true,
+          },
+        ]}
+        onSubmit={getAllPlayerDataByRdgaNumber}
+      />
+      <AdminFormLayout
+        header='Обновление игрока'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 
-export default CreatePlayer;
+export default UpdatePlayer;

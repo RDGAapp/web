@@ -9,7 +9,14 @@ enum routes {
   Partners = '/partners',
   AdminHome = '/admin',
   AdminPlayers = '/admin/players',
+  AdminPlayersCreate = '/admin/players/create',
+  AdminPlayersUpdate = '/admin/players/update',
+  AdminPlayersDelete = '/admin/players/delete',
+  AdminPlayersRenew = '/admin/players/renew',
   AdminTournaments = '/admin/tournaments',
+  AdminTournamentsCreate = '/admin/tournaments/create',
+  AdminTournamentsUpdate = '/admin/tournaments/update',
+  AdminTournamentsDelete = '/admin/tournaments/delete',
 }
 
 export const routeNames: Record<routes, string> = {
@@ -23,7 +30,14 @@ export const routeNames: Record<routes, string> = {
   [routes.Partners]: 'Партнеры',
   [routes.AdminHome]: 'Панель администратора',
   [routes.AdminPlayers]: 'Действия над игроком',
+  [routes.AdminPlayersCreate]: 'Создать',
+  [routes.AdminPlayersUpdate]: 'Обновить',
+  [routes.AdminPlayersDelete]: 'Удалить',
+  [routes.AdminPlayersRenew]: 'Активировать',
   [routes.AdminTournaments]: 'Действия над турниром',
+  [routes.AdminTournamentsCreate]: 'Создать',
+  [routes.AdminTournamentsUpdate]: 'Обновить',
+  [routes.AdminTournamentsDelete]: 'Удалить',
 };
 
 export default routes;

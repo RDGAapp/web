@@ -1,14 +1,11 @@
 import { useState } from 'react';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import TournamentType from 'enums/tournamentType';
 import { createTournament } from 'helpers/api';
-import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
+import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
-interface CreateTournamentProps {
-  onClose: () => void;
-}
-
-const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
+const CreateTournament = (): JSX.Element => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
   const [town, setTown] = useState('');
@@ -92,12 +89,14 @@ const CreateTournament = ({ onClose }: CreateTournamentProps): JSX.Element => {
   };
 
   return (
-    <AdminFormLayout
-      header='Создание турнира'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <Breadcrumbs />
+      <AdminFormLayout
+        header='Создание турнира'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 

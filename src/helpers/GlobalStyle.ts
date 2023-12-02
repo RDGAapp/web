@@ -115,7 +115,6 @@ const GlobalStyle = createGlobalStyle`
     flex-shrink: 0;
     height: 100%;
     aspect-ratio: 1 / 1;
-    fill: currentColor;
   }
 
   ul, ol {

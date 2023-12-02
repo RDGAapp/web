@@ -14,10 +14,24 @@ import { TownProvider } from 'hooks/TownContext';
 import useDialog from 'hooks/useDialog';
 import Loading from 'pages/Loading';
 
-const About = lazy(() => import('pages/About'));
 const Admin = lazy(() => import('pages/Admin'));
 const AdminPlayers = lazy(() => import('pages/Admin/Players'));
+const AdminPlayersCreate = lazy(() => import('pages/Admin/Players/Create'));
+const AdminPlayersUpdate = lazy(() => import('pages/Admin/Players/Update'));
+const AdminPlayersDelete = lazy(() => import('pages/Admin/Players/Delete'));
+const AdminPlayersRenew = lazy(() => import('pages/Admin/Players/Activate'));
 const AdminTournaments = lazy(() => import('pages/Admin/Tournaments'));
+const AdminTournamentsCreate = lazy(
+  () => import('pages/Admin/Tournaments/Create'),
+);
+const AdminTournamentsUpdate = lazy(
+  () => import('pages/Admin/Tournaments/Update'),
+);
+const AdminTournamentsDelete = lazy(
+  () => import('pages/Admin/Tournaments/Delete'),
+);
+
+const About = lazy(() => import('pages/About'));
 const Calendar = lazy(() => import('pages/Calendar'));
 const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
@@ -84,10 +98,66 @@ const App = (): JSX.Element => {
                   }
                 />
                 <Route
+                  path={routes.AdminPlayersCreate}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminPlayersCreate />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminPlayersUpdate}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminPlayersUpdate />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminPlayersDelete}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminPlayersDelete />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminPlayersRenew}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminPlayersRenew />
+                    </Authorized>
+                  }
+                />
+                <Route
                   path={routes.AdminTournaments}
                   element={
                     <Authorized requiredRoles={[Role.Admin]}>
                       <AdminTournaments />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminTournamentsCreate}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminTournamentsCreate />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminTournamentsUpdate}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminTournamentsUpdate />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminTournamentsDelete}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin]}>
+                      <AdminTournamentsDelete />
                     </Authorized>
                   }
                 />
@@ -114,10 +184,7 @@ const App = (): JSX.Element => {
                   onChange={() => {}}
                   style={{ cursor: 'pointer' }}
                 />
-                <label
-                  htmlFor='isAdmin'
-                  style={{ cursor: 'pointer' }}
-                >
+                <label htmlFor='isAdmin' style={{ cursor: 'pointer' }}>
                   Режим администратора
                 </label>
               </div>

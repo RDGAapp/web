@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as PlayersSvg } from 'assets/icons/avatar.svg';
-import { ReactComponent as CalendarSvg } from 'assets/icons/calendar.svg';
+import { ReactComponent as AddSvg } from 'assets/icons/add.svg';
+import { ReactComponent as RefreshSvg } from 'assets/icons/refresh.svg';
+import { ReactComponent as TrashSvg } from 'assets/icons/trash.svg';
 import Breadcrumbs from 'components/Breadcrumbs';
 import ButtonOutlined from 'components/ButtonOutlined';
 import { Header } from 'components/PageContent';
@@ -28,21 +29,25 @@ const Section = styled(Link)`
   }
 `;
 
-const AdminPage = () => (
+const Tournaments = () => (
   <>
     <Breadcrumbs />
-    <Header>Панель администратора</Header>
+    <Header>Действия над турниром</Header>
     <Sections>
-      <Section to={routes.AdminPlayers}>
-        <PlayersSvg />
-        Игроки
+      <Section to={routes.AdminTournamentsCreate}>
+        <AddSvg />
+        Создать
       </Section>
-      <Section to={routes.AdminTournaments}>
-        <CalendarSvg />
-        Турниры
+      <Section to={routes.AdminTournamentsUpdate}>
+        <RefreshSvg />
+        Обновить
+      </Section>
+      <Section to={routes.AdminTournamentsDelete}>
+        <TrashSvg />
+        Удалить
       </Section>
     </Sections>
   </>
 );
 
-export default AdminPage;
+export default Tournaments;

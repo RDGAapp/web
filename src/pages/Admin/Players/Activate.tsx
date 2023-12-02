@@ -1,14 +1,11 @@
 import { useState } from 'react';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import { activatePlayer } from 'helpers/api';
 
-import AdminFormLayout from './AdminFormLayout';
+import AdminFormLayout from '../common/AdminFormLayout';
 
-interface IProps {
-  onClose: () => void;
-}
-
-const ActivatePlayer = ({ onClose }: IProps) => {
+const ActivatePlayer = () => {
   const [rdgaNumber, setRdgaNumber] = useState('');
 
   const inputs = [
@@ -24,12 +21,14 @@ const ActivatePlayer = ({ onClose }: IProps) => {
   const onSubmit = async () => activatePlayer(Number(rdgaNumber));
 
   return (
-    <AdminFormLayout
-      header='Активировать'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <Breadcrumbs />
+      <AdminFormLayout
+        header='Активировать'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 

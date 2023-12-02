@@ -1,13 +1,10 @@
 import { useState } from 'react';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import { deletePlayer } from 'helpers/api';
-import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
+import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
-interface DeletePlayerProps {
-  onClose: () => void;
-}
-
-const DeletePlayer = ({ onClose }: DeletePlayerProps): JSX.Element => {
+const DeletePlayer = (): JSX.Element => {
   const [rdgaNumber, setRdgaNumber] = useState('');
 
   const inputs = [
@@ -23,12 +20,14 @@ const DeletePlayer = ({ onClose }: DeletePlayerProps): JSX.Element => {
   const onSubmit = () => deletePlayer(Number(rdgaNumber));
 
   return (
-    <AdminFormLayout
-      header='Удаление игрока'
-      inputs={inputs}
-      onClose={onClose}
-      onSubmit={onSubmit}
-    />
+    <>
+      <Breadcrumbs />
+      <AdminFormLayout
+        header='Удаление игрока'
+        inputs={inputs}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 

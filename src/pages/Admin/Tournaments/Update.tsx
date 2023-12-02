@@ -1,14 +1,11 @@
 import { useState } from 'react';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import TournamentType from 'enums/tournamentType';
 import { updateTournament, getTournament } from 'helpers/api';
-import AdminFormLayout from 'pages/Admin/AdminPanelSections/AdminFormLayout';
+import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
-interface UpdateTournamentProps {
-  onClose: () => void;
-}
-
-const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
+const UpdateTournament = (): JSX.Element => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
   const [town, setTown] = useState('');
@@ -97,6 +94,7 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
 
   return (
     <>
+      <Breadcrumbs />
       <AdminFormLayout
         header='Загрузить данные турнира'
         inputs={[
@@ -108,7 +106,6 @@ const UpdateTournament = ({ onClose }: UpdateTournamentProps): JSX.Element => {
             required: true,
           },
         ]}
-        onClose={onClose}
         onSubmit={getAllTournamentDataByCode}
       />
       <AdminFormLayout

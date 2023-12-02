@@ -13,7 +13,14 @@ describe('routesList helper', () => {
       '/partners',
       '/admin',
       '/admin/players',
+      '/admin/players/create',
+      '/admin/players/update',
+      '/admin/players/delete',
+      '/admin/players/renew',
       '/admin/tournaments',
+      '/admin/tournaments/create',
+      '/admin/tournaments/update',
+      '/admin/tournaments/delete',
     ]);
   });
 });
