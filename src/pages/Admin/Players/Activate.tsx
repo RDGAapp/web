@@ -25,8 +25,9 @@ const ActivatePlayer = () => {
       <Breadcrumbs />
       <AdminFormLayout
         header='Активировать'
-        inputs={inputs}
-        onSubmit={onSubmit}
+        actionNames={['Активация игрока']}
+        forms={[inputs]}
+        onSubmits={[onSubmit]}
       />
     </>
   );

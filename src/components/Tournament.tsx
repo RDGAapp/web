@@ -4,13 +4,13 @@ import TournamentType from 'enums/tournamentType';
 import { spellMonth } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournamentColorByType';
 
-const Container = styled.div<{ border: string; maxWidth: string }>`
+const Container = styled.div<{ border: string; $maxWidth: string }>`
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  max-width: ${(props) => props.maxWidth};
+  max-width: ${(props) => props.$maxWidth};
   height: 3rem;
   padding: 0 0.3rem;
   overflow: hidden;
@@ -19,7 +19,7 @@ const Container = styled.div<{ border: string; maxWidth: string }>`
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    flex-basis: ${(props) => props.maxWidth};
+    flex-basis: ${(props) => props.$maxWidth};
   }
 
   & * {
@@ -62,7 +62,7 @@ const Tournament = ({
   <Container
     title={name}
     border={TournamentColorByType[type as TournamentType]}
-    maxWidth={maxWidth}
+    $maxWidth={maxWidth}
   >
     <b>{name}</b>
     <ExtraTournamentInformation>

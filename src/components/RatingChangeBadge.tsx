@@ -16,9 +16,10 @@ const BadgeNew = styled.span`
   border-radius: 100vh;
 `;
 
-const Badge = styled.span<{ increased: boolean }>`
+const Badge = styled.span<{ $increased: string }>`
   ${commonBadgeStyle}
-  color: ${({ theme, increased }) => (increased ? theme.colors.success : theme.colors.error)};
+  color: ${({ theme, $increased }) =>
+    $increased === 'true' ? theme.colors.success : theme.colors.error};
 `;
 
 const BadgeNeutral = styled.span`
@@ -27,8 +28,8 @@ const BadgeNeutral = styled.span`
 `;
 
 interface Props {
-  rating: number,
-  ratingChange?: number,
+  rating: number;
+  ratingChange?: number;
 }
 
 const RatingChangeBadge = ({ rating, ratingChange }: Props) => {
@@ -40,10 +41,8 @@ const RatingChangeBadge = ({ rating, ratingChange }: Props) => {
 
   const ratingIncreased = ratingChange > 0;
   return (
-    <Badge increased={ratingIncreased}>
-      {ratingIncreased ? '↗' : '↘'}
-      {' '}
-      {Math.abs(ratingChange)}
+    <Badge $increased={ratingIncreased.toString()}>
+      {ratingIncreased ? '↗' : '↘'} {Math.abs(ratingChange)}
     </Badge>
   );
 };

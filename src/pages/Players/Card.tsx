@@ -68,7 +68,7 @@ interface Props {
 }
 
 const Card = ({ player, setSelected }: Props) => {
-  const disabled = player.activeTo < new Date().toISOString();
+  const disabled = new Date(player.activeTo) < new Date();
 
   return (
     <Container

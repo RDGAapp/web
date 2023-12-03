@@ -4,6 +4,8 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import { createPlayer } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
+import Preview from './Preview';
+
 const CreatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -107,33 +109,33 @@ const CreatePlayer = (): JSX.Element => {
     },
   ];
 
-  const onSubmit = async () => {
-    const player = {
-      name,
-      surname: surname || null,
-      rdgaNumber: Number(rdgaNumber),
-      rdgaRating: Number(rdgaRating) || 0,
-      rdgaRatingChange: Number(rdgaRatingChange) || 0,
-      town,
-      email,
-      pdgaNumber: Number(pdgaNumber) || null,
-      pdgaRating: Number(pdgaRating) || null,
-      metrixNumber: Number(metrixNumber) || null,
-      metrixRating: Number(metrixRating) || null,
-      priority: Number(priority) || 0,
-      activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
-    } as Player;
+  const player = {
+    name,
+    surname: surname || null,
+    rdgaNumber: Number(rdgaNumber),
+    rdgaRating: Number(rdgaRating) || 0,
+    rdgaRatingChange: Number(rdgaRatingChange) || 0,
+    town,
+    email,
+    pdgaNumber: Number(pdgaNumber) || null,
+    pdgaRating: Number(pdgaRating) || null,
+    metrixNumber: Number(metrixNumber) || null,
+    metrixRating: Number(metrixRating) || null,
+    priority: Number(priority) || 0,
+    activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
+  } as Player;
 
-    return createPlayer(player);
-  };
+  const onSubmit = async () => createPlayer(player);
 
   return (
     <>
       <Breadcrumbs />
       <AdminFormLayout
         header='Создание игрока'
-        inputs={inputs}
-        onSubmit={onSubmit}
+        actionNames={['Создание игрока']}
+        forms={[inputs]}
+        onSubmits={[onSubmit]}
+        preview={<Preview player={player} />}
       />
     </>
   );

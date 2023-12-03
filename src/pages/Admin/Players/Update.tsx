@@ -4,6 +4,8 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import { updatePlayer, getPlayer } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
+import Preview from './Preview';
+
 const UpdatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -100,24 +102,22 @@ const UpdatePlayer = (): JSX.Element => {
     },
   ];
 
-  const onSubmit = async () => {
-    const player = {
-      name,
-      surname: surname || null,
-      rdgaRating: Number(rdgaRating) || 0,
-      rdgaRatingChange: Number(rdgaRatingChange) || 0,
-      town,
-      email,
-      pdgaNumber: Number(pdgaNumber) || null,
-      pdgaRating: Number(pdgaRating) || null,
-      metrixNumber: Number(metrixNumber) || null,
-      metrixRating: Number(metrixRating) || null,
-      priority: Number(priority) || 0,
-      activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
-    } as Player;
+  const player = {
+    name,
+    surname: surname || null,
+    rdgaRating: Number(rdgaRating) || 0,
+    rdgaRatingChange: Number(rdgaRatingChange) || 0,
+    town,
+    email,
+    pdgaNumber: Number(pdgaNumber) || null,
+    pdgaRating: Number(pdgaRating) || null,
+    metrixNumber: Number(metrixNumber) || null,
+    metrixRating: Number(metrixRating) || null,
+    priority: Number(priority) || 0,
+    activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
+  } as Player;
 
-    return updatePlayer(player, Number(rdgaNumber));
-  };
+  const onSubmit = async () => updatePlayer(player, Number(rdgaNumber));
 
   const getAllPlayerDataByRdgaNumber = async () => {
     const response = await getPlayer(Number(rdgaNumber));
@@ -142,22 +142,24 @@ const UpdatePlayer = (): JSX.Element => {
     <>
       <Breadcrumbs />
       <AdminFormLayout
-        header='Загрузить данные игрока'
-        inputs={[
-          {
-            value: rdgaNumber,
-            onChange: setRdgaNumber,
-            label: 'Номер РДГА',
-            type: 'number',
-            required: true,
-          },
-        ]}
-        onSubmit={getAllPlayerDataByRdgaNumber}
-      />
-      <AdminFormLayout
         header='Обновление игрока'
-        inputs={inputs}
-        onSubmit={onSubmit}
+        actionNames={['Загрузить данные игрока', 'Обновление игрока']}
+        forms={[
+          [
+            {
+              value: rdgaNumber,
+              onChange: setRdgaNumber,
+              label: 'Номер РДГА',
+              type: 'number',
+              required: true,
+            },
+          ],
+          inputs,
+        ]}
+        onSubmits={[getAllPlayerDataByRdgaNumber, onSubmit]}
+        preview={
+          <Preview player={{ ...player, rdgaNumber: Number(rdgaNumber) }} />
+        }
       />
     </>
   );

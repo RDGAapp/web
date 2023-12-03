@@ -1,33 +1,12 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-import { ReactComponent as AddSvg } from 'assets/icons/add.svg';
+import { ReactComponent as PlusSvg } from 'assets/icons/plus.svg';
 import { ReactComponent as RefreshSvg } from 'assets/icons/refresh.svg';
 import { ReactComponent as TrashSvg } from 'assets/icons/trash.svg';
 import Breadcrumbs from 'components/Breadcrumbs';
-import ButtonOutlined from 'components/ButtonOutlined';
 import { Header } from 'components/PageContent';
 import routes from 'helpers/routes';
 
-const Sections = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-`;
-
-const Section = styled(Link)`
-  ${ButtonOutlined};
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.2rem;
-  border-radius: 0;
-
-  & svg {
-    height: 1rem;
-  }
-`;
+import Section from '../common/Section';
+import Sections from '../common/Sections';
 
 const Tournaments = () => (
   <>
@@ -35,7 +14,7 @@ const Tournaments = () => (
     <Header>Действия над турниром</Header>
     <Sections>
       <Section to={routes.AdminTournamentsCreate}>
-        <AddSvg />
+        <PlusSvg />
         Создать
       </Section>
       <Section to={routes.AdminTournamentsUpdate}>

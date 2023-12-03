@@ -5,6 +5,8 @@ import TournamentType from 'enums/tournamentType';
 import { updateTournament, getTournament } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
+import Preview from './Preview';
+
 const UpdateTournament = (): JSX.Element => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
@@ -50,7 +52,6 @@ const UpdateTournament = (): JSX.Element => {
       type: 'select',
       required: true,
       variants: [
-        { value: TournamentType.AllStar, text: 'Матч Всех Звезд' },
         { value: TournamentType.League, text: 'Лига' },
         { value: TournamentType.Pro, text: 'Pro тур' },
         { value: TournamentType.RussianChampionship, text: 'Чемпионат России' },
@@ -66,18 +67,16 @@ const UpdateTournament = (): JSX.Element => {
     },
   ];
 
-  const onSubmit = async () => {
-    const tournament = {
-      name,
-      town,
-      startDate: new Date(startDate).toISOString(),
-      endDate: new Date(endDate).toISOString(),
-      tournamentType,
-      metrixId: metrixId || null,
-    };
-
-    return updateTournament(tournament, code);
+  const tournament = {
+    name,
+    town,
+    startDate: (startDate ? new Date(startDate) : new Date()).toISOString(),
+    endDate: (endDate ? new Date(endDate) : new Date()).toISOString(),
+    tournamentType,
+    metrixId: metrixId || null,
   };
+
+  const onSubmit = async () => updateTournament(tournament, code);
 
   const getAllTournamentDataByCode = async () => {
     const response = await getTournament(code);
@@ -96,22 +95,22 @@ const UpdateTournament = (): JSX.Element => {
     <>
       <Breadcrumbs />
       <AdminFormLayout
-        header='Загрузить данные турнира'
-        inputs={[
-          {
-            value: code,
-            onChange: setCode,
-            label: 'Код турнира',
-            type: 'text',
-            required: true,
-          },
-        ]}
-        onSubmit={getAllTournamentDataByCode}
-      />
-      <AdminFormLayout
         header='Обновление турнира'
-        inputs={inputs}
-        onSubmit={onSubmit}
+        actionNames={['Загрузить данные турнира', 'Обновление турнира']}
+        forms={[
+          [
+            {
+              value: code,
+              onChange: setCode,
+              label: 'Код турнира',
+              type: 'text',
+              required: true,
+            },
+          ],
+          inputs,
+        ]}
+        onSubmits={[getAllTournamentDataByCode, onSubmit]}
+        preview={<Preview tournament={{ ...tournament, code }} />}
       />
     </>
   );

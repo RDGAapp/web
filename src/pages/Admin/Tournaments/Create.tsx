@@ -5,6 +5,8 @@ import TournamentType from 'enums/tournamentType';
 import { createTournament } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
+import Preview from './Preview';
+
 const CreateTournament = (): JSX.Element => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
@@ -58,7 +60,6 @@ const CreateTournament = (): JSX.Element => {
       type: 'select',
       required: true,
       variants: [
-        { value: TournamentType.AllStar, text: 'Матч Всех Звезд' },
         { value: TournamentType.League, text: 'Лига' },
         { value: TournamentType.Pro, text: 'Pro тур' },
         { value: TournamentType.RussianChampionship, text: 'Чемпионат России' },
@@ -74,27 +75,27 @@ const CreateTournament = (): JSX.Element => {
     },
   ];
 
-  const onSubmit = async () => {
-    const tournament = {
-      code,
-      name,
-      town,
-      startDate: new Date(startDate).toISOString(),
-      endDate: new Date(endDate).toISOString(),
-      tournamentType,
-      metrixId: metrixId || null,
-    };
-
-    return createTournament(tournament);
+  const tournament = {
+    code,
+    name,
+    town,
+    startDate: (startDate ? new Date(startDate) : new Date()).toISOString(),
+    endDate: (endDate ? new Date(endDate) : new Date()).toISOString(),
+    tournamentType,
+    metrixId: metrixId || null,
   };
+
+  const onSubmit = async () => createTournament(tournament);
 
   return (
     <>
       <Breadcrumbs />
       <AdminFormLayout
         header='Создание турнира'
-        inputs={inputs}
-        onSubmit={onSubmit}
+        actionNames={['Создание турнира']}
+        forms={[inputs]}
+        onSubmits={[onSubmit]}
+        preview={<Preview tournament={tournament} />}
       />
     </>
   );

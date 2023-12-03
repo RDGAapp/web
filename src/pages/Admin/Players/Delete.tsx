@@ -24,8 +24,9 @@ const DeletePlayer = (): JSX.Element => {
       <Breadcrumbs />
       <AdminFormLayout
         header='Удаление игрока'
-        inputs={inputs}
-        onSubmit={onSubmit}
+        actionNames={['Удаление игрока']}
+        forms={[inputs]}
+        onSubmits={[onSubmit]}
       />
     </>
   );

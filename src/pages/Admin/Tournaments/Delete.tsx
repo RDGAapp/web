@@ -24,8 +24,9 @@ const DeleteTournament = (): JSX.Element => {
       <Breadcrumbs />
       <AdminFormLayout
         header='Удаление турнира'
-        inputs={inputs}
-        onSubmit={onSubmit}
+        actionNames={['Удаление турнира']}
+        forms={[inputs]}
+        onSubmits={[onSubmit]}
       />
     </>
   );
