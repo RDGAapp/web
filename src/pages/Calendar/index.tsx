@@ -164,7 +164,7 @@ const Calendar = () => {
 
         return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
       }),
-    [tournaments]
+    [tournaments],
   );
 
   return (
@@ -234,7 +234,7 @@ const Calendar = () => {
                               (new Date(tournament.endDate) >= week[0] &&
                                 new Date(tournament.endDate) <= week[6]) ||
                               (new Date(tournament.startDate) <= week[0] &&
-                                new Date(tournament.endDate) >= week[6])
+                                new Date(tournament.endDate) >= week[6]),
                           )
                           .map((tournament) => (
                             <Tournament
@@ -244,6 +244,7 @@ const Calendar = () => {
                               town={tournament.town}
                               startDate={new Date(tournament.startDate)}
                               endDate={new Date(tournament.endDate)}
+                              metrixId={tournament.metrixId}
                             />
                           ))}
                       </TournamentList>

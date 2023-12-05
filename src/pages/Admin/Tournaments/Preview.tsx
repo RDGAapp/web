@@ -12,6 +12,7 @@ const Preview = ({ tournament }: IPreview) => (
     startDate={new Date(tournament.startDate)}
     endDate={new Date(tournament.endDate)}
     maxWidth='100%'
+    metrixId={tournament.metrixId}
   />
 );
 

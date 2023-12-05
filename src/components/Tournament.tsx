@@ -18,8 +18,17 @@ const Container = styled.div<{ border: string; $maxWidth: string }>`
   border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
 
+  & a {
+    font-weight: bold;
+    text-decoration: none;
+  }
+
   &:hover {
     flex-basis: ${(props) => props.$maxWidth};
+
+    & a {
+      text-decoration: underline;
+    }
   }
 
   & * {
@@ -48,6 +57,7 @@ interface Props {
   town: string;
   startDate: Date;
   endDate: Date;
+  metrixId: string | null;
   maxWidth?: string;
 }
 
@@ -58,13 +68,24 @@ const Tournament = ({
   startDate,
   endDate,
   maxWidth = 'max-content',
+  metrixId,
 }: Props) => (
   <Container
     title={name}
     border={TournamentColorByType[type as TournamentType]}
     $maxWidth={maxWidth}
   >
-    <b>{name}</b>
+    {metrixId ? (
+      <a
+        href={`https://discgolfmetrix.com/${metrixId}`}
+        target='_blank'
+        rel='noreferrer'
+      >
+        {name}
+      </a>
+    ) : (
+      <b>{name}</b>
+    )}
     <ExtraTournamentInformation>
       <i>{town}</i>
     </ExtraTournamentInformation>

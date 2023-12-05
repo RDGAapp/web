@@ -104,6 +104,7 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
                 startDate={new Date(tournament.startDate)}
                 endDate={new Date(tournament.endDate)}
                 maxWidth='100%'
+                metrixId={tournament.metrixId}
               />
             ))}
           </TournamentsList>
