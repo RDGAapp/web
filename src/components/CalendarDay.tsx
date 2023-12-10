@@ -1,9 +1,12 @@
+import { useContext } from 'react';
+
 import styled from 'styled-components';
 
 import Tournament from 'components/Tournament';
+import { AppSettingsContext } from 'context/AppSettings';
 import TournamentType from 'enums/tournamentType';
 import { getMonthName, spellMonth } from 'helpers/dateHelpers';
-import { commonTheme } from 'helpers/theme';
+import theme, { commonTheme } from 'helpers/theme';
 import TournamentColorByType from 'helpers/tournamentColorByType';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
@@ -12,7 +15,7 @@ const Container = styled.div`
   width: 3rem;
   height: 3rem;
   padding: 0.2rem 0.3rem;
-  border: 1px solid #f3f3f3;
+  border: 1px solid ${({ theme }) => theme.colors.menuInactive};
   border-radius: 0.5rem;
 
   ${({ theme }) => theme.media.smallMobile} {
@@ -30,7 +33,7 @@ const TournamentCircle = styled.div<{ border: string }>`
   height: 0.5rem;
   aspect-ratio: 1 / 1;
   background-color: ${(props) => props.border};
-  border: 1px solid ${({ theme }) => theme.colors.text.primary};
+  border: 1px solid currentColor;
   border-radius: 100vh;
 `;
 
@@ -55,6 +58,8 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
     headerText: `Турниры ${day.getDate()} ${spellMonth(day.getMonth())}`,
   });
 
+  const { theme: currentTheme } = useContext(AppSettingsContext);
+
   const getDayColor = (
     day: Date,
     monthName: string,
@@ -64,9 +69,9 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
       return commonTheme.colors.primary;
     }
     if (getMonthName(day) === monthName) {
-      return shouldGreyOut ? 'hsl(0, 0%, 75%)' : 'inherit';
+      return shouldGreyOut ? theme[currentTheme].colors.menuInactive : 'inherit';
     }
-    return shouldGreyOut ? 'inherit' : 'hsl(0, 0%, 75%)';
+    return shouldGreyOut ? 'inherit' : theme[currentTheme].colors.menuInactive;
   };
 
   const getDayTextColor = () => {
