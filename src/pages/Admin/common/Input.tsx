@@ -11,7 +11,8 @@ const Label = styled.label`
 
 const CustomInput = styled.input`
   padding: 0.2rem 0.6rem;
-  border: 1px solid black;
+  background-color: inherit;
+  border: 1px solid currentColor;
   border-radius: 0.5rem;
 
   &:invalid {
@@ -21,7 +22,7 @@ const CustomInput = styled.input`
 
 const CustomSelect = styled.select`
   padding: 0.2rem 0.6rem;
-  border: 1px solid black;
+  border: 1px solid currentColor;
   border-radius: 0.5rem;
 
   &:invalid {

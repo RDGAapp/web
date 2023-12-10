@@ -64,7 +64,7 @@ const Select = styled.select`
   padding: 0.4rem 1rem;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: inherit;
   background-image: url('${SelectSvg}');
   background-repeat: no-repeat;
   background-position: center right 1rem;

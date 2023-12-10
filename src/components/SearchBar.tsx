@@ -49,7 +49,7 @@ const Input = styled.input`
   padding: 0.4rem 0 0.4rem 1rem;
   font-size: 1rem;
   line-height: 1.6rem;
-  background-color: ${({ theme }) => theme.background};
+  background-color: inherit;
   border: none;
   opacity: 0;
 
