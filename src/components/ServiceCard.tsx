@@ -10,6 +10,8 @@ const Container = styled.div`
 const Header = styled.img`
   width: 100%;
   height: 4rem;
+  background: white;
+  border-radius: 0.5rem;
 `;
 
 interface Props {

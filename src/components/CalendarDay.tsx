@@ -69,12 +69,20 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
     return shouldGreyOut ? 'inherit' : 'hsl(0, 0%, 75%)';
   };
 
+  const getDayTextColor = () => {
+    if (tournaments.length !== 0) {
+      return commonTheme.colors.black;
+    }
+    return 'inherit';
+  };
+
   const shouldOpenModal = isSmallMobile && tournaments.length > 0;
 
   return (
     <Container
       key={`day-${day.toDateString()}`}
       style={{
+        color: getDayTextColor(),
         backgroundColor: getDayColor(day, month.monthName, month.shouldGreyOut),
         cursor: shouldOpenModal ? 'pointer' : 'default',
       }}

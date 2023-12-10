@@ -10,6 +10,7 @@ const Background = styled.div<{ disabled: boolean }>`
   width: 3rem;
   height: 3rem;
   padding: 1rem;
+  color: ${({ theme }) => theme.colors.black};
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 100vh;
 

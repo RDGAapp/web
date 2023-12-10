@@ -22,10 +22,12 @@ const Container = styled(motion.button)`
   cursor: pointer;
   transition:
     background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
     border 0.3s ease-in-out;
 
   &:hover,
   &:focus {
+    color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.primary};
   }
 

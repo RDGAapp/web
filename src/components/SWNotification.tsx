@@ -8,7 +8,7 @@ const Container = styled.div`
   width: max-content;
   max-width: 80vw;
   padding: 0.5rem 1.5rem;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.black};
   font-size: 1rem;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.primary};

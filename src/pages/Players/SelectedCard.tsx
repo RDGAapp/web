@@ -48,6 +48,7 @@ const Header = styled.div`
   align-items: center;
   width: 100%;
   padding: 1.5rem 1rem 1rem;
+  color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.primary};
   isolation: isolate;
 `;
@@ -56,7 +57,7 @@ const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: inherit;
   background: none;
   border: none;
   cursor: pointer;
