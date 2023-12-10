@@ -5,6 +5,8 @@ import { AnimatePresence } from 'framer-motion';
 import Card from 'pages/Players/Card';
 import SelectedCard from 'pages/Players/SelectedCard';
 
+import { Player } from '../../../@types/player';
+
 interface IPreview {
   player: Player;
 }

@@ -16,6 +16,7 @@ const Container = styled.div`
   max-width: 72rem;
   margin: auto;
   padding: 1rem;
+  color: ${({ theme }) => theme.colors.black};
 
   ${({ theme }) => theme.media.mobile} {
     flex-direction: column;

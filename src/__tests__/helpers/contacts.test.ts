@@ -1,6 +1,7 @@
 import { ReactComponent as BlgSvg } from 'assets/icons/blg.svg';
 import { ReactComponent as EkbSvg } from 'assets/icons/ekb.svg';
 import { ReactComponent as KlgSvg } from 'assets/icons/klg.svg';
+import { ReactComponent as RdgaSvg } from 'assets/icons/logo.svg';
 import { ReactComponent as MscSvg } from 'assets/icons/msc.svg';
 import { ReactComponent as NnSvg } from 'assets/icons/nn.svg';
 import { ReactComponent as PskSvg } from 'assets/icons/psk.svg';
@@ -84,6 +85,13 @@ describe('contacts helper', () => {
         email: 'elena_iskritskaya@mail.ru',
         telegram: 'https://t.me/discgolf_Kaliningrad',
         vk: 'https://vk.com/discgolf_kaliningrad',
+      },
+      {
+        Image: RdgaSvg,
+        town: 'Набережные Челны',
+        phone: '+7 (927) 048 03 84',
+        email: 'lexa@chelny.com',
+        telegram: 'https://t.me/dg_shilna_chat',
       },
     ]);
   });

@@ -7,6 +7,8 @@ enum routes {
   Service = '/service',
   Calendar = '/calendar',
   Partners = '/partners',
+  Blog = '/blog',
+
   AdminHome = '/admin',
   AdminPlayers = '/admin/players',
   AdminPlayersCreate = '/admin/players/create',
@@ -17,6 +19,10 @@ enum routes {
   AdminTournamentsCreate = '/admin/tournaments/create',
   AdminTournamentsUpdate = '/admin/tournaments/update',
   AdminTournamentsDelete = '/admin/tournaments/delete',
+  AdminBlog = '/admin/blog',
+  AdminBlogCreate = '/admin/blog/create',
+  AdminBlogUpdate = '/admin/blog/update',
+  AdminBlogDelete = '/admin/blog/delete',
 }
 
 export const routeNames: Record<routes, string> = {
@@ -28,6 +34,8 @@ export const routeNames: Record<routes, string> = {
   [routes.Service]: 'Услуги',
   [routes.Calendar]: 'Календарь',
   [routes.Partners]: 'Партнеры',
+  [routes.Blog]: 'Блог',
+
   [routes.AdminHome]: 'Панель администратора',
   [routes.AdminPlayers]: 'Действия над игроком',
   [routes.AdminPlayersCreate]: 'Создать',
@@ -38,6 +46,10 @@ export const routeNames: Record<routes, string> = {
   [routes.AdminTournamentsCreate]: 'Создать',
   [routes.AdminTournamentsUpdate]: 'Обновить',
   [routes.AdminTournamentsDelete]: 'Удалить',
+  [routes.AdminBlog]: 'Действия над блогом',
+  [routes.AdminBlogCreate]: 'Создать',
+  [routes.AdminBlogUpdate]: 'Обновить',
+  [routes.AdminBlogDelete]: 'Удалить',
 };
 
 export default routes;

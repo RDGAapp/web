@@ -1,4 +1,5 @@
 import { ReactComponent as PlayersSvg } from 'assets/icons/avatar.svg';
+import { ReactComponent as BlogSvg } from 'assets/icons/blog.svg';
 import { ReactComponent as CalendarSvg } from 'assets/icons/calendar.svg';
 import Breadcrumbs from 'components/Breadcrumbs';
 import { Header } from 'components/PageContent';
@@ -19,6 +20,10 @@ const AdminPage = () => (
       <Section to={routes.AdminTournaments}>
         <CalendarSvg />
         Турниры
+      </Section>
+      <Section to={routes.AdminBlog}>
+        <BlogSvg />
+        Блог
       </Section>
     </Sections>
   </>

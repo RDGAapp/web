@@ -30,6 +30,8 @@ const AdminTournamentsUpdate = lazy(
 const AdminTournamentsDelete = lazy(
   () => import('pages/Admin/Tournaments/Delete'),
 );
+const AdminBlog = lazy(() => import('pages/Admin/Blog'));
+const AdminBlogCreate = lazy(() => import('pages/Admin/Blog/Create'));
 
 const About = lazy(() => import('pages/About'));
 const Calendar = lazy(() => import('pages/Calendar'));
@@ -45,8 +47,10 @@ const App = (): JSX.Element => {
     headerText: 'Feature-флаги',
   });
 
-  const { roles, addRoles, removeRole } = useContext(AppSettingsContext);
-  const isAdmin = roles.includes(Role.Admin);
+  const { roles, addRoles, removeRole, theme: currentTheme } = useContext(AppSettingsContext);
+
+  const isAdmin = roles.has(Role.Admin);
+  const isAuthor = roles.has(Role.Author);
 
   useLayoutEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -67,7 +71,7 @@ const App = (): JSX.Element => {
   }, [openAdminModal]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
       <BrowserRouter>
         <TownProvider>
@@ -84,11 +88,13 @@ const App = (): JSX.Element => {
                 <Route
                   path={routes.AdminHome}
                   element={
-                    <Authorized requiredRoles={[Role.Admin]}>
+                    <Authorized requiredRoles={[Role.Admin, Role.Author]}>
                       <Admin />
                     </Authorized>
                   }
                 />
+
+                {/* Админка игрока */}
                 <Route
                   path={routes.AdminPlayers}
                   element={
@@ -129,6 +135,8 @@ const App = (): JSX.Element => {
                     </Authorized>
                   }
                 />
+
+                {/* Админка турнира */}
                 <Route
                   path={routes.AdminTournaments}
                   element={
@@ -161,6 +169,25 @@ const App = (): JSX.Element => {
                     </Authorized>
                   }
                 />
+
+                {/* Админка блога */}
+                <Route
+                  path={routes.AdminBlog}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin, Role.Author]}>
+                      <AdminBlog />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminBlogCreate}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin, Role.Author]}>
+                      <AdminBlogCreate />
+                    </Authorized>
+                  }
+                />
+
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Suspense>
@@ -186,6 +213,29 @@ const App = (): JSX.Element => {
                 />
                 <label htmlFor='isAdmin' style={{ cursor: 'pointer' }}>
                   Режим администратора
+                </label>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '10px',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                }}
+                onClick={() =>
+                  isAuthor ? removeRole(Role.Author) : addRoles([Role.Author])
+                }
+              >
+                <input
+                  id='isAuthor'
+                  type='checkbox'
+                  name='isAuthor'
+                  checked={isAuthor}
+                  onChange={() => {}}
+                  style={{ cursor: 'pointer' }}
+                />
+                <label htmlFor='isAuthor' style={{ cursor: 'pointer' }}>
+                  Режим автора
                 </label>
               </div>
             </AdminDialog>

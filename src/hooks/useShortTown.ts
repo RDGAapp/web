@@ -11,6 +11,7 @@ const townMapper: Record<Town, ShortTown> = {
   Псков: 'psk',
   Тольятти: 'tlt',
   Калининград: 'klg',
+  'Набережные Челны': 'nch',
 };
 
 export default function useShortTown(): ShortTown | null {

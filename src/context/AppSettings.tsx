@@ -1,17 +1,25 @@
-import { ReactElement, createContext, useMemo, useState } from 'react';
+import {
+  ReactElement,
+  createContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import Role from 'enums/roles';
 
 export const AppSettingsContext = createContext<{
-  roles: Role[];
+  roles: Set<Role>;
   addRoles: (value: Role[]) => void;
   removeRole: (value: Role) => void;
   removeAllRoles: () => void;
+  theme: 'light' | 'dark';
 }>({
-  roles: [],
+  roles: new Set(),
   addRoles: () => {},
   removeRole: () => {},
   removeAllRoles: () => {},
+  theme: 'light',
 });
 
 interface IAppSettingsProviderProps {
@@ -20,27 +28,54 @@ interface IAppSettingsProviderProps {
 
 const updateRoles = (newRoles: Role[]) => {
   localStorage.setItem('appSettings', JSON.stringify({ roles: newRoles }));
-  return newRoles;
+  return new Set(newRoles);
+};
+
+const colorSchemeMatchMedia = window.matchMedia('(prefers-color-scheme: dark)');
+
+const getPreferredColorScheme = () => {
+  if (colorSchemeMatchMedia.matches) {
+    return 'dark';
+  }
+  return 'light';
 };
 
 const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
-  const [roles, setRoles] = useState<Role[]>(
-    JSON.parse(localStorage.getItem('appSettings') || '{}').roles ?? []
+  const [roles, setRoles] = useState<Set<Role>>(
+    new Set(
+      JSON.parse(localStorage.getItem('appSettings') || '{}').roles ?? [],
+    ),
+  );
+  const [theme, setTheme] = useState<'light' | 'dark'>(
+    getPreferredColorScheme(),
   );
 
   const contextValue = useMemo(
     () => ({
       roles,
+      theme,
       addRoles: (newRoles: Role[]) =>
         setRoles((value) => updateRoles([...value, ...newRoles])),
       removeRole: (roleToRemove: Role) =>
-        setRoles((value) =>
-          updateRoles(value.filter((role) => role !== roleToRemove))
-        ),
+        setRoles((value) => {
+          value.delete(roleToRemove);
+          return updateRoles([...value]);
+        }),
       removeAllRoles: () => updateRoles([]),
     }),
-    [roles]
+    [roles, theme],
   );
+
+  useEffect(() => {
+    colorSchemeMatchMedia.addEventListener('change', () =>
+      setTheme(getPreferredColorScheme()),
+    );
+
+    return () =>
+      colorSchemeMatchMedia.removeEventListener('change', () =>
+        setTheme(getPreferredColorScheme()),
+      );
+  }, []);
 
   return (
     <AppSettingsContext.Provider value={contextValue}>

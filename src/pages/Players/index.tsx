@@ -18,6 +18,8 @@ import SelectedCard from 'pages/Players/SelectedCard';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getPlayers } from 'store/players/thunks';
 
+import { Player } from '../../@types/player';
+
 const Container = styled(motion.ul)`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -94,8 +96,6 @@ const NotFoundText = styled.p`
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1.5rem;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 2rem;
 `;
 
 const Button = styled.button`
@@ -155,7 +155,7 @@ const Players = (): JSX.Element => {
       setPageNumber(1);
     },
     1000,
-    [surname]
+    [surname],
   );
 
   useEffect(() => {

@@ -11,6 +11,7 @@ import PdgaImg from 'assets/images/pdga.webp';
 import Avatar from 'components/Avatar';
 import ServiceCard from 'components/ServiceCard';
 
+import { Player } from '../../@types/player';
 import RatingChangeBadge from '../../components/RatingChangeBadge';
 
 const Container = styled.div`

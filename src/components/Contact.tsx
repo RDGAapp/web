@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 
 import SocialLink from 'components/SocialLink';
 
+import { IContact } from '../@types/contact';
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -82,7 +84,7 @@ const Contact = ({
   telegram,
   vk,
   Image,
-}: Contact): JSX.Element => (
+}: IContact): JSX.Element => (
   <Container>
     <Image />
     <TextContainer>
@@ -94,7 +96,7 @@ const Contact = ({
       <Social>
         {instagram && <SocialLink name='INSTAGRAM' value={instagram} />}
         <SocialLink name='TELEGRAM' value={telegram} />
-        <SocialLink name='VK' value={vk} />
+        {vk && <SocialLink name='VK' value={vk} />}
       </Social>
     </TextContainer>
   </Container>

@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getPlayers } from 'store/players/thunks';
 
+import { Paginated } from '../../@types/paginated';
+import { Player } from '../../@types/player';
+
 interface PlayerState {
   players: Paginated<Player[]> | null;
   loading: boolean;

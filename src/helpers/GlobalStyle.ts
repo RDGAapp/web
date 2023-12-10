@@ -1,7 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-import theme from 'helpers/theme';
-
 // https://piccalil.li/blog/a-modern-css-reset/
 const ModernCssReset = css`
   /* Box sizing rules */
@@ -95,20 +93,20 @@ const GlobalStyle = createGlobalStyle`
   * {
     color: inherit;
     font-size: 20px;
-    font-family: "${theme.fontFamily.primary}", sans-serif;
+    font-family: "${({ theme }) => theme.fontFamily.primary}", sans-serif;
 
-    ${theme.media.mobile} {
+    ${({ theme }) => theme.media.mobile} {
       font-size: 16px;
     }
   }
 
   body {
-    color: ${theme.colors.text.primary};
-    background-color: ${theme.colors.primary};
+    color: ${({ theme }) => theme.colors.text.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   #root {
-    background-color: ${theme.colors.background};
+    background-color: ${({ theme }) => theme.colors.background};
   }
 
   svg {
@@ -119,6 +117,30 @@ const GlobalStyle = createGlobalStyle`
 
   ul, ol {
     margin: 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  h5 {
+    font-size: 0.8rem;
+  }
+
+  h6 {
+    font-size: 0.7rem;
   }
 `;
 

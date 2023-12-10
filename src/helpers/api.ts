@@ -1,10 +1,12 @@
 import getApiUrl from 'helpers/getApiUrl';
 
+import { Player } from '../@types/player';
+
 export const getPlayers = (
   pageNumber: number,
   surname?: string,
   town?: Town,
-  onlyActive?: boolean
+  onlyActive?: boolean,
 ) => {
   const query = new URLSearchParams();
   query.append('page', pageNumber.toString());
@@ -34,7 +36,7 @@ export const deletePlayer = (playerRdgaNumber: number) =>
 
 export const updatePlayer = (
   player: Omit<Player, 'rdgaNumber'>,
-  rdgaNumber: number
+  rdgaNumber: number,
 ) =>
   fetch(getApiUrl(`/players/${rdgaNumber}`), {
     method: 'PUT',
@@ -69,7 +71,7 @@ export const createTournament = (tournament: Tournament) =>
 
 export const updateTournament = (
   tournament: Omit<Tournament, 'code'>,
-  code: string
+  code: string,
 ) =>
   fetch(getApiUrl(`/tournaments/${code}`), {
     method: 'PUT',
@@ -90,7 +92,7 @@ export const activatePlayer = (rdgaNumber: number) =>
   });
 
 export const updatePlayerRatingMultiple = (
-  values: { rdgaNumber: number; rating: number }[]
+  values: { rdgaNumber: number; rating: number }[],
 ) =>
   fetch(getApiUrl(`/players/rdgaRating/multiple`), {
     method: 'PUT',

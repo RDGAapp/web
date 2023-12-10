@@ -5,12 +5,14 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "1.9.7",
+    "@tinymce/tinymce-react": "4.3.2",
     "@types/node": "20.10.0",
     "@types/react": "18.2.39",
     "@types/react-dom": "18.2.17",
     "@types/react-router": "5.1.20",
     "@types/react-router-dom": "5.3.3",
     "@types/react-router-hash-link": "2.4.9",
+    "dompurify": "3.0.6",
     "framer-motion": "10.16.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -36,10 +38,11 @@
     "workbox-streams": "7.0.0"
   },
   "devDependencies": {
-    "@types/jest": "29.5.10",
     "@testing-library/jest-dom": "6.1.4",
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.5.1",
+    "@types/dompurify": "3.0.5",
+    "@types/jest": "29.5.10",
     "@typescript-eslint/eslint-plugin": "6.13.1",
     "@typescript-eslint/parser": "6.13.1",
     "eslint": "8.54.0",

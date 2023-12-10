@@ -5,6 +5,7 @@ import { updatePlayer, getPlayer } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
 import Preview from './Preview';
+import { Player } from '../../../@types/player';
 
 const UpdatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');

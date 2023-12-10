@@ -4,7 +4,7 @@ const breakpoints = {
   smallMobile: 600,
 };
 
-const theme = {
+export const commonTheme = {
   media: {
     tablet: `@media (max-width: ${breakpoints.tablet}px)`,
     mobile: `@media (max-width: ${breakpoints.mobile}px)`,
@@ -12,21 +12,16 @@ const theme = {
   },
   breakpoints,
   colors: {
-    primary: '#fbcd04',
-    secondary: '#2a74ed',
-    additional: '#e30020',
-    background: '#ffffff',
-    border: '#000000',
-    borderContrast: '#ffffff',
-    error: '#ff4a4a',
-    success: '#1bbe1b',
-    menuInactive: '#f3f3f3',
-    backdrop: '#00000080',
-    avatarBackground: '#c8c8c8',
+    primary: 'hsl(49, 97%, 50%)',
+    secondary: 'hsl(217, 84%, 55%)',
+    additional: 'hsl(352, 100%, 45%)',
+    error: 'hsl(0, 100%, 65%)',
+    success: 'hsl(120, 75%, 43%)',
+    backdrop: 'hsla(0, 0%, 0%, 0.5)',
+    avatarBackground: 'hsl(0, 0%, 78%)',
+    black: 'hsl(0, 0%, 0%)',
     text: {
-      primary: '#000000',
-      contrast: '#ffffff',
-      neutral: '#808080',
+      neutral: 'hsl(0, 0%, 50%)',
     },
   },
   fontFamily: {
@@ -42,4 +37,36 @@ const theme = {
   },
 };
 
-export default theme;
+const lightTheme = {
+  ...commonTheme,
+  colors: {
+    ...commonTheme.colors,
+    background: 'hsl(0, 0%, 100%)',
+    border: 'hsl(0, 0%, 0%)',
+    borderContrast: 'hsl(0, 0%, 100%)',
+    menuInactive: 'hsl(0, 0%, 95%)',
+    text: {
+      ...commonTheme.colors.text,
+      primary: 'hsl(0, 0%, 0%)',
+      contrast: 'hsl(0, 0%, 100%)',
+    },
+  },
+};
+
+export const darkTheme = {
+  ...commonTheme,
+  colors: {
+    ...commonTheme.colors,
+    background: 'hsl(0, 0%, 15%)',
+    border: 'hsl(0, 0%, 100%)',
+    borderContrast: 'hsl(0, 0%, 15%)',
+    menuInactive: 'hsl(0, 0%, 25%)',
+    text: {
+      ...commonTheme.colors.text,
+      primary: 'hsl(0, 0%, 100%)',
+      contrast: 'hsl(0, 0%, 0%)',
+    },
+  },
+};
+
+export default { light: lightTheme, dark: darkTheme };

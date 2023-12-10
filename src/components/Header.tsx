@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -27,6 +27,7 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.header};
+  color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.primary};
   isolation: isolate;
 `;
@@ -89,7 +90,6 @@ const LogoBlock = styled(Link)`
   z-index: 1;
   grid-area: logo;
   margin: auto;
-  color: ${({ theme }) => theme.colors.text.primary};
   text-decoration: none;
   transition: scale 0.2s ease-in-out;
 
@@ -102,20 +102,35 @@ const LogoBlock = styled(Link)`
   }
 `;
 
-const links = [
-  { route: routes.Home, text: 'На главную', svg: HomeSvg },
-  { route: routes.Players, text: 'Игроки', svg: PlayersSvg },
-  { route: routes.Calendar, text: 'Календарь', svg: CalendarSvg },
-  { route: routes.About, text: 'О нас', svg: InfoSvg },
-  { route: routes.Service, text: 'Услуги', svg: ShopSvg },
-  { route: routes.Contacts, text: 'Контакты', svg: ContactsSvg },
-  { route: routes.Partners, text: 'Наши партнеры', svg: SponsorSvg },
-];
-
-const adminLink = {
-  route: routes.AdminHome,
-  text: 'Админка',
-  svg: InfoSvg,
+const links: Record<
+  string,
+  { route: string; text: string; svg: any; hidden?: boolean }
+> = {
+  [routes.Home]: { route: routes.Home, text: 'На главную', svg: HomeSvg },
+  [routes.Players]: { route: routes.Players, text: 'Игроки', svg: PlayersSvg },
+  [routes.Calendar]: {
+    route: routes.Calendar,
+    text: 'Календарь',
+    svg: CalendarSvg,
+  },
+  [routes.About]: { route: routes.About, text: 'О нас', svg: InfoSvg },
+  [routes.Service]: { route: routes.Service, text: 'Услуги', svg: ShopSvg },
+  [routes.Contacts]: {
+    route: routes.Contacts,
+    text: 'Контакты',
+    svg: ContactsSvg,
+  },
+  [routes.Partners]: {
+    route: routes.Partners,
+    text: 'Наши партнеры',
+    svg: SponsorSvg,
+  },
+  [routes.AdminHome]: {
+    route: routes.AdminHome,
+    text: 'Админка',
+    svg: InfoSvg,
+    hidden: true,
+  },
 };
 
 const Header = (): JSX.Element => {
@@ -124,22 +139,49 @@ const Header = (): JSX.Element => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navigationRef = useRef<HTMLDivElement>(null);
+
+  // hide menu on outside click
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (
+        !isMenuOpen ||
+        !event.target ||
+        navigationRef.current?.contains(event.target as Node)
+      ) {
+        return;
+      }
+
+      setIsMenuOpen(false);
+    };
+
+    document.addEventListener('click', handleClick);
+
+    return () => document.removeEventListener('click', handleClick);
+  }, [isMenuOpen]);
+
   const {
     Dialog: TownDialog,
     openModal: openTownModal,
     closeModal: closeTownModal,
   } = useDialog({ headerText: 'Выберите город' });
 
-  const linksToShow = [...links];
-
-  if (roles.includes(Role.Admin)) {
-    linksToShow.push(adminLink);
-  }
+  const linksToShow = useMemo(() => {
+    if (roles.has(Role.Admin)) {
+      links[routes.AdminHome].hidden = false;
+    }
+    if (roles.has(Role.Author)) {
+      links[routes.AdminHome].hidden = false;
+    }
+    return Object.keys(links)
+      .filter((key) => !links[key].hidden)
+      .map((key) => links[key]);
+  }, [roles]);
 
   return (
     <Container>
       <Navigation>
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <NavigationBackground open={isMenuOpen}>
             <LinksList>
               {linksToShow.map((link) => (

@@ -129,10 +129,10 @@ const TournamentList = styled.div`
   }
 `;
 
-const TournamentCircle = styled.div<{ border: string }>`
+const TournamentCircle = styled.div<{ $border: string }>`
   height: 0.5rem;
   aspect-ratio: 1 / 1;
-  background-color: ${(props) => props.border};
+  background-color: ${(props) => props.$border};
   border: 1px solid ${({ theme }) => theme.colors.text.primary};
   border-radius: 100vh;
 `;
@@ -182,7 +182,7 @@ const Calendar = () => {
             <Legend>
               <LegendItem>
                 <TournamentCircle
-                  border={
+                  $border={
                     TournamentColorByType[TournamentType.RussianChampionship]
                   }
                 />
@@ -190,19 +190,19 @@ const Calendar = () => {
               </LegendItem>
               <LegendItem>
                 <TournamentCircle
-                  border={TournamentColorByType[TournamentType.Pro]}
+                  $border={TournamentColorByType[TournamentType.Pro]}
                 />
                 Этап Про Тура
               </LegendItem>
               <LegendItem>
                 <TournamentCircle
-                  border={TournamentColorByType[TournamentType.Federal]}
+                  $border={TournamentColorByType[TournamentType.Federal]}
                 />
                 Федеральный Турнир
               </LegendItem>
               <LegendItem>
                 <TournamentCircle
-                  border={TournamentColorByType[TournamentType.League]}
+                  $border={TournamentColorByType[TournamentType.League]}
                 />
                 Этап региональной лиги
               </LegendItem>

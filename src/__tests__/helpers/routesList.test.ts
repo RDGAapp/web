@@ -11,6 +11,7 @@ describe('routesList helper', () => {
       '/service',
       '/calendar',
       '/partners',
+      '/blog',
       '/admin',
       '/admin/players',
       '/admin/players/create',
@@ -21,6 +22,10 @@ describe('routesList helper', () => {
       '/admin/tournaments/create',
       '/admin/tournaments/update',
       '/admin/tournaments/delete',
+      '/admin/blog',
+      '/admin/blog/create',
+      '/admin/blog/update',
+      '/admin/blog/delete',
     ]);
   });
 });

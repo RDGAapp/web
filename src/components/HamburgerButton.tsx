@@ -29,7 +29,6 @@ const Button = styled.button`
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  color: ${({ theme }) => theme.colors.text.primary};
   background: transparent;
   border: transparent;
   border-radius: 100vh;

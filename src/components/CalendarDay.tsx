@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Tournament from 'components/Tournament';
 import TournamentType from 'enums/tournamentType';
 import { getMonthName, spellMonth } from 'helpers/dateHelpers';
-import theme from 'helpers/theme';
+import { commonTheme } from 'helpers/theme';
 import TournamentColorByType from 'helpers/tournamentColorByType';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
@@ -58,15 +58,15 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
   const getDayColor = (
     day: Date,
     monthName: string,
-    shouldGreyOut: boolean
+    shouldGreyOut: boolean,
   ) => {
     if (tournaments.length !== 0) {
-      return theme.colors.primary;
+      return commonTheme.colors.primary;
     }
     if (getMonthName(day) === monthName) {
-      return shouldGreyOut ? '#eaeaea' : 'white';
+      return shouldGreyOut ? 'hsl(0, 0%, 75%)' : 'inherit';
     }
-    return shouldGreyOut ? 'white' : '#eaeaea';
+    return shouldGreyOut ? 'inherit' : 'hsl(0, 0%, 75%)';
   };
 
   const shouldOpenModal = isSmallMobile && tournaments.length > 0;

@@ -17,7 +17,7 @@ const ExpandedContainerStyle = css`
   }
 `;
 
-const Container = styled.div<{expanded: boolean}>`
+const Container = styled.div<{$expanded: boolean}>`
   position: relative;
   display: flex;
   flex-grow: 1;
@@ -28,7 +28,7 @@ const Container = styled.div<{expanded: boolean}>`
   border-radius: 100vh;
   transition: max-width 0.3s ease-in-out;
 
-  ${({ expanded }) => expanded && ExpandedContainerStyle};
+  ${({ $expanded }) => $expanded && ExpandedContainerStyle};
 
   ${({ theme }) => theme.media.tablet} {
     width: 100%;
@@ -90,7 +90,7 @@ const SearchBar = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Container expanded={!!value || isMobile || isTablet}>
+    <Container $expanded={!!value || isMobile || isTablet}>
       <Input
         type="text"
         placeholder={placeholder}

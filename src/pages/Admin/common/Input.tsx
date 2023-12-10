@@ -1,5 +1,6 @@
 import { ChangeEvent, InputHTMLAttributes } from 'react';
 
+import { Editor } from '@tinymce/tinymce-react';
 import styled from 'styled-components';
 
 const Label = styled.label`
@@ -38,11 +39,58 @@ interface Props
 const Input = ({ label, onChange, type, ...props }: Props) => (
   <Label>
     {label}:
-    {type === 'select' ? (
+    {type === 'tinymce' && (
+      <Editor
+        apiKey='pzic39vq99npan2dulhohsiej067iwv4u9hae7jo3q9l7uwt'
+        initialValue=''
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'lists',
+            'advlist',
+            'link',
+            'autolink',
+            'image',
+            'charmap',
+            'anchor',
+            'searchreplace',
+            'visualblocks',
+            'code',
+            'fullscreen',
+            'insertdatetime',
+            'media',
+            'table',
+            'help',
+            'fullscreen',
+            'emoticons',
+            'quickbars',
+          ],
+          toolbar: `
+              undo redo
+              | link image
+              | blocks
+              | bold italic forecolor emoticons
+              | align
+              | bullist numlist outdent indent
+              | removeformat
+              | charmap insertdatetime searchreplace
+              | fullscreen
+              | help
+            `,
+          fullscreen_native: true,
+          quickbars_insert_toolbar: false
+        }}
+        onEditorChange={(value) => onChange(value)}
+      />
+    )}
+    {type === 'select' && (
       <CustomSelect
         value={props.value}
         required={props.required}
-        onChange={(event: ChangeEvent<HTMLSelectElement>) => onChange(event.target.value)}
+        onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+          onChange(event.target.value)
+        }
       >
         <option value='' />
         {props.variants.map((variant) => (
@@ -51,7 +99,8 @@ const Input = ({ label, onChange, type, ...props }: Props) => (
           </option>
         ))}
       </CustomSelect>
-    ) : (
+    )}
+    {!['select', 'tinymce'].includes(type ?? '') && (
       <CustomInput
         onChange={(event: ChangeEvent<HTMLInputElement>) =>
           type === 'file'

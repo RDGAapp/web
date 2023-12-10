@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Avatar from 'components/Avatar';
 import RatingChangeBadge from 'components/RatingChangeBadge';
 
+import { Player } from '../../@types/player';
+
 const Container = styled(motion.button)`
   display: flex;
   gap: 1rem;
@@ -18,7 +20,9 @@ const Container = styled(motion.button)`
   border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, border 0.3s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    border 0.3s ease-in-out;
 
   &:hover,
   &:focus {

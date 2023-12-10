@@ -29,7 +29,7 @@ const LinkCta = styled(HashLink)`
   align-items: center;
   margin-bottom: 7%;
   padding: 0.8rem 1.2rem;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.black};
   font-weight: 400;
   font-size: 1.2rem;
   font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;

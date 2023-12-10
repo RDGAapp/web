@@ -49,7 +49,10 @@ const StepNumber = styled.p<{ selected: boolean }>`
 
   ${({ selected, theme }) =>
     selected
-      ? `background-color: ${theme.colors.primary}`
+      ? `
+        color: ${theme.colors.black};
+        background-color: ${theme.colors.primary};
+      `
       : `
         cursor: pointer;
 

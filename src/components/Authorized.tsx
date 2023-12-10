@@ -14,7 +14,7 @@ interface IAuthorized {
 const Authorized = ({ children, requiredRoles }: IAuthorized) => {
   const { roles } = useContext(AppSettingsContext);
 
-  if (!requiredRoles.some((role) => roles.includes(role)))
+  if (!requiredRoles.some((role) => roles.has(role)))
     return <Navigate to={routes.Home} />;
 
   return children;

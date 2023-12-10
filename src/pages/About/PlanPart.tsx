@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import theme from 'helpers/theme';
+import { commonTheme } from 'helpers/theme';
 
 const Container = styled.div`
   padding: 0.25rem 0;
@@ -47,9 +47,7 @@ const PlanPart = ({
     {isAllowed ? (
       <p
         style={{
-          color: isSimpleText
-            ? theme.colors.text.primary
-            : theme.colors.success,
+          color: isSimpleText ? 'inherit' : commonTheme.colors.success,
           fontWeight: isSame ? '100' : '900',
           fontSize: isBigger ? '2rem' : '1rem',
         }}
@@ -59,7 +57,7 @@ const PlanPart = ({
     ) : (
       <p
         style={{
-          color: theme.colors.error,
+          color: commonTheme.colors.error,
           fontWeight: isSame ? '100' : '900',
         }}
       >
