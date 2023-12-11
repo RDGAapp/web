@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { sanitize } from 'dompurify';
-
 import Breadcrumbs from 'components/Breadcrumbs';
 import { createPost } from 'helpers/api';
+import PostCard from 'pages/Blog/PostCard';
 
 import AdminFormLayout from '../common/AdminFormLayout';
 
@@ -63,12 +62,7 @@ const CreateBlog = () => {
         onSubmits={[onSubmit]}
         preview={
           <div style={{ width: '100%', height: '100%', overflow: 'auto' }}>
-            <h1>{header}</h1>
-            <div
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: sanitize(text) }}
-            />
-            <i>©{author}</i>
+            <PostCard post={{ ...post, createdAt: new Date().toISOString() }} />
           </div>
         }
       />

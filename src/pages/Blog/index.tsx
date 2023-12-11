@@ -32,7 +32,7 @@ const Blog = () => {
       {posts.map((post) => (
         <PostCard key={post.code} post={post} />
       ))}
-      {posts.length === 0 && <h4>Пока что здесь ничего нет</h4>}
+      {!loading && posts.length === 0 && <h4>Пока что здесь ничего нет</h4>}
       {loading && <LogoLoader />}
     </Container>
   );
