@@ -47,7 +47,7 @@ const Input = ({ label, onChange, type, ...props }: Props) => {
       {type === 'tinymce' && (
         <Editor
           apiKey='pzic39vq99npan2dulhohsiej067iwv4u9hae7jo3q9l7uwt'
-          initialValue=''
+          initialValue={props.value as string}
           init={{
             height: 500,
             menubar: false,
