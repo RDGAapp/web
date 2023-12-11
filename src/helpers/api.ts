@@ -1,5 +1,6 @@
 import getApiUrl from 'helpers/getApiUrl';
 
+import { Post } from '../@types/blog';
 import { Player } from '../@types/player';
 
 export const getPlayers = (
@@ -100,4 +101,34 @@ export const updatePlayerRatingMultiple = (
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(values),
+  });
+
+export const getPosts = () => fetch(getApiUrl(`/posts`));
+
+export const getPost = (code: string) => fetch(getApiUrl(`/posts/${code}`));
+
+export const createPost = (post: Omit<Post, 'createdAt'>) =>
+  fetch(getApiUrl('/posts'), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  });
+
+export const updatePost = (
+  post: Omit<Post, 'createdAt' | 'code'>,
+  code: string,
+) =>
+  fetch(getApiUrl(`/posts/${code}`), {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  });
+
+export const deletePost = (tournamentCode: string) =>
+  fetch(getApiUrl(`/posts/${tournamentCode}`), {
+    method: 'DELETE',
   });

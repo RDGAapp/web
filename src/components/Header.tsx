@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ReactComponent as PlayersSvg } from 'assets/icons/avatar.svg';
+import { ReactComponent as BlogSvg } from 'assets/icons/blog.svg';
 import { ReactComponent as CalendarSvg } from 'assets/icons/calendar.svg';
 import { ReactComponent as ContactsSvg } from 'assets/icons/contacts.svg';
 import { ReactComponent as HomeSvg } from 'assets/icons/home.svg';
@@ -107,6 +108,7 @@ const links: Record<
   { route: string; text: string; svg: any; hidden?: boolean }
 > = {
   [routes.Home]: { route: routes.Home, text: 'На главную', svg: HomeSvg },
+  [routes.Blog]: { route: routes.Blog, text: 'Блог', svg: BlogSvg },
   [routes.Players]: { route: routes.Players, text: 'Игроки', svg: PlayersSvg },
   [routes.Calendar]: {
     route: routes.Calendar,
@@ -168,9 +170,11 @@ const Header = (): JSX.Element => {
 
   const linksToShow = useMemo(() => {
     if (roles.has(Role.Admin)) {
+      links[routes.Blog].hidden = false;
       links[routes.AdminHome].hidden = false;
     }
     if (roles.has(Role.Author)) {
+      links[routes.Blog].hidden = false;
       links[routes.AdminHome].hidden = false;
     }
     return Object.keys(links)

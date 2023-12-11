@@ -64,7 +64,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <div
-      style={{ minHeight: '100vmin', display: 'flex', flexDirection: 'column' }}
+      style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}
     >
       <SWNotification />
       <Header />

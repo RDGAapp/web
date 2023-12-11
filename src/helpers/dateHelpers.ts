@@ -30,9 +30,11 @@ const getWeekDaysArray = (mondayDate: Date) => {
   return array;
 };
 
-export const getMonthName = (date: Date) => capitalizeFirstLetter(date.toLocaleString('ru-RU', { month: 'long' }));
+export const getMonthName = (date: Date) =>
+  capitalizeFirstLetter(date.toLocaleString('ru-RU', { month: 'long' }));
 
-const getMonthNameForWeek = (weekStartDate: Date) => getMonthName(addDays(weekStartDate, 6));
+const getMonthNameForWeek = (weekStartDate: Date) =>
+  getMonthName(addDays(weekStartDate, 6));
 
 export const getCalendarData = () => {
   const now = new Date();
@@ -43,9 +45,7 @@ export const getCalendarData = () => {
   const monthsArray = [
     {
       monthName: currentMonthName,
-      weeks: [
-        getWeekDaysArray(startDate),
-      ],
+      weeks: [getWeekDaysArray(startDate)],
       shouldGreyOut: true,
     },
   ];
@@ -56,9 +56,7 @@ export const getCalendarData = () => {
     if (monthName !== currentMonthName) {
       monthsArray.push({
         monthName,
-        weeks: [
-          getWeekDaysArray(startDate),
-        ],
+        weeks: [getWeekDaysArray(startDate)],
         shouldGreyOut: !monthsArray[currentMonthIndex].shouldGreyOut,
       });
       currentMonthName = monthName;
@@ -88,4 +86,25 @@ export const spellMonth = (month: number) => {
   ];
 
   return monthsSpellingArray[month];
+};
+
+export const getDisplayDate = (date: Date) => {
+  const today = new Date();
+  today.setHours(0);
+  today.setMinutes(0);
+  today.setSeconds(0);
+  today.setMilliseconds(0);
+  const compDate = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+  );
+  const diff = today.getTime() - compDate.getTime();
+  if (compDate.getTime() === today.getTime()) {
+    return 'Сегодня';
+  }
+  if (diff <= 24 * 60 * 60 * 1000) {
+    return 'Вчера';
+  }
+  return compDate.toLocaleDateString();
 };

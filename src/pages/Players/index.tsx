@@ -126,16 +126,14 @@ const CheckboxContainer = styled.label`
 
 const Players = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const players = useAppSelector((state) => state.player.players);
-  const loading = useAppSelector((state) => state.player.loading);
+
+  const { players, loading } = useAppSelector((state) => state.player);
 
   const [selected, setSelected] = useState<Player | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [surname, setSurname] = useState<string>('');
   const [town, setTown] = useState<Town>();
   const [onlyActive, setOnlyActive] = useState<boolean>(true);
-
-  const pageHeader = document.getElementById('page-header');
 
   const { Dialog: FiltersDialog, openModal: openFiltersModal } = useDialog({
     headerText: 'Фильтры по игрокам',
@@ -146,7 +144,7 @@ const Players = (): JSX.Element => {
   });
 
   const scrollToPageHeader = () => {
-    window.scrollTo({ top: pageHeader?.offsetTop, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useDebounce(

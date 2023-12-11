@@ -32,6 +32,8 @@ const AdminTournamentsDelete = lazy(
 );
 const AdminBlog = lazy(() => import('pages/Admin/Blog'));
 const AdminBlogCreate = lazy(() => import('pages/Admin/Blog/Create'));
+const AdminBlogUpdate = lazy(() => import('pages/Admin/Blog/Update'));
+const AdminBlogDelete = lazy(() => import('pages/Admin/Blog/Delete'));
 
 const About = lazy(() => import('pages/About'));
 const Calendar = lazy(() => import('pages/Calendar'));
@@ -39,15 +41,21 @@ const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
 const Players = lazy(() => import('pages/Players'));
 const Service = lazy(() => import('pages/Service'));
-const ContactsPage = lazy(() => import('pages/Contacts'));
-const PartnersPage = lazy(() => import('pages/Partners'));
+const Contacts = lazy(() => import('pages/Contacts'));
+const Partners = lazy(() => import('pages/Partners'));
+const Blog = lazy(() => import('pages/Blog'));
 
 const App = (): JSX.Element => {
   const { Dialog: AdminDialog, openModal: openAdminModal } = useDialog({
     headerText: 'Feature-флаги',
   });
 
-  const { roles, addRoles, removeRole, theme: currentTheme } = useContext(AppSettingsContext);
+  const {
+    roles,
+    addRoles,
+    removeRole,
+    theme: currentTheme,
+  } = useContext(AppSettingsContext);
 
   const isAdmin = roles.has(Role.Admin);
   const isAuthor = roles.has(Role.Author);
@@ -83,8 +91,10 @@ const App = (): JSX.Element => {
                 <Route path={routes.About} element={<About />} />
                 <Route path={routes.Calendar} element={<Calendar />} />
                 <Route path={routes.Players} element={<Players />} />
-                <Route path={routes.Contacts} element={<ContactsPage />} />
-                <Route path={routes.Partners} element={<PartnersPage />} />
+                <Route path={routes.Contacts} element={<Contacts />} />
+                <Route path={routes.Partners} element={<Partners />} />
+                <Route path={routes.Blog} element={<Blog />} />
+
                 <Route
                   path={routes.AdminHome}
                   element={
@@ -184,6 +194,22 @@ const App = (): JSX.Element => {
                   element={
                     <Authorized requiredRoles={[Role.Admin, Role.Author]}>
                       <AdminBlogCreate />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminBlogUpdate}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin, Role.Author]}>
+                      <AdminBlogUpdate />
+                    </Authorized>
+                  }
+                />
+                <Route
+                  path={routes.AdminBlogDelete}
+                  element={
+                    <Authorized requiredRoles={[Role.Admin, Role.Author]}>
+                      <AdminBlogDelete />
                     </Authorized>
                   }
                 />

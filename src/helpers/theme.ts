@@ -44,7 +44,7 @@ const lightTheme = {
     background: 'hsl(0, 0%, 100%)',
     border: 'hsl(0, 0%, 0%)',
     borderContrast: 'hsl(0, 0%, 100%)',
-    menuInactive: 'hsl(0, 0%, 95%)',
+    lighterBackground: 'hsl(0, 0%, 95%)',
     text: {
       ...commonTheme.colors.text,
       primary: 'hsl(0, 0%, 0%)',
@@ -60,7 +60,7 @@ export const darkTheme = {
     background: 'hsl(0, 0%, 15%)',
     border: 'hsl(0, 0%, 100%)',
     borderContrast: 'hsl(0, 0%, 15%)',
-    menuInactive: 'hsl(0, 0%, 25%)',
+    lighterBackground: 'hsl(0, 0%, 25%)',
     text: {
       ...commonTheme.colors.text,
       primary: 'hsl(0, 0%, 100%)',

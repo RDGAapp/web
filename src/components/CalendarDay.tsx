@@ -15,7 +15,7 @@ const Container = styled.div`
   width: 3rem;
   height: 3rem;
   padding: 0.2rem 0.3rem;
-  border: 1px solid ${({ theme }) => theme.colors.menuInactive};
+  border: 1px solid ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 0.5rem;
 
   ${({ theme }) => theme.media.smallMobile} {
@@ -69,9 +69,13 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
       return commonTheme.colors.primary;
     }
     if (getMonthName(day) === monthName) {
-      return shouldGreyOut ? theme[currentTheme].colors.menuInactive : 'inherit';
+      return shouldGreyOut
+        ? theme[currentTheme].colors.lighterBackground
+        : 'inherit';
     }
-    return shouldGreyOut ? 'inherit' : theme[currentTheme].colors.menuInactive;
+    return shouldGreyOut
+      ? 'inherit'
+      : theme[currentTheme].colors.lighterBackground;
   };
 
   const getDayTextColor = () => {

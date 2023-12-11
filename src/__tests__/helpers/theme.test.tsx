@@ -29,7 +29,7 @@ describe('theme helper', () => {
       borderContrast: 'hsl(0, 0%, 100%)',
       error: 'hsl(0, 100%, 65%)',
       success: 'hsl(120, 75%, 43%)',
-      menuInactive: 'hsl(0, 0%, 95%)',
+      lighterBackground: 'hsl(0, 0%, 95%)',
       backdrop: 'hsla(0, 0%, 0%, 0.5)',
       avatarBackground: 'hsl(0, 0%, 78%)',
       black: 'hsl(0, 0%, 0%)',

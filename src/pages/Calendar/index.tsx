@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 import { ReactComponent as InfoSvg } from 'assets/icons/info.svg';
 import CalendarDay from 'components/CalendarDay';
+import LogoLoader from 'components/LogoLoader';
 import PageHeader from 'components/PageHeader';
 import Tournament from 'components/Tournament';
 import TournamentType from 'enums/tournamentType';
 import { getCalendarData } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournamentColorByType';
 import useDialog from 'hooks/useDialog';
-import Loading from 'pages/Loading';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getTournaments } from 'store/tournaments/thunk';
 
@@ -171,7 +171,7 @@ const Calendar = () => {
     <>
       <PageHeader text='Календарь турниров' />
       {loading ? (
-        <Loading />
+        <LogoLoader />
       ) : (
         <>
           <PreContent>

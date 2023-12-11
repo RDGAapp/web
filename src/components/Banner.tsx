@@ -4,7 +4,6 @@ import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import SponsorBackground from 'assets/images/banner-sponsor.webp';
 import MainBackground from 'assets/images/neutral-rdga.webp';
 import PlayersBackground from 'assets/images/players.webp';
@@ -51,10 +50,6 @@ const LinkCta = styled(HashLink)`
   & svg {
     height: 1rem;
   }
-`;
-
-const ArrowDown = styled(ArrowSvg)`
-  transform: rotate(90deg);
 `;
 
 const bannerContent = new Map<string, Record<string, string>>([
@@ -125,7 +120,6 @@ const Banner = (): JSX.Element => {
         target={link.startsWith('/') ? '' : '_blank'}
       >
         {text}
-        <ArrowDown />
       </LinkCta>
     </Container>
   );

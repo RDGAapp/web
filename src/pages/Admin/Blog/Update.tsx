@@ -3,24 +3,18 @@ import { useState } from 'react';
 import { sanitize } from 'dompurify';
 
 import Breadcrumbs from 'components/Breadcrumbs';
-import { createPost } from 'helpers/api';
+import { getPost, updatePost } from 'helpers/api';
 
 import AdminFormLayout from '../common/AdminFormLayout';
 
-const CreateBlog = () => {
+const UpdateBlog = () => {
   const [code, setCode] = useState('');
   const [header, setHeader] = useState('');
+  const [initialText] = useState('');
   const [text, setText] = useState('');
   const [author, setAuthor] = useState('');
 
   const inputs = [
-    {
-      value: code,
-      onChange: setCode,
-      label: 'Код',
-      type: 'text',
-      required: true,
-    },
     {
       value: header,
       onChange: setHeader,
@@ -29,7 +23,7 @@ const CreateBlog = () => {
       required: true,
     },
     {
-      value: '',
+      value: initialText,
       onChange: setText,
       label: 'Текст',
       type: 'tinymce',
@@ -45,22 +39,34 @@ const CreateBlog = () => {
   ];
 
   const post = {
-    code,
     header,
     text,
     author,
   };
 
-  const onSubmit = async () => createPost(post);
+  const onSubmit = async () => getPost(code);
+
+  const getBlogByCode = async () => updatePost(post, code);
 
   return (
     <>
       <Breadcrumbs />
       <AdminFormLayout
-        header='Создание пост'
-        actionNames={['Создание пост']}
-        forms={[inputs]}
-        onSubmits={[onSubmit]}
+        header='Обновление поста'
+        actionNames={['Загрузить данные поста', 'Обновление поста']}
+        forms={[
+          [
+            {
+              value: code,
+              onChange: setCode,
+              label: 'Код',
+              type: 'string',
+              required: true,
+            },
+          ],
+          inputs,
+        ]}
+        onSubmits={[getBlogByCode, onSubmit]}
         preview={
           <div style={{ width: '100%', height: '100%', overflow: 'auto' }}>
             <h1>{header}</h1>
@@ -76,4 +82,4 @@ const CreateBlog = () => {
   );
 };
 
-export default CreateBlog;
+export default UpdateBlog;

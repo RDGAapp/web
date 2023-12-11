@@ -11,7 +11,7 @@ import Sections from '../common/Sections';
 const Players = () => (
   <>
     <Breadcrumbs />
-    <Header>Действия над блогом</Header>
+    <Header>Действия над постами</Header>
     <Sections>
       <Section to={routes.AdminBlogCreate}>
         <PlusSvg />
