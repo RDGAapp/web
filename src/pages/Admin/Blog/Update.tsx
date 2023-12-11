@@ -9,7 +9,7 @@ import AdminFormLayout from '../common/AdminFormLayout';
 const UpdateBlog = () => {
   const [code, setCode] = useState('');
   const [header, setHeader] = useState('');
-  const [initialText] = useState('');
+  const [initialText, setInitialText] = useState('');
   const [text, setText] = useState('');
   const [author, setAuthor] = useState('');
 
@@ -43,8 +43,17 @@ const UpdateBlog = () => {
     author,
   };
 
-  const getBlogByCode = async () => getPost(code);
-  
+  const getBlogByCode = async () => {
+    const response = await getPost(code);
+    const json = await response.json();
+    setHeader(json.header); 
+    setInitialText(json.text); 
+    setText(json.text); 
+    setAuthor(json.author);
+    
+    return response;
+  };
+
   const onSubmit = async () => updatePost(post, code);
 
   return (
