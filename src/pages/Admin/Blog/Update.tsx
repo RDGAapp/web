@@ -43,9 +43,9 @@ const UpdateBlog = () => {
     author,
   };
 
-  const onSubmit = async () => getPost(code);
-
-  const getBlogByCode = async () => updatePost(post, code);
+  const getBlogByCode = async () => getPost(code);
+  
+  const onSubmit = async () => updatePost(post, code);
 
   return (
     <>
