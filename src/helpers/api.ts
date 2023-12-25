@@ -103,7 +103,11 @@ export const updatePlayerRatingMultiple = (
     body: JSON.stringify(values),
   });
 
-export const getPosts = () => fetch(getApiUrl(`/posts`));
+export const getPosts = (page: number) => {
+  const query = new URLSearchParams();
+  query.append('page', page.toString());
+  return fetch(getApiUrl(`/posts?${query.toString()}`));
+};
 
 export const getPost = (code: string) => fetch(getApiUrl(`/posts/${code}`));
 

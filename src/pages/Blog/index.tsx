@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -20,11 +20,33 @@ const Container = styled.div`
 const Blog = () => {
   const dispatch = useAppDispatch();
 
-  const { posts, loading } = useAppSelector((state) => state.posts);
+  const { posts, loading, lastPage } = useAppSelector((state) => state.posts);
+
+  const [page, setPage] = useState(0);
+
+  const observerTarget = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, []);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          dispatch(getPosts(page + 1));
+          setPage((current) => current + 1);
+        }
+      },
+      { threshold: 1 },
+    );
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current);
+      }
+    };
+  }, [observerTarget]);
 
   return (
     <Container>
@@ -34,6 +56,7 @@ const Blog = () => {
       ))}
       {!loading && posts.length === 0 && <h4>Пока что здесь ничего нет</h4>}
       {loading && <LogoLoader />}
+      {page !== lastPage && <div ref={observerTarget} />}
     </Container>
   );
 };

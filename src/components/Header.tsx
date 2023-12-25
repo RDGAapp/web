@@ -9,20 +9,14 @@ import { ReactComponent as CalendarSvg } from 'assets/icons/calendar.svg';
 import { ReactComponent as ContactsSvg } from 'assets/icons/contacts.svg';
 import { ReactComponent as HomeSvg } from 'assets/icons/home.svg';
 import { ReactComponent as InfoSvg } from 'assets/icons/info.svg';
-import { ReactComponent as LocationSvg } from 'assets/icons/location-simple.svg';
 import { ReactComponent as ShopSvg } from 'assets/icons/shop.svg';
 import { ReactComponent as SponsorSvg } from 'assets/icons/sponsor.svg';
-import ButtonUnderlined from 'components/ButtonUnderlined';
 import CustomLink from 'components/CustomLink';
 import HamburgerButton from 'components/HamburgerButton';
 import Logo from 'components/Logo';
 import { AppSettingsContext } from 'context/AppSettings';
 import Role from 'enums/roles';
 import routes from 'helpers/routes';
-import { TownContext } from 'hooks/TownContext';
-import useDialog from 'hooks/useDialog';
-
-import TownSelectModal from './Dialogs/TownSelect';
 
 const Container = styled.div`
   position: sticky;
@@ -136,7 +130,6 @@ const links: Record<
 };
 
 const Header = (): JSX.Element => {
-  const { town } = useContext(TownContext);
   const { roles } = useContext(AppSettingsContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -161,12 +154,6 @@ const Header = (): JSX.Element => {
 
     return () => document.removeEventListener('click', handleClick);
   }, [isMenuOpen]);
-
-  const {
-    Dialog: TownDialog,
-    openModal: openTownModal,
-    closeModal: closeTownModal,
-  } = useDialog({ headerText: 'Выберите город' });
 
   const linksToShow = useMemo(() => {
     if (roles.has(Role.Admin)) {
@@ -207,16 +194,8 @@ const Header = (): JSX.Element => {
         <LogoBlock to={routes.Home}>
           <Logo withoutImage textAlign='center' />
         </LogoBlock>
-        <UserContainer>
-          <ButtonUnderlined onClick={openTownModal}>
-            {town?.toUpperCase() || 'Выберите город'}
-            <LocationSvg width={20} />
-          </ButtonUnderlined>
-        </UserContainer>
+        <UserContainer />
       </Navigation>
-      <TownDialog>
-        <TownSelectModal onClose={closeTownModal} />
-      </TownDialog>
     </Container>
   );
 };

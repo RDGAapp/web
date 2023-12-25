@@ -3,14 +3,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'helpers/api';
 
 import { Post } from '../../@types/blog';
+import { Paginated } from '../../@types/paginated';
 
 export const getPosts = createAsyncThunk(
   'posts/getAll',
-  async (_, { rejectWithValue }) => {
-    const response = await api.getPosts();
+  async (page: number, { rejectWithValue }) => {
+    const response = await api.getPosts(page);
 
     if (response.ok) {
-      const json: Post[] = await response.json();
+      const json = (await response.json()) as Paginated<Post[]>;
       return json;
     }
 

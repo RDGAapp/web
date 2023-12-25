@@ -7,11 +7,13 @@ import { Post } from '../../@types/blog';
 interface PostsState {
   posts: Post[];
   loading: boolean;
+  lastPage: number | null;
   error: string | null;
 }
 
 const initialState: PostsState = {
   posts: [],
+  lastPage: null,
   loading: false,
   error: null,
 };
@@ -22,13 +24,17 @@ const postsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPosts.pending, (state) => {
+      .addCase(getPosts.pending, (state, action) => {
+        if (action.meta.arg === 1) {
+          state.posts = [];
+        }
         state.loading = true;
         state.error = null;
       })
       .addCase(getPosts.fulfilled, (state, action) => {
         state.loading = false;
-        state.posts = action.payload;
+        state.posts = [...state.posts, ...action.payload.data];
+        state.lastPage = action.payload.pagination.lastPage;
       })
       .addCase(getPosts.rejected, (state, action) => {
         state.loading = false;
