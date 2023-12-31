@@ -46,11 +46,11 @@ const UpdateBlog = () => {
   const getBlogByCode = async () => {
     const response = await getPost(code);
     const json = await response.json();
-    setHeader(json.header); 
-    setInitialText(json.text); 
-    setText(json.text); 
+    setHeader(json.header);
+    setInitialText(json.text);
+    setText(json.text);
     setAuthor(json.author);
-    
+
     return response;
   };
 
@@ -79,6 +79,7 @@ const UpdateBlog = () => {
           <div style={{ width: '100%', height: '100%', overflow: 'auto' }}>
             <PostCard
               post={{ ...post, code, createdAt: new Date().toISOString() }}
+              linkedHeader
             />
           </div>
         }

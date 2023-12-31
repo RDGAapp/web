@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
 import { sanitize } from 'dompurify';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Avatar from 'components/Avatar';
 import ButtonUnderlined from 'components/ButtonUnderlined';
 import { getDisplayDate } from 'helpers/dateHelpers';
+import routes from 'helpers/routes';
 
 import { Post } from '../../@types/blog';
 
@@ -16,12 +18,20 @@ const Card = styled.div`
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 0.5rem;
 
-  & > h1 {
+  & > h1,
+  & > a {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: none;
     text-overflow: ellipsis;
+  }
+
+  & > a:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -63,14 +73,26 @@ const DateComponent = styled.p`
 
 export interface IPostCard {
   post: Post;
+  defaultExpanded?: boolean;
+  linkedHeader?: boolean;
 }
 
-const PostCard = ({ post }: IPostCard) => {
-  const [expanded, setExpanded] = useState(false);
+const PostCard = ({
+  post,
+  defaultExpanded = false,
+  linkedHeader = false,
+}: IPostCard) => {
+  const [expanded, setExpanded] = useState(defaultExpanded);
 
   return (
     <Card>
-      <h1 title={post.header}>{post.header}</h1>
+      {linkedHeader ? (
+        <Link to={`${routes.Blog}/${post.code}`} title={post.header}>
+          {post.header}
+        </Link>
+      ) : (
+        <h1 title={post.header}>{post.header}</h1>
+      )}
       <User>
         <Avatar />
         <UserText>
@@ -98,6 +120,7 @@ const PostCard = ({ post }: IPostCard) => {
         <div
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: sanitize(post.text) }}
+          style={{ display: 'grid', gap: '1rem' }}
         />
       </Text>
       {!expanded && (

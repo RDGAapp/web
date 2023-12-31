@@ -70,10 +70,11 @@ const Input = ({ label, onChange, type, ...props }: Props) => {
               'fullscreen',
               'emoticons',
               'quickbars',
+              'media',
             ],
             toolbar: `
               undo redo
-              | link image
+              | link image media
               | blocks
               | bold italic forecolor emoticons
               | align

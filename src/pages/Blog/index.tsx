@@ -52,7 +52,7 @@ const Blog = () => {
     <Container>
       <PageHeader text='Блог' />
       {posts.map((post) => (
-        <PostCard key={post.code} post={post} />
+        <PostCard key={post.code} post={post} linkedHeader />
       ))}
       {!loading && posts.length === 0 && <h4>Пока что здесь ничего нет</h4>}
       {loading && <LogoLoader />}
