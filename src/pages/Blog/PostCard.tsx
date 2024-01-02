@@ -64,6 +64,14 @@ const Text = styled.div`
   &[data-expanded='true'] {
     grid-template-rows: auto;
   }
+
+  & * {
+    max-width: 100%;
+  }
+
+  & iframe {
+    border: none;
+  }
 `;
 
 const DateComponent = styled.p`
