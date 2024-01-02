@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { sanitize } from 'dompurify';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -119,7 +118,7 @@ const PostCard = ({
       >
         <div
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: sanitize(post.text) }}
+          dangerouslySetInnerHTML={{ __html: post.text }}
           style={{ display: 'grid', gap: '1rem' }}
         />
       </Text>
