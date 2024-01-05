@@ -5658,10 +5658,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@10.16.5:
-  version "10.16.5"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.16.5.tgz#f1ad625adf213a8906f1ea52a31a4ef222f056d5"
-  integrity sha512-GEzVjOYP2MIpV9bT/GbhcsBNoImG3/2X3O/xVNWmktkv9MdJ7P/44zELm/7Fjb+O3v39SmKFnoDQB32giThzpg==
+framer-motion@10.17.8:
+  version "10.17.8"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.17.8.tgz#339180b38c98803ee9a39d8eeb60a6a3f7844c52"
+  integrity sha512-Flmw+iVuE3xZGGCF+Oy45RxYuNot0aUg9HngeLf6EdzhC517yV7Kt/dqeazo1drr0xu/PCXEINDc2N96UzlGeQ==
   dependencies:
     tslib "^2.4.0"
   optionalDependencies:
