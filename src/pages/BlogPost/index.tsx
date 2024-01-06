@@ -37,7 +37,7 @@ const BlogPost = () => {
 
   return (
     <Container>
-      {post && <PostCard post={post} />}
+      {post && <PostCard post={post} defaultExpanded />}
       {loading && <LogoLoader />}
       {error && <h4>{error}</h4>}
     </Container>
