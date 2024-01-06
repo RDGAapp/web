@@ -1,6 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-// https://piccalil.li/blog/a-modern-css-reset/
+// https://piccalil.li/blog/a-more-modern-css-reset/
 const ModernCssReset = css`
   /* Box sizing rules */
   *,
@@ -9,23 +9,25 @@ const ModernCssReset = css`
     box-sizing: border-box;
   }
 
-  * {
-    scroll-margin-top: 6rem;
+  /* Prevent font size inflation */
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
   }
 
-  /* Remove default margin */
+  /* Remove default margin in favour of better control in authored CSS */
   body,
   h1,
   h2,
   h3,
   h4,
-  h5,
   p,
   figure,
   blockquote,
   dl,
   dd {
-    margin: 0;
+    margin-block-end: 0;
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -34,32 +36,42 @@ const ModernCssReset = css`
     list-style: none;
   }
 
-  li {
-    text-align: left;
-  }
-
-  /* Set core root defaults */
-  html:focus-within {
-    scroll-behavior: smooth;
-  }
-
   /* Set core body defaults */
   body {
     min-height: 100vh;
-    text-rendering: optimizeSpeed;
     line-height: 1.5;
+  }
+
+  /* Set shorter line heights on headings and interactive elements */
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  input,
+  label {
+    line-height: 1.1;
+  }
+
+  /* Balance text wrapping on headings */
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
   }
 
   /* A elements that don't have a class get default styles */
   a:not([class]) {
     text-decoration-skip-ink: auto;
+    color: currentColor;
   }
 
   /* Make images easier to work with */
   img,
   picture {
-    display: block;
     max-width: 100%;
+    display: block;
   }
 
   /* Inherit fonts for inputs and buttons */
@@ -70,20 +82,14 @@ const ModernCssReset = css`
     font: inherit;
   }
 
-  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-  @media (prefers-reduced-motion: reduce) {
-    html:focus-within {
-      scroll-behavior: auto;
-    }
+  /* Make sure textareas without a rows attribute are not tiny */
+  textarea:not([rows]) {
+    min-height: 10em;
+  }
 
-    *,
-    *::before,
-    *::after {
-      transition-duration: 0.01ms !important;
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-    }
+  /* Anything that has been anchored to should have extra scroll margin */
+  :target {
+    scroll-margin-block: 5ex;
   }
 `;
 
@@ -91,9 +97,13 @@ const GlobalStyle = createGlobalStyle`
   ${ModernCssReset}
 
   * {
+    scroll-margin-top: 6rem;
+    margin: 0;
+    padding: 0;
     color: inherit;
     font-size: 20px;
     font-family: "${({ theme }) => theme.fontFamily.primary}", sans-serif;
+    text-wrap: pretty;
 
     ${({ theme }) => theme.media.mobile} {
       font-size: 16px;
@@ -117,6 +127,11 @@ const GlobalStyle = createGlobalStyle`
 
   ul, ol {
     margin: 0;
+    padding-left: 2rem;
+  }
+
+  li {
+    text-align: left;
   }
 
   h1 {

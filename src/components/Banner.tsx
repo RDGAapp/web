@@ -55,7 +55,11 @@ const LinkCta = styled(HashLink)`
 const bannerContent = new Map<string, Record<string, string>>([
   [
     routes.About,
-    { image: PlayersBackground, text: 'Вступить в РДГА', link: routes.Join },
+    {
+      image: PlayersBackground,
+      text: 'Вступить в РДГА',
+      link: `${routes.About}${routes.Join}`,
+    },
   ],
   [
     routes.Service,

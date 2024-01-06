@@ -1,4 +1,4 @@
-FROM node:18-slim AS build
+FROM node:21-slim AS build
 
 LABEL maintainer="ilyakopeysk@gmail.com"
 

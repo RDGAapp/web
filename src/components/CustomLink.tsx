@@ -9,10 +9,13 @@ import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 const LinkStyles = css`
   position: relative;
   width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
   color: inherit;
   font-size: 1.2rem;
   white-space: nowrap;
   text-decoration: none;
+  text-overflow: ellipsis;
   transition: scale 0.2s ease-in-out, padding 0.2s ease-in-out;
 
   & svg {

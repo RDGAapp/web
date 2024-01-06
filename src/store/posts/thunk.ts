@@ -7,7 +7,7 @@ import { Paginated } from '../../@types/paginated';
 
 export const getPosts = createAsyncThunk(
   'posts/getAll',
-  async (page: number, { rejectWithValue }) => {
+  async (page: number) => {
     const response = await api.getPosts(page);
 
     if (response.ok) {
@@ -15,11 +15,18 @@ export const getPosts = createAsyncThunk(
       return json;
     }
 
-    const errorMessage = await response.text();
-    return rejectWithValue(errorMessage);
+    throw new Error(await response.text());
   },
 );
 
-export const getPost = createAsyncThunk('posts/getOne', async () => {
-  // do nothing
-});
+export const getPost = createAsyncThunk(
+  'posts/getOne',
+  async (code: string) => {
+    const response = await api.getPost(code);
+    if (response.ok) {
+      return (await response.json()) as Post;
+    }
+
+    throw new Error(await response.text());
+  },
+);

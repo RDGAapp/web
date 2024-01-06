@@ -43,6 +43,7 @@ const Service = lazy(() => import('pages/Service'));
 const Contacts = lazy(() => import('pages/Contacts'));
 const Partners = lazy(() => import('pages/Partners'));
 const Blog = lazy(() => import('pages/Blog'));
+const BlogPost = lazy(() => import('pages/BlogPost'));
 
 const App = (): JSX.Element => {
   const { Dialog: AdminDialog, openModal: openAdminModal } = useDialog({
@@ -92,6 +93,7 @@ const App = (): JSX.Element => {
               <Route path={routes.Contacts} element={<Contacts />} />
               <Route path={routes.Partners} element={<Partners />} />
               <Route path={routes.Blog} element={<Blog />} />
+              <Route path={`${routes.Blog}/:postCode`} element={<BlogPost />} />
 
               <Route
                 path={routes.AdminHome}
