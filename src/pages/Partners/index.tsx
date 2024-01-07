@@ -22,10 +22,14 @@ const LooperContent = styled.div`
   width: max-content;
   height: 3rem;
   margin-right: 1rem;
-  overflow: hidden;
 
   & a {
     color: transparent;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 `;
 

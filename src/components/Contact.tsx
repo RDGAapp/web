@@ -10,7 +10,7 @@ const Container = styled.div`
   gap: 0.25rem;
   justify-self: center;
   padding: 1rem;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 1rem;
 
   & > svg {

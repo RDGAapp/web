@@ -44,8 +44,7 @@ const PlanCardContainer = styled.div`
   max-width: 30rem;
   margin: 1rem 0;
   overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 2rem;
 
   ${({ theme }) => theme.media.mobile} {
@@ -98,25 +97,121 @@ const ArrowDown = styled(ArrowSvg)`
   transform: rotate(90deg);
 `;
 
+const maxValue = 15_000;
+
+const colorByContentType = {
+  [PlanContentType.Junior]: 'hsl(272, 100%, 50%)',
+  [PlanContentType.Newbie]: 'hsl(110, 45%, 43%)',
+  [PlanContentType.Base]: 'hsl(49, 97%, 50%)',
+  [PlanContentType.Sponsor]: 'hsl(217, 84%, 55%)',
+  [PlanContentType.Maecenas]: 'hsl(352, 100%, 45%)',
+};
+
+const planContentTypeMinAmounts = {
+  [PlanContentType.Junior]: 500,
+  [PlanContentType.Newbie]: 1_000,
+  [PlanContentType.Base]: 1_500,
+  [PlanContentType.Sponsor]: 7_000,
+  [PlanContentType.Maecenas]: 12_000,
+};
+
+const minValue = planContentTypeMinAmounts[PlanContentType.Junior];
+const range = maxValue - minValue;
+
+const getLinearGradient = () => {
+  const boundaries: Record<PlanContentType, { from: string; to: string }> = {
+    [PlanContentType.Junior]: { from: '', to: '' },
+    [PlanContentType.Newbie]: { from: '', to: '' },
+    [PlanContentType.Base]: { from: '', to: '' },
+    [PlanContentType.Sponsor]: { from: '', to: '' },
+    [PlanContentType.Maecenas]: { from: '', to: '' },
+  };
+
+  const order = [
+    PlanContentType.Junior,
+    PlanContentType.Newbie,
+    PlanContentType.Base,
+    PlanContentType.Sponsor,
+    PlanContentType.Maecenas,
+  ];
+
+  order.forEach((type, index) => {
+    boundaries[type].from =
+      index === 0
+        ? '0%'
+        : `${Math.round(
+            ((planContentTypeMinAmounts[type] - minValue) * 100) / range,
+          )}%`;
+    boundaries[type].to =
+      index === order.length - 1
+        ? '100%'
+        : `${Math.round(
+            ((planContentTypeMinAmounts[order[index + 1]] - minValue) * 100) /
+              range,
+          )}%`;
+  });
+
+  let gradient = 'linear-gradient(to right, ';
+  order.forEach((type, index) => {
+    gradient += `${colorByContentType[type]} ${boundaries[type].from} ${
+      boundaries[type].to
+    }${index !== order.length - 1 ? ', ' : ''}`;
+  });
+  gradient += ')';
+
+  return gradient;
+};
+
+const RangeInput = styled.input`
+  height: 0.7rem;
+  background: ${getLinearGradient()};
+  border-radius: 2rem;
+  outline: 0;
+  box-shadow: 0 0 4px ${({ theme }) => theme.colors.backdrop};
+  appearance: none;
+
+  &::-webkit-slider-thumb {
+    width: 1.2rem;
+    aspect-ratio: 1 / 1;
+    background-image: radial-gradient(
+      circle,
+      ${({ theme }) => theme.colors.background} 40%,
+      ${({ theme }) => theme.colors.primary} 45%
+    );
+    border-radius: 50%;
+    box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
+    appearance: none;
+  }
+
+  &::-moz-range-thumb {
+    width: 2rem;
+    height: 2rem;
+    background-image: radial-gradient(circle, #f7f7fc 40%, #ff9800 45%);
+    border-radius: 50%;
+    box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
+    appearance: none;
+  }
+`;
+
 const About = (): JSX.Element => {
   const [price, setPrice] = useState(500);
   const [manuallyChanged, setManuallyChanged] = useState(false);
 
   let lowerPlanType = PlanContentType.Junior;
   let selectedPlanType = PlanContentType.Junior;
-  if (price >= 12000) {
+  if (price >= planContentTypeMinAmounts[PlanContentType.Maecenas]) {
     selectedPlanType = PlanContentType.Maecenas;
     lowerPlanType = PlanContentType.Sponsor;
-  } else if (price >= 7000) {
+  } else if (price >= planContentTypeMinAmounts[PlanContentType.Sponsor]) {
     selectedPlanType = PlanContentType.Sponsor;
     lowerPlanType = PlanContentType.Base;
-  } else if (price >= 1500) {
+  } else if (price >= planContentTypeMinAmounts[PlanContentType.Base]) {
     selectedPlanType = PlanContentType.Base;
     lowerPlanType = PlanContentType.Newbie;
-  } else if (price >= 1000) {
+  } else if (price >= planContentTypeMinAmounts[PlanContentType.Newbie]) {
     selectedPlanType = PlanContentType.Newbie;
     lowerPlanType = PlanContentType.Junior;
-  } else if (price >= 500) {
+  } else if (price >= planContentTypeMinAmounts[PlanContentType.Junior]) {
     selectedPlanType = PlanContentType.Junior;
   }
 
@@ -128,12 +223,12 @@ const About = (): JSX.Element => {
     const increasePrice = () => {
       if (manuallyChanged) return;
 
-      setPrice((current) => (current >= 15000 ? 500 : current + 100));
+      setPrice((current) => (current >= maxValue ? 500 : current + 100));
 
-      timer = setTimeout(increasePrice, 1000);
+      timer = setTimeout(increasePrice, 1_000);
     };
 
-    timer = setTimeout(increasePrice, 1000);
+    timer = setTimeout(increasePrice, 1_000);
 
     return () => {
       if (timer) clearTimeout(timer);
@@ -184,10 +279,10 @@ const About = (): JSX.Element => {
           <p>← 500 ₽</p>
           <p>15000+ ₽ →</p>
         </InputDescription>
-        <input
+        <RangeInput
           type='range'
-          min={500}
-          max={15000}
+          min={minValue}
+          max={maxValue}
           step={100}
           onChange={(e) => {
             if (!manuallyChanged) {
@@ -199,7 +294,9 @@ const About = (): JSX.Element => {
           style={{ width: '80%' }}
         />
         <PlanCardContainer>
-          <PlanCardHeader>
+          <PlanCardHeader
+            style={{ backgroundColor: colorByContentType[selectedPlanType] }}
+          >
             <p>{selectedPlanType}</p>
           </PlanCardHeader>
           <div style={{ padding: '1rem' }}>
@@ -225,7 +322,7 @@ const About = (): JSX.Element => {
               yesText={PlanContent[selectedPlanType].markerType}
             />
             <PlanPart
-              text='Личный онлайн диск-гольф Наставник'
+              text='Личный онлайн диск-гольф наставник'
               isSame={
                 PlanContent[selectedPlanType].buddy ===
                 PlanContent[lowerPlanType].buddy

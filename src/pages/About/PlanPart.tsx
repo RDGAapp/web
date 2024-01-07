@@ -5,7 +5,7 @@ import { commonTheme } from 'helpers/theme';
 const Container = styled.div`
   padding: 0.25rem 0;
   text-align: center;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.secondary};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.text.neutral};
 
   &:last-of-type {
     border: none;
