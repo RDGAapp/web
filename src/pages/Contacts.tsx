@@ -23,6 +23,7 @@ const PresidentContainer = styled.div`
 const PresidentTextContainer = styled.div`
   height: max-content;
   margin: auto 2rem auto 0;
+  color: ${({ theme }) => theme.colors.black};
 
   & h3 {
     font-size: 2.2rem;
