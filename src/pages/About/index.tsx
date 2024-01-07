@@ -34,6 +34,10 @@ const InputDescription = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 80%;
+
+  ${({ theme }) => theme.media.tablet} {
+    width: 100%;
+  }
 `;
 
 const PlanCardContainer = styled.div`
@@ -46,10 +50,6 @@ const PlanCardContainer = styled.div`
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 2rem;
-
-  ${({ theme }) => theme.media.mobile} {
-    max-width: 80%;
-  }
 `;
 
 const PlanCardHeader = styled.div`
@@ -163,6 +163,7 @@ const getLinearGradient = () => {
 };
 
 const RangeInput = styled.input`
+  width: 80%;
   height: 0.7rem;
   background: ${getLinearGradient()};
   border-radius: 2rem;
@@ -190,6 +191,10 @@ const RangeInput = styled.input`
     border-radius: 50%;
     box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
     appearance: none;
+  }
+
+  ${({ theme }) => theme.media.tablet} {
+    width: 100%;
   }
 `;
 
@@ -291,7 +296,6 @@ const About = (): JSX.Element => {
             setPrice(Number(e.target.value));
           }}
           value={price}
-          style={{ width: '80%' }}
         />
         <PlanCardContainer>
           <PlanCardHeader
