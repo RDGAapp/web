@@ -54,23 +54,20 @@ const Select = styled.select`
   padding: 0.4rem 1rem;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1rem;
-  background-color: inherit;
+  background-color: ${({ theme }) => theme.colors.lighterBackground};
   background-image: url('${SelectSvg}');
   background-repeat: no-repeat;
   background-position: center right 1rem;
   background-size: 1rem;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: none;
   border-radius: 1rem;
   cursor: pointer;
-  transition: border-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   appearance: none;
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.primary};
-  }
-
-  &:active {
-    border-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 

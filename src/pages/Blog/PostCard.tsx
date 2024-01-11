@@ -72,6 +72,11 @@ const Text = styled.div`
   & iframe {
     border: none;
   }
+
+  & img {
+    width: auto;
+    height: auto;
+  }
 `;
 
 const DateComponent = styled.p`
