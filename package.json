@@ -19,7 +19,7 @@
     "react-router-dom": "6.21.1",
     "react-router-hash-link": "2.4.3",
     "react-scripts": "5.0.1",
-    "styled-components": "6.1.6",
+    "styled-components": "6.1.8",
     "stylis": "4.3.1",
     "typescript": "5.3.3",
     "workbox-background-sync": "7.0.0",
