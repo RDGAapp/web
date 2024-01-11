@@ -18,17 +18,18 @@ const CustomInput = styled.input`
   border-radius: 0.5rem;
 
   &:invalid {
-    border-color: red;
+    border-color: ${({ theme }) => theme.colors.invalid};
   }
 `;
 
 const CustomSelect = styled.select`
   padding: 0.2rem 0.6rem;
+  background-color: inherit;
   border: 1px solid currentColor;
   border-radius: 0.5rem;
 
   &:invalid {
-    border-color: red;
+    border-color: ${({ theme }) => theme.colors.invalid};
   }
 `;
 

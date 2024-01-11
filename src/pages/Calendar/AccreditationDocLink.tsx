@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { ReactComponent as FileSvg } from 'assets/icons/file.svg';
-import AccreditationDocPdf from 'assets/tournamentAccreditation.pdf';
+import getFileUrl from 'helpers/getFileUrl';
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +28,10 @@ const Container = styled.div`
 
 const AccreditationDocLink = (): JSX.Element => (
   <Container>
-    <a href={AccreditationDocPdf} download='rdga-tournament-accreditation'>
+    <a
+      href={getFileUrl('/docs//tournamentAccreditation.pdf')}
+      download='rdga-tournament-accreditation'
+    >
       Изучить весь порядок Аккредитации
     </a>
     <FileSvg width={24} height={24} />

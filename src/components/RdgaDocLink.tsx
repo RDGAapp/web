@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { ReactComponent as FileSvg } from 'assets/icons/file.svg';
-import RdgaDocPdf from 'assets/rdga.pdf';
+import getFileUrl from 'helpers/getFileUrl';
 
 const Container = styled.div`
   display: flex;
@@ -40,7 +40,7 @@ const LinkDescription = styled.div`
 
 const RdgaDocLink = (): JSX.Element => (
   <Container>
-    <a href={RdgaDocPdf} download='rdga-about'>
+    <a href={getFileUrl('/docs/rdga.pdf')} download='rdga-about'>
       Подробнее о РДГА
     </a>
     <LinkDescription>

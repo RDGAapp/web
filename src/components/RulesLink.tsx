@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { ReactComponent as FileSvg } from 'assets/icons/file.svg';
-import DiscGolfRules from 'assets/rules.pdf';
+import getFileUrl from 'helpers/getFileUrl';
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ const LinkDescription = styled.div`
 
 const RulesLink = (): JSX.Element => (
   <Container>
-    <a href={DiscGolfRules} download='disc-golf-rules'>
+    <a href={getFileUrl('/docs/rules.pdf')} download='disc-golf-rules'>
       Скачать правила диск-гольфа
     </a>
     <LinkDescription>
