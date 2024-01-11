@@ -1,36 +1,38 @@
 import styled from 'styled-components';
 
-import { ReactComponent as AvatarSvg } from 'assets/icons/avatar.svg';
+import AvatarSvg from 'assets/icons/avatar.svg';
 
-const Background = styled.div<{ disabled: boolean }>`
+const Background = styled.div<{ disabled: boolean; $image?: string }>`
   display: flex;
   flex: 0;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
   padding: 1rem;
   color: ${({ theme }) => theme.colors.black};
-  background: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
+  background-image: url('${({ $image }) => $image ?? AvatarSvg}');
+  background-repeat: no-repeat;
+  background-position: ${({ $image }) => $image ? 'center' : 'center 10px'};
+  background-size: cover;
   border-radius: 100vh;
+  box-shadow: 0 0 4px ${({ theme }) => theme.colors.lighterBackground};
 
-  & svg {
-    height: 1.5rem;
-  }
-
-  ${({ disabled }) => disabled && `
+  ${({ disabled }) =>
+    disabled &&
+    `
     background-color: grey;
   `};
 `;
 
 interface IAvatarProps {
+  imageSrc?: string;
   disabled?: boolean;
 }
 
-const Avatar = ({ disabled }: IAvatarProps) => (
-  <Background disabled={disabled ?? false}>
-    <AvatarSvg />
-  </Background>
+const Avatar = ({ disabled, imageSrc }: IAvatarProps) => (
+  <Background disabled={disabled ?? false} $image={imageSrc} />
 );
 
 export default Avatar;

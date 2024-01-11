@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import ButtonOutlined from './ButtonOutlined';
+
 const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
@@ -7,41 +9,29 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 2rem;
 `;
 
-const PageNumber = styled.button<{ number?: boolean }>`
-  width: 2rem;
+const PageNumber = styled.button<{ $number?: boolean }>`
+  ${ButtonOutlined}
   aspect-ratio: 1 / 1;
-  color: ${({ theme }) => theme.colors.text.primary};
   font-size: 0.8rem;
-  background: none;
-  border: none;
-  border-radius: 100vh;
-  box-shadow: 0 0 0.1rem;
-  cursor: pointer;
 
   &:disabled {
-    background-color: none;
-    cursor: not-allowed;
-
-    ${({ number, theme }) => number && css`
-      color: inherit;
-      background-color: ${theme.colors.primary};
-      cursor: default;
-      opacity: 1;
-    `}
-  }
-
-  &:hover:not(:disabled) {
-    background-color: ${({ theme }) => theme.colors.primary};
+    ${({ $number, theme }) =>
+      $number &&
+      css`
+        color: ${({ theme }) => theme.colors.black};
+        background-color: ${theme.colors.primary};
+        cursor: default;
+        opacity: 1;
+      `}
   }
 `;
 
 interface Props {
-  currentPageNumber: number,
-  onPageChange: (number: number) => void,
-  totalPagesNumber: number,
+  currentPageNumber: number;
+  onPageChange: (number: number) => void;
+  totalPagesNumber: number;
 }
 
 const Pagination = ({
@@ -84,7 +74,7 @@ const Pagination = ({
     <Container>
       <PageNumber
         onClick={() => onPageChange(1)}
-        title="Перейти на первую страницу"
+        title='Перейти на первую страницу'
         disabled={currentPageNumber === 1}
       >
         &laquo;
@@ -94,14 +84,14 @@ const Pagination = ({
           key={pageNumber}
           onClick={() => onPageChange(pageNumber)}
           disabled={currentPageNumber === pageNumber}
-          number
+          $number
         >
           {pageNumber}
         </PageNumber>
       ))}
       <PageNumber
         onClick={() => onPageChange(totalPagesNumber)}
-        title="Перейти на последнюю страницу"
+        title='Перейти на последнюю страницу'
         disabled={currentPageNumber === totalPagesNumber}
       >
         &raquo;

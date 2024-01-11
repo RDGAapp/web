@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Avatar from 'components/Avatar';
-import ButtonUnderlined from 'components/ButtonUnderlined';
+import ButtonOutlined from 'components/ButtonOutlined';
 import { getDisplayDate } from 'helpers/dateHelpers';
 import routes from 'helpers/routes';
 
@@ -78,6 +78,12 @@ const DateComponent = styled.p`
   color: ${({ theme }) => theme.colors.text.neutral};
 `;
 
+const Button = styled.button`
+  ${ButtonOutlined}
+  width: max-content;
+  background-color: ${({ theme }) => theme.colors.background};
+`;
+
 export interface IPostCard {
   post: Post;
   defaultExpanded?: boolean;
@@ -90,6 +96,7 @@ const PostCard = ({
   linkedHeader = false,
 }: IPostCard) => {
   const [expanded, setExpanded] = useState(defaultExpanded);
+  const [isSmallPost, setIsSmallPost] = useState(false);
 
   return (
     <Card>
@@ -117,11 +124,12 @@ const PostCard = ({
         </UserText>
       </User>
       <Text
-        data-expanded={expanded}
+        data-expanded={expanded.toString()}
         ref={(node) => {
-          if ((node?.scrollHeight ?? 0) > 200) return;
+          if (!node || node.scrollHeight > 200) return;
 
           setExpanded(true);
+          setIsSmallPost(true);
         }}
       >
         <div
@@ -131,9 +139,15 @@ const PostCard = ({
         />
       </Text>
       {!expanded && (
-        <ButtonUnderlined onClick={() => setExpanded(true)}>
-          Развернуть
-        </ButtonUnderlined>
+        <Button onClick={() => setExpanded(true)}>Развернуть</Button>
+      )}
+      {!isSmallPost && expanded && !defaultExpanded && (
+        <Button
+          onClick={() => setExpanded(false)}
+          style={{ position: 'sticky', bottom: 5 }}
+        >
+          Свернуть
+        </Button>
       )}
     </Card>
   );

@@ -5,21 +5,21 @@ const ButtonOutlined = css`
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 0.6rem;
   text-decoration: none;
-  background: none;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) => theme.colors.lighterBackground};
+  border: none;
   border-radius: 2rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.primary};
-  }
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &:disabled {
     color: ${({ theme }) => theme.colors.text.neutral};
     background-color: ${({ theme }) => theme.colors.background};
-    border-color: ${({ theme }) => theme.colors.text.neutral};
     cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    color: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.primary};
   }
 `;
 

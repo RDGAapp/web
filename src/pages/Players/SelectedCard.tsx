@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { ReactComponent as ChartSvg } from 'assets/icons/chart.svg';
@@ -27,7 +26,7 @@ const Container = styled.div`
   padding: 0 1rem;
 `;
 
-const Card = styled(motion.div)`
+const Card = styled.div`
   position: relative;
   display: flex;
   flex: 1;
@@ -141,10 +140,7 @@ const SelectedCard = ({ selected, resetSelected }: Props) => {
 
   return (
     <Container onClick={resetSelected}>
-      <Card
-        layoutId={selected.rdgaNumber.toString()}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <Card onClick={(e) => e.stopPropagation()}>
         <Header>
           <div>
             <Avatar />

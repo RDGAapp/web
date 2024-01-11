@@ -2,7 +2,7 @@ import { FunctionComponent, SVGProps } from 'react';
 
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import styled, { css } from 'styled-components';
+import styled, { RuleSet, css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 
@@ -16,7 +16,9 @@ const LinkStyles = css`
   white-space: nowrap;
   text-decoration: none;
   text-overflow: ellipsis;
-  transition: scale 0.2s ease-in-out, padding 0.2s ease-in-out;
+  transition:
+    scale 0.2s ease-in-out,
+    padding 0.2s ease-in-out;
 
   & svg {
     position: absolute;
@@ -64,12 +66,14 @@ const LinkStyles = css`
   }
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<{ $styles?: RuleSet }>`
   ${LinkStyles}
+  ${({ $styles }) => $styles}
 `;
 
-const StyledHashLink = styled(HashLink)`
+const StyledHashLink = styled(HashLink)<{ $styles?: RuleSet }>`
   ${LinkStyles}
+  ${({ $styles }) => $styles}
 `;
 
 interface ICustomLinkProps {
@@ -78,6 +82,7 @@ interface ICustomLinkProps {
   isExternal?: boolean;
   onClick?: () => void;
   CustomImage?: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string }>;
+  styles?: RuleSet;
 }
 
 const CustomLink = ({
@@ -86,6 +91,7 @@ const CustomLink = ({
   onClick,
   isExternal = false,
   CustomImage,
+  styles,
 }: ICustomLinkProps) =>
   route.includes('#') ? (
     <StyledHashLink
@@ -95,6 +101,7 @@ const CustomLink = ({
       rel={isExternal ? 'noreferrer' : ''}
       target={isExternal ? '_blank' : ''}
       smooth
+      $styles={styles}
     >
       <>
         {CustomImage ? <CustomImage /> : <ArrowSvg />}
@@ -108,6 +115,7 @@ const CustomLink = ({
       title={text}
       rel={isExternal ? 'noreferrer' : ''}
       target={isExternal ? '_blank' : ''}
+      $styles={styles}
     >
       <>
         {CustomImage ? <CustomImage /> : <ArrowSvg />}

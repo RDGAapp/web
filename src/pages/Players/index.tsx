@@ -1,6 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { ReactComponent as FilterSvg } from 'assets/icons/filter.svg';
@@ -14,20 +13,17 @@ import towns from 'helpers/townsList';
 import useDebounce from 'hooks/useDebounce';
 import useDialog from 'hooks/useDialog';
 import Card from 'pages/Players/Card';
-import SelectedCard from 'pages/Players/SelectedCard';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getPlayers } from 'store/players/thunks';
 
-import { Player } from '../../@types/player';
-
-const Container = styled(motion.ul)`
+const Container = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   justify-content: flex-start;
   width: calc(100% - 2rem);
   margin: auto;
-  padding: 0 1rem 3rem;
+  padding: 0 1rem 2rem;
   list-style: none;
 
   ${({ theme }) => theme.media.tablet} {
@@ -48,14 +44,8 @@ const Filters = styled.div`
   justify-content: flex-end;
 
   ${({ theme }) => theme.media.tablet} {
-    flex-direction: column;
-    align-items: flex-end;
+    flex-wrap: nowrap;
     width: 100%;
-  }
-
-  ${({ theme }) => theme.media.mobile} {
-    flex-flow: row nowrap;
-    align-items: center;
   }
 `;
 
@@ -129,7 +119,6 @@ const Players = (): JSX.Element => {
 
   const { players, loading } = useAppSelector((state) => state.player);
 
-  const [selected, setSelected] = useState<Player | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [surname, setSurname] = useState<string>('');
   const [town, setTown] = useState<Town>();
@@ -160,12 +149,6 @@ const Players = (): JSX.Element => {
     dispatch(getPlayers({ pageNumber, surname, town, onlyActive }));
   }, []);
 
-  useEffect(() => {
-    if (players && !loading && pageNumber !== 0) {
-      scrollToPageHeader();
-    }
-  }, [players]);
-
   const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const newTown = event.target.value as Town;
     setTown(newTown);
@@ -178,6 +161,7 @@ const Players = (): JSX.Element => {
   const onPageNumberChange = (newPageNumber: number) => {
     setPageNumber(newPageNumber);
     dispatch(getPlayers({ pageNumber: newPageNumber, surname, town }));
+    scrollToPageHeader();
   };
 
   return (
@@ -205,22 +189,10 @@ const Players = (): JSX.Element => {
       )}
       <Container>
         {players?.data.map((player) => (
-          <Card
-            key={player.rdgaNumber}
-            player={player}
-            setSelected={() => setSelected(player)}
-          />
+          <Card key={player.rdgaNumber} player={player} />
         ))}
       </Container>
 
-      <AnimatePresence>
-        {selected && (
-          <SelectedCard
-            selected={selected}
-            resetSelected={() => setSelected(null)}
-          />
-        )}
-      </AnimatePresence>
       {players && (
         <Pagination
           currentPageNumber={players.pagination.currentPage}

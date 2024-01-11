@@ -13,18 +13,19 @@ const ExpandedContainerStyle = css`
   }
 
   & button {
+    color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
-const Container = styled.div<{$expanded: boolean}>`
+const Container = styled.div<{ $expanded: boolean }>`
   position: relative;
   display: flex;
   flex-grow: 1;
   max-width: 2.5rem;
   overflow: hidden;
   color: ${({ theme }) => theme.colors.text.primary};
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 100vh;
   transition: max-width 0.3s ease-in-out;
 
@@ -69,37 +70,38 @@ const Button = styled.button`
   border: none;
   border-radius: 100vh;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 
   &:hover {
+    color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
 interface Props {
-  value: string,
-  placeholder: string,
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
-  ariaLabel: string,
+  value: string;
+  placeholder: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  ariaLabel: string;
 }
 
-const SearchBar = ({
-  value, placeholder, onChange, ariaLabel,
-}: Props) => {
+const SearchBar = ({ value, placeholder, onChange, ariaLabel }: Props) => {
   const { isMobile, isTablet } = useMatchMedia();
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <Container $expanded={!!value || isMobile || isTablet}>
       <Input
-        type="text"
+        type='text'
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         aria-label={ariaLabel}
         ref={inputRef}
       />
-      <Button type="button" onClick={() => inputRef.current?.focus()}>
+      <Button type='button' onClick={() => inputRef.current?.focus()}>
         <SearchSvg width={20} />
       </Button>
     </Container>
