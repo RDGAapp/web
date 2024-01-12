@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { ReactComponent as FilterSvg } from 'assets/icons/filter.svg';
 import SelectSvg from 'assets/icons/select.svg';
 import ButtonOutlined from 'components/ButtonOutlined';
+import LogoLoader from 'components/LogoLoader';
 import PageHeader from 'components/PageHeader';
 import Pagination from 'components/Pagination';
 import SearchBar from 'components/SearchBar';
-import Spinner from 'components/Spinner';
 import towns from 'helpers/townsList';
 import useDebounce from 'hooks/useDebounce';
 import useDialog from 'hooks/useDialog';
@@ -176,7 +176,7 @@ const Players = (): JSX.Element => {
           </Button>
         </Filters>
       </PageHeader>
-      {loading && <Spinner />}
+      {loading && <LogoLoader />}
       {(players?.pagination.total ?? 0) === 0 && (
         <NotFoundContainer>
           <NotFoundText>

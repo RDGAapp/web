@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import PageHeader from 'components/PageHeader';
+import LogoLoader from 'components/LogoLoader';
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const Loading = () => (
   <Container>
-    <PageHeader text="Загрузка..." />
+    <LogoLoader />
   </Container>
 );
 

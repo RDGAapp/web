@@ -4,7 +4,11 @@ import TournamentType from 'enums/tournamentType';
 import { spellMonth } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournamentColorByType';
 
-const Container = styled.div<{ border: string; $maxWidth: string }>`
+const Container = styled.div<{
+  $color: string;
+  $maxWidth: string;
+  $metrixId: string | null;
+}>`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -12,9 +16,10 @@ const Container = styled.div<{ border: string; $maxWidth: string }>`
   justify-content: center;
   max-width: ${(props) => props.$maxWidth};
   height: 3rem;
-  padding: 0 0.3rem;
+  padding: 0 0.5rem;
   overflow: hidden;
-  border: 0.1rem solid ${(props) => props.border};
+  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  border: 2px solid transparent;
   border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
 
@@ -24,11 +29,12 @@ const Container = styled.div<{ border: string; $maxWidth: string }>`
   }
 
   &:hover {
-    flex-basis: ${(props) => props.$maxWidth};
+    flex-basis: 100%;
 
-    & a {
-      text-decoration: underline;
-    }
+    ${(props) =>
+      props.$metrixId
+        ? `background-color: ${props.$color};`
+        : `border: 2px solid ${props.$color}`}
   }
 
   & * {
@@ -72,20 +78,19 @@ const Tournament = ({
 }: Props) => (
   <Container
     title={name}
-    border={TournamentColorByType[type as TournamentType]}
+    $color={TournamentColorByType[type as TournamentType]}
     $maxWidth={maxWidth}
+    $metrixId={metrixId}
+    style={{
+      cursor: metrixId ? 'pointer' : 'default',
+    }}
+    onClick={() => {
+      if (!metrixId) return;
+
+      window.open(`https://discgolfmetrix.com/${metrixId}`, '_blank');
+    }}
   >
-    {metrixId ? (
-      <a
-        href={`https://discgolfmetrix.com/${metrixId}`}
-        target='_blank'
-        rel='noreferrer'
-      >
-        {name}
-      </a>
-    ) : (
-      <b>{name}</b>
-    )}
+    <b>{name}</b>
     <ExtraTournamentInformation>
       <i>{town}</i>
     </ExtraTournamentInformation>

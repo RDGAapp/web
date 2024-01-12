@@ -32,9 +32,6 @@ const tournamentsSlice = createSlice({
         state.loading = false;
         state.tournaments = [];
         state.error = action.payload as string;
-      })
-      .addDefaultCase(() => {
-        /* do nothing */
       });
   },
 });
