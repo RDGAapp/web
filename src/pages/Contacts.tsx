@@ -23,7 +23,16 @@ const PresidentContainer = styled.div`
 const PresidentTextContainer = styled.div`
   height: max-content;
   margin: auto 2rem auto 0;
+  overflow: hidden;
   color: ${({ theme }) => theme.colors.black};
+
+  & * {
+    width: 100%;
+    max-width: max-content;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
   & h3 {
     font-size: 2.2rem;
@@ -33,6 +42,15 @@ const PresidentTextContainer = styled.div`
     font-weight: normal;
     font-size: 1.5rem;
     font-style: italic;
+  }
+
+  & a {
+    display: block;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
   }
 
   ${({ theme }) => theme.media.mobile} {
@@ -54,13 +72,22 @@ const ContactsPage = () => (
     <PresidentContainer>
       <img src={PresidentImg} alt='president' />
       <PresidentTextContainer>
-        <h3>Сартаков Иван</h3>
-        <h4>Руководитель РДГА</h4>
-        <a href='mailto:sartakov@yandex.ru' target='_blank' rel='noreferrer'>
+        <h3 title='Сартаков Иван'>Сартаков Иван</h3>
+        <h4 title='Руководитель РДГА'>Руководитель РДГА</h4>
+        <a
+          href='mailto:sartakov@yandex.ru'
+          target='_blank'
+          rel='noreferrer'
+          title='sartakov@yandeх.ru'
+        >
           sartakov@yandeх.ru
         </a>
-        <br />
-        <a href='https://t.me/Sartakov_Ivan' target='_blank' rel='noreferrer'>
+        <a
+          href='https://t.me/Sartakov_Ivan'
+          target='_blank'
+          rel='noreferrer'
+          title='Telegram'
+        >
           Telegram
         </a>
       </PresidentTextContainer>

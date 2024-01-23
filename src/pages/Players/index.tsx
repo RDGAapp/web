@@ -177,20 +177,22 @@ const Players = (): JSX.Element => {
         </Filters>
       </PageHeader>
       {loading && <LogoLoader />}
-      {(players?.pagination.total ?? 0) === 0 && (
+      {!loading && (players?.pagination.total ?? 0) === 0 && (
         <NotFoundContainer>
           <NotFoundText>
             Игрока с такими параметрами нет в нашей базе
           </NotFoundText>
         </NotFoundContainer>
       )}
-      <Container>
-        {players?.data.map((player) => (
-          <Card key={player.rdgaNumber} player={player} />
-        ))}
-      </Container>
+      {!loading && (
+        <Container>
+          {players?.data.map((player) => (
+            <Card key={player.rdgaNumber} player={player} />
+          ))}
+        </Container>
+      )}
 
-      {players && (
+      {!loading && players && (
         <Pagination
           currentPageNumber={players.pagination.currentPage}
           totalPagesNumber={players.pagination.lastPage}

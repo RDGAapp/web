@@ -37,6 +37,7 @@ const TextContainer = styled.div`
 
 const TextStyle = css`
   width: 100%;
+  max-width: max-content;
   margin: 0;
   overflow: hidden;
   font-weight: 400;
