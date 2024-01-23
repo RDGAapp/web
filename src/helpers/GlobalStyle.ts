@@ -11,8 +11,6 @@ const ModernCssReset = css`
 
   /* Prevent font size inflation */
   html {
-    -moz-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
     text-size-adjust: none;
   }
 
@@ -70,8 +68,8 @@ const ModernCssReset = css`
   /* Make images easier to work with */
   img,
   picture {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
   }
 
   /* Inherit fonts for inputs and buttons */

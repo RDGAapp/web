@@ -33,6 +33,7 @@ describe('theme helper', () => {
       backdrop: 'hsla(0, 0%, 0%, 0.5)',
       avatarBackground: 'hsl(0, 0%, 78%)',
       black: 'hsl(0, 0%, 0%)',
+      white: 'hsl(0, 0%, 100%)',
       text: {
         primary: 'hsl(0, 0%, 0%)',
         contrast: 'hsl(0, 0%, 100%)',
