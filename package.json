@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "2.0.1",
+    "@reduxjs/toolkit": "2.1.0",
     "@tinymce/tinymce-react": "4.3.2",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
