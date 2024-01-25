@@ -19,18 +19,15 @@ const Card = styled.div`
 
   & > h1,
   & > a {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     font-weight: bold;
-    font-size: 2rem;
-    text-decoration: none;
-    text-overflow: ellipsis;
+    font-size: 1.5rem;
+    text-decoration-color: transparent;
+    text-decoration-style: wavy;
+    transition: all 0.3s linear;
   }
 
   & > a:hover {
-    text-decoration: underline;
+    text-decoration-color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -58,7 +55,7 @@ const UserText = styled.div`
 
 const Text = styled.div`
   display: grid;
-  grid-template-rows: 200px;
+  grid-template-rows: 50vh;
   overflow: hidden;
 
   &[data-expanded='true'] {
@@ -76,6 +73,8 @@ const Text = styled.div`
   & img {
     width: auto;
     height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
 `;
 
