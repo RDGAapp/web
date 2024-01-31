@@ -6,6 +6,7 @@ const Container = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
+
   margin: 1.5rem 0;
 
   ${({ theme }) => theme.media.mobile} {
@@ -14,9 +15,9 @@ const Container = styled.div`
 `;
 
 const Header = styled.h1`
-  font-weight: 400;
-  font-size: 2rem;
   font-family: "${({ theme }) => theme.fontFamily.header}", sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
   line-height: 1;
 `;
 

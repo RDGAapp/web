@@ -1,4 +1,4 @@
-export interface Paginated<T> {
+export interface IPaginated<T> {
   data: T,
   pagination: {
     perPage: number,

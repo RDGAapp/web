@@ -1,4 +1,4 @@
-export interface Post {
+export interface IPost {
   code: string;
   header: string;
   createdAt: string;

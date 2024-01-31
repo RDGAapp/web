@@ -1,9 +1,8 @@
 import Card from 'pages/Players/Card';
-
-import { Player } from '../../../@types/player';
+import { IPlayer } from 'types/player';
 
 interface IPreview {
-  player: Player;
+  player: IPlayer;
 }
 
 const Preview = ({ player }: IPreview) => <Card player={player} />;

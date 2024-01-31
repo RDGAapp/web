@@ -19,18 +19,21 @@ import Role from 'enums/roles';
 import routes from 'helpers/routes';
 
 const Container = styled.div`
-  position: sticky;
-  top: 0;
-  z-index: ${({ theme }) => theme.zIndex.header};
-  color: ${({ theme }) => theme.colors.black};
-  background-color: ${({ theme }) => theme.colors.primary};
   isolation: isolate;
+  position: sticky;
+  z-index: ${({ theme }) => theme.zIndex.header};
+  top: 0;
+
+  color: ${({ theme }) => theme.colors.black};
+
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 const Navigation = styled.div`
   display: grid;
   grid-template: 'commercial logo contact' 1fr / 1fr 1fr 1fr;
   gap: 0.5rem;
+
   max-width: 67rem;
   margin: 0 auto;
   padding: 1rem;
@@ -38,31 +41,37 @@ const Navigation = styled.div`
 
 const NavigationContainer = styled.nav`
   position: relative;
+
   display: flex;
   grid-area: commercial;
   align-items: center;
   justify-content: flex-start;
+
   padding-left: 1rem;
 `;
 
 const NavigationBackground = styled.div<{ open: boolean }>`
   position: absolute;
+  z-index: -1;
   top: -0.5rem;
   left: 0;
-  z-index: -1;
+
   width: min(15rem, 100vw);
   height: max-content;
+
   background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 0 0 1rem 1rem;
-  transition: clip-path 0.5s ease-in-out;
   clip-path: ${({ open }) =>
     open ? 'circle(120vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};
+  border-radius: 0 0 1rem 1rem;
+
+  transition: clip-path 0.5s ease-in-out;
 `;
 
 const LinksList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+
   margin-top: 4rem;
   margin-bottom: 0;
   padding: 0 1rem 1rem 1.5rem;
@@ -77,15 +86,20 @@ const UserContainer = styled.div`
   grid-area: contact;
   align-items: center;
   justify-content: flex-end;
+
   padding-right: 1rem;
 `;
 
 const LogoBlock = styled(Link)`
   position: relative;
   z-index: 1;
+
   grid-area: logo;
+
   margin: auto;
+
   text-decoration: none;
+
   transition: scale 0.2s ease-in-out;
 
   &:hover {

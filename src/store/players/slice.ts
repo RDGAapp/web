@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getPlayers } from 'store/players/thunks';
-
-import { Paginated } from '../../@types/paginated';
-import { Player } from '../../@types/player';
+import { getPlayer, getPlayers } from 'store/players/thunks';
+import { IPaginated } from 'types/paginated';
+import { IPlayer } from 'types/player';
 
 interface PlayerState {
-  players: Paginated<Player[]> | null;
+  players: IPaginated<IPlayer[]> | null;
+  player: IPlayer | null;
   loading: boolean;
   error: string | null;
 }
@@ -15,6 +15,7 @@ const playerSlice = createSlice({
   name: 'player',
   initialState: {
     players: null,
+    player: null,
     loading: false,
     error: null,
   } as PlayerState,
@@ -32,10 +33,21 @@ const playerSlice = createSlice({
       .addCase(getPlayers.rejected, (state, action) => {
         state.loading = false;
         state.players = null;
-        state.error = action.payload as string;
+        state.error = action.error.message ?? '';
       })
-      .addDefaultCase(() => {
-        /* do nothing */
+      .addCase(getPlayer.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.player = null;
+      })
+      .addCase(getPlayer.fulfilled, (state, action) => {
+        state.loading = false;
+        state.player = action.payload;
+      })
+      .addCase(getPlayer.rejected, (state, action) => {
+        state.loading = false;
+        state.player = null;
+        state.error = action.error.message ?? '';
       });
   },
 });

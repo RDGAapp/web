@@ -21,6 +21,7 @@ const ArticleContainer = styled.article`
   gap: 3rem;
   align-items: center;
   justify-content: center;
+
   margin-top: 2rem;
 `;
 

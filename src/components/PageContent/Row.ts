@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const Row = styled.div<{ $imagePosition: 'left' | 'right' }>`
   display: grid;
-
   ${({ $imagePosition }) =>
     $imagePosition === 'left'
       ? "grid-template-areas: 'picture description'"

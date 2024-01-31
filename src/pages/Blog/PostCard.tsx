@@ -7,22 +7,24 @@ import Avatar from 'components/Avatar';
 import ButtonOutlined from 'components/ButtonOutlined';
 import { getDisplayDate } from 'helpers/dateHelpers';
 import routes from 'helpers/routes';
-
-import { Post } from '../../@types/blog';
+import { IPost } from 'types/blog';
 
 const Card = styled.div`
   display: grid;
   gap: 0.8rem;
+
   padding: 1rem;
+
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 0.5rem;
 
   & > h1,
   & > a {
-    font-weight: bold;
     font-size: 1.5rem;
+    font-weight: bold;
     text-decoration-color: transparent;
     text-decoration-style: wavy;
+
     transition: all 0.3s linear;
   }
 
@@ -32,31 +34,32 @@ const Card = styled.div`
 `;
 
 const User = styled.div`
+  overflow: hidden;
   display: flex;
   gap: 0.5rem;
   align-items: center;
+
   width: 100%;
-  overflow: hidden;
 `;
 
 const UserText = styled.div`
+  overflow: hidden;
   display: flex;
   flex-basis: 0;
   flex-direction: column;
   flex-grow: 1;
-  overflow: hidden;
 
   & > p {
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 
 const Text = styled.div`
+  overflow: hidden;
   display: grid;
   grid-template-rows: 50vh;
-  overflow: hidden;
 
   &[data-expanded='true'] {
     grid-template-rows: auto;
@@ -71,9 +74,9 @@ const Text = styled.div`
   }
 
   & img {
+    aspect-ratio: 1 / 1;
     width: auto;
     height: auto;
-    aspect-ratio: 1 / 1;
     object-fit: cover;
   }
 `;
@@ -89,7 +92,7 @@ const Button = styled.button`
 `;
 
 export interface IPostCard {
-  post: Post;
+  post: IPost;
   defaultExpanded?: boolean;
   linkedHeader?: boolean;
 }

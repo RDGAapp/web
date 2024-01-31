@@ -18,8 +18,8 @@ const Container = styled.div`
   }
 
   & p:first-of-type {
-    font-weight: bold;
     font-size: 1.2rem;
+    font-weight: bold;
   }
 `;
 

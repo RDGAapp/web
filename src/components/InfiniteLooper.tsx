@@ -3,8 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const Looper = styled.div`
-  width: 100%;
   overflow: hidden;
+  width: 100%;
 `;
 
 const InnerList = styled.div`

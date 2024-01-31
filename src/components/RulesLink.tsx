@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+
   font-style: italic;
   line-height: 1;
 
@@ -15,8 +16,8 @@ const Container = styled.div`
   }
 
   & a {
-    color: inherit;
     font-weight: 600;
+    color: inherit;
     transition: scale 0.3s ease-in-out;
 
     &:hover {
@@ -33,6 +34,7 @@ const LinkDescription = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
+
   font-size: 0.8rem;
   line-height: 1;
 `;

@@ -7,10 +7,13 @@ const Background = styled.div<{ disabled: boolean; $image?: string }>`
   flex: 0;
   align-items: center;
   justify-content: center;
+
   min-width: 3rem;
   min-height: 3rem;
   padding: 1rem;
+
   color: ${({ theme }) => theme.colors.black};
+
   background-color: ${({ theme }) => theme.colors.primary};
   background-image: url('${({ $image }) => $image ?? AvatarSvg}');
   background-repeat: no-repeat;

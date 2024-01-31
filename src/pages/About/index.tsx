@@ -22,6 +22,7 @@ const PlanContainer = styled.div`
   grid-template-columns: 1fr;
   gap: 1rem;
   justify-items: center;
+
   width: 100%;
 
   & p {
@@ -41,36 +42,42 @@ const InputDescription = styled.div`
 `;
 
 const PlanCardContainer = styled.div`
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
+
   width: 100%;
   max-width: 30rem;
   margin: 1rem 0;
-  overflow: hidden;
+
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 2rem;
 `;
 
 const PlanCardHeader = styled.div`
+  isolation: isolate;
   position: relative;
+
   width: 100%;
   height: 5rem;
   padding: 1rem;
+
   font-weight: bold;
   text-align: center;
+
   background-color: ${({ theme }) => theme.colors.primary};
-  isolation: isolate;
 
   & p {
     position: absolute;
+    z-index: -1;
     top: 50%;
     left: 50%;
-    z-index: -1;
-    color: ${({ theme }) => theme.colors.text.contrast};
+    translate: -50% -50%;
+
     font-size: 3rem;
     font-style: italic;
-    translate: -50% -50%;
+    color: ${({ theme }) => theme.colors.text.contrast};
   }
 `;
 
@@ -79,22 +86,25 @@ const Step = styled.p`
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+
   font-size: 1rem;
   text-align: center;
 `;
 
 const StepNumber = styled.div`
   padding: 0.5rem 1rem;
-  font-weight: bold;
+
   font-size: 1.3rem;
+  font-weight: bold;
   font-variant: tabular-nums;
+
   border: 0.3rem solid ${({ theme }) => theme.colors.primary};
   border-radius: 100vh;
 `;
 
 const ArrowDown = styled(ArrowSvg)`
-  width: 2rem;
   transform: rotate(90deg);
+  width: 2rem;
 `;
 
 const maxValue = 15_000;
@@ -165,15 +175,18 @@ const getLinearGradient = () => {
 const RangeInput = styled.input`
   width: 80%;
   height: 0.7rem;
+
+  appearance: none;
   background: ${getLinearGradient()};
   border-radius: 2rem;
   outline: 0;
   box-shadow: 0 0 4px ${({ theme }) => theme.colors.backdrop};
-  appearance: none;
 
   &::-webkit-slider-thumb {
-    width: 1.2rem;
     aspect-ratio: 1 / 1;
+    width: 1.2rem;
+
+    appearance: none;
     background-image: radial-gradient(
       circle,
       ${({ theme }) => theme.colors.background} 40%,
@@ -181,16 +194,16 @@ const RangeInput = styled.input`
     );
     border-radius: 50%;
     box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
-    appearance: none;
   }
 
   &::-moz-range-thumb {
     width: 2rem;
     height: 2rem;
+
+    appearance: none;
     background-image: radial-gradient(circle, #f7f7fc 40%, #ff9800 45%);
     border-radius: 50%;
     box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
-    appearance: none;
   }
 
   ${({ theme }) => theme.media.tablet} {

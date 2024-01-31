@@ -7,30 +7,35 @@ import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 
 const Modal = styled.div`
   position: fixed;
+  z-index: ${({ theme }) => theme.zIndex.modal};
   top: 0;
   left: 0;
-  z-index: ${({ theme }) => theme.zIndex.modal};
+
   width: 100%;
   height: 100%;
+
   background-color: ${({ theme }) => theme.colors.backdrop};
 `;
 
 const ModalContainer = styled.div`
   position: fixed;
+  z-index: 2;
   top: 50%;
   left: 50%;
-  z-index: 2;
+  transform: translate(-50%, -50%);
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
   width: max-content;
   max-width: 90vw;
   height: max-content;
   max-height: 90vh;
   padding: 1.5rem;
+
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1rem;
-  transform: translate(-50%, -50%);
 `;
 
 const ModalHeader = styled.div`
@@ -50,10 +55,11 @@ const ModalHeader = styled.div`
 
   & h1 {
     overflow: hidden;
-    font-weight: 600;
+
     font-size: 1.5rem;
-    white-space: nowrap;
+    font-weight: 600;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 

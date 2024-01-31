@@ -5,6 +5,7 @@ const PageContainer = styled.article`
   grid-template-columns: 1fr;
   gap: 2rem;
   justify-items: center;
+
   margin-top: 2rem;
   padding: 1rem;
 

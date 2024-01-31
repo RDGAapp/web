@@ -8,6 +8,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
+
   font-style: italic;
   line-height: 1;
 
@@ -16,8 +17,8 @@ const Container = styled.div`
   }
 
   & a {
-    color: ${({ theme }) => theme.colors.secondary};
     font-weight: 600;
+    color: ${({ theme }) => theme.colors.secondary};
     transition: color 0.3s ease-in-out;
 
     &:hover {

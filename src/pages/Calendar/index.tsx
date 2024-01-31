@@ -21,6 +21,7 @@ const PreContent = styled.div`
   flex-direction: column;
   gap: 1rem;
   align-items: flex-start;
+
   margin-bottom: 2rem;
 
   ${({ theme }) => theme.media.mobile} {
@@ -30,12 +31,15 @@ const PreContent = styled.div`
 `;
 
 const AccreditationButton = styled.button`
+  cursor: pointer;
+
   display: flex;
   gap: 4px;
   align-items: center;
+
   background: none;
   border: none;
-  cursor: pointer;
+
   transition: scale 0.2s ease-in-out;
 
   &:hover {
@@ -52,9 +56,11 @@ const Legend = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
   align-items: center;
+
   width: max-content;
   max-width: calc(100% - 3rem);
   padding: 1rem;
+
   background-color: ${({ theme }) => theme.colors.lighterBackground};;
   border-radius: 1rem;
 
@@ -94,7 +100,9 @@ const MonthName = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+
   min-width: 5rem;
+
   font-weight: 700;
 `;
 
@@ -120,9 +128,9 @@ const CalendarWeek = styled.div`
 `;
 
 const TournamentList = styled.div`
+  overflow: hidden;
   display: flex;
   gap: 1rem;
-  overflow: hidden;
 
   ${({ theme }) => theme.media.smallMobile} {
     display: none;
@@ -130,8 +138,9 @@ const TournamentList = styled.div`
 `;
 
 const TournamentCircle = styled.div<{ $border: string }>`
-  height: 0.5rem;
   aspect-ratio: 1 / 1;
+  height: 0.5rem;
+
   background-color: ${(props) => props.$border};
   border: 1px solid ${({ theme }) => theme.colors.text.primary};
   border-radius: 100vh;

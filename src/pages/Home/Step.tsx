@@ -3,18 +3,20 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const GridContainer = styled.div`
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  overflow: hidden;
 `;
 
 const Block = styled.div`
   width: fit-content;
   height: fit-content;
   padding: 0.5rem 0.7rem;
+
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1.5rem;
+
   transition: all 0.3s ease-in-out;
 `;
 

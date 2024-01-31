@@ -37,6 +37,7 @@ describe('player requests', () => {
       expect(result.meta.requestStatus).toBe('fulfilled');
       expect(store.getState().player).toEqual({
         players,
+        player: null,
         loading: false,
         error: null,
       });
@@ -63,6 +64,7 @@ describe('player requests', () => {
       expect(result.meta.requestStatus).toBe('fulfilled');
       expect(store.getState().player).toEqual({
         players,
+        player: null,
         loading: false,
         error: null,
       });
@@ -83,10 +85,13 @@ describe('player requests', () => {
         undefined,
         undefined,
       );
-      expect(result.payload).toBe(testError);
+      expect((result as { error: { message: string } }).error.message).toBe(
+        testError,
+      );
       expect(result.meta.requestStatus).toBe('rejected');
       expect(store.getState().player).toEqual({
         players: null,
+        player: null,
         loading: false,
         error: testError,
       });
@@ -119,7 +124,9 @@ describe('player requests', () => {
 
       expect(api.getPlayer).toHaveBeenCalledTimes(1);
       expect(api.getPlayer).toHaveBeenCalledWith(1);
-      expect(result.payload).toBe(testError);
+      expect((result as { error: { message: string } }).error.message).toBe(
+        testError,
+      );
       expect(result.meta.requestStatus).toBe('rejected');
     });
   });

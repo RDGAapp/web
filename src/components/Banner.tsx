@@ -13,30 +13,37 @@ const Container = styled.div<{ $image: string }>`
   display: flex;
   align-items: flex-end;
   justify-content: center;
+
+  aspect-ratio: 16/9;
   width: 100%;
   max-height: 28rem;
-  aspect-ratio: 16/9;
   margin: 0 0 1rem;
+
   background: center url('${({ $image }) => $image}');
   background-size: cover;
   border-radius: 2.5rem;
 `;
 
 const LinkCta = styled(HashLink)`
+  cursor: pointer;
+
   display: flex;
   gap: 0.7rem;
   align-items: center;
+
   margin-bottom: 7%;
   padding: 0.8rem 1.2rem;
-  color: ${({ theme }) => theme.colors.black};
-  font-weight: 400;
-  font-size: 1.2rem;
+
   font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
   line-height: 1;
+  color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
+
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
-  cursor: pointer;
+
   transition: scale 0.3s ease;
 
   &:hover {

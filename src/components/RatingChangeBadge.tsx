@@ -3,15 +3,17 @@ import styled, { css } from 'styled-components';
 const commonBadgeStyle = css`
   display: flex;
   align-items: center;
-  font-weight: bold;
   font-size: 0.8rem;
+  font-weight: bold;
 `;
 
 const BadgeNew = styled.span`
   ${commonBadgeStyle}
   height: 1.4rem;
   padding: 0.1rem 0.5rem;
+
   color: ${({ theme }) => theme.colors.text.contrast};
+
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 100vh;
 `;

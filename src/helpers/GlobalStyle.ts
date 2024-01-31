@@ -61,8 +61,8 @@ const ModernCssReset = css`
 
   /* A elements that don't have a class get default styles */
   a:not([class]) {
-    text-decoration-skip-ink: auto;
     color: currentColor;
+    text-decoration-skip-ink: auto;
   }
 
   /* Make images easier to work with */
@@ -96,11 +96,13 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     scroll-margin-top: 6rem;
+
     margin: 0;
     padding: 0;
-    color: inherit;
-    font-size: 20px;
+
     font-family: "${({ theme }) => theme.fontFamily.primary}", sans-serif;
+    font-size: 20px;
+    color: inherit;
     text-wrap: pretty;
 
     ${({ theme }) => theme.media.mobile} {
@@ -119,8 +121,8 @@ const GlobalStyle = createGlobalStyle`
 
   svg {
     flex-shrink: 0;
-    height: 100%;
     aspect-ratio: 1 / 1;
+    height: 100%;
   }
 
   ul, ol {

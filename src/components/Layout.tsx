@@ -12,6 +12,7 @@ import routes from 'helpers/routes';
 
 const Container = styled.article`
   flex-grow: 1;
+
   width: 100%;
   max-width: 72rem;
   margin: 0 auto;

@@ -1,22 +1,27 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  cursor: pointer;
+
   position: fixed;
+  z-index: ${({ theme }) => theme.zIndex.swNotification};
   top: -10rem;
   left: 50%;
-  z-index: ${({ theme }) => theme.zIndex.swNotification};
+  transform: translateX(-50%);
+
   width: max-content;
   max-width: 80vw;
   padding: 0.5rem 1.5rem;
-  color: ${({ theme }) => theme.colors.black};
+
   font-size: 1rem;
+  color: ${({ theme }) => theme.colors.black};
   text-align: center;
+
+  opacity: 0;
   background-color: ${({ theme }) => theme.colors.primary};
   border: 1px solid currentColor;
   border-radius: 2rem;
-  transform: translateX(-50%);
-  cursor: pointer;
-  opacity: 0;
+
   transition: all 1s ease-in-out;
 `;
 

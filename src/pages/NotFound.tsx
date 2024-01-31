@@ -13,12 +13,15 @@ const Container = styled.div`
     top: 50%;
     left: 50%;
     translate: -50% -50%;
+
     width: 100%;
     padding: 1rem;
-    color: ${({ theme }) => theme.colors.white};
-    font-weight: bold;
+
     font-size: 2rem;
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.white};
     text-align: center;
+
     background-color: hsla(0deg 0% 0% / 70%);
     border-radius: 1rem;
   }

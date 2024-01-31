@@ -20,13 +20,18 @@ const ExpandedContainerStyle = css`
 
 const Container = styled.div<{ $expanded: boolean }>`
   position: relative;
+
+  overflow: hidden;
   display: flex;
   flex-grow: 1;
+
   max-width: 2.5rem;
-  overflow: hidden;
+
   color: ${({ theme }) => theme.colors.text.primary};
+
   background: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 100vh;
+
   transition: max-width 0.3s ease-in-out;
 
   ${({ $expanded }) => $expanded && ExpandedContainerStyle};
@@ -42,17 +47,20 @@ const Container = styled.div<{ $expanded: boolean }>`
 
 const Input = styled.input`
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
-  z-index: 0;
+
   width: calc(100% - 3rem);
   margin: 0;
   padding: 0.4rem 0 0.4rem 1rem;
+
   font-size: 1rem;
   line-height: 1.6rem;
+
+  opacity: 0;
   background-color: inherit;
   border: none;
-  opacity: 0;
 
   &:focus {
     outline: none;
@@ -60,16 +68,21 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
+
   z-index: 1;
-  height: 2.4rem;
+
   aspect-ratio: 1;
+  height: 2.4rem;
   margin: 0 0 0 auto;
   padding: 0;
+
   color: ${({ theme }) => theme.colors.text.primary};
+
   background: transparent;
   border: none;
   border-radius: 100vh;
-  cursor: pointer;
+
   transition:
     background-color 0.3s ease-in-out,
     color 0.3s ease-in-out;

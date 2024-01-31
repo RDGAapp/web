@@ -15,15 +15,18 @@ import useDialog from 'hooks/useDialog';
 import Card from 'pages/Players/Card';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getPlayers } from 'store/players/thunks';
+import { TTown } from 'types/town';
 
 const Container = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   justify-content: flex-start;
+
   width: calc(100% - 2rem);
   margin: auto;
   padding: 0 1rem 2rem;
+
   list-style: none;
 
   ${({ theme }) => theme.media.tablet} {
@@ -50,10 +53,15 @@ const Filters = styled.div`
 `;
 
 const Select = styled.select`
+  cursor: pointer;
+
   width: 13rem;
   padding: 0.4rem 1rem;
-  color: ${({ theme }) => theme.colors.text.primary};
+
   font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text.primary};
+
+  appearance: none;
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   background-image: url('${SelectSvg}');
   background-repeat: no-repeat;
@@ -61,9 +69,8 @@ const Select = styled.select`
   background-size: 1rem;
   border: none;
   border-radius: 1rem;
-  cursor: pointer;
+
   transition: all 0.2s ease-in-out;
-  appearance: none;
 
   &:hover {
     color: ${({ theme }) => theme.colors.black};
@@ -80,8 +87,8 @@ const NotFoundContainer = styled.div`
 
 const NotFoundText = styled.p`
   padding: 0.5rem 1rem;
-  color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.text.primary};
   text-align: center;
 `;
 
@@ -104,11 +111,13 @@ const FiltersBody = styled.div`
 `;
 
 const CheckboxContainer = styled.label`
+  cursor: pointer;
+
   display: flex;
   gap: 0.2rem;
   align-items: center;
+
   height: 2rem;
-  cursor: pointer;
 `;
 
 const Players = (): JSX.Element => {
@@ -118,7 +127,7 @@ const Players = (): JSX.Element => {
 
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [surname, setSurname] = useState<string>('');
-  const [town, setTown] = useState<Town>();
+  const [town, setTown] = useState<TTown>();
   const [onlyActive, setOnlyActive] = useState<boolean>(true);
 
   const { Dialog: FiltersDialog, openModal: openFiltersModal } = useDialog({
@@ -147,7 +156,7 @@ const Players = (): JSX.Element => {
   }, []);
 
   const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const newTown = event.target.value as Town;
+    const newTown = event.target.value as TTown;
     setTown(newTown);
   };
 

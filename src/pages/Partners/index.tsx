@@ -19,6 +19,7 @@ import {
 const LooperContent = styled.div`
   display: flex;
   gap: 1rem;
+
   width: max-content;
   height: 3rem;
   margin-right: 1rem;

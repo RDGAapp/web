@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getPost, getPosts } from 'store/posts/thunk';
-
-import { Post } from '../../@types/blog';
+import { IPost } from 'types/blog';
 
 interface PostsState {
-  posts: Post[];
+  posts: IPost[];
   loading: boolean;
   error: string;
   lastPage: number | null;
-  currentPost: Post | null;
+  currentPost: IPost | null;
   postLoading: boolean;
   postError: string;
 }

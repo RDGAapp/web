@@ -4,13 +4,15 @@ import styled, { css } from 'styled-components';
 
 const OpenedButton = css`
   & .top {
-    y: 43.5px;
     transform: rotate(-45deg);
+
+    y: 43.5px;
   }
 
   & .bot {
-    y: 46.5px;
     transform: rotate(45deg);
+
+    y: 46.5px;
   }
 
   & .mid {
@@ -18,26 +20,34 @@ const OpenedButton = css`
   }
 
   & rect {
-    transition: y 0.2s ease-in-out, transform 0.2s ease-in-out 0.2s,
+    transition:
+      y 0.2s ease-in-out,
+      transform 0.2s ease-in-out 0.2s,
       opacity 0s 0.2s;
   }
 `;
 
 const Button = styled.button`
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 2.5rem;
   height: 2.5rem;
+
   background: transparent;
   border: transparent;
   border-radius: 100vh;
-  cursor: pointer;
+
   transition: scale 0.2s ease-in-out;
 
   & rect {
     transform-origin: center;
-    transition: y 0.2s ease-in-out 0.2s, transform 0.2s ease-in-out,
+    transition:
+      y 0.2s ease-in-out 0.2s,
+      transform 0.2s ease-in-out,
       opacity 0s 0.2s;
 
     & .top,
@@ -75,30 +85,9 @@ const HamburgerButton = ({ open, onClick }: Props) => (
     onClick={onClick}
   >
     <svg viewBox='0 0 100 100'>
-      <rect
-        className='top'
-        x='8'
-        y='20'
-        width='80'
-        height='10'
-        rx='5'
-      />
-      <rect
-        className='mid'
-        x='8'
-        y='45'
-        width='80'
-        height='10'
-        rx='5'
-      />
-      <rect
-        className='bot'
-        x='8'
-        y='70'
-        width='80'
-        height='10'
-        rx='5'
-      />
+      <rect className='top' x='8' y='20' width='80' height='10' rx='5' />
+      <rect className='mid' x='8' y='45' width='80' height='10' rx='5' />
+      <rect className='bot' x='8' y='70' width='80' height='10' rx='5' />
     </svg>
   </Button>
 );

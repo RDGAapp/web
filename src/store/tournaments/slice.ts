@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getTournaments } from 'store/tournaments/thunk';
+import { ITournament } from 'types/tournament';
 
 interface TournamentsState {
-  tournaments: Tournament[];
+  tournaments: ITournament[];
   loading: boolean;
   error: string | null;
 }

@@ -5,10 +5,12 @@ import { ReactComponent as LinkSvg } from 'assets/icons/link.svg';
 const Link = styled.a`
   display: flex;
   gap: 0.1rem;
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-weight: 400;
+
   font-size: 0.7rem;
+  font-weight: 400;
   line-height: 1;
+  color: ${({ theme }) => theme.colors.text.primary};
+
   transition: color 0.3s ease-in-out;
 
   &:hover {

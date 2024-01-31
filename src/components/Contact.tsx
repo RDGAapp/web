@@ -1,15 +1,16 @@
 import styled, { css } from 'styled-components';
 
 import SocialLink from 'components/SocialLink';
-
-import { IContact } from '../@types/contact';
+import { IContact } from 'types/contact';
 
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 0.25rem;
   justify-self: center;
+
   padding: 1rem;
+
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 1rem;
 
@@ -26,33 +27,34 @@ const Container = styled.div`
 `;
 
 const TextContainer = styled.div`
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   flex-grow: 2;
   gap: 0.5rem;
   align-items: flex-start;
   justify-content: center;
-  overflow: hidden;
 `;
 
 const TextStyle = css`
+  overflow: hidden;
+
   width: 100%;
   max-width: max-content;
   margin: 0;
-  overflow: hidden;
-  font-weight: 400;
+
   font-size: 0.7rem;
+  font-weight: 400;
   line-height: 1;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Town = styled.h6`
   margin: 0 0 1rem;
-
   ${TextStyle};
-  font-weight: bold;
   font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 const Text = styled.p`

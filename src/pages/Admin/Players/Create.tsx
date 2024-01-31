@@ -3,9 +3,9 @@ import { useState } from 'react';
 import Breadcrumbs from 'components/Breadcrumbs';
 import { createPlayer } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
+import { IPlayer } from 'types/player';
 
 import Preview from './Preview';
-import { Player } from '../../../@types/player';
 
 const CreatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
@@ -124,7 +124,7 @@ const CreatePlayer = (): JSX.Element => {
     metrixRating: Number(metrixRating) || null,
     priority: Number(priority) || 0,
     activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
-  } as Player;
+  } as IPlayer;
 
   const onSubmit = async () => createPlayer(player);
 

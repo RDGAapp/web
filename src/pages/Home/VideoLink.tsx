@@ -8,6 +8,7 @@ const Container = styled.div<{ $position: 'left' | 'right' }>`
   flex-direction: column;
   gap: 0.5rem;
   align-items: ${({ $position }) => ($position === 'left' ? 'flex-end' : 'flex-start')};
+
   border-radius: 2rem;
 
   ${({ theme }) => theme.media.mobile} {
@@ -16,34 +17,42 @@ const Container = styled.div<{ $position: 'left' | 'right' }>`
 `;
 
 const Header = styled.h3`
-  font-weight: 600;
   font-size: 1.2rem;
+  font-weight: 600;
 `;
 
 const VideoPreview = styled.div<{ $image: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   max-width: 28rem;
   height: 16rem;
+
   color: transparent;
+
   background: left center url("${({ $image }) => $image}");
   background-size: cover;
   border-radius: 1rem;
 `;
 
 const PlayButton = styled.a`
+  cursor: pointer;
+
   display: grid;
   align-items: center;
   justify-content: center;
+
   width: 7rem;
   height: 7rem;
+
   color: ${({ theme }) => theme.colors.primary};
+
   background: none;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 100vh;
-  cursor: pointer;
+
   transition: scale 0.3s ease-in-out;
 
   &:hover {
@@ -55,9 +64,9 @@ const PlayButton = styled.a`
   }
 
   & svg {
+    aspect-ratio: 3 / 4;
     width: 2.1rem;
     margin-left: 0.5rem;
-    aspect-ratio: 3 / 4;
     stroke: ${({ theme }) => theme.colors.primary};
   }
 `;
@@ -65,11 +74,13 @@ const PlayButton = styled.a`
 const VideoName = styled.a`
   display: flex;
   gap: 1rem;
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-weight: 400;
+
   font-size: 1.2rem;
+  font-weight: 400;
   line-height: 1;
+  color: ${({ theme }) => theme.colors.text.primary};
   text-decoration: none;
+
   transition: scale 0.3s ease-in-out;
 
   &:hover {

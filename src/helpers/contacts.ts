@@ -7,8 +7,7 @@ import { ReactComponent as NnSvg } from 'assets/icons/nn.svg';
 import { ReactComponent as PskSvg } from 'assets/icons/psk.svg';
 import { ReactComponent as SpbSvg } from 'assets/icons/spb.svg';
 import { ReactComponent as TltSvg } from 'assets/icons/tlt.svg';
-
-import { IContact } from '../@types/contact';
+import { IContact } from 'types/contact';
 
 const contacts: IContact[] = [
   {

@@ -3,16 +3,21 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
+  cursor: pointer;
+
   display: flex;
   gap: 0.2rem;
   align-items: center;
+
   width: max-content;
-  font-weight: 500;
+
   font-size: 0.6rem;
+  font-weight: 500;
   text-decoration: underline;
+
   background: none;
   border: none;
-  cursor: pointer;
+
   transition: scale 0.2s ease-in-out;
 
   &:hover {

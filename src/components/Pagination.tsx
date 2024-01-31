@@ -8,6 +8,7 @@ const Container = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
+
   width: 100%;
 `;
 
@@ -20,10 +21,10 @@ const PageNumber = styled.button<{ $number?: boolean }>`
     ${({ $number, theme }) =>
       $number &&
       css`
-        color: ${({ theme }) => theme.colors.black};
-        background-color: ${theme.colors.primary};
         cursor: default;
+        color: ${({ theme }) => theme.colors.black};
         opacity: 1;
+        background-color: ${theme.colors.primary};
       `}
   }
 `;

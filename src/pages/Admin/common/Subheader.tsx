@@ -7,8 +7,9 @@ const CustomSubHeader = styled.h5`
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  font-weight: 600;
+
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1;
 `;
 

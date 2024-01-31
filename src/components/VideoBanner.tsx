@@ -5,15 +5,18 @@ import VideoMp4 from 'assets/videos/banner.mp4';
 import VideoWebm from 'assets/videos/banner.webm';
 
 const Container = styled.div`
+  isolation: isolate;
+
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+
   max-height: 28rem;
   margin: 0 0 1rem;
-  overflow: hidden;
+
   background-size: cover;
   border-radius: 2.5rem;
-  isolation: isolate;
 `;
 
 const Video = styled.video`

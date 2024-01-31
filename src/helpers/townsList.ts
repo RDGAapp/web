@@ -1,4 +1,6 @@
-const towns: Town[] = [
+import { TTown } from 'types/town';
+
+const towns: TTown[] = [
   'Белгород',
   'Екатеринбург',
   'Калининград',

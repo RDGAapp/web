@@ -8,9 +8,11 @@ import ButtonOutlined from 'components/ButtonOutlined';
 const CustomSection = styled(Link)`
   ${ButtonOutlined};
   display: flex;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
+
   font-size: 1.2rem;
+
   border-radius: 0.5rem;
 
   & svg {

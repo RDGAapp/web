@@ -4,6 +4,7 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import TournamentType from 'enums/tournamentType';
 import { updateTournament, getTournament } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
+import { ITournament } from 'types/tournament';
 
 import Preview from './Preview';
 
@@ -80,7 +81,7 @@ const UpdateTournament = (): JSX.Element => {
 
   const getAllTournamentDataByCode = async () => {
     const response = await getTournament(code);
-    const json = (await response.json()) as Tournament;
+    const json = (await response.json()) as ITournament;
     setName(json.name);
     setTown(json.town);
     setStartDate(json.startDate.slice(0, 19));

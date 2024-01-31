@@ -9,18 +9,20 @@ import MetrixImg from 'assets/images/metrix.webp';
 import PdgaImg from 'assets/images/pdga.webp';
 import Avatar from 'components/Avatar';
 import ServiceCard from 'components/ServiceCard';
+import { IPlayer } from 'types/player';
 
-import { Player } from '../../@types/player';
 import RatingChangeBadge from '../../components/RatingChangeBadge';
 
 const Container = styled.div`
   position: fixed;
+  z-index: ${({ theme }) => theme.zIndex.selectedPlayerCard};
   top: 0;
   left: 0;
-  z-index: ${({ theme }) => theme.zIndex.selectedPlayerCard};
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   height: 100%;
   padding: 0 1rem;
@@ -28,38 +30,49 @@ const Container = styled.div`
 
 const Card = styled.div`
   position: relative;
+
+  overflow: hidden;
   display: flex;
   flex: 1;
   flex-direction: column;
+
   max-width: 30rem;
   max-height: 80vh;
-  overflow: hidden;
+
   background: ${({ theme }) => theme.colors.background};
   border-radius: 2rem;
   box-shadow: 0 0 0 200vw ${({ theme }) => theme.colors.backdrop};
 `;
 
 const Header = styled.div`
+  isolation: isolate;
   position: relative;
+
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
   align-items: center;
+
   width: 100%;
   padding: 1.5rem 1rem 1rem;
+
   color: ${({ theme }) => theme.colors.black};
+
   background-color: ${({ theme }) => theme.colors.primary};
-  isolation: isolate;
 `;
 
 const CloseButton = styled.button`
+  cursor: pointer;
+
   position: absolute;
   top: 1rem;
   right: 1rem;
+
   color: inherit;
+
   background: none;
   border: none;
-  cursor: pointer;
+
   transition: scale 0.2s ease-in-out;
 
   & svg {
@@ -76,18 +89,21 @@ const CloseButton = styled.button`
 `;
 
 const RdgaNumber = styled.p`
+  pointer-events: none;
+
   position: absolute;
+  z-index: -1;
   top: 50%;
   right: 3rem;
-  z-index: -1;
+  translate: 0 -50%;
+
   width: fit-content;
-  color: ${({ theme }) => theme.colors.background};
-  font-weight: bolder;
+
   font-size: 5rem;
+  font-weight: bolder;
   font-style: italic;
   line-height: 1;
-  pointer-events: none;
-  translate: 0 -50%;
+  color: ${({ theme }) => theme.colors.background};
 `;
 
 const UserName = styled.h2`
@@ -95,12 +111,13 @@ const UserName = styled.h2`
 `;
 
 const InfoContainer = styled.div`
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
   width: 100%;
   padding: 1rem 2rem 1.5rem;
-  overflow-y: auto;
 `;
 
 const InfoLine = styled.div`
@@ -108,6 +125,7 @@ const InfoLine = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
+
   font-size: 1.2rem;
   line-height: 2rem;
 
@@ -122,7 +140,7 @@ const CardsLine = styled(InfoLine)`
 `;
 
 interface Props {
-  selected: Player;
+  selected: IPlayer;
   resetSelected: () => void;
 }
 

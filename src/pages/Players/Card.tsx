@@ -5,8 +5,7 @@ import Avatar from 'components/Avatar';
 import CustomLink from 'components/CustomLink';
 import RatingChangeBadge from 'components/RatingChangeBadge';
 import routes from 'helpers/routes';
-
-import { Player } from '../../@types/player';
+import { IPlayer } from 'types/player';
 
 const Container = styled.div<{ disabled?: boolean }>`
   @keyframes slide-in {
@@ -23,7 +22,9 @@ const Container = styled.div<{ disabled?: boolean }>`
 
   width: 100%;
   height: 8rem;
+
   perspective: 20rem;
+
   animation: slide-in 500ms linear both;
   animation-iteration-count: 1;
   animation-timeline: view(block 100% 0%);
@@ -39,22 +40,27 @@ const Container = styled.div<{ disabled?: boolean }>`
 
 const CardContainer = styled.div`
   position: relative;
+  transform-style: preserve-3d;
+
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
+
   transition: transform 750ms;
 `;
 
 const CommonSideStyles = css`
   position: absolute;
+
   display: flex;
   gap: 0.25rem;
+
   width: 100%;
   height: 100%;
   padding: 1rem;
+
+  backface-visibility: hidden;
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 2rem;
-  backface-visibility: hidden;
 `;
 
 const FrontSide = styled.div<{ disabled?: boolean }>`
@@ -73,8 +79,8 @@ const FrontSide = styled.div<{ disabled?: boolean }>`
 
 const BackSide = styled.div`
   ${CommonSideStyles}
-  flex-direction: column;
   transform: rotateX(180deg);
+  flex-direction: column;
 `;
 
 const TextContainer = styled.div`
@@ -82,17 +88,20 @@ const TextContainer = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   justify-content: flex-start;
+
   width: calc(100% - 4rem);
 `;
 
 const MainInformation = styled.p`
-  width: 100%;
   overflow: hidden;
-  font-weight: bold;
+
+  width: 100%;
+
   font-size: 1rem;
-  white-space: nowrap;
+  font-weight: bold;
   text-align: start;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const AdditionalInformation = styled.p`
@@ -106,7 +115,9 @@ const InfoLine = styled.div`
   display: flex;
   gap: 0.2rem;
   align-items: center;
+
   height: max-content;
+
   font-size: 1.2rem;
   line-height: 1;
 
@@ -135,7 +146,7 @@ const ProfileLinkStyles = css`
 `;
 
 interface Props {
-  player: Player;
+  player: IPlayer;
 }
 
 const Card = ({ player }: Props) => {

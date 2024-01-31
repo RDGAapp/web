@@ -1,14 +1,13 @@
 {
-  "customSyntax": "postcss-styled-components",
+  "customSyntax": "postcss-styled-syntax",
   "plugins": [
     "stylelint-prettier"
   ],
   "extends": [
     "stylelint-config-recommended",
-    "stylelint-config-standard-scss",
-    "stylelint-config-styled-components",
-    "stylelint-config-rational-order",
-    "stylelint-prettier/recommended"
+    "stylelint-config-standard",
+    "stylelint-prettier/recommended",
+    "stylelint-config-clean-order/error"
   ],
   "rules": {
     "prettier/prettier": true,

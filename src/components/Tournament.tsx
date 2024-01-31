@@ -9,18 +9,21 @@ const Container = styled.div<{
   $maxWidth: string;
   $metrixId: string | null;
 }>`
+  overflow: hidden;
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
   max-width: ${(props) => props.$maxWidth};
   height: 3rem;
   padding: 0 0.5rem;
-  overflow: hidden;
+
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border: 2px solid transparent;
   border-radius: 0.5rem;
+
   transition: all 0.3s ease-in-out;
 
   & a {
@@ -38,12 +41,14 @@ const Container = styled.div<{
   }
 
   & * {
-    max-width: 100%;
     overflow: hidden;
+
+    max-width: 100%;
+
     font-size: 0.8rem;
     line-height: 1rem;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 

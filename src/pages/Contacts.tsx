@@ -5,13 +5,15 @@ import Contacts from 'components/Contacts';
 import PageHeader from 'components/PageHeader';
 
 const PresidentContainer = styled.div`
+  overflow: hidden;
   display: flex;
   gap: 1rem;
+
   width: max-content;
   max-width: 80vw;
   height: 15rem;
   margin: auto auto 2rem;
-  overflow: hidden;
+
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 1rem;
 
@@ -21,17 +23,19 @@ const PresidentContainer = styled.div`
 `;
 
 const PresidentTextContainer = styled.div`
+  overflow: hidden;
   height: max-content;
   margin: auto 2rem auto 0;
-  overflow: hidden;
   color: ${({ theme }) => theme.colors.black};
 
   & * {
+    overflow: hidden;
+
     width: 100%;
     max-width: max-content;
-    overflow: hidden;
-    white-space: nowrap;
+
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   & h3 {
@@ -39,8 +43,8 @@ const PresidentTextContainer = styled.div`
   }
 
   & h4 {
-    font-weight: normal;
     font-size: 1.5rem;
+    font-weight: normal;
     font-style: italic;
   }
 

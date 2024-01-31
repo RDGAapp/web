@@ -1,7 +1,8 @@
 import Tournament from 'components/Tournament';
+import { ITournament } from 'types/tournament';
 
 interface IPreview {
-  tournament: Tournament;
+  tournament: ITournament;
 }
 
 const Preview = ({ tournament }: IPreview) => (

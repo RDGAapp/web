@@ -13,9 +13,11 @@ const Container = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
+
   max-width: 72rem;
   margin: auto;
   padding: 1rem;
+
   color: ${({ theme }) => theme.colors.black};
 
   ${({ theme }) => theme.media.mobile} {
@@ -29,9 +31,9 @@ const Copyright = styled.p`
   line-height: 1;
 
   & a {
-    color: ${({ theme }) => theme.colors.secondary};
     font-size: 0.7rem;
     line-height: 1;
+    color: ${({ theme }) => theme.colors.secondary};
   }
 
   ${({ theme }) => theme.media.tablet} {

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const TextDiv = styled.div`
   width: 100%;
-  font-weight: 300;
   font-size: 1.2rem;
+  font-weight: 300;
   line-height: 1.5rem;
 
   & * {

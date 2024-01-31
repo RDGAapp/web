@@ -1,12 +1,13 @@
 import getApiUrl from 'helpers/getApiUrl';
-
-import { Post } from '../@types/blog';
-import { Player } from '../@types/player';
+import { IPost } from 'types/blog';
+import { IPlayer } from 'types/player';
+import { ITournament } from 'types/tournament';
+import { TTown } from 'types/town';
 
 export const getPlayers = (
   pageNumber: number,
   surname?: string,
-  town?: Town,
+  town?: TTown,
   onlyActive?: boolean,
 ) => {
   const query = new URLSearchParams();
@@ -21,7 +22,7 @@ export const getPlayers = (
 export const getPlayer = (playerRdgaNumber: number) =>
   fetch(getApiUrl(`/players/${playerRdgaNumber}`));
 
-export const createPlayer = (player: Player) =>
+export const createPlayer = (player: IPlayer) =>
   fetch(getApiUrl('/players'), {
     method: 'POST',
     headers: {
@@ -36,7 +37,7 @@ export const deletePlayer = (playerRdgaNumber: number) =>
   });
 
 export const updatePlayer = (
-  player: Omit<Player, 'rdgaNumber'>,
+  player: Omit<IPlayer, 'rdgaNumber'>,
   rdgaNumber: number,
 ) =>
   fetch(getApiUrl(`/players/${rdgaNumber}`), {
@@ -61,7 +62,7 @@ export const getTournaments = () => fetch(getApiUrl(`/tournaments`));
 export const getTournament = (code: string) =>
   fetch(getApiUrl(`/tournaments/${code}`));
 
-export const createTournament = (tournament: Tournament) =>
+export const createTournament = (tournament: ITournament) =>
   fetch(getApiUrl('/tournaments'), {
     method: 'POST',
     headers: {
@@ -71,7 +72,7 @@ export const createTournament = (tournament: Tournament) =>
   });
 
 export const updateTournament = (
-  tournament: Omit<Tournament, 'code'>,
+  tournament: Omit<ITournament, 'code'>,
   code: string,
 ) =>
   fetch(getApiUrl(`/tournaments/${code}`), {
@@ -111,7 +112,7 @@ export const getPosts = (page: number) => {
 
 export const getPost = (code: string) => fetch(getApiUrl(`/posts/${code}`));
 
-export const createPost = (post: Omit<Post, 'createdAt'>) =>
+export const createPost = (post: Omit<IPost, 'createdAt'>) =>
   fetch(getApiUrl('/posts'), {
     method: 'POST',
     headers: {
@@ -121,7 +122,7 @@ export const createPost = (post: Omit<Post, 'createdAt'>) =>
   });
 
 export const updatePost = (
-  post: Omit<Post, 'createdAt' | 'code'>,
+  post: Omit<IPost, 'createdAt' | 'code'>,
   code: string,
 ) =>
   fetch(getApiUrl(`/posts/${code}`), {

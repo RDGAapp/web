@@ -16,31 +16,34 @@ import { Header } from 'components/PageContent';
 import Input from './Input';
 
 const Container = styled.div`
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: calc(100vh - 9.5rem);
-  overflow: hidden;
 `;
 
 const FormsContainer = styled.div`
+  overflow: auto;
   height: calc(80vh - 10.5rem);
   padding: 0.5rem 0.25rem;
-  overflow: auto;
 `;
 
 const PreviewContainer = styled.div`
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 0.5rem;
-  overflow: hidden;
 `;
 
 const ConsoleContainer = styled.div`
+  overflow: auto;
   grid-column: span 2;
+
   height: 20vh;
   padding: 0.5rem;
-  overflow: auto;
+
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
 `;
@@ -56,27 +59,30 @@ const Button = styled.button`
   position: sticky;
   bottom: 0;
   left: 50%;
-  background-color: ${({ theme }) => theme.colors.background};
+  transform: translateX(-50%);
+
   width: max-content;
   margin-top: 0.5rem;
+
   font-size: 1rem;
+
+  background-color: ${({ theme }) => theme.colors.background};
   border-radius: 0.5rem;
-  transform: translateX(-50%);
 `;
 
 const Error = styled.p`
-  color: red;
   font-size: 0.75rem;
+  color: red;
 `;
 
 const Success = styled.p`
-  color: green;
   font-size: 0.75rem;
+  color: green;
 `;
 
 const Message = styled.p`
-  color: ${({ theme }) => theme.colors.secondary};
   font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 const MessageWithCursor = styled.p`
@@ -93,17 +99,21 @@ const MessageWithCursor = styled.p`
 
   position: relative;
   width: max-content;
-  color: ${({ theme }) => theme.colors.secondary};
   font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.secondary};
 
   &::after {
+    content: '';
+
     position: absolute;
     right: -0.5rem;
+
     width: 2px;
     height: 100%;
+
     background-color: ${({ theme }) => theme.colors.primary};
+
     animation: blink 1s linear infinite;
-    content: '';
   }
 `;
 

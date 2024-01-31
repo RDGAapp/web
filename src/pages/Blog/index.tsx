@@ -12,6 +12,7 @@ import PostCard from './PostCard';
 const Container = styled.div`
   display: grid;
   gap: 1rem;
+
   width: 100%;
   max-width: 40rem;
   margin: auto;

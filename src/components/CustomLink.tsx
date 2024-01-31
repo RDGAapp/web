@@ -8,55 +8,68 @@ import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 
 const LinkStyles = css`
   position: relative;
+
+  overflow: hidden;
+
   width: fit-content;
   max-width: 100%;
-  overflow: hidden;
-  color: inherit;
+
   font-size: 1.2rem;
-  white-space: nowrap;
+  color: inherit;
   text-decoration: none;
   text-overflow: ellipsis;
+  white-space: nowrap;
+
   transition:
     scale 0.2s ease-in-out,
     padding 0.2s ease-in-out;
 
-  & svg {
-    position: absolute;
-    top: 50%;
-    left: -1rem;
-    width: 17px;
-    height: 17px;
-    translate: 0 -50%;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    pointer-events: none;
-  }
-
   &::before {
+    content: '';
+
     position: absolute;
     bottom: 0;
     left: 2rem;
+
     display: block;
+
     width: 0;
     height: 2px;
-    background-color: currentColor;
+
     opacity: 0;
+    background-color: currentColor;
+
     transition: all 0.2s ease-in-out;
-    content: '';
+  }
+
+  & svg {
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    left: -1rem;
+    translate: 0 -50%;
+
+    width: 17px;
+    height: 17px;
+
+    opacity: 0;
+
+    transition: all 0.2s ease-in-out;
   }
 
   &:hover {
-    padding-left: 2rem;
     scale: 1.1;
-
-    & svg {
-      left: 0.5rem;
-      opacity: 1;
-      pointer-events: all;
-    }
+    padding-left: 2rem;
 
     &::before {
       width: calc(100% - 2rem);
+      opacity: 1;
+    }
+
+    & svg {
+      pointer-events: all;
+      left: 0.5rem;
       opacity: 1;
     }
   }

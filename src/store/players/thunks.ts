@@ -1,25 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from 'helpers/api';
+import { IPlayer } from 'types/player';
+import { TTown } from 'types/town';
 
 interface GetPlayersPayload {
   pageNumber: number;
   surname?: string;
-  town?: Town;
+  town?: TTown;
   onlyActive?: boolean;
 }
 
 export const getPlayers = createAsyncThunk(
   'player/getAll',
-  async (
-    { pageNumber, surname, town, onlyActive }: GetPlayersPayload,
-    { rejectWithValue }
-  ) => {
+  async ({ pageNumber, surname, town, onlyActive }: GetPlayersPayload) => {
     const response = await api.getPlayers(
       pageNumber,
       surname,
       town,
-      onlyActive
+      onlyActive,
     );
 
     if (response.ok) {
@@ -28,21 +27,21 @@ export const getPlayers = createAsyncThunk(
     }
 
     const errorMessage = await response.text();
-    return rejectWithValue(errorMessage);
-  }
+    throw new Error(errorMessage);
+  },
 );
 
 export const getPlayer = createAsyncThunk(
   'player/get',
-  async (rdgaNumber: number, { rejectWithValue }) => {
+  async (rdgaNumber: number) => {
     const response = await api.getPlayer(rdgaNumber);
 
     if (response.ok) {
-      const json = await response.json();
+      const json = (await response.json()) as IPlayer;
       return json;
     }
 
     const errorMessage = await response.text();
-    return rejectWithValue(errorMessage);
-  }
+    throw new Error(errorMessage);
+  },
 );

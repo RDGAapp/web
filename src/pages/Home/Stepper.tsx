@@ -9,15 +9,18 @@ const Container = styled.div<{ $image: string }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+
   width: 90%;
   min-height: 25rem;
   max-height: 70vh;
   margin: auto;
   padding: 2rem;
+
   background: linear-gradient(#0008, #0008), url('${({ $image }) => $image}');
   background-position: center, center;
   background-size: cover;
   border-radius: 3rem;
+
   transition: all 0.3s ease-in-out;
 
   ${({ theme }) => theme.media.tablet} {
@@ -37,6 +40,7 @@ const StepNumbers = styled.div`
   grid-column: span 2;
   gap: 1rem;
   align-items: flex-end;
+
   margin: auto auto 0;
 
   ${({ theme }) => theme.media.mobile} {
@@ -45,12 +49,16 @@ const StepNumbers = styled.div`
 `;
 
 const StepNumber = styled.p<{ selected: boolean }>`
+  cursor: not-allowed;
+
   width: fit-content;
   height: fit-content;
   padding: 0.5rem 1rem;
+
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1.5rem;
-  cursor: not-allowed;
+
+
   transition: all 0.3s ease-in-out;
 
   ${({ selected, theme }) =>
