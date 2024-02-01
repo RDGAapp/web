@@ -44,7 +44,7 @@ const LinkCta = styled(HashLink)`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2rem;
 
-  transition: scale 0.3s ease;
+  transition: scale 0.2s ease;
 
   &:hover {
     scale: 1.1;

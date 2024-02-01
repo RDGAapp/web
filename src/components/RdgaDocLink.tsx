@@ -20,7 +20,7 @@ const Container = styled.div`
   & a {
     font-weight: 600;
     color: inherit;
-    transition: scale 0.3s ease-in-out;
+    transition: scale 0.2s ease-in-out;
 
     &:hover {
       scale: 1.1;

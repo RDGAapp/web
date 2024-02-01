@@ -17,7 +17,7 @@ const Background = styled.div<{ disabled: boolean; $image?: string }>`
   background-color: ${({ theme }) => theme.colors.primary};
   background-image: url('${({ $image }) => $image ?? AvatarSvg}');
   background-repeat: no-repeat;
-  background-position: ${({ $image }) => $image ? 'center' : 'center 10px'};
+  background-position: ${({ $image }) => ($image ? 'center' : 'center 10px')};
   background-size: cover;
   border-radius: 100vh;
   box-shadow: 0 0 4px ${({ theme }) => theme.colors.lighterBackground};
@@ -35,7 +35,7 @@ interface IAvatarProps {
 }
 
 const Avatar = ({ disabled, imageSrc }: IAvatarProps) => (
-  <Background disabled={disabled ?? false} $image={imageSrc} />
+  <Background id='avatar' disabled={disabled ?? false} $image={imageSrc} />
 );
 
 export default Avatar;

@@ -25,7 +25,7 @@ const Card = styled.div`
     text-decoration-color: transparent;
     text-decoration-style: wavy;
 
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
   }
 
   & > a:hover {

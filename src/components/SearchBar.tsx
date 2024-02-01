@@ -32,7 +32,7 @@ const Container = styled.div<{ $expanded: boolean }>`
   background: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 100vh;
 
-  transition: max-width 0.3s ease-in-out;
+  transition: max-width 0.2s ease-in-out;
 
   ${({ $expanded }) => $expanded && ExpandedContainerStyle};
 
@@ -84,8 +84,8 @@ const Button = styled.button`
   border-radius: 100vh;
 
   transition:
-    background-color 0.3s ease-in-out,
-    color 0.3s ease-in-out;
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 
   &:hover {
     color: ${({ theme }) => theme.colors.black};

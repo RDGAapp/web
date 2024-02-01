@@ -7,7 +7,8 @@ const Container = styled.div<{ $position: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: ${({ $position }) => ($position === 'left' ? 'flex-end' : 'flex-start')};
+  align-items: ${({ $position }) =>
+    $position === 'left' ? 'flex-end' : 'flex-start'};
 
   border-radius: 2rem;
 
@@ -32,7 +33,7 @@ const VideoPreview = styled.div<{ $image: string }>`
 
   color: transparent;
 
-  background: left center url("${({ $image }) => $image}");
+  background: left center url('${({ $image }) => $image}');
   background-size: cover;
   border-radius: 1rem;
 `;
@@ -53,7 +54,7 @@ const PlayButton = styled.a`
   border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 100vh;
 
-  transition: scale 0.3s ease-in-out;
+  transition: scale 0.2s ease-in-out;
 
   &:hover {
     scale: 1.1;
@@ -81,7 +82,7 @@ const VideoName = styled.a`
   color: ${({ theme }) => theme.colors.text.primary};
   text-decoration: none;
 
-  transition: scale 0.3s ease-in-out;
+  transition: scale 0.2s ease-in-out;
 
   &:hover {
     scale: 1.1;

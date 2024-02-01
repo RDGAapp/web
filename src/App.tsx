@@ -39,6 +39,7 @@ const Calendar = lazy(() => import('pages/Calendar'));
 const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
 const Players = lazy(() => import('pages/Players'));
+const Player = lazy(() => import('pages/Player'));
 const Service = lazy(() => import('pages/Service'));
 const Contacts = lazy(() => import('pages/Contacts'));
 const Partners = lazy(() => import('pages/Partners'));
@@ -90,6 +91,10 @@ const App = (): JSX.Element => {
               <Route path={routes.About} element={<About />} />
               <Route path={routes.Calendar} element={<Calendar />} />
               <Route path={routes.Players} element={<Players />} />
+              <Route
+                path={`${routes.Players}/:rdgaNumber`}
+                element={<Player />}
+              />
               <Route path={routes.Contacts} element={<Contacts />} />
               <Route path={routes.Partners} element={<Partners />} />
               <Route path={routes.Blog} element={<Blog />} />

@@ -19,7 +19,7 @@ const Container = styled.div`
   & a {
     font-weight: 600;
     color: ${({ theme }) => theme.colors.secondary};
-    transition: color 0.3s ease-in-out;
+    transition: color 0.2s ease-in-out;
 
     &:hover {
       color: ${({ theme }) => theme.colors.primary};

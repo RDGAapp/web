@@ -17,7 +17,7 @@ const Block = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1.5rem;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 `;
 
 const Header = styled.h5`

@@ -3,11 +3,8 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { ReactComponent as ChartSvg } from 'assets/icons/chart.svg';
-import { ReactComponent as CloseSvg } from 'assets/icons/cross.svg';
-import { ReactComponent as LocationSvg } from 'assets/icons/location.svg';
 import MetrixImg from 'assets/images/metrix.webp';
 import PdgaImg from 'assets/images/pdga.webp';
-import Avatar from 'components/Avatar';
 import ServiceCard from 'components/ServiceCard';
 import { IPlayer } from 'types/player';
 
@@ -61,33 +58,6 @@ const Header = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
 `;
 
-const CloseButton = styled.button`
-  cursor: pointer;
-
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  color: inherit;
-
-  background: none;
-  border: none;
-
-  transition: scale 0.2s ease-in-out;
-
-  & svg {
-    width: 1rem;
-  }
-
-  &:hover {
-    scale: 1.1;
-  }
-
-  &:active {
-    scale: 0.9;
-  }
-`;
-
 const RdgaNumber = styled.p`
   pointer-events: none;
 
@@ -104,10 +74,6 @@ const RdgaNumber = styled.p`
   font-style: italic;
   line-height: 1;
   color: ${({ theme }) => theme.colors.background};
-`;
-
-const UserName = styled.h2`
-  font-size: 1.2rem;
 `;
 
 const InfoContainer = styled.div`
@@ -160,17 +126,7 @@ const SelectedCard = ({ selected, resetSelected }: Props) => {
     <Container onClick={resetSelected}>
       <Card onClick={(e) => e.stopPropagation()}>
         <Header>
-          <div>
-            <Avatar />
-          </div>
-          <div>
-            <UserName>{selected.surname || ''}</UserName>
-            <UserName>{selected.name}</UserName>
-          </div>
           <RdgaNumber>{`#${selected.rdgaNumber}`}</RdgaNumber>
-          <CloseButton onClick={resetSelected}>
-            <CloseSvg />
-          </CloseButton>
         </Header>
         <InfoContainer>
           {selected.rdgaRating ? (
@@ -181,14 +137,6 @@ const SelectedCard = ({ selected, resetSelected }: Props) => {
                 rating={selected.rdgaRating}
                 ratingChange={selected.rdgaRatingChange}
               />
-            </InfoLine>
-          ) : (
-            ''
-          )}
-          {selected.town ? (
-            <InfoLine>
-              <LocationSvg />
-              <p>{`Город: ${selected.town}`}</p>
             </InfoLine>
           ) : (
             ''

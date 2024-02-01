@@ -9,7 +9,7 @@ const CustomImage = styled.img<{ $position: 'left' | 'right' }>`
   object-fit: cover;
   border-radius: 1rem;
 
-  transition: rotate 0.3s ease-in-out;
+  transition: rotate 0.2s ease-in-out;
 
   &:hover {
     rotate: 0deg;

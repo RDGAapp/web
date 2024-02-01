@@ -14,7 +14,7 @@ const Container = styled.div`
   & p {
     margin: auto;
     font-size: 1rem;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 
   & p:first-of-type {

@@ -11,7 +11,7 @@ const Link = styled.a`
   line-height: 1;
   color: ${({ theme }) => theme.colors.text.primary};
 
-  transition: color 0.3s ease-in-out;
+  transition: color 0.2s ease-in-out;
 
   &:hover {
     color: ${({ theme }) => theme.colors.secondary};
@@ -23,12 +23,12 @@ const Link = styled.a`
 `;
 
 interface SocialLinkProps {
-  name: string,
-  value: string,
+  name: string;
+  value: string;
 }
 
 const SocialLink = ({ name, value }: SocialLinkProps): JSX.Element => (
-  <Link href={value} target="_blank" rel="noreferrer">
+  <Link href={value} target='_blank' rel='noreferrer'>
     {name}
     <LinkSvg />
   </Link>

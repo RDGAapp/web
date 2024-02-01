@@ -24,7 +24,7 @@ const Container = styled.div<{
   border: 2px solid transparent;
   border-radius: 0.5rem;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   & a {
     font-weight: bold;

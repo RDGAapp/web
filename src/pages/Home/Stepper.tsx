@@ -21,7 +21,7 @@ const Container = styled.div<{ $image: string }>`
   background-size: cover;
   border-radius: 3rem;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   ${({ theme }) => theme.media.tablet} {
     min-height: 31rem;
@@ -58,8 +58,7 @@ const StepNumber = styled.p<{ selected: boolean }>`
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: 1.5rem;
 
-
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   ${({ selected, theme }) =>
     selected
