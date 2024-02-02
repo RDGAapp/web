@@ -74,9 +74,11 @@ const Text = styled.div`
   }
 
   & img {
-    aspect-ratio: 1 / 1;
     width: auto;
+    max-width: 100%;
     height: auto;
+    max-height: 90vh;
+
     object-fit: cover;
   }
 `;

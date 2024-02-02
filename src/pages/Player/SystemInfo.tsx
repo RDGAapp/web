@@ -63,7 +63,7 @@ const RatingCard = styled.div`
     height: 200%;
   }
 
-  & > span {
+  & > span, & > a {
     font-size: 1.2rem;
   }
 

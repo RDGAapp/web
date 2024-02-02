@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
 const isLocalhost = Boolean(
-  window.location.hostname === 'localhost'
+  window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
-    || window.location.hostname === '[::1]'
+    window.location.hostname === '[::1]' ||
     // 127.0.0.0/8 are considered localhost for IPv4.
-    || window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/),
+    window.location.hostname.match(
+      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/,
+    ),
 );
 
 type Config = {
@@ -23,31 +26,23 @@ function registerValidSW(swUrl: string, config?: Config) {
         }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
+            const notification = document.getElementById('reloadNotification');
+            if (notification) {
+              notification.style.top = '1.5rem';
+              notification.style.opacity = '1';
+            }
+            installingWorker.postMessage('skipWaiting');
             if (navigator.serviceWorker.controller) {
-              const notification = document.getElementById('reloadNotification');
-              if (notification) {
-                notification.style.top = '1.5rem';
-                notification.style.opacity = '1';
-              }
-              installingWorker.postMessage('skipWaiting');
-
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
+              config?.onUpdate?.(registration);
             } else {
-              // eslint-disable-next-line no-console
               console.log('Content is cached for offline use.');
-
-              if (config && config.onSuccess) {
-                config.onSuccess(registration);
-              }
+              config?.onSuccess?.(registration);
             }
           }
         };
       };
     })
     .catch((error) => {
-      // eslint-disable-next-line no-console
       console.error('Error during service worker registration:', error);
     });
 }
@@ -55,22 +50,21 @@ function registerValidSW(swUrl: string, config?: Config) {
 function checkValidServiceWorker(swUrl: string, config?: Config) {
   fetch(swUrl, {
     headers: { 'Service-Worker': 'script' },
-  })
-    .then((response) => {
-      const contentType = response.headers.get('content-type');
-      if (
-        response.status === 404
-        || (contentType != null && contentType.indexOf('javascript') === -1)
-      ) {
-        navigator.serviceWorker.ready.then((registration) => {
-          registration.unregister().then(() => {
-            window.location.reload();
-          });
+  }).then((response) => {
+    const contentType = response.headers.get('content-type');
+    if (
+      response.status === 404 ||
+      (contentType != null && contentType.indexOf('javascript') === -1)
+    ) {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.unregister().then(() => {
+          window.location.reload();
         });
-      } else {
-        registerValidSW(swUrl, config);
-      }
-    });
+      });
+    } else {
+      registerValidSW(swUrl, config);
+    }
+  });
 }
 
 export function register(config?: Config) {
@@ -99,7 +93,6 @@ export function unregister() {
         registration.unregister();
       })
       .catch((error) => {
-        // eslint-disable-next-line no-console
         console.error(error.message);
       });
   }
