@@ -89,6 +89,7 @@ const Input = ({ label, onChange, type, ...props }: Props) => {
             quickbars_insert_toolbar: false,
             skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
             content_css: theme === 'dark' ? 'dark' : '',
+            extended_valid_elements: 'img[loading=lazy]',
           }}
           onEditorChange={(value) => onChange(value)}
         />
