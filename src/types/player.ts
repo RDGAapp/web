@@ -11,5 +11,9 @@ export interface IPlayer {
   metrixNumber: number | null;
   metrixRating: number | null;
   priority: number;
-  activeTo: string | null;
+  activeTo: string;
+}
+export interface IPlayerExtended extends IPlayer {
+  metrixRating: number | null;
+  metrixRatingChange: number | null;
 }

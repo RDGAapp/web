@@ -105,6 +105,7 @@ const Player = () => {
         <SystemInfo
           number={player.metrixNumber}
           rating={player.metrixRating}
+          ratingChange={player.metrixRatingChange}
           logo={<img src={MetrixImg} alt='metrix' />}
           link={`https://discgolfmetrix.com/player/${player.metrixNumber}`}
         />
@@ -115,7 +116,7 @@ const Player = () => {
             link={`${routes.About}${routes.Join}`}
           />
           <SubscriptionInfo
-            activeTo={null}
+            activeTo={undefined}
             logo={<PdgaSvgColored />}
             link='https://www.pdga.com/membership'
           />

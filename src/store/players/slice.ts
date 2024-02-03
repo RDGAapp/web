@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getPlayer, getPlayers } from 'store/players/thunks';
 import { IPaginated } from 'types/paginated';
-import { IPlayer } from 'types/player';
+import { IPlayer, IPlayerExtended } from 'types/player';
 
 interface PlayerState {
   players: IPaginated<IPlayer[]> | null;
-  player: IPlayer | null;
+  player: IPlayerExtended | null;
   loading: boolean;
   error: string | null;
 }

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import RatingChangeBadge from 'components/RatingChangeBadge';
 import { getTextOrDash } from 'helpers/textHelper';
-import { IPlayer } from 'types/player';
+import { IPlayerExtended } from 'types/player';
 
 import CommonBadgeStyle from './CommonBadgeStyle';
 
@@ -83,10 +83,10 @@ const RatingCard = styled.div`
 `;
 
 interface ISystemInfoProps {
-  number: IPlayer['rdgaNumber' | 'pdgaNumber' | 'metrixNumber'];
-  rating: IPlayer['rdgaRating' | 'pdgaRating' | 'metrixRating'];
+  number: IPlayerExtended['rdgaNumber' | 'pdgaNumber' | 'metrixNumber'];
+  rating: IPlayerExtended['rdgaRating' | 'pdgaRating' | 'metrixRating'];
   logo: ReactElement;
-  ratingChange?: IPlayer['rdgaRatingChange'];
+  ratingChange?: IPlayerExtended['rdgaRatingChange' | 'metrixRatingChange'];
   link?: string;
 }
 

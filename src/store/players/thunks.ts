@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from 'helpers/api';
-import { IPlayer } from 'types/player';
+import { IPlayerExtended } from 'types/player';
 import { TTown } from 'types/town';
 
 interface GetPlayersPayload {
@@ -37,7 +37,7 @@ export const getPlayer = createAsyncThunk(
     const response = await api.getPlayer(rdgaNumber);
 
     if (response.ok) {
-      const json = (await response.json()) as IPlayer;
+      const json = (await response.json()) as IPlayerExtended;
       return json;
     }
 
