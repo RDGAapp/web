@@ -15,8 +15,6 @@ export const commonTheme = {
     primary: 'hsl(49, 97%, 50%)',
     secondary: 'hsl(217, 84%, 55%)',
     additional: 'hsl(352, 100%, 45%)',
-    error: 'hsl(0, 100%, 65%)',
-    success: 'hsl(120, 75%, 43%)',
     backdrop: 'hsla(0, 0%, 0%, 0.5)',
     avatarBackground: 'hsl(0, 0%, 78%)',
     black: 'hsl(0, 0%, 0%)',
@@ -42,6 +40,9 @@ const lightTheme = {
   ...commonTheme,
   colors: {
     ...commonTheme.colors,
+    success: 'hsl(120, 75%, 43%)',
+    error: 'hsl(0, 100%, 65%)',
+    warn: 'hsl(50, 100%, 65%)',
     background: 'hsl(0, 0%, 100%)',
     border: 'hsl(0, 0%, 0%)',
     borderContrast: 'hsl(0, 0%, 100%)',
@@ -58,6 +59,9 @@ export const darkTheme = {
   ...commonTheme,
   colors: {
     ...commonTheme.colors,
+    success: 'hsl(120, 75%, 30%)',
+    error: 'hsl(0, 100%, 40%)',
+    warn: 'hsl(50, 100%, 50%)',
     background: 'hsl(0, 0%, 15%)',
     border: 'hsl(0, 0%, 100%)',
     borderContrast: 'hsl(0, 0%, 15%)',

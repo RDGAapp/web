@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as LocationSvg } from 'assets/icons/location.svg';
 import Avatar from 'components/Avatar';
+import { IPlayer } from 'types/player';
 
 import CommonBadgeStyle from './CommonBadgeStyle';
 
@@ -9,7 +10,7 @@ const Container = styled.div`
   ${CommonBadgeStyle}
   display: flex;
   grid-column: span 3;
-  grid-row: span 4;
+  grid-row: span 5;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
@@ -50,9 +51,9 @@ const InfoLine = styled.div`
 `;
 
 interface IMainInfoProps {
-  name: string;
-  surname?: string | null;
-  town?: string | null;
+  name: IPlayer['name'];
+  surname: IPlayer['surname'];
+  town: IPlayer['town'];
 }
 
 const MainInfo = ({ name, surname, town }: IMainInfoProps) => (
@@ -63,10 +64,12 @@ const MainInfo = ({ name, surname, town }: IMainInfoProps) => (
       {surname && <br />}
       {name}
     </h1>
-    <InfoLine>
-      <LocationSvg />
-      <p>{town}</p>
-    </InfoLine>
+    {town && (
+      <InfoLine>
+        <LocationSvg />
+        <p>{town}</p>
+      </InfoLine>
+    )}
   </Container>
 );
 

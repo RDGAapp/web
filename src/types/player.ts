@@ -1,15 +1,15 @@
 export interface IPlayer {
   name: string;
-  surname?: string | null;
+  surname: string | null;
   rdgaNumber: number;
-  rdgaRating?: number;
-  rdgaRatingChange?: number;
-  town?: string | null;
-  email?: string;
-  pdgaNumber?: number | null;
-  pdgaRating?: number | null;
-  metrixNumber?: number | null;
-  metrixRating?: number | null;
-  priority?: number;
-  activeTo: Date | string;
+  rdgaRating: number | null;
+  rdgaRatingChange: number | null;
+  town: string | null;
+  email: string | null;
+  pdgaNumber: number | null;
+  pdgaRating: number | null;
+  metrixNumber: number | null;
+  metrixRating: number | null;
+  priority: number;
+  activeTo: string | null;
 }

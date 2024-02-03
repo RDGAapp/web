@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { IPlayer } from 'types/player';
+
 const commonBadgeStyle = css`
   display: flex;
   align-items: center;
@@ -30,8 +32,8 @@ const BadgeNeutral = styled.span`
 `;
 
 interface Props {
-  rating: number;
-  ratingChange?: number;
+  rating: IPlayer['rdgaRating'];
+  ratingChange: IPlayer['rdgaRatingChange'];
 }
 
 const RatingChangeBadge = ({ rating, ratingChange }: Props) => {

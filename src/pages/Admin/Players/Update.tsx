@@ -115,7 +115,7 @@ const UpdatePlayer = (): JSX.Element => {
     metrixNumber: Number(metrixNumber) || null,
     metrixRating: Number(metrixRating) || null,
     priority: Number(priority) || 0,
-    activeTo: new Date(`${activeTo}-04-01T00:00:00.000Z`),
+    activeTo: `${activeTo}-04-01T00:00:00.000Z`,
   } as IPlayer;
 
   const onSubmit = async () => updatePlayer(player, Number(rdgaNumber));

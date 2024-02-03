@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { commonTheme } from 'helpers/theme';
-
 const Container = styled.div`
   padding: 0.25rem 0;
   text-align: center;
@@ -21,6 +19,10 @@ const Container = styled.div`
     font-size: 1.2rem;
     font-weight: bold;
   }
+`;
+
+const Text = styled.p<{ $color: string }>`
+  color: ${({ theme, $color }) => theme.colors[$color]};
 `;
 
 interface IPlanPartProps {
@@ -45,24 +47,24 @@ const PlanPart = ({
   <Container>
     <p>{text}</p>
     {isAllowed ? (
-      <p
+      <Text
+        $color={isSimpleText ? 'inherit' : 'success'}
         style={{
-          color: isSimpleText ? 'inherit' : commonTheme.colors.success,
           fontWeight: isSame ? '100' : '900',
           fontSize: isBigger ? '2rem' : '1rem',
         }}
       >
         {yesText}
-      </p>
+      </Text>
     ) : (
-      <p
+      <Text
+        $color='error'
         style={{
-          color: commonTheme.colors.error,
           fontWeight: isSame ? '100' : '900',
         }}
       >
         {noText}
-      </p>
+      </Text>
     )}
   </Container>
 );

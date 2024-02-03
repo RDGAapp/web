@@ -150,7 +150,9 @@ interface Props {
 }
 
 const Card = ({ player }: Props) => {
-  const disabled = new Date(player.activeTo) < new Date();
+  const disabled = player.activeTo
+    ? new Date(player.activeTo) < new Date()
+    : true;
 
   return (
     <Container disabled={disabled}>

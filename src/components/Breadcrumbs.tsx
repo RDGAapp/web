@@ -7,10 +7,17 @@ import routes, { routeNames } from 'helpers/routes';
 
 const Container = styled.div`
   margin-bottom: 0.5rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 
   & a {
-    font-size: 0.7rem;
+    font-size: inherit;
+    text-decoration-color: transparent;
+    text-decoration-style: wavy;
+    transition: all 0.2s linear;
+
+    &:hover {
+      text-decoration-color: ${({ theme }) => theme.colors.primary};
+    }
   }
 `;
 

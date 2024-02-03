@@ -1,8 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 
 import styled from 'styled-components';
 
 import RatingChangeBadge from 'components/RatingChangeBadge';
+import { getTextOrDash } from 'helpers/textHelper';
+import { IPlayer } from 'types/player';
 
 import CommonBadgeStyle from './CommonBadgeStyle';
 
@@ -56,6 +58,7 @@ const RatingCard = styled.div`
   }
 
   & > img {
+    max-width: max-content;
     height: 100%;
   }
 
@@ -63,7 +66,8 @@ const RatingCard = styled.div`
     height: 200%;
   }
 
-  & > span, & > a {
+  & > span,
+  & > a {
     font-size: 1.2rem;
   }
 
@@ -79,31 +83,12 @@ const RatingCard = styled.div`
 `;
 
 interface ISystemInfoProps {
-  number?: number | null;
-  rating?: number | null;
-  logo: ReactNode;
-  ratingChange?: number | null;
+  number: IPlayer['rdgaNumber' | 'pdgaNumber' | 'metrixNumber'];
+  rating: IPlayer['rdgaRating' | 'pdgaRating' | 'metrixRating'];
+  logo: ReactElement;
+  ratingChange?: IPlayer['rdgaRatingChange'];
   link?: string;
 }
-
-const SystemNumber = ({
-  number,
-  link,
-}: {
-  number: ISystemInfoProps['number'];
-  link: ISystemInfoProps['link'];
-}) => {
-  if (!number) return '-';
-
-  if (link)
-    return (
-      <a href={link} target='_blank' rel='noreferrer'>
-        #{number}
-      </a>
-    );
-
-  return `#${number}`;
-};
 
 const SystemInfo = ({
   number,
@@ -115,12 +100,12 @@ const SystemInfo = ({
   <RatingCardContainer>
     <RatingCard>
       {logo}
-      <SystemNumber number={number} link={link} />
+      {getTextOrDash({ text: number, link, prefix: '#' })}
     </RatingCard>
     <RatingCard>
       {logo}
-      {rating ?? '-'}
-      {ratingChange != null && (
+      {rating || '-'}
+      {!!rating && ratingChange != null && (
         <RatingChangeBadge rating={rating ?? 0} ratingChange={ratingChange} />
       )}
     </RatingCard>
