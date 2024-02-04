@@ -31,7 +31,8 @@ const Container = styled.div<{
     text-decoration: none;
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     flex-basis: 100%;
 
     ${(props) =>

@@ -34,6 +34,14 @@ const Copyright = styled.p`
     font-size: 0.7rem;
     line-height: 1;
     color: ${({ theme }) => theme.colors.secondary};
+    text-decoration-color: transparent;
+    text-decoration-style: wavy;
+
+    transition: text-decoration-color 0.2s linear;
+
+    &:hover, &:focus-visible {
+      text-decoration-color: ${({ theme }) => theme.colors.secondary};
+    }
   }
 
   ${({ theme }) => theme.media.tablet} {

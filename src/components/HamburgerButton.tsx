@@ -56,7 +56,8 @@ const Button = styled.button`
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     scale: 1.1;
   }
 

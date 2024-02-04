@@ -26,13 +26,14 @@ function registerValidSW(swUrl: string, config?: Config) {
         }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
-            const notification = document.getElementById('reloadNotification');
-            if (notification) {
-              notification.style.top = '1.5rem';
-              notification.style.opacity = '1';
-            }
             installingWorker.postMessage('skipWaiting');
             if (navigator.serviceWorker.controller) {
+              const notification =
+                document.getElementById('reloadNotification');
+              if (notification) {
+                notification.style.top = '1.5rem';
+                notification.style.opacity = '1';
+              }
               config?.onUpdate?.(registration);
             } else {
               console.log('Content is cached for offline use.');

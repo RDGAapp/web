@@ -32,7 +32,7 @@ const Container = styled.div<{ disabled?: boolean }>`
   ${({ disabled }) =>
     !disabled &&
     `
-      &:hover > div {
+      &:hover > div, &:focus-visible > div {
         transform: rotateX(180deg);
       }
     `}
@@ -140,7 +140,8 @@ const ProfileLinkStyles = css`
     width: 0.5rem;
   }
 
-  &:hover > svg {
+  &:hover > svg,
+  &:focus-visible > svg {
     left: 1.4rem;
   }
 `;

@@ -76,7 +76,8 @@ const RatingCard = styled.div`
     text-decoration-style: wavy;
     transition: all 0.2s linear;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       text-decoration-color: ${({ theme }) => theme.colors.primary};
     }
   }

@@ -23,7 +23,8 @@ const ButtonOutlined = css`
     background-color: ${({ theme }) => theme.colors.background};
   }
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
     color: ${({ theme }) => theme.colors.black};
     background: ${({ theme }) => theme.colors.primary};
   }

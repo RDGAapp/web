@@ -58,7 +58,8 @@ const LinkStyles = css`
     transition: all 0.2s ease-in-out;
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     scale: 1.1;
     padding-left: 2rem;
 

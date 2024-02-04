@@ -105,6 +105,8 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-wrap: pretty;
 
+    outline: none;
+
     ${({ theme }) => theme.media.mobile} {
       font-size: 16px;
     }

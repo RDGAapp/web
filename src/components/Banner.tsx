@@ -46,7 +46,8 @@ const LinkCta = styled(HashLink)`
 
   transition: scale 0.2s ease;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     scale: 1.1;
   }
 

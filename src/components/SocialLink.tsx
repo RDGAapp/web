@@ -13,7 +13,8 @@ const Link = styled.a`
 
   transition: color 0.2s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: ${({ theme }) => theme.colors.secondary};
   }
 

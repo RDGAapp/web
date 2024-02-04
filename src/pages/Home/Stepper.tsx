@@ -69,7 +69,7 @@ const StepNumber = styled.p<{ selected: boolean }>`
       : `
         cursor: pointer;
 
-        &:hover {
+        &:hover, &:focus-visible {
           scale: 1.1;
         }
 

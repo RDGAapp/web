@@ -72,7 +72,8 @@ const Select = styled.select`
 
   transition: all 0.2s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.primary};
   }

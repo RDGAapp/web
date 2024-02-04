@@ -20,7 +20,8 @@ const Button = styled.button`
 
   transition: scale 0.2s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     scale: 1.1;
   }
 

@@ -28,7 +28,8 @@ const LooperContent = styled.div`
     color: transparent;
     transition: all 0.2s ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       scale: 1.1;
     }
   }

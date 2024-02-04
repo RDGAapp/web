@@ -42,7 +42,8 @@ const AccreditationButton = styled.button`
 
   transition: scale 0.2s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     scale: 1.1;
   }
 
@@ -61,7 +62,7 @@ const Legend = styled.div`
   max-width: calc(100% - 3rem);
   padding: 1rem;
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};;
+  background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 1rem;
 
   ${({ theme }) => theme.media.mobile} {

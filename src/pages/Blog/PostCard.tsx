@@ -28,7 +28,8 @@ const Card = styled.div`
     transition: all 0.2s linear;
   }
 
-  & > a:hover {
+  & > a:hover,
+  & > a:focus-visible {
     text-decoration-color: ${({ theme }) => theme.colors.primary};
   }
 `;

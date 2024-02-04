@@ -21,7 +21,8 @@ const Container = styled.div`
     color: ${({ theme }) => theme.colors.secondary};
     transition: color 0.2s ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       color: ${({ theme }) => theme.colors.primary};
     }
   }

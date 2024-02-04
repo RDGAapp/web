@@ -87,7 +87,8 @@ const Button = styled.button`
     background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.primary};
   }

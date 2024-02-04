@@ -48,7 +48,8 @@ const ModalHeader = styled.div`
     cursor: pointer;
     transition: color 0.2s ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:focus-within {
       color: ${({ theme }) => theme.colors.primary};
     }
   }
@@ -107,8 +108,7 @@ const useDialog = ({ headerText, onClose }: IUseDialog) => {
               tabIndex={0}
               onClick={(event) => {
                 event.stopPropagation();
-                if (event.target === dialogRef.current)
-                  setIsOpen(false);
+                if (event.target === dialogRef.current) setIsOpen(false);
               }}
               onKeyDown={(event) => {
                 event.stopPropagation();
@@ -131,7 +131,7 @@ const useDialog = ({ headerText, onClose }: IUseDialog) => {
                 <ModalContentContainer>{children}</ModalContentContainer>
               </ModalContainer>
             </Modal>,
-            document.body
+            document.body,
           )
         : null,
     openModal: () => setIsOpen(true),

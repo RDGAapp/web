@@ -11,7 +11,8 @@ const CustomImage = styled.img<{ $position: 'left' | 'right' }>`
 
   transition: rotate 0.2s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     rotate: 0deg;
   }
 `;

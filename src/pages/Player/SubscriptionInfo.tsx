@@ -50,7 +50,8 @@ const ActiveToDate = styled.p`
     text-decoration-style: wavy;
     transition: all 0.2s linear;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       text-decoration-color: hsl(217deg 84% 45%);
     }
   }
