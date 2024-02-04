@@ -26,7 +26,7 @@ const Container = styled.div<{ disabled?: boolean }>`
   perspective: 20rem;
 
   animation: slide-in 500ms linear both;
-  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   animation-timeline: view(block 100% 0%);
 
   ${({ disabled }) =>

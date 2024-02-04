@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import RdgaImg from 'assets/images/neutral-rdga.webp';
+import CountdownTimer from 'components/CountdownTimer';
 import CustomLink from 'components/CustomLink';
 import {
   Header,
@@ -211,9 +212,12 @@ const RangeInput = styled.input`
   }
 `;
 
+const campaignStartDate = new Date(`${new Date().getFullYear()}-02-15`);
+
 const About = (): JSX.Element => {
   const [price, setPrice] = useState(500);
   const [manuallyChanged, setManuallyChanged] = useState(false);
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   let lowerPlanType = PlanContentType.Junior;
   let selectedPlanType = PlanContentType.Junior;
@@ -289,133 +293,149 @@ const About = (): JSX.Element => {
           </p>
         </TextContainer>
       </Row>
-      <Header id='join'>Порядок вступления или продления членства РДГА</Header>
-      <PlanContainer>
-        <StepNumber>1</StepNumber>
-        <Step>Выбери тариф вступления в РДГА</Step>
-        <InputDescription>
-          <p>← 500 ₽</p>
-          <p>15000+ ₽ →</p>
-        </InputDescription>
-        <RangeInput
-          type='range'
-          min={minValue}
-          max={maxValue}
-          step={100}
-          onChange={(e) => {
-            if (!manuallyChanged) {
-              setManuallyChanged(true);
-            }
-            setPrice(Number(e.target.value));
-          }}
-          value={price}
-        />
-        <PlanCardContainer>
-          <PlanCardHeader
-            style={{ backgroundColor: colorByContentType[selectedPlanType] }}
-          >
-            <p>{selectedPlanType}</p>
-          </PlanCardHeader>
-          <div style={{ padding: '1rem' }}>
-            <PlanPart
-              text='Взнос'
-              isAllowed
-              isSimpleText
-              isBigger
-              yesText={`${price} ₽`}
+      {currentDate >= campaignStartDate ? (
+        <>
+          <Header id='join'>
+            Порядок вступления или продления членства РДГА
+          </Header>
+          <PlanContainer>
+            <StepNumber>1</StepNumber>
+            <Step>Выбери тариф вступления в РДГА</Step>
+            <InputDescription>
+              <p>← 500 ₽</p>
+              <p>15000+ ₽ →</p>
+            </InputDescription>
+            <RangeInput
+              type='range'
+              min={minValue}
+              max={maxValue}
+              step={100}
+              onChange={(e) => {
+                if (!manuallyChanged) {
+                  setManuallyChanged(true);
+                }
+                setPrice(Number(e.target.value));
+              }}
+              value={price}
             />
-            <PlanPart
-              text='Ежегодная бирка и карта члена РДГА'
-              isAllowed
-              yesText='Да'
-            />
-            <PlanPart
-              text='Маркер-диск РДГА'
-              isSame={
-                PlanContent[selectedPlanType].markerType ===
-                PlanContent[lowerPlanType].markerType
-              }
-              isAllowed={!!PlanContent[selectedPlanType].markerType}
-              yesText={PlanContent[selectedPlanType].markerType}
-            />
-            <PlanPart
-              text='Личный онлайн диск-гольф наставник'
-              isSame={
-                PlanContent[selectedPlanType].buddy ===
-                PlanContent[lowerPlanType].buddy
-              }
-              isAllowed={PlanContent[selectedPlanType].buddy}
-            />
-            <PlanPart
-              text='Индивидуальная форма РДГА'
-              isSame={
-                PlanContent[selectedPlanType].individualUniform ===
-                PlanContent[lowerPlanType].individualUniform
-              }
-              isAllowed={!!PlanContent[selectedPlanType].individualUniform}
-              yesText={PlanContent[selectedPlanType].individualUniform}
-            />
-            <PlanPart
-              text='Знаки достижений (браслеты, значки)'
-              isSame
-              isAllowed
-            />
-            <PlanPart
-              text='Разовая скидка на диски'
-              isSame={
-                PlanContent[selectedPlanType].discsDiscount !==
-                PlanContent[lowerPlanType].discsDiscount
-              }
-              isAllowed={PlanContent[selectedPlanType].discsDiscount}
-              yesText='10% на покупку до 3 дисков у партнеров РДГА'
-            />
-            <PlanPart
-              text='Скидка на корзины'
-              isSame
-              isAllowed
-              yesText='20% на покупку корзин у партнёров РДГА'
-            />
-            <PlanPart
-              text='Скидка на участие в кэмпах РДГА'
-              isSame
-              isAllowed
-              yesText='50%'
-            />
-            <PlanPart text='Публикация рейтинга игрока' isSame isAllowed />
-          </div>
-        </PlanCardContainer>
-        <div>
-          <ArrowDown />
-        </div>
-        <StepNumber>2</StepNumber>
-        <Step>
-          <CustomLink
-            route='https://www.tinkoff.ru/cf/9mJN821ed7D'
-            text='Оплати взнос'
-            isExternal
+            <PlanCardContainer>
+              <PlanCardHeader
+                style={{
+                  backgroundColor: colorByContentType[selectedPlanType],
+                }}
+              >
+                <p>{selectedPlanType}</p>
+              </PlanCardHeader>
+              <div style={{ padding: '1rem' }}>
+                <PlanPart
+                  text='Взнос'
+                  isAllowed
+                  isSimpleText
+                  isBigger
+                  yesText={`${price} ₽`}
+                />
+                <PlanPart
+                  text='Ежегодная бирка и карта члена РДГА'
+                  isAllowed
+                  yesText='Да'
+                />
+                <PlanPart
+                  text='Маркер-диск РДГА'
+                  isSame={
+                    PlanContent[selectedPlanType].markerType ===
+                    PlanContent[lowerPlanType].markerType
+                  }
+                  isAllowed={!!PlanContent[selectedPlanType].markerType}
+                  yesText={PlanContent[selectedPlanType].markerType}
+                />
+                <PlanPart
+                  text='Личный онлайн диск-гольф наставник'
+                  isSame={
+                    PlanContent[selectedPlanType].buddy ===
+                    PlanContent[lowerPlanType].buddy
+                  }
+                  isAllowed={PlanContent[selectedPlanType].buddy}
+                />
+                <PlanPart
+                  text='Индивидуальная форма РДГА'
+                  isSame={
+                    PlanContent[selectedPlanType].individualUniform ===
+                    PlanContent[lowerPlanType].individualUniform
+                  }
+                  isAllowed={!!PlanContent[selectedPlanType].individualUniform}
+                  yesText={PlanContent[selectedPlanType].individualUniform}
+                />
+                <PlanPart
+                  text='Знаки достижений (браслеты, значки)'
+                  isSame
+                  isAllowed
+                />
+                <PlanPart
+                  text='Разовая скидка на диски'
+                  isSame={
+                    PlanContent[selectedPlanType].discsDiscount !==
+                    PlanContent[lowerPlanType].discsDiscount
+                  }
+                  isAllowed={PlanContent[selectedPlanType].discsDiscount}
+                  yesText='10% на покупку до 3 дисков у партнеров РДГА'
+                />
+                <PlanPart
+                  text='Скидка на корзины'
+                  isSame
+                  isAllowed
+                  yesText='20% на покупку корзин у партнёров РДГА'
+                />
+                <PlanPart
+                  text='Скидка на участие в кэмпах РДГА'
+                  isSame
+                  isAllowed
+                  yesText='50%'
+                />
+                <PlanPart text='Публикация рейтинга игрока' isSame isAllowed />
+              </div>
+            </PlanCardContainer>
+            <div>
+              <ArrowDown />
+            </div>
+            <StepNumber>2</StepNumber>
+            <Step>
+              <CustomLink
+                route='https://www.tinkoff.ru/cf/9mJN821ed7D'
+                text='Оплати взнос'
+                isExternal
+              />
+              <span>указав ФИО и текст &quot;2023&quot;</span>
+            </Step>
+            <div>
+              <ArrowDown />
+            </div>
+            <StepNumber>3</StepNumber>
+            <Step>
+              <CustomLink
+                route='https://forms.gle/a8xHLmxURYeZ6ZY47'
+                text='Заполни анкету игрока'
+                isExternal
+              />
+            </Step>
+            <div>
+              <ArrowDown />
+            </div>
+            <StepNumber>4</StepNumber>
+            <Step>
+              Получи пакет члена РДГА на федеральном мероприятии или у
+              региональных представителей РДГА.
+            </Step>
+          </PlanContainer>
+        </>
+      ) : (
+        <>
+          <Header id='join'>До старта кампании:</Header>
+          <CountdownTimer
+            deadline={campaignStartDate}
+            onTimeUpdate={setCurrentDate}
           />
-          <span>указав ФИО и текст &quot;2023&quot;</span>
-        </Step>
-        <div>
-          <ArrowDown />
-        </div>
-        <StepNumber>3</StepNumber>
-        <Step>
-          <CustomLink
-            route='https://forms.gle/a8xHLmxURYeZ6ZY47'
-            text='Заполни анкету игрока'
-            isExternal
-          />
-        </Step>
-        <div>
-          <ArrowDown />
-        </div>
-        <StepNumber>4</StepNumber>
-        <Step>
-          Получи пакет члена РДГА на федеральном мероприятии или у региональных
-          представителей РДГА.
-        </Step>
-      </PlanContainer>
+        </>
+      )}
     </PageContainer>
   );
 };
