@@ -7,7 +7,6 @@ export interface IPlayer {
   town: string | null;
   email: string | null;
   pdgaNumber: number | null;
-  pdgaRating: number | null;
   metrixNumber: number | null;
   metrixRating: number | null;
   priority: number;
@@ -16,4 +15,6 @@ export interface IPlayer {
 export interface IPlayerExtended extends IPlayer {
   metrixRating: number | null;
   metrixRatingChange: number | null;
+  pdgaRating: number | null;
+  pdgaActiveTo: string | null;
 }

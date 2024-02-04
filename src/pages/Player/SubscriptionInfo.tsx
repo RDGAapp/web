@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import styled from 'styled-components';
 
 import { getTextOrDash } from 'helpers/textHelper';
-import { IPlayer } from 'types/player';
+import { IPlayerExtended } from 'types/player';
 
 import CommonBadgeStyle from './CommonBadgeStyle';
 
@@ -58,7 +58,7 @@ const ActiveToDate = styled.p`
 `;
 
 interface ISubscriptionInfo {
-  activeTo?: IPlayer['activeTo'];
+  activeTo?: IPlayerExtended['activeTo' | 'pdgaActiveTo'];
   logo: ReactElement;
   link?: string;
 }

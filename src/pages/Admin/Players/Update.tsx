@@ -16,9 +16,7 @@ const UpdatePlayer = (): JSX.Element => {
   const [town, setTown] = useState('');
   const [email, setEmail] = useState('');
   const [pdgaNumber, setPdgaNumber] = useState('');
-  const [pdgaRating, setPdgaRating] = useState('');
   const [metrixNumber, setMetrixNumber] = useState('');
-  const [metrixRating, setMetrixRating] = useState('');
   const [priority, setPriority] = useState('0');
   const [activeTo, setActiveTo] = useState(new Date().getFullYear());
 
@@ -69,21 +67,9 @@ const UpdatePlayer = (): JSX.Element => {
       type: 'number',
     },
     {
-      value: pdgaRating,
-      onChange: setPdgaRating,
-      label: 'Рейтинг PDGA',
-      type: 'number',
-    },
-    {
       value: metrixNumber,
       onChange: setMetrixNumber,
       label: 'Номер Metrix',
-      type: 'number',
-    },
-    {
-      value: metrixRating,
-      onChange: setMetrixRating,
-      label: 'Рейтинг Metrix',
       type: 'number',
     },
     {
@@ -111,9 +97,7 @@ const UpdatePlayer = (): JSX.Element => {
     town,
     email,
     pdgaNumber: Number(pdgaNumber) || null,
-    pdgaRating: Number(pdgaRating) || null,
     metrixNumber: Number(metrixNumber) || null,
-    metrixRating: Number(metrixRating) || null,
     priority: Number(priority) || 0,
     activeTo: `${activeTo}-04-01T00:00:00.000Z`,
   } as IPlayer;
@@ -130,9 +114,7 @@ const UpdatePlayer = (): JSX.Element => {
     setTown(json.town);
     setEmail(json.email);
     setPdgaNumber(json.pdgaNumber || '');
-    setPdgaRating(json.pdgaRating || '');
     setMetrixNumber(json.metrixNumber || '');
-    setMetrixRating(json.metrixRating || '');
     setPriority(json.priority);
     setActiveTo(new Date(json.activeTo).getFullYear());
 

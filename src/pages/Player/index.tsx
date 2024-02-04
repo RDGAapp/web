@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ReactComponent as RdgaSvg } from 'assets/icons/logo.svg';
+import { ReactComponent as MetrixSvg } from 'assets/icons/metrix.svg';
 import { ReactComponent as PdgaSvg } from 'assets/icons/pdga.svg';
-import MetrixImg from 'assets/images/metrix.webp';
 import Breadcrumbs from 'components/Breadcrumbs';
 import LogoLoader from 'components/LogoLoader';
 import routes from 'helpers/routes';
@@ -54,7 +54,13 @@ const Subscription = styled.div`
   }
 `;
 
-const PdgaSvgColored = () => <PdgaSvg fill='hsl(217, 84%, 45%)' />;
+const PdgaSvgColored = styled(PdgaSvg)`
+  fill: hsl(217deg 84% 45%);
+
+  @media (prefers-color-scheme: light) {
+    fill: hsl(217deg 84% 60%);
+  }
+`;
 
 const Player = () => {
   const dispatch = useAppDispatch();
@@ -73,13 +79,14 @@ const Player = () => {
 
   if (loading) return <LogoLoader />;
 
-  if (error || !player)
+  if (error || !player) {
     return (
       <>
         <Breadcrumbs />
         <div>Что-то пошло не так</div>
       </>
     );
+  }
 
   return (
     <>
@@ -106,7 +113,7 @@ const Player = () => {
           number={player.metrixNumber}
           rating={player.metrixRating}
           ratingChange={player.metrixRatingChange}
-          logo={<img src={MetrixImg} alt='metrix' />}
+          logo={<MetrixSvg fill='hsl(24, 100%, 50%)' />}
           link={`https://discgolfmetrix.com/player/${player.metrixNumber}`}
         />
         <Subscription>
@@ -116,7 +123,7 @@ const Player = () => {
             link={`${routes.About}${routes.Join}`}
           />
           <SubscriptionInfo
-            activeTo={undefined}
+            activeTo={player.pdgaActiveTo}
             logo={<PdgaSvgColored />}
             link='https://www.pdga.com/membership'
           />
