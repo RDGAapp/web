@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 import { ReactComponent as LocationSvg } from 'assets/icons/location.svg';
+import { ReactComponent as SportsCategorySvg } from 'assets/icons/sportsCategory.svg';
 import Avatar from 'components/Avatar';
+import SportsCategoryNameByCategory from 'helpers/player/sportsCategoryNameByCategory';
 import { IPlayer } from 'types/player';
 
 import CommonBadgeStyle from './CommonBadgeStyle';
@@ -54,9 +56,10 @@ interface IMainInfoProps {
   name: IPlayer['name'];
   surname: IPlayer['surname'];
   town: IPlayer['town'];
+  sportsCategory: IPlayer['sportsCategory'];
 }
 
-const MainInfo = ({ name, surname, town }: IMainInfoProps) => (
+const MainInfo = ({ name, surname, town, sportsCategory }: IMainInfoProps) => (
   <Container>
     <Avatar />
     <h1>
@@ -64,12 +67,16 @@ const MainInfo = ({ name, surname, town }: IMainInfoProps) => (
       {surname && <br />}
       {name}
     </h1>
-    {town && (
-      <InfoLine>
-        <LocationSvg />
-        <p>{town}</p>
-      </InfoLine>
-    )}
+    <InfoLine>
+      <LocationSvg />
+      <p>{town || '-'}</p>
+    </InfoLine>
+    <InfoLine>
+      <SportsCategorySvg />
+      <p>
+        {sportsCategory ? SportsCategoryNameByCategory[sportsCategory] : '-'}
+      </p>
+    </InfoLine>
   </Container>
 );
 

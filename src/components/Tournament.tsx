@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import TournamentType from 'enums/tournamentType';
 import { spellMonth } from 'helpers/dateHelpers';
-import TournamentColorByType from 'helpers/tournamentColorByType';
+import TournamentColorByType from 'helpers/tournament/typeColorByType';
 
 const Container = styled.div<{
   $color: string;

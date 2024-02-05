@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Breadcrumbs from 'components/Breadcrumbs';
 import TournamentType from 'enums/tournamentType';
 import { createTournament } from 'helpers/api';
+import TournamentNameByType from 'helpers/tournament/typeNameByType';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
 import Preview from './Preview';
@@ -13,7 +14,9 @@ const CreateTournament = (): JSX.Element => {
   const [town, setTown] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [tournamentType, setTournamentType] = useState('');
+  const [tournamentType, setTournamentType] = useState<TournamentType>(
+    TournamentType.League,
+  );
   const [metrixId, setMetrixId] = useState('');
 
   const inputs = [
@@ -60,11 +63,11 @@ const CreateTournament = (): JSX.Element => {
       type: 'select',
       required: true,
       variants: [
-        { value: TournamentType.League, text: 'Лига' },
-        { value: TournamentType.Pro, text: 'Pro тур' },
-        { value: TournamentType.RussianChampionship, text: 'Чемпионат России' },
-        { value: TournamentType.Federal, text: 'Федеральный турнир' },
-      ],
+        TournamentType.League,
+        TournamentType.Pro,
+        TournamentType.RussianChampionship,
+        TournamentType.Federal,
+      ].map((type) => ({ value: type, text: TournamentNameByType[type] })),
     },
     {
       value: metrixId,

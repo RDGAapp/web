@@ -9,7 +9,8 @@ import PageHeader from 'components/PageHeader';
 import Tournament from 'components/Tournament';
 import TournamentType from 'enums/tournamentType';
 import { getCalendarData } from 'helpers/dateHelpers';
-import TournamentColorByType from 'helpers/tournamentColorByType';
+import TournamentColorByType from 'helpers/tournament/typeColorByType';
+import TournamentNameByType from 'helpers/tournament/typeNameByType';
 import useDialog from 'hooks/useDialog';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getTournaments } from 'store/tournaments/thunk';
@@ -190,32 +191,17 @@ const Calendar = () => {
               Как аккредитовать турнир?
             </AccreditationButton>
             <Legend>
-              <LegendItem>
-                <TournamentCircle
-                  $border={
-                    TournamentColorByType[TournamentType.RussianChampionship]
-                  }
-                />
-                Чемпионат России
-              </LegendItem>
-              <LegendItem>
-                <TournamentCircle
-                  $border={TournamentColorByType[TournamentType.Pro]}
-                />
-                Этап Про Тура
-              </LegendItem>
-              <LegendItem>
-                <TournamentCircle
-                  $border={TournamentColorByType[TournamentType.Federal]}
-                />
-                Федеральный Турнир
-              </LegendItem>
-              <LegendItem>
-                <TournamentCircle
-                  $border={TournamentColorByType[TournamentType.League]}
-                />
-                Этап региональной лиги
-              </LegendItem>
+              {[
+                TournamentType.RussianChampionship,
+                TournamentType.Pro,
+                TournamentType.Federal,
+                TournamentType.League,
+              ].map((type) => (
+                <LegendItem key={type}>
+                  <TournamentCircle $border={TournamentColorByType[type]} />
+                  {TournamentNameByType[type]}
+                </LegendItem>
+              ))}
             </Legend>
           </PreContent>
           <Container>

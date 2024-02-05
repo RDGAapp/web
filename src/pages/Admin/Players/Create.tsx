@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
 import Breadcrumbs from 'components/Breadcrumbs';
+import SportsCategory from 'enums/sportsCategory';
 import { createPlayer } from 'helpers/api';
+import SportsCategoryNameByCategory from 'helpers/player/sportsCategoryNameByCategory';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
+import Card from 'pages/Players/Card';
 import { IPlayer } from 'types/player';
-
-import Preview from './Preview';
 
 const CreatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
@@ -19,6 +20,9 @@ const CreatePlayer = (): JSX.Element => {
   const [metrixNumber, setMetrixNumber] = useState('');
   const [priority, setPriority] = useState('0');
   const [activeTo, setActiveTo] = useState(new Date().getFullYear());
+  const [sportsCategory, setSportsCategory] = useState<SportsCategory | null>(
+    null,
+  );
 
   const inputs = [
     {
@@ -94,6 +98,28 @@ const CreatePlayer = (): JSX.Element => {
       step: 1,
       required: true,
     },
+    {
+      value: sportsCategory,
+      onChange: setSportsCategory,
+      label: 'Спортивный разряд',
+      type: 'select',
+      variants: [
+        { value: null, text: '' },
+        ...[
+          SportsCategory.Master,
+          SportsCategory.Candidate,
+          SportsCategory.AdultFirst,
+          SportsCategory.AdultSecond,
+          SportsCategory.AdultThird,
+          SportsCategory.JuniorFirst,
+          SportsCategory.JuniorSecond,
+          SportsCategory.JuniorThird,
+        ].map((category) => ({
+          value: category,
+          text: SportsCategoryNameByCategory[category],
+        })),
+      ],
+    },
   ];
 
   const player = {
@@ -108,6 +134,7 @@ const CreatePlayer = (): JSX.Element => {
     metrixNumber: Number(metrixNumber) || null,
     priority: Number(priority) || 0,
     activeTo: `${activeTo}-04-01T00:00:00.000Z`,
+    sportsCategory,
   } as IPlayer;
 
   const onSubmit = async () => createPlayer(player);
@@ -120,7 +147,7 @@ const CreatePlayer = (): JSX.Element => {
         actionNames={['Создание игрока']}
         forms={[inputs]}
         onSubmits={[onSubmit]}
-        preview={<Preview player={player} />}
+        preview={<Card player={player} />}
       />
     </>
   );

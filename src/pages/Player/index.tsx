@@ -96,6 +96,7 @@ const Player = () => {
           name={player.name}
           surname={player.surname}
           town={player.town}
+          sportsCategory={player.sportsCategory}
         />
         <SystemInfo
           number={player.rdgaNumber}

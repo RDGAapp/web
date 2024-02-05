@@ -7,7 +7,7 @@ import { AppSettingsContext } from 'context/AppSettings';
 import TournamentType from 'enums/tournamentType';
 import { getMonthName, spellMonth } from 'helpers/dateHelpers';
 import theme, { commonTheme } from 'helpers/theme';
-import TournamentColorByType from 'helpers/tournamentColorByType';
+import TournamentColorByType from 'helpers/tournament/typeColorByType';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
 import { ITournament } from 'types/tournament';

@@ -1,3 +1,5 @@
+import SportsCategory from "enums/sportsCategory";
+
 export interface IPlayer {
   name: string;
   surname: string | null;
@@ -11,6 +13,7 @@ export interface IPlayer {
   metrixRating: number | null;
   priority: number;
   activeTo: string;
+  sportsCategory: SportsCategory | null;
 }
 export interface IPlayerExtended extends IPlayer {
   metrixRating: number | null;

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 
+import Breadcrumbs from 'components/Breadcrumbs';
 import LogoLoader from 'components/LogoLoader';
 import PostCard from 'pages/Blog/PostCard';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -38,6 +39,7 @@ const BlogPost = () => {
 
   return (
     <Container>
+      <Breadcrumbs />
       {post && <PostCard post={post} defaultExpanded />}
       {loading && <LogoLoader />}
       {error && <h4>{error}</h4>}

@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
 
 import { ReactComponent as LocationSvg } from 'assets/icons/location.svg';
+import { ReactComponent as SportsCategorySvg } from 'assets/icons/sportsCategory.svg';
 import Avatar from 'components/Avatar';
 import CustomLink from 'components/CustomLink';
 import RatingChangeBadge from 'components/RatingChangeBadge';
+import SportsCategoryNameByCategory from 'helpers/player/sportsCategoryNameByCategory';
 import routes from 'helpers/routes';
 import { IPlayer } from 'types/player';
 
@@ -182,7 +184,15 @@ const Card = ({ player }: Props) => {
           <BackSide>
             <InfoLine>
               <LocationSvg />
-              <p>{player.town}</p>
+              <p>{player.town || '-'}</p>
+            </InfoLine>
+            <InfoLine>
+              <SportsCategorySvg />
+              <p>
+                {player.sportsCategory
+                  ? SportsCategoryNameByCategory[player.sportsCategory]
+                  : '-'}
+              </p>
             </InfoLine>
             <CustomLink
               route={`${routes.Players}/${player.rdgaNumber}`}

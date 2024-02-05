@@ -17,10 +17,10 @@ jobs:
         run: yarn
       -
         name: Check ESLint
-        run: yarn lint
+        run: yarn eslint:check
       -
         name: Check StyleLint
-        run: yarn lint:css
+        run: yarn stylelint:check
       -
         name: Check Types
         run: yarn types:check
