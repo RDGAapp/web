@@ -9,6 +9,8 @@ import { getDisplayDate } from 'helpers/dateHelpers';
 import routes from 'helpers/routes';
 import { IPost } from 'types/blog';
 
+const collapsedMaxHeightVh = 50;
+
 const Card = styled.div`
   display: grid;
   gap: 0.8rem;
@@ -59,11 +61,10 @@ const UserText = styled.div`
 
 const Text = styled.div`
   overflow: hidden;
-  display: grid;
-  grid-template-rows: 50vh;
+  max-height: ${collapsedMaxHeightVh}vh;
 
   &[data-expanded='true'] {
-    grid-template-rows: auto;
+    max-height: max-content;
   }
 
   & * {
@@ -91,7 +92,6 @@ const DateComponent = styled.p`
 const Button = styled.button`
   ${ButtonOutlined}
   width: max-content;
-  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export interface IPostCard {
@@ -136,7 +136,13 @@ const PostCard = ({
       <Text
         data-expanded={expanded.toString()}
         ref={(node) => {
-          if (!node || node.scrollHeight > 200) return;
+          if (
+            !node ||
+            node.scrollHeight >
+              (window.innerHeight * collapsedMaxHeightVh) / 100
+          ) {
+            return;
+          }
 
           setExpanded(true);
           setIsSmallPost(true);
@@ -148,9 +154,7 @@ const PostCard = ({
           style={{ display: 'grid', gap: '1rem' }}
         />
       </Text>
-      {!expanded && (
-        <Button onClick={() => setExpanded(true)}>Развернуть</Button>
-      )}
+      {!expanded && <Button onClick={() => setExpanded(true)}>...ещё</Button>}
       {!isSmallPost && expanded && !defaultExpanded && (
         <Button
           onClick={() => setExpanded(false)}

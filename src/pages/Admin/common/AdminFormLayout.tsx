@@ -66,7 +66,6 @@ const Button = styled.button`
 
   font-size: 1rem;
 
-  background-color: ${({ theme }) => theme.colors.background};
   border-radius: 0.5rem;
 `;
 
