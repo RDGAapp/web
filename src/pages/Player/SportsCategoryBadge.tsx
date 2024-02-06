@@ -8,6 +8,7 @@ import {
   SportsCategoryTextColorByCategory,
 } from 'helpers/player/sportCategoryColors';
 import SportsCategoryNameByCategory from 'helpers/player/sportsCategoryNameByCategory';
+import throttle from 'helpers/throttle';
 import { IPlayer } from 'types/player';
 
 import CommonBadgeStyle from './CommonBadgeStyle';
@@ -111,7 +112,7 @@ const SportsCategoryBadge = ({ sportsCategory }: ISportsCategory) => {
   if (!sportsCategory) return undefined;
 
   const onMouseOver: MouseEventHandler<HTMLDivElement> = useCallback(
-    (event) => {
+    throttle((event) => {
       if (!elementRef.current) return;
 
       const box = elementRef.current.getBoundingClientRect();
@@ -124,7 +125,7 @@ const SportsCategoryBadge = ({ sportsCategory }: ISportsCategory) => {
       const rotateX = maxRotate * rotateXPercentage;
       const rotateY = maxRotate * rotateYPercentage;
       elementRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    },
+    }, 100),
     [],
   );
 
