@@ -63,7 +63,7 @@ const Container = styled.div<{ textColor: string; color: string }>`
 
   ${({ theme }) => theme.media.mobile} {
     grid-column: span 1;
-    grid-row: span 1;
+    grid-row: span 2;
     grid-row-start: 2;
   }
 `;

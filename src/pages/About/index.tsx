@@ -212,7 +212,9 @@ const RangeInput = styled.input`
   }
 `;
 
-const campaignStartDate = new Date(`${new Date().getFullYear()}-02-15`);
+const campaignStartDate = new Date(
+  Date.UTC(new Date().getFullYear(), 1, 15, 0, 0, 0, 0),
+);
 
 const About = (): JSX.Element => {
   const [price, setPrice] = useState(500);
