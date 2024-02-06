@@ -17,7 +17,7 @@ const Container = styled.div<{ disabled?: boolean }>`
   ${({ disabled }) =>
     !disabled &&
     `
-      :hover > div, :focus-visible > div {
+      &:hover > div, &:focus-visible > div {
         transform: rotateX(180deg);
       }
     `}
