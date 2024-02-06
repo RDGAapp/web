@@ -14,6 +14,7 @@ import { getPlayer } from 'store/players/thunks';
 
 import CommonBadgeStyle from './CommonBadgeStyle';
 import MainInfo from './MainInfo';
+import SportsCategoryBadge from './SportsCategoryBadge';
 import SubscriptionInfo from './SubscriptionInfo';
 import SystemInfo from './SystemInfo';
 
@@ -79,7 +80,7 @@ const Player = () => {
 
   if (loading) return <LogoLoader />;
 
-  if (error || !player) {
+  if (!player || error) {
     return (
       <>
         <Breadcrumbs />
@@ -96,7 +97,6 @@ const Player = () => {
           name={player.name}
           surname={player.surname}
           town={player.town}
-          sportsCategory={player.sportsCategory}
         />
         <SystemInfo
           number={player.rdgaNumber}
@@ -129,6 +129,7 @@ const Player = () => {
             link='https://www.pdga.com/membership'
           />
         </Subscription>
+        <SportsCategoryBadge sportsCategory={player.sportsCategory} />
       </Container>
     </>
   );

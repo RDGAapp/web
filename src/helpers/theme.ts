@@ -60,7 +60,7 @@ export const darkTheme = {
   colors: {
     ...commonTheme.colors,
     success: 'hsl(120, 75%, 30%)',
-    error: 'hsl(0, 100%, 40%)',
+    error: 'hsl(0, 100%, 30%)',
     warn: 'hsl(50, 100%, 50%)',
     background: 'hsl(0, 0%, 15%)',
     border: 'hsl(0, 0%, 100%)',

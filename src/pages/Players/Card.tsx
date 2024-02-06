@@ -10,31 +10,14 @@ import routes from 'helpers/routes';
 import { IPlayer } from 'types/player';
 
 const Container = styled.div<{ disabled?: boolean }>`
-  @keyframes slide-in {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-
-    to {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-  }
-
   width: 100%;
   height: 8rem;
-
   perspective: 20rem;
-
-  animation: slide-in 500ms linear both;
-  animation-fill-mode: forwards;
-  animation-timeline: view(block 100% 0%);
 
   ${({ disabled }) =>
     !disabled &&
     `
-      &:hover > div, &:focus-visible > div {
+      :hover > div, :focus-visible > div {
         transform: rotateX(180deg);
       }
     `}

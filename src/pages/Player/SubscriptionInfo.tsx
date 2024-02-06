@@ -38,11 +38,18 @@ const Container = styled.div<{ $color?: string }>`
 `;
 
 const ActiveToDate = styled.p`
-  &,
   & > a {
     font-size: 2rem;
     font-weight: bold;
     line-height: 1;
+
+    ${({ theme }) => theme.media.tablet} {
+      font-size: 1.5rem;
+    }
+
+    ${({ theme }) => theme.media.mobile} {
+      font-size: 2rem;
+    }
   }
 
   & > a {
