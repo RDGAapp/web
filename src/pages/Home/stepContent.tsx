@@ -4,7 +4,7 @@ import NewbieStep from 'assets/images/newbie-step.webp';
 import ProStep from 'assets/images/pro-step.webp';
 import TrainStep from 'assets/images/train-step.webp';
 import CustomLink from 'components/CustomLink';
-import RulesLink from 'components/RulesLink';
+import DocLink from 'components/DocLink';
 import SubHeader from 'components/SubHeader';
 import routes from 'helpers/routes';
 import { IStepContent } from 'pages/Home/Step';
@@ -57,7 +57,11 @@ const StepContent: Record<number, IStepContent> = {
           <li>Один диск для игры</li>
           <li>Знание основных правил диск-гольфа</li>
         </ul>
-        <RulesLink />
+        <DocLink
+          text='Скачать правила диск-гольфа'
+          fileUrl='/docs/rules.pdf'
+          fileName='disc-golf-rules'
+        />
       </>
     ),
   },

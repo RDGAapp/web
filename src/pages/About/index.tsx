@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 import RdgaImg from 'assets/images/neutral-rdga.webp';
 import CountdownTimer from 'components/CountdownTimer';
-import CustomLink from 'components/CustomLink';
+import DocLink from 'components/DocLink';
+import InlineLink from 'components/InlineLink';
 import {
   Header,
   TextContainer,
@@ -14,7 +15,6 @@ import {
   ImageContainer,
   CustomImage,
 } from 'components/PageContent';
-import RdgaDocLink from 'components/RdgaDocLink';
 import { PlanContent, PlanContentType } from 'pages/About/planContent';
 import PlanPart from 'pages/About/PlanPart';
 
@@ -285,9 +285,13 @@ const About = (): JSX.Element => {
             рейтинга, отражающего ваши спортивные достижения, а также приобщение
             к развитию диск-гольфа в стране.
           </p>
-          <RdgaDocLink />
+          <DocLink
+            text='Подробнее о РДГА'
+            fileUrl='/docs/rdga.pdf'
+            fileName='rdga-about'
+          />
           <p>
-            <CustomLink
+            <InlineLink
               route='https://www.tinkoff.ru/cf/9mJN821ed7D'
               text='Поддержать РДГА'
               isExternal
@@ -401,7 +405,7 @@ const About = (): JSX.Element => {
             </div>
             <StepNumber>2</StepNumber>
             <Step>
-              <CustomLink
+              <InlineLink
                 route='https://www.tinkoff.ru/cf/9mJN821ed7D'
                 text='Оплати взнос'
                 isExternal
@@ -413,7 +417,7 @@ const About = (): JSX.Element => {
             </div>
             <StepNumber>3</StepNumber>
             <Step>
-              <CustomLink
+              <InlineLink
                 route='https://forms.gle/a8xHLmxURYeZ6ZY47'
                 text='Заполни анкету игрока'
                 isExternal

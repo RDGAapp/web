@@ -5,13 +5,13 @@ import Image1 from 'assets/images/home1.webp';
 import Image2 from 'assets/images/home2.webp';
 import Image3 from 'assets/images/home3.webp';
 import RussiaVideo from 'assets/images/russia-video.webp';
+import DocLink from 'components/DocLink';
 import {
   TextContainer,
   Row,
   ImageContainer,
   CustomImage,
 } from 'components/PageContent';
-import RulesLink from 'components/RulesLink';
 import SubHeader from 'components/SubHeader';
 import Stepper from 'pages/Home/Stepper';
 import VideoLink from 'pages/Home/VideoLink';
@@ -121,7 +121,11 @@ const Home = (): JSX.Element => (
           </li>
           <li>Победил тот, кто совершил меньше всего бросков.</li>
         </ul>
-        <RulesLink />
+        <DocLink
+          text='Скачать правила диск-гольфа'
+          fileUrl='/docs/rules.pdf'
+          fileName='disc-golf-rules'
+        />
       </TextContainer>
     </Row>
     <Stepper />
