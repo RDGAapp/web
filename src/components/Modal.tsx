@@ -16,7 +16,7 @@ const Dialog = styled.dialog`
 
   color: ${({ theme }) => theme.colors.text.primary};
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  background-color: ${({ theme }) => theme.colors.background};
   border: none;
   border-radius: 1rem;
 
