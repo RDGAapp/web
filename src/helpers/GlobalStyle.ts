@@ -159,6 +159,10 @@ const GlobalStyle = createGlobalStyle`
   h6 {
     font-size: 0.7rem;
   }
+
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
 `;
 
 export default GlobalStyle;

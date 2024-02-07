@@ -5,12 +5,16 @@ import styled from 'styled-components';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 
 const Dialog = styled.dialog`
+  overflow: hidden;
+
   width: max-content;
   max-width: 90vw;
   height: max-content;
   max-height: 90vh;
   margin: auto;
   padding: 1.5rem;
+
+  color: ${({ theme }) => theme.colors.text.primary};
 
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border: none;
@@ -20,7 +24,7 @@ const Dialog = styled.dialog`
     background-color: ${({ theme }) => theme.colors.backdrop};
   }
 
-  & > div {
+  &[open] {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -67,21 +71,19 @@ interface IModalProps {
 const Modal = forwardRef<HTMLDialogElement, IModalProps>(
   ({ children, headerText, onClick, onClose }, ref) => (
     <Dialog ref={ref} onClick={onClick} onClose={onClose}>
-      <div>
-        {headerText && (
-          <ModalHeader>
-            <h1>{headerText}</h1>
-            <CrossSvg
-              height={17}
-              width={17}
-              onClick={() =>
-                (ref as RefObject<HTMLDialogElement>)?.current?.close()
-              }
-            />
-          </ModalHeader>
-        )}
-        <Container>{children}</Container>
-      </div>
+      {headerText && (
+        <ModalHeader>
+          <h1>{headerText}</h1>
+          <CrossSvg
+            height={17}
+            width={17}
+            onClick={() =>
+              (ref as RefObject<HTMLDialogElement>)?.current?.close()
+            }
+          />
+        </ModalHeader>
+      )}
+      <Container>{children}</Container>
     </Dialog>
   ),
 );
