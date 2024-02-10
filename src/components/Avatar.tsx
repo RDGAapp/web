@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react';
+
 import styled from 'styled-components';
 
 import AvatarSvg from 'assets/icons/avatar.svg';
@@ -8,9 +10,8 @@ const Background = styled.div<{ disabled: boolean; $image?: string }>`
   align-items: center;
   justify-content: center;
 
-  min-width: 3rem;
-  min-height: 3rem;
-  padding: 1rem;
+  aspect-ratio: 1 / 1;
+  width: 3rem;
 
   color: ${({ theme }) => theme.colors.black};
 
@@ -32,10 +33,16 @@ const Background = styled.div<{ disabled: boolean; $image?: string }>`
 interface IAvatarProps {
   imageSrc?: string;
   disabled?: boolean;
+  style?: CSSProperties;
 }
 
-const Avatar = ({ disabled, imageSrc }: IAvatarProps) => (
-  <Background id='avatar' disabled={disabled ?? false} $image={imageSrc} />
+const Avatar = ({ disabled, imageSrc, style }: IAvatarProps) => (
+  <Background
+    id='avatar'
+    disabled={disabled ?? false}
+    $image={imageSrc}
+    style={style}
+  />
 );
 
 export default Avatar;

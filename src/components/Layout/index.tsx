@@ -3,12 +3,13 @@ import { ReactNode, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router';
 import styled from 'styled-components';
 
-import Banner from 'components/Banner';
-import Footer from 'components/Footer';
-import Header from 'components/Header';
-import SWNotification from 'components/SWNotification';
-import VideoBanner from 'components/VideoBanner';
 import routes from 'helpers/routes';
+
+import Banner from './Banner';
+import Footer from './Footer';
+import Header from './Header';
+import SWNotification from './SWNotification';
+import VideoBanner from './VideoBanner';
 
 const Container = styled.article`
   flex-grow: 1;

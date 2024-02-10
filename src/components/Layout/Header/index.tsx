@@ -12,11 +12,13 @@ import { ReactComponent as InfoSvg } from 'assets/icons/info.svg';
 import { ReactComponent as ShopSvg } from 'assets/icons/shop.svg';
 import { ReactComponent as SponsorSvg } from 'assets/icons/sponsor.svg';
 import CustomLink from 'components/CustomLink';
-import HamburgerButton from 'components/HamburgerButton';
 import Logo from 'components/Logo';
 import { AppSettingsContext } from 'context/AppSettings';
 import Role from 'enums/roles';
 import routes from 'helpers/routes';
+
+import HamburgerButton from './HamburgerButton';
+import TelegramLogin from './TelegramLogin';
 
 const Container = styled.div`
   isolation: isolate;
@@ -61,10 +63,10 @@ const NavigationBackground = styled.div<{ open: boolean }>`
 
   background-color: ${({ theme }) => theme.colors.primary};
   clip-path: ${({ open }) =>
-    open ? 'circle(120vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};
+    open ? 'circle(90vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};
   border-radius: 0 0 1rem 1rem;
 
-  transition: clip-path 0.5s ease-in-out;
+  transition: clip-path 0.3s ease-in-out;
 `;
 
 const LinksList = styled.ul`
@@ -79,15 +81,6 @@ const LinksList = styled.ul`
   @media (width < 554px) {
     margin-top: 5.1rem;
   }
-`;
-
-const UserContainer = styled.div`
-  display: flex;
-  grid-area: contact;
-  align-items: center;
-  justify-content: flex-end;
-
-  padding-right: 1rem;
 `;
 
 const LogoBlock = styled(Link)`
@@ -209,7 +202,7 @@ const Header = (): JSX.Element => {
         <LogoBlock to={routes.Home}>
           <Logo withoutImage textAlign='center' />
         </LogoBlock>
-        <UserContainer />
+        <TelegramLogin />
       </Navigation>
     </Container>
   );
