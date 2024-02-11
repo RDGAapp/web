@@ -108,57 +108,62 @@ const ArrowDown = styled(ArrowSvg)`
   width: 2rem;
 `;
 
-const maxValue = 15_000;
-
 const colorByContentType = {
-  [PlanContentType.Junior]: 'hsl(272, 100%, 50%)',
-  [PlanContentType.Newbie]: 'hsl(110, 45%, 43%)',
-  [PlanContentType.Base]: 'hsl(49, 97%, 50%)',
-  [PlanContentType.Sponsor]: 'hsl(217, 84%, 55%)',
-  [PlanContentType.Maecenas]: 'hsl(352, 100%, 45%)',
+  [PlanContentType.Junior]: 'hsl(0, 0%, 100%)',
+  [PlanContentType.Base]: 'hsl(217, 84%, 55%)',
+  [PlanContentType.VIP]: 'hsl(352, 100%, 45%)',
 };
 
 const planContentTypeMinAmounts = {
   [PlanContentType.Junior]: 500,
-  [PlanContentType.Newbie]: 1_000,
   [PlanContentType.Base]: 1_500,
-  [PlanContentType.Sponsor]: 7_000,
-  [PlanContentType.Maecenas]: 12_000,
+  [PlanContentType.VIP]: 5_000,
 };
 
-const minValue = planContentTypeMinAmounts[PlanContentType.Junior];
+const planContentTypeMinAmountsIncreased = {
+  [PlanContentType.Junior]: 500,
+  [PlanContentType.Base]: 1_700,
+  [PlanContentType.VIP]: 6_000,
+};
+
+const increaseDate = new Date(
+  Date.UTC(new Date().getFullYear(), 2, 31, 21, 0, 0, 0),
+);
+
+const getPlanContentMinAmounts = () =>
+  new Date() >= increaseDate
+    ? planContentTypeMinAmountsIncreased
+    : planContentTypeMinAmounts;
+
+const maxValue = getPlanContentMinAmounts()[PlanContentType.VIP] + 1_000;
+const minValue = getPlanContentMinAmounts()[PlanContentType.Junior];
 const range = maxValue - minValue;
 
 const getLinearGradient = () => {
   const boundaries: Record<PlanContentType, { from: string; to: string }> = {
     [PlanContentType.Junior]: { from: '', to: '' },
-    [PlanContentType.Newbie]: { from: '', to: '' },
     [PlanContentType.Base]: { from: '', to: '' },
-    [PlanContentType.Sponsor]: { from: '', to: '' },
-    [PlanContentType.Maecenas]: { from: '', to: '' },
+    [PlanContentType.VIP]: { from: '', to: '' },
   };
 
   const order = [
     PlanContentType.Junior,
-    PlanContentType.Newbie,
     PlanContentType.Base,
-    PlanContentType.Sponsor,
-    PlanContentType.Maecenas,
+    PlanContentType.VIP,
   ];
+
+  const minAmounts = getPlanContentMinAmounts();
 
   order.forEach((type, index) => {
     boundaries[type].from =
       index === 0
         ? '0%'
-        : `${Math.round(
-            ((planContentTypeMinAmounts[type] - minValue) * 100) / range,
-          )}%`;
+        : `${Math.round(((minAmounts[type] - minValue) * 100) / range)}%`;
     boundaries[type].to =
       index === order.length - 1
         ? '100%'
         : `${Math.round(
-            ((planContentTypeMinAmounts[order[index + 1]] - minValue) * 100) /
-              range,
+            ((minAmounts[order[index + 1]] - minValue) * 100) / range,
           )}%`;
   });
 
@@ -213,7 +218,7 @@ const RangeInput = styled.input`
 `;
 
 const campaignStartDate = new Date(
-  Date.UTC(new Date().getFullYear(), 1, 15, 0, 0, 0, 0),
+  Date.UTC(new Date().getFullYear(), 1, 14, 21, 0, 0, 0),
 );
 
 const About = (): JSX.Element => {
@@ -221,22 +226,18 @@ const About = (): JSX.Element => {
   const [manuallyChanged, setManuallyChanged] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  let lowerPlanType = PlanContentType.Junior;
+  let lowerPlanType: PlanContentType | undefined = PlanContentType.Junior;
   let selectedPlanType = PlanContentType.Junior;
-  if (price >= planContentTypeMinAmounts[PlanContentType.Maecenas]) {
-    selectedPlanType = PlanContentType.Maecenas;
-    lowerPlanType = PlanContentType.Sponsor;
-  } else if (price >= planContentTypeMinAmounts[PlanContentType.Sponsor]) {
-    selectedPlanType = PlanContentType.Sponsor;
+  const minAmounts = getPlanContentMinAmounts();
+  if (price >= minAmounts[PlanContentType.VIP]) {
+    selectedPlanType = PlanContentType.VIP;
     lowerPlanType = PlanContentType.Base;
-  } else if (price >= planContentTypeMinAmounts[PlanContentType.Base]) {
+  } else if (price >= minAmounts[PlanContentType.Base]) {
     selectedPlanType = PlanContentType.Base;
-    lowerPlanType = PlanContentType.Newbie;
-  } else if (price >= planContentTypeMinAmounts[PlanContentType.Newbie]) {
-    selectedPlanType = PlanContentType.Newbie;
     lowerPlanType = PlanContentType.Junior;
-  } else if (price >= planContentTypeMinAmounts[PlanContentType.Junior]) {
+  } else if (price >= minAmounts[PlanContentType.Junior]) {
     selectedPlanType = PlanContentType.Junior;
+    lowerPlanType = undefined;
   }
 
   useEffect(() => {
@@ -308,8 +309,8 @@ const About = (): JSX.Element => {
             <StepNumber>1</StepNumber>
             <Step>Выбери тариф вступления в РДГА</Step>
             <InputDescription>
-              <p>← 500 ₽</p>
-              <p>15000+ ₽ →</p>
+              <p>← {minValue} ₽</p>
+              <p>{maxValue}+ ₽ →</p>
             </InputDescription>
             <RangeInput
               type='range'
@@ -341,63 +342,57 @@ const About = (): JSX.Element => {
                   yesText={`${price} ₽`}
                 />
                 <PlanPart
-                  text='Ежегодная бирка и карта члена РДГА'
-                  isAllowed
-                  yesText='Да'
-                />
-                <PlanPart
-                  text='Маркер-диск РДГА'
+                  text='Ремувка (текстильный брелок) с указанием номера РДГА и года членства'
                   isSame={
-                    PlanContent[selectedPlanType].markerType ===
-                    PlanContent[lowerPlanType].markerType
+                    PlanContent[selectedPlanType].charmType ===
+                    (lowerPlanType ? PlanContent[lowerPlanType].charmType : '')
                   }
-                  isAllowed={!!PlanContent[selectedPlanType].markerType}
-                  yesText={PlanContent[selectedPlanType].markerType}
-                />
-                <PlanPart
-                  text='Личный онлайн диск-гольф наставник'
-                  isSame={
-                    PlanContent[selectedPlanType].buddy ===
-                    PlanContent[lowerPlanType].buddy
-                  }
-                  isAllowed={PlanContent[selectedPlanType].buddy}
-                />
-                <PlanPart
-                  text='Индивидуальная форма РДГА'
-                  isSame={
-                    PlanContent[selectedPlanType].individualUniform ===
-                    PlanContent[lowerPlanType].individualUniform
-                  }
-                  isAllowed={!!PlanContent[selectedPlanType].individualUniform}
-                  yesText={PlanContent[selectedPlanType].individualUniform}
+                  isAllowed={!!PlanContent[selectedPlanType].charmType}
+                  yesText={PlanContent[selectedPlanType].charmType}
                 />
                 <PlanPart
                   text='Знаки достижений (браслеты, значки)'
-                  isSame
+                  isSame={selectedPlanType !== PlanContentType.Junior}
                   isAllowed
                 />
                 <PlanPart
-                  text='Разовая скидка на диски'
-                  isSame={
-                    PlanContent[selectedPlanType].discsDiscount !==
-                    PlanContent[lowerPlanType].discsDiscount
-                  }
-                  isAllowed={PlanContent[selectedPlanType].discsDiscount}
-                  yesText='10% на покупку до 3 дисков у партнеров РДГА'
-                />
-                <PlanPart
                   text='Скидка на корзины'
-                  isSame
+                  isSame={selectedPlanType !== PlanContentType.Junior}
                   isAllowed
                   yesText='20% на покупку корзин у партнёров РДГА'
                 />
                 <PlanPart
                   text='Скидка на участие в кэмпах РДГА'
-                  isSame
+                  isSame={selectedPlanType !== PlanContentType.Junior}
                   isAllowed
                   yesText='50%'
                 />
-                <PlanPart text='Публикация рейтинга игрока' isSame isAllowed />
+                <PlanPart
+                  text='Скидка на участие в ПроТуре (каждый этап)'
+                  isSame={selectedPlanType !== PlanContentType.Junior}
+                  isAllowed
+                  yesText='500р'
+                />
+                <PlanPart
+                  text='Участие в розыгрышах и акциях РДГА'
+                  isSame={selectedPlanType !== PlanContentType.Junior}
+                  isAllowed
+                />
+                <PlanPart
+                  text='Ведение статистики спортивных достижений игрока (при участии в аккредитованных турнирах)'
+                  isSame={selectedPlanType !== PlanContentType.Junior}
+                  isAllowed
+                />
+                <PlanPart
+                  text='Электронные брошюры'
+                  isSame={selectedPlanType !== PlanContentType.Junior}
+                  isAllowed
+                />
+                <PlanPart
+                  text='Включение в список Членов клуба РДГА на ресурсах РДГА'
+                  isSame={selectedPlanType !== PlanContentType.Junior}
+                  isAllowed
+                />
               </div>
             </PlanCardContainer>
             <div>
@@ -406,19 +401,7 @@ const About = (): JSX.Element => {
             <StepNumber>2</StepNumber>
             <Step>
               <InlineLink
-                route='https://www.tinkoff.ru/cf/9mJN821ed7D'
-                text='Оплати взнос'
-                isExternal
-              />
-              <span>указав ФИО и текст &quot;2023&quot;</span>
-            </Step>
-            <div>
-              <ArrowDown />
-            </div>
-            <StepNumber>3</StepNumber>
-            <Step>
-              <InlineLink
-                route='https://forms.gle/a8xHLmxURYeZ6ZY47'
+                route='https://discgolf.bitrix24site.ru/new24/'
                 text='Заполни анкету игрока'
                 isExternal
               />
@@ -426,11 +409,24 @@ const About = (): JSX.Element => {
             <div>
               <ArrowDown />
             </div>
+            <StepNumber>3</StepNumber>
+            <Step>
+              Оплати взнос с помощи встроенной в анкету игрока формы оплаты
+            </Step>
+            <div>
+              <ArrowDown />
+            </div>
             <StepNumber>4</StepNumber>
             <Step>
-              Получи пакет члена РДГА на федеральном мероприятии или у
-              региональных представителей РДГА.
+              В течение 3 дней получи подтверждение регистрации на указанную в
+              анкете игрока электронную почту, при необходимости уточни анкетные
+              данные
             </Step>
+            <div>
+              <ArrowDown />
+            </div>
+            <StepNumber>5</StepNumber>
+            <Step>Получи пакет члена РДГА на федеральном мероприятии</Step>
           </PlanContainer>
         </>
       ) : (

@@ -1,47 +1,21 @@
 export enum PlanContentType {
   Junior = 'Юниор',
-  Newbie = 'Новичок',
   Base = 'Базовый',
-  Sponsor = 'Спонсор',
-  Maecenas = 'Меценат',
+  VIP = 'VIP',
 }
 
 export interface IPlanContent {
-  markerType: string;
-  buddy: boolean;
-  individualUniform: string;
-  discsDiscount: boolean;
+  charmType: string;
 }
 
 export const PlanContent: Record<PlanContentType, IPlanContent> = {
   [PlanContentType.Junior]: {
-    markerType: 'Белый',
-    buddy: true,
-    individualUniform: '',
-    discsDiscount: false,
-  },
-  [PlanContentType.Newbie]: {
-    markerType: 'Белый',
-    buddy: true,
-    individualUniform: '',
-    discsDiscount: true,
+    charmType: 'Белый',
   },
   [PlanContentType.Base]: {
-    markerType: 'Белый',
-    buddy: false,
-    individualUniform: '',
-    discsDiscount: true,
+    charmType: 'Синий',
   },
-  [PlanContentType.Sponsor]: {
-    markerType: 'Синий',
-    buddy: true,
-    individualUniform: 'Вариант 1',
-    discsDiscount: true,
-  },
-  [PlanContentType.Maecenas]: {
-    markerType: 'Красный',
-    buddy: true,
-    individualUniform: 'Вариант 2',
-    discsDiscount: true,
+  [PlanContentType.VIP]: {
+    charmType: 'Красный (из ювелирной бронзы)',
   },
 };
