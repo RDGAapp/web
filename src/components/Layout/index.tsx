@@ -1,6 +1,7 @@
 import { ReactNode, useLayoutEffect } from 'react';
 
 import { useLocation } from 'react-router';
+import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
 
 import routes from 'helpers/routes';
@@ -10,6 +11,8 @@ import Footer from './Footer';
 import Header from './Header';
 import SWNotification from './SWNotification';
 import VideoBanner from './VideoBanner';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const Container = styled.article`
   flex-grow: 1;
@@ -66,7 +69,11 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <div
-      style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}
+      style={{
+        minHeight: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
       <SWNotification />
       <Header />
@@ -76,6 +83,15 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
         {children}
       </Container>
       <Footer />
+      <ToastContainer
+        position='bottom-right'
+        hideProgressBar
+        closeOnClick
+        theme='colored'
+        newestOnTop
+        stacked
+        style={{ fontSize: '0.8rem' }}
+      />
     </div>
   );
 };

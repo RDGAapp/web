@@ -1,5 +1,5 @@
 import {
-  ReactElement,
+  ReactNode,
   createContext,
   useEffect,
   useMemo,
@@ -23,7 +23,7 @@ export const AppSettingsContext = createContext<{
 });
 
 interface IAppSettingsProviderProps {
-  children: ReactElement;
+  children: ReactNode;
 }
 
 const updateRoles = (newRoles: Role[]) => {

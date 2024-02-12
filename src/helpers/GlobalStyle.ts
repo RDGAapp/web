@@ -100,12 +100,15 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
 
-    font-family: "${({ theme }) => theme.fontFamily.primary}", sans-serif;
-    font-size: 20px;
     color: inherit;
     text-wrap: pretty;
 
     outline: none;
+  }
+
+  html {
+    font-size: 20px;
+    font-family: "${({ theme }) => theme.fontFamily.primary}", sans-serif;
 
     ${({ theme }) => theme.media.mobile} {
       font-size: 16px;

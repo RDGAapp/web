@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
@@ -92,6 +93,43 @@ const AvatarContainer = styled.button`
   }
 `;
 
+const Loader = styled.span`
+  transform: translateZ(1px);
+  display: inline-block;
+
+  &::after {
+    content: '';
+
+    display: inline-block;
+
+    width: 48px;
+    height: 48px;
+    margin: 8px;
+
+    background: #fff;
+    border-radius: 50%;
+
+    animation: coin-flip 4.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  @keyframes coin-flip {
+    0% {
+      transform: rotateY(0deg);
+      animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+
+    50% {
+      transform: rotateY(1800deg);
+      animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    }
+
+    100% {
+      transform: rotateY(3600deg);
+      animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+  }
+`;
+
 const TelegramButton = styled.button`
   cursor: pointer;
 
@@ -132,25 +170,31 @@ const botId = '6406095532';
 
 const TelegramLogin = () => {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState<null | ITelegramResponse>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { isMobile } = useMatchMedia();
 
-  const handleTelegramAuth = () =>
+  const handleTelegramAuth = () => {
+    setLoading(true);
     window.Telegram.Login.auth(
       { bot_id: botId, request_access: 'write' },
-      (data: ITelegramResponse) => {
+      async (data: ITelegramResponse) => {
         if (!data) {
-          console.log('ERROR: something went wrong');
+          setLoading(false);
+          toast.error('Ошибка авторизации, повторите позже');
+          return;
         }
 
-        // Validate data here
+        // TODO: send data to backend and set cookie there
         console.log(data);
         setUserData(data);
+        setLoading(false);
       },
     );
+  };
 
   // hide menu on outside click
   useEffect(() => {
@@ -171,6 +215,14 @@ const TelegramLogin = () => {
     return () => document.removeEventListener('click', handleClick);
   }, [open]);
 
+  if (loading) {
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
+  }
+
   return (
     <Container ref={containerRef}>
       {userData ? (
@@ -189,7 +241,6 @@ const TelegramLogin = () => {
                 height: '100%',
                 width: '100%',
                 opacity: open ? 0 : 1,
-                scale: 2,
               }}
               imageSrc={userData.photo_url}
             />
@@ -197,7 +248,7 @@ const TelegramLogin = () => {
         </>
       ) : (
         <TelegramButton type='button' onClick={handleTelegramAuth}>
-          <TelegramSvg width='2.5rem' />
+          <TelegramSvg style={{ width: '2.5rem' }} />
           {isMobile ? '' : 'Войти'}
         </TelegramButton>
       )}
