@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
 import Avatar from 'components/Avatar';
+import { AppSettingsContext } from 'context/AppSettings';
 import useMatchMedia from 'hooks/useMatchMedia';
 import { ITelegram, ITelegramResponse } from 'types/telegram';
 
@@ -175,6 +176,8 @@ const TelegramLogin = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const { featureFlags } = useContext(AppSettingsContext);
+
   const { isMobile } = useMatchMedia();
 
   const handleTelegramAuth = () => {
@@ -214,6 +217,10 @@ const TelegramLogin = () => {
 
     return () => document.removeEventListener('click', handleClick);
   }, [open]);
+
+  if (!featureFlags.telegramLogin) {
+    return <Container />;
+  }
 
   if (loading) {
     return (

@@ -131,10 +131,12 @@ const Players = (): JSX.Element => {
   const [town, setTown] = useState<TTown>();
   const [onlyActive, setOnlyActive] = useState<boolean>(true);
 
+  const commonSearchParams = { pageNumber, surname, town, onlyActive };
+
   const { Dialog: FiltersDialog, openModal: openFiltersModal } = useDialog({
     headerText: 'Фильтры по игрокам',
     onClose: () => {
-      dispatch(getPlayers({ pageNumber: 1, surname, town, onlyActive }));
+      dispatch(getPlayers({ ...commonSearchParams, pageNumber: 1 }));
       setPageNumber(1);
     },
   });
@@ -145,7 +147,7 @@ const Players = (): JSX.Element => {
 
   useDebounce(
     () => {
-      dispatch(getPlayers({ pageNumber: 1, surname, town, onlyActive }));
+      dispatch(getPlayers({ ...commonSearchParams, pageNumber: 1 }));
       setPageNumber(1);
     },
     1000,
@@ -153,7 +155,7 @@ const Players = (): JSX.Element => {
   );
 
   useEffect(() => {
-    dispatch(getPlayers({ pageNumber, surname, town, onlyActive }));
+    dispatch(getPlayers({ ...commonSearchParams }));
   }, []);
 
   const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -167,7 +169,7 @@ const Players = (): JSX.Element => {
 
   const onPageNumberChange = (newPageNumber: number) => {
     setPageNumber(newPageNumber);
-    dispatch(getPlayers({ pageNumber: newPageNumber, surname, town }));
+    dispatch(getPlayers({ ...commonSearchParams, pageNumber: newPageNumber }));
     scrollToPageHeader();
   };
 
