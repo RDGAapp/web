@@ -133,12 +133,6 @@ const Players = (): JSX.Element => {
 
   const { Dialog: FiltersDialog, openModal: openFiltersModal } = useDialog({
     headerText: 'Фильтры по игрокам',
-    onClose: () => {
-      dispatch(
-        getPlayers({ pageNumber: 1, surname, town, onlyActive }),
-      );
-      setPageNumber(1);
-    },
   });
 
   const scrollToPageHeader = () => {
@@ -151,7 +145,7 @@ const Players = (): JSX.Element => {
       setPageNumber(1);
     },
     1000,
-    [surname],
+    [surname, town, onlyActive],
   );
 
   useEffect(() => {
