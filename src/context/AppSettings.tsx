@@ -1,12 +1,12 @@
-import {
-  ReactElement,
-  createContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 
 import Role from 'enums/roles';
+
+const defaultFeatureFlags = {
+  telegramLogin: false,
+};
+
+type TFeatureFlag = keyof typeof defaultFeatureFlags;
 
 export const AppSettingsContext = createContext<{
   roles: Set<Role>;
@@ -14,21 +14,60 @@ export const AppSettingsContext = createContext<{
   removeRole: (value: Role) => void;
   removeAllRoles: () => void;
   theme: 'light' | 'dark';
+  featureFlags: typeof defaultFeatureFlags;
+  toggleFeatureFlag: (value: TFeatureFlag) => void;
 }>({
   roles: new Set(),
   addRoles: () => {},
   removeRole: () => {},
   removeAllRoles: () => {},
   theme: 'light',
+  featureFlags: defaultFeatureFlags,
+  toggleFeatureFlag: () => {},
 });
 
 interface IAppSettingsProviderProps {
-  children: ReactElement;
+  children: ReactNode;
 }
 
+const getCurrentAppSettings = (): {
+  roles: Role[];
+  featureFlags: typeof defaultFeatureFlags;
+} | null => {
+  const current = localStorage.getItem('appSettings');
+  try {
+    return current ? JSON.parse(current) : null;
+  } catch (error) {
+    return null;
+  }
+};
+
 const updateRoles = (newRoles: Role[]) => {
-  localStorage.setItem('appSettings', JSON.stringify({ roles: newRoles }));
+  const current = getCurrentAppSettings();
+
+  localStorage.setItem(
+    'appSettings',
+    JSON.stringify({ ...current, roles: newRoles }),
+  );
   return new Set(newRoles);
+};
+
+const toggleFeatureFlags = (featureFlagName: TFeatureFlag) => {
+  const current = getCurrentAppSettings();
+
+  const newFeatureFlags = {
+    ...current?.featureFlags,
+    [featureFlagName]: !current?.featureFlags?.[featureFlagName] ?? true,
+  };
+
+  localStorage.setItem(
+    'appSettings',
+    JSON.stringify({
+      ...current,
+      featureFlags: newFeatureFlags,
+    }),
+  );
+  return newFeatureFlags;
 };
 
 const colorSchemeMatchMedia = window.matchMedia('(prefers-color-scheme: dark)');
@@ -49,6 +88,10 @@ const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>(
     getPreferredColorScheme(),
   );
+  const [featureFlags, setFeatureFlags] = useState(
+    JSON.parse(localStorage.getItem('appSettings') || '{}').featureFlags ??
+      defaultFeatureFlags,
+  );
 
   const contextValue = useMemo(
     () => ({
@@ -62,8 +105,11 @@ const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
           return updateRoles([...value]);
         }),
       removeAllRoles: () => updateRoles([]),
+      featureFlags,
+      toggleFeatureFlag: (value: TFeatureFlag) =>
+        setFeatureFlags(toggleFeatureFlags(value)),
     }),
-    [roles, theme],
+    [roles, theme, featureFlags],
   );
 
   useEffect(() => {

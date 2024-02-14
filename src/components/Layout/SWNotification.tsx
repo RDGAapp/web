@@ -18,8 +18,7 @@ const Container = styled.div`
   text-align: center;
 
   opacity: 0;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border: 1px solid currentColor;
+  background-color: ${({ theme }) => theme.colors.additional};
   border-radius: 2rem;
 
   transition: all 1s ease-in-out;

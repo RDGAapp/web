@@ -47,15 +47,18 @@ const Blog = lazy(() => import('pages/Blog'));
 const BlogPost = lazy(() => import('pages/BlogPost'));
 
 const App = (): JSX.Element => {
-  const { Dialog: AdminDialog, openModal: openAdminModal } = useDialog({
-    headerText: 'Feature-флаги',
-  });
+  const { Dialog: FeatureFlagsDialog, openModal: openFeatureFlagsModal } =
+    useDialog({
+      headerText: 'Feature-флаги',
+    });
 
   const {
     roles,
     addRoles,
     removeRole,
     theme: currentTheme,
+    featureFlags,
+    toggleFeatureFlag,
   } = useContext(AppSettingsContext);
 
   const isAdmin = roles.has(Role.Admin);
@@ -70,14 +73,14 @@ const App = (): JSX.Element => {
         event.metaKey &&
         event.shiftKey
       ) {
-        openAdminModal();
+        openFeatureFlagsModal();
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
 
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [openAdminModal]);
+  }, [openFeatureFlagsModal]);
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
@@ -222,54 +225,85 @@ const App = (): JSX.Element => {
               <Route path='*' element={<NotFound />} />
             </Routes>
           </Suspense>
-          <AdminDialog>
+          <FeatureFlagsDialog>
             <div
               style={{
                 display: 'flex',
-                gap: '10px',
-                alignItems: 'center',
-                cursor: 'pointer',
+                flexDirection: 'column',
+                gap: '0.5rem',
               }}
-              onClick={() =>
-                isAdmin ? removeRole(Role.Admin) : addRoles([Role.Admin])
-              }
             >
-              <input
-                id='isAdmin'
-                type='checkbox'
-                name='isAdmin'
-                checked={isAdmin}
-                onChange={() => {}}
-                style={{ cursor: 'pointer' }}
-              />
-              <label htmlFor='isAdmin' style={{ cursor: 'pointer' }}>
-                Режим администратора
-              </label>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '10px',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  id='isAdmin'
+                  type='checkbox'
+                  name='isAdmin'
+                  checked={isAdmin}
+                  onChange={() =>
+                    isAdmin ? removeRole(Role.Admin) : addRoles([Role.Admin])
+                  }
+                  style={{ cursor: 'pointer' }}
+                />
+                <label htmlFor='isAdmin' style={{ cursor: 'pointer' }}>
+                  Режим администратора
+                </label>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '10px',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  id='isAuthor'
+                  type='checkbox'
+                  name='isAuthor'
+                  checked={isAuthor}
+                  onChange={() =>
+                    isAuthor ? removeRole(Role.Author) : addRoles([Role.Author])
+                  }
+                  style={{ cursor: 'pointer' }}
+                />
+                <label htmlFor='isAuthor' style={{ cursor: 'pointer' }}>
+                  Режим автора
+                </label>
+              </div>
+              {Object.keys(featureFlags).map((key) => (
+                <div
+                  key={key}
+                  style={{
+                    display: 'flex',
+                    gap: '10px',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <input
+                    id={key}
+                    type='checkbox'
+                    name={key}
+                    checked={featureFlags[key as keyof typeof featureFlags]}
+                    onChange={() =>
+                      toggleFeatureFlag(key as keyof typeof featureFlags)
+                    }
+                    style={{ cursor: 'pointer' }}
+                  />
+                  <label htmlFor={key} style={{ cursor: 'pointer' }}>
+                    {key}
+                  </label>
+                </div>
+              ))}
             </div>
-            <div
-              style={{
-                display: 'flex',
-                gap: '10px',
-                alignItems: 'center',
-                cursor: 'pointer',
-              }}
-              onClick={() =>
-                isAuthor ? removeRole(Role.Author) : addRoles([Role.Author])
-              }
-            >
-              <input
-                id='isAuthor'
-                type='checkbox'
-                name='isAuthor'
-                checked={isAuthor}
-                onChange={() => {}}
-                style={{ cursor: 'pointer' }}
-              />
-              <label htmlFor='isAuthor' style={{ cursor: 'pointer' }}>
-                Режим автора
-              </label>
-            </div>
-          </AdminDialog>
+          </FeatureFlagsDialog>
         </Layout>
       </BrowserRouter>
     </ThemeProvider>

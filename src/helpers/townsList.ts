@@ -9,6 +9,7 @@ const towns: TTown[] = [
   'Псков',
   'Санкт-Петербург',
   'Тольятти',
+  'Набережные Челны'
 ];
 
 export default towns;
