@@ -291,13 +291,13 @@ const About = (): JSX.Element => {
             fileUrl='/docs/rdga.pdf'
             fileName='rdga-about'
           />
-          <p>
+          {/* <p>
             <InlineLink
               route='https://www.tinkoff.ru/cf/9mJN821ed7D'
               text='Поддержать РДГА'
               isExternal
             />
-          </p>
+          </p> */}
         </TextContainer>
       </Row>
       {currentDate >= campaignStartDate ? (
@@ -349,6 +349,14 @@ const About = (): JSX.Element => {
                   }
                   isAllowed={!!PlanContent[selectedPlanType].charmType}
                   yesText={PlanContent[selectedPlanType].charmType}
+                />
+                <PlanPart
+                  text='Брелок из ювелирной бронзы'
+                  isSame={
+                    PlanContent[selectedPlanType].bronzeCharm ===
+                    (lowerPlanType ? PlanContent[lowerPlanType].bronzeCharm : '')
+                  }
+                  isAllowed={!!PlanContent[selectedPlanType].bronzeCharm}
                 />
                 <PlanPart
                   text='Знаки достижений (браслеты, значки)'

@@ -6,16 +6,20 @@ export enum PlanContentType {
 
 export interface IPlanContent {
   charmType: string;
+  bronzeCharm: boolean;
 }
 
 export const PlanContent: Record<PlanContentType, IPlanContent> = {
   [PlanContentType.Junior]: {
     charmType: 'Белый',
+    bronzeCharm: false,
   },
   [PlanContentType.Base]: {
     charmType: 'Синий',
+    bronzeCharm: false,
   },
   [PlanContentType.VIP]: {
-    charmType: 'Красный (из ювелирной бронзы)',
+    charmType: 'Красный',
+    bronzeCharm: true,
   },
 };
