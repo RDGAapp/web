@@ -96,18 +96,19 @@ const AvatarContainer = styled.button`
 
 const Loader = styled.span`
   transform: translateZ(1px);
-  display: inline-block;
+  display: flex;
 
   &::after {
     content: '';
 
     display: inline-block;
 
-    width: 48px;
-    height: 48px;
-    margin: 8px;
+    width: 2.5rem;
+    height: 2.5rem;
 
-    background: #fff;
+    line-height: 1;
+
+    background: linear-gradient(90deg, hsl(201deg 76% 47%), hsl(198deg 75% 55%));
     border-radius: 50%;
 
     animation: coin-flip 4.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
