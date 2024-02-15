@@ -15,7 +15,6 @@ const UpdatePlayer = (): JSX.Element => {
   const [rdgaRating, setRdgaRating] = useState('');
   const [rdgaRatingChange, setRdgaRatingChange] = useState('0');
   const [town, setTown] = useState('');
-  const [email, setEmail] = useState('');
   const [pdgaNumber, setPdgaNumber] = useState('');
   const [metrixNumber, setMetrixNumber] = useState('');
   const [priority, setPriority] = useState('0');
@@ -55,13 +54,6 @@ const UpdatePlayer = (): JSX.Element => {
       onChange: setTown,
       label: 'Город',
       type: 'text',
-      required: true,
-    },
-    {
-      value: email,
-      onChange: setEmail,
-      label: 'Email',
-      type: 'email',
       required: true,
     },
     {
@@ -121,7 +113,6 @@ const UpdatePlayer = (): JSX.Element => {
     rdgaRating: Number(rdgaRating) || 0,
     rdgaRatingChange: Number(rdgaRatingChange) || 0,
     town,
-    email,
     pdgaNumber: Number(pdgaNumber) || null,
     metrixNumber: Number(metrixNumber) || null,
     priority: Number(priority) || 0,
@@ -139,7 +130,6 @@ const UpdatePlayer = (): JSX.Element => {
     setRdgaRating(json.rdgaRating);
     setRdgaRatingChange(json.rdgaRatingChange);
     setTown(json.town);
-    setEmail(json.email);
     setPdgaNumber(json.pdgaNumber || '');
     setMetrixNumber(json.metrixNumber || '');
     setPriority(json.priority);
