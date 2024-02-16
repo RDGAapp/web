@@ -109,7 +109,7 @@ const StepContent: Record<number, IStepContent> = {
         </p>
         <CustomLink
           route={`${routes.About}${routes.Join}`}
-          text='Вступить в РДГА'
+          text='Вступить в клуб РДГА'
         />
         <p>Ближайший турнир можно найти на странице турниров</p>
         <CustomLink route={routes.Calendar} text='Найти ближайший турнир' />

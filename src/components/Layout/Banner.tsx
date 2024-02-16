@@ -65,7 +65,7 @@ const bannerContent = new Map<string, Record<string, string>>([
     routes.About,
     {
       image: PlayersBackground,
-      text: 'Вступить в РДГА',
+      text: 'Вступить в клуб РДГА',
       link: `${routes.About}${routes.Join}`,
     },
   ],
@@ -81,7 +81,7 @@ const bannerContent = new Map<string, Record<string, string>>([
     routes.Players,
     {
       image: PlayersBackground,
-      text: 'Вступить в РДГА',
+      text: 'Вступить в клуб РДГА',
       link: `${routes.About}${routes.Join}`,
     },
   ],
@@ -89,7 +89,7 @@ const bannerContent = new Map<string, Record<string, string>>([
     routes.Calendar,
     {
       image: SponsorBackground,
-      text: 'Вступить в РДГА',
+      text: 'Вступить в клуб РДГА',
       link: `${routes.About}${routes.Join}`,
     },
   ],
@@ -105,7 +105,7 @@ const bannerContent = new Map<string, Record<string, string>>([
 
 const defaultBannerContent = {
   image: MainBackground,
-  text: 'Вступить в РДГА',
+  text: 'Вступить в клуб РДГА',
   link: `${routes.About}${routes.Join}`,
 };
 

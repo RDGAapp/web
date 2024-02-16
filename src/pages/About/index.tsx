@@ -307,7 +307,7 @@ const About = (): JSX.Element => {
           </Header>
           <PlanContainer>
             <StepNumber>1</StepNumber>
-            <Step>Выбери тариф вступления в РДГА</Step>
+            <Step>Выбери тариф вступления в клуб РДГА</Step>
             <InputDescription>
               <p>← {minValue} ₽</p>
               <p>{maxValue}+ ₽ →</p>

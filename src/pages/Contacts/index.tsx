@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 import PresidentImg from 'assets/images/president.webp';
-import Contacts from 'components/Contacts';
 import PageHeader from 'components/PageHeader';
+
+import Contacts from './Contacts';
 
 const PresidentContainer = styled.div`
   overflow: hidden;

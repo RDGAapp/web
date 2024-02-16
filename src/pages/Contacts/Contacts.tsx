@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import Contact from 'components/Contact';
 import contacts from 'helpers/contacts';
+
+import Contact from './Contact';
 
 const Container = styled.div`
   display: grid;

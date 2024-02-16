@@ -31,11 +31,11 @@ const contacts: IContact[] = [
   {
     Image: MscSvg,
     town: 'Москва',
-    phone: '+7 (916) 780 81 68',
-    email: 'Discgolf.msk@gmail.com',
+    phone: '+7 (909) 988 44 22',
+    email: 'discdog@mail.ru',
     site: 'https://discgolf.me',
     instagram: 'https://www.instagram.com/discgolf.msk',
-    telegram: 'https://t.me/discgolfpro',
+    telegram: 'https://t.me/discgolfmsk',
     vk: 'https://vk.com/discgolfmsk',
   },
   {
