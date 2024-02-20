@@ -144,7 +144,11 @@ const Card = ({ player }: Props) => {
     <Container disabled={disabled}>
       <CardContainer>
         <FrontSide disabled={disabled}>
-          <Avatar disabled={disabled} style={{ minWidth: '3rem' }} />
+          <Avatar
+            disabled={disabled}
+            imageSrc={player.avatarUrl}
+            style={{ minWidth: '3rem' }}
+          />
           <TextContainer>
             <MainInformation title={`${player.name} ${player.surname || ''}`}>
               {`${player.name} ${player.surname || ''}`}

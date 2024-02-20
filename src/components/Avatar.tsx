@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import AvatarSvg from 'assets/icons/avatar.svg';
 
-const Background = styled.div<{ disabled: boolean; $image?: string }>`
+const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
   display: flex;
   flex: 0;
   align-items: center;
@@ -31,7 +31,7 @@ const Background = styled.div<{ disabled: boolean; $image?: string }>`
 `;
 
 interface IAvatarProps {
-  imageSrc?: string;
+  imageSrc?: string | null;
   disabled?: boolean;
   style?: CSSProperties;
 }

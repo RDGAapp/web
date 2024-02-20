@@ -13,6 +13,7 @@ export interface IPlayer {
   priority: number;
   activeTo: string;
   sportsCategory: SportsCategory | null;
+  avatarUrl: string | null;
 }
 export interface IPlayerExtended extends IPlayer {
   metrixRating: number | null;

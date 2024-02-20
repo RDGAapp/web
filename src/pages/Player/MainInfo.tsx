@@ -54,11 +54,12 @@ interface IMainInfoProps {
   name: IPlayer['name'];
   surname: IPlayer['surname'];
   town: IPlayer['town'];
+  avatarUrl: IPlayer['avatarUrl'];
 }
 
-const MainInfo = ({ name, surname, town }: IMainInfoProps) => (
+const MainInfo = ({ name, surname, town, avatarUrl }: IMainInfoProps) => (
   <Container>
-    <Avatar />
+    <Avatar imageSrc={avatarUrl} />
     <h1>
       {surname}
       {surname && <br />}

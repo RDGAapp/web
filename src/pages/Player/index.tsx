@@ -97,6 +97,7 @@ const Player = () => {
           name={player.name}
           surname={player.surname}
           town={player.town}
+          avatarUrl={player.avatarUrl}
         />
         <SystemInfo
           number={player.rdgaNumber}

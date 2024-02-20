@@ -39,7 +39,8 @@ const Copyright = styled.p`
 
     transition: text-decoration-color 0.2s linear;
 
-    &:hover, &:focus-visible {
+    &:hover,
+    &:focus-visible {
       text-decoration-color: ${({ theme }) => theme.colors.secondary};
     }
   }
@@ -62,7 +63,7 @@ const Footer = (): JSX.Element => {
       <Container>
         <Logo big={isDesktop} />
         <CopyrightContainer>
-          <Copyright>© АССОЦИАЦИЯ ИГРОКОВ В ДИСК-ГОЛЬФ</Copyright>
+          <Copyright>© Федерация Флаинг Диска Свердловской области</Copyright>
           <Copyright>
             Наши соц сети:{' '}
             <a href='https://vk.com/discgolf' rel='noreferrer' target='_blank'>

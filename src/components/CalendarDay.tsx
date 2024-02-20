@@ -91,27 +91,35 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
   const shouldOpenModal = isSmallMobile && tournaments.length > 0;
 
   return (
-    <Container
-      key={`day-${day.toDateString()}`}
-      style={{
-        color: getDayTextColor(),
-        backgroundColor: getDayColor(day, month.monthName, month.shouldGreyOut),
-        cursor: shouldOpenModal ? 'pointer' : 'default',
-      }}
-      onClick={shouldOpenModal ? openModal : undefined}
-    >
-      {day.getDate()}
-      <TournamentCirclesContainer>
-        {tournaments.map((tournament) => (
-          <TournamentCircle
-            key={`calendar-${tournament.name}-${tournament.town}`}
-            title={tournament.name}
-            border={
-              TournamentColorByType[tournament.tournamentType as TournamentType]
-            }
-          />
-        ))}
-      </TournamentCirclesContainer>
+    <>
+      <Container
+        key={`day-${day.toDateString()}`}
+        style={{
+          color: getDayTextColor(),
+          backgroundColor: getDayColor(
+            day,
+            month.monthName,
+            month.shouldGreyOut,
+          ),
+          cursor: shouldOpenModal ? 'pointer' : 'default',
+        }}
+        onClick={shouldOpenModal ? openModal : undefined}
+      >
+        {day.getDate()}
+        <TournamentCirclesContainer>
+          {tournaments.map((tournament) => (
+            <TournamentCircle
+              key={`calendar-${tournament.name}-${tournament.town}`}
+              title={tournament.name}
+              border={
+                TournamentColorByType[
+                  tournament.tournamentType as TournamentType
+                ]
+              }
+            />
+          ))}
+        </TournamentCirclesContainer>
+      </Container>
       {tournaments.length > 0 && (
         <Dialog>
           <TournamentsList>
@@ -130,7 +138,7 @@ const CalendarDay = ({ day, month, tournaments }: Props) => {
           </TournamentsList>
         </Dialog>
       )}
-    </Container>
+    </>
   );
 };
 
