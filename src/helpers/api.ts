@@ -144,7 +144,7 @@ export const register = async (
   rdgaNumber: number,
   telegramData: ITelegramResponse,
 ) => {
-  const response = await fetchRdgaApi('/authorization/registration', {
+  const response = await fetchRdgaApi('/authorization/register', {
     method: 'POST',
     body: JSON.stringify({ ...telegramData, rdgaNumber }),
   });
