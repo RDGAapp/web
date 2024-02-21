@@ -13,7 +13,7 @@ const StepContent: Record<number, IStepContent> = {
   1: {
     backgroundImage: MasterStep,
     header: 'Мастер-класс',
-    subheader: 'Попробовать и полюбить',
+    subheader: 'Попробуй и полюби',
     description: [
       `
       В ${new Date()
@@ -38,7 +38,7 @@ const StepContent: Record<number, IStepContent> = {
   2: {
     backgroundImage: TrainStep,
     header: 'Потренироваться',
-    subheader: 'Играть самому и с друзьями',
+    subheader: 'Играй сам и с друзьями',
     description: [
       `
         Парки для игры в диск-гольф обычно общедоступны.
@@ -69,7 +69,7 @@ const StepContent: Record<number, IStepContent> = {
   3: {
     backgroundImage: NewbieStep,
     header: 'Начинающий',
-    subheader: 'Участвовать в турнирах!',
+    subheader: 'Участвуй в турнирах!',
     description: [
       `Ты только начинаешь играть в диск-гольф? Тогда обязательно приходи на наши турниры!`,
       `

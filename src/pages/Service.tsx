@@ -8,6 +8,7 @@ import {
   Row,
   TextContainer,
 } from 'components/PageContent';
+import SubHeader from 'components/SubHeader';
 
 const Service = (): JSX.Element => (
   <PageContainer>
@@ -16,7 +17,7 @@ const Service = (): JSX.Element => (
         <CustomImage src={DiscsShopImg} $position='left' />
       </ImageContainer>
       <TextContainer $position='right'>
-        <Header>Диски для точных попаданий и невероятных траекторий!</Header>
+        <SubHeader>Диски для точных попаданий и невероятных траекторий!</SubHeader>
         <p>
           Возможно твой первый диск был куплен в спорттоварах или найден на
           антрисолях, в лучшем случае это диск из Декатлона. Начало положено и
@@ -37,7 +38,7 @@ const Service = (): JSX.Element => (
     </Row>
     <Row $imagePosition='right'>
       <TextContainer $position='left'>
-        <Header>Предоставляемые услуги:</Header>
+        <SubHeader>Предоставляемые услуги:</SubHeader>
         <ul>
           <li>
             Проведение диск-гольф турниров (семейных, корпоративных, дружеских);
@@ -45,9 +46,9 @@ const Service = (): JSX.Element => (
           <li>Индивидуальные и групповые тренировки;</li>
           <li>Секции.</li>
         </ul>
-        <Header>
+        <SubHeader>
           Корпоративному сектору в любой точке РФ и стран СНГ мы предлагаем:
-        </Header>
+        </SubHeader>
         <ul>
           <li>
             Проектирование, оборудование тренировочных и профессиональных

@@ -6,7 +6,9 @@ import styled, { RuleSet, css } from 'styled-components';
 
 import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
 
-const LinkStyles = css`
+type TImagePosition = 'left' | 'right';
+
+export const CustomLinkStyles = css<{ $imagePosition?: TImagePosition }>`
   position: relative;
 
   overflow: hidden;
@@ -29,7 +31,8 @@ const LinkStyles = css`
 
     position: absolute;
     bottom: 0;
-    left: 2rem;
+    ${({ $imagePosition }) => $imagePosition === 'left' && 'left: 2rem;'};
+    ${({ $imagePosition }) => $imagePosition === 'right' && 'right: 2rem;'};
 
     display: block;
 
@@ -47,7 +50,8 @@ const LinkStyles = css`
 
     position: absolute;
     top: 50%;
-    left: -1rem;
+    ${({ $imagePosition }) => $imagePosition === 'left' && 'left: -1rem;'};
+    ${({ $imagePosition }) => $imagePosition === 'right' && 'right: -1rem;'};
     translate: 0 -50%;
 
     width: 17px;
@@ -61,7 +65,10 @@ const LinkStyles = css`
   &:hover,
   &:focus-visible {
     scale: 1.1;
-    padding-left: 2rem;
+    ${({ $imagePosition }) =>
+      $imagePosition === 'left' && 'padding-left: 2rem;'};
+    ${({ $imagePosition }) =>
+      $imagePosition === 'right' && 'padding-right: 2rem;'};
 
     &::before {
       width: calc(100% - 2rem);
@@ -70,7 +77,8 @@ const LinkStyles = css`
 
     & svg {
       pointer-events: all;
-      left: 0.5rem;
+      ${({ $imagePosition }) => $imagePosition === 'left' && 'left: 0.5rem;'};
+      ${({ $imagePosition }) => $imagePosition === 'right' && 'right: 0.5rem;'};
       opacity: 1;
     }
   }
@@ -80,13 +88,18 @@ const LinkStyles = css`
   }
 `;
 
-const StyledLink = styled(Link)<{ $styles?: RuleSet }>`
-  ${LinkStyles}
+interface ILinkProps {
+  $styles?: RuleSet;
+  $imagePosition?: TImagePosition;
+}
+
+const StyledLink = styled(Link)<ILinkProps>`
+  ${CustomLinkStyles}
   ${({ $styles }) => $styles}
 `;
 
-const StyledHashLink = styled(HashLink)<{ $styles?: RuleSet }>`
-  ${LinkStyles}
+const StyledHashLink = styled(HashLink)<ILinkProps>`
+  ${CustomLinkStyles}
   ${({ $styles }) => $styles}
 `;
 
@@ -97,6 +110,7 @@ interface ICustomLinkProps {
   onClick?: () => void;
   CustomImage?: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string }>;
   styles?: RuleSet;
+  imagePosition?: TImagePosition;
 }
 
 const CustomLink = ({
@@ -106,6 +120,7 @@ const CustomLink = ({
   isExternal = false,
   CustomImage,
   styles,
+  imagePosition = 'left',
 }: ICustomLinkProps) =>
   route.includes('#') ? (
     <StyledHashLink
@@ -116,6 +131,7 @@ const CustomLink = ({
       target={isExternal ? '_blank' : ''}
       smooth
       $styles={styles}
+      $imagePosition={imagePosition}
     >
       <>
         {CustomImage ? <CustomImage /> : <ArrowSvg />}
@@ -130,6 +146,7 @@ const CustomLink = ({
       rel={isExternal ? 'noreferrer' : ''}
       target={isExternal ? '_blank' : ''}
       $styles={styles}
+      $imagePosition={imagePosition}
     >
       <>
         {CustomImage ? <CustomImage /> : <ArrowSvg />}

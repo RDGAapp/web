@@ -1,8 +1,12 @@
-import getApiUrl from 'helpers/getApiUrl';
+import { toast } from 'react-toastify';
+
+import fetchRdgaApi from 'helpers/fetchRdgaApi';
 import { IPost } from 'types/blog';
 import { IPlayer } from 'types/player';
+import { ITelegramResponse } from 'types/telegram';
 import { ITournament } from 'types/tournament';
 import { TTown } from 'types/town';
+import { IUserBaseInfo } from 'types/user';
 
 export const getPlayers = (
   pageNumber: number,
@@ -16,23 +20,20 @@ export const getPlayers = (
   query.append('town', town ?? '');
   query.append('onlyActive', (onlyActive ?? true).toString());
 
-  return fetch(getApiUrl(`/players?${query.toString()}`));
+  return fetchRdgaApi(`/players?${query.toString()}`);
 };
 
 export const getPlayer = (playerRdgaNumber: number) =>
-  fetch(getApiUrl(`/players/${playerRdgaNumber}`));
+  fetchRdgaApi(`/players/${playerRdgaNumber}`);
 
 export const createPlayer = (player: IPlayer) =>
-  fetch(getApiUrl('/players'), {
+  fetchRdgaApi('/players', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(player),
   });
 
 export const deletePlayer = (playerRdgaNumber: number) =>
-  fetch(getApiUrl(`/players/${playerRdgaNumber}`), {
+  fetchRdgaApi(`/players/${playerRdgaNumber}`, {
     method: 'DELETE',
   });
 
@@ -40,34 +41,25 @@ export const updatePlayer = (
   player: Omit<IPlayer, 'rdgaNumber'>,
   rdgaNumber: number,
 ) =>
-  fetch(getApiUrl(`/players/${rdgaNumber}`), {
+  fetchRdgaApi(`/players/${rdgaNumber}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(player),
   });
 
 export const updatePlayerRating = (rdgaNumber: number, newRating: number) =>
-  fetch(getApiUrl(`/players/${rdgaNumber}/rdgaRating`), {
+  fetchRdgaApi(`/players/${rdgaNumber}/rdgaRating`, {
     method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify({ rating: newRating }),
   });
 
-export const getTournaments = () => fetch(getApiUrl(`/tournaments`));
+export const getTournaments = () => fetchRdgaApi('/tournaments');
 
 export const getTournament = (code: string) =>
-  fetch(getApiUrl(`/tournaments/${code}`));
+  fetchRdgaApi(`/tournaments/${code}`);
 
 export const createTournament = (tournament: ITournament) =>
-  fetch(getApiUrl('/tournaments'), {
+  fetchRdgaApi('/tournaments', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(tournament),
   });
 
@@ -75,49 +67,40 @@ export const updateTournament = (
   tournament: Omit<ITournament, 'code'>,
   code: string,
 ) =>
-  fetch(getApiUrl(`/tournaments/${code}`), {
+  fetchRdgaApi(`/tournaments/${code}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(tournament),
   });
 
 export const deleteTournament = (tournamentCode: string) =>
-  fetch(getApiUrl(`/tournaments/${tournamentCode}`), {
+  fetchRdgaApi(`/tournaments/${tournamentCode}`, {
     method: 'DELETE',
   });
 
 export const activatePlayer = (rdgaNumber: number) =>
-  fetch(getApiUrl(`/players/${rdgaNumber}/activate`), {
+  fetchRdgaApi(`/players/${rdgaNumber}/activate`, {
     method: 'PATCH',
   });
 
 export const updatePlayerRatingMultiple = (
   values: { rdgaNumber: number; rating: number }[],
 ) =>
-  fetch(getApiUrl(`/players/rdgaRating/multiple`), {
+  fetchRdgaApi('/players/rdgaRating/multiple', {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(values),
   });
 
 export const getPosts = (page: number) => {
   const query = new URLSearchParams();
   query.append('page', page.toString());
-  return fetch(getApiUrl(`/posts?${query.toString()}`));
+  return fetchRdgaApi(`/posts?${query.toString()}`);
 };
 
-export const getPost = (code: string) => fetch(getApiUrl(`/posts/${code}`));
+export const getPost = (code: string) => fetchRdgaApi(`/posts/${code}`);
 
 export const createPost = (post: Omit<IPost, 'createdAt'>) =>
-  fetch(getApiUrl('/posts'), {
+  fetchRdgaApi('/posts', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(post),
   });
 
@@ -125,15 +108,52 @@ export const updatePost = (
   post: Omit<IPost, 'createdAt' | 'code'>,
   code: string,
 ) =>
-  fetch(getApiUrl(`/posts/${code}`), {
+  fetchRdgaApi(`/posts/${code}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(post),
   });
 
 export const deletePost = (tournamentCode: string) =>
-  fetch(getApiUrl(`/posts/${tournamentCode}`), {
+  fetchRdgaApi(`/posts/${tournamentCode}`, {
     method: 'DELETE',
   });
+
+export const login = async (telegramData: ITelegramResponse) => {
+  const response = await fetchRdgaApi('/authorization/login', {
+    method: 'POST',
+    body: JSON.stringify(telegramData),
+  });
+
+  if (response.status === 200) {
+    return (await response.json()) as IUserBaseInfo;
+  }
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  const text = await response.text();
+  console.error('Что-то пошло не так: ', text);
+  toast.error('Что-то пошло не так, повторите позже');
+  return null;
+};
+
+export const logout = async () => fetchRdgaApi('/authorization/logout');
+
+export const register = async (
+  rdgaNumber: number,
+  telegramData: ITelegramResponse,
+) => {
+  const response = await fetchRdgaApi('/authorization/registration', {
+    method: 'POST',
+    body: JSON.stringify({ ...telegramData, rdgaNumber }),
+  });
+
+  if (response.status !== 200) {
+    const text = await response.text();
+    toast.error(`Что-то пошло не так: ${text}`);
+    return null;
+  }
+
+  return (await response.json()) as IUserBaseInfo;
+};

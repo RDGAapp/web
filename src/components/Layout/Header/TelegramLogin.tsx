@@ -1,13 +1,28 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import {
+  FormEventHandler,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
+import { ReactComponent as PlayersSvg } from 'assets/icons/avatar.svg';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
+import { ReactComponent as LogoutSvg } from 'assets/icons/logout.svg';
 import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
 import Avatar from 'components/Avatar';
+import CustomLink, { CustomLinkStyles } from 'components/CustomLink';
+import InlineLink from 'components/InlineLink';
 import { AppSettingsContext } from 'context/AppSettings';
+import { login, logout, register } from 'helpers/api';
+import routes from 'helpers/routes';
+import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setUser } from 'store/user/slice';
 import { ITelegram, ITelegramResponse } from 'types/telegram';
 
 const Container = styled.div`
@@ -108,7 +123,11 @@ const Loader = styled.span`
 
     line-height: 1;
 
-    background: linear-gradient(90deg, hsl(201deg 76% 47%), hsl(198deg 75% 55%));
+    background: linear-gradient(
+      90deg,
+      hsl(201deg 76% 47%),
+      hsl(198deg 75% 55%)
+    );
     border-radius: 50%;
 
     animation: coin-flip 4.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -162,18 +181,83 @@ const TelegramButton = styled.button`
   }
 `;
 
+const RegistrationInfoContainer = styled.div`
+  display: grid;
+  gap: 0.5rem;
+
+  width: 100%;
+  max-width: 25rem;
+  margin: auto;
+
+  & input {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid ${({ theme }) => theme.colors.text.primary};
+    border-radius: 2rem;
+  }
+
+  & button {
+    cursor: pointer;
+
+    width: max-content;
+    margin: auto;
+    padding: 0.5rem 1rem;
+
+    background-color: ${({ theme }) => theme.colors.lighterBackground};
+    border: none;
+    border-radius: 2rem;
+
+    transition: all 0.3s ease-in-out;
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: transparent;
+      filter: contrast(0.2);
+    }
+
+    &:hover:not(:disabled) {
+      color: ${({ theme }) => theme.colors.black};
+      background-color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+
+  & form {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  ${({ theme }) => theme.media.mobile} {
+    text-align: center;
+  }
+`;
+
+const LogoutButton = styled.button<{ $imagePosition: 'right' }>`
+  ${CustomLinkStyles}
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+`;
+
 declare global {
   interface Window {
     Telegram: ITelegram;
   }
 }
 
-const botId = '6406095532';
+const botId = process.env.REACT_APP_TELEGRAM_BOT_ID ?? '';
 
 const TelegramLogin = () => {
+  const dispatch = useAppDispatch();
+
+  const { user } = useAppSelector((state) => state.user);
+
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState<null | ITelegramResponse>(null);
+  const [registering, setRegistering] = useState(false);
+  const [telegramData, setTelegramData] = useState<null | ITelegramResponse>(
+    null,
+  );
+  const [rdgaNumber, setRdgaNumber] = useState<string>('');
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -181,21 +265,37 @@ const TelegramLogin = () => {
 
   const { isMobile } = useMatchMedia();
 
+  const {
+    Dialog: RegistrationDialog,
+    openModal: openRegistrationModal,
+    closeModal: closeRegistrationModal,
+  } = useDialog({
+    headerText: 'Необходима регистрация',
+    onClose: () => setTelegramData(null),
+  });
+
   const handleTelegramAuth = () => {
     setLoading(true);
     window.Telegram.Login.auth(
       { bot_id: botId, request_access: 'write' },
       async (data: ITelegramResponse) => {
-        if (!data) {
-          setLoading(false);
-          toast.error('Ошибка авторизации, повторите позже');
-          return;
-        }
+        try {
+          if (!data) {
+            toast.error('Ошибка телеграмма, повторите позже');
+            return;
+          }
 
-        // TODO: send data to backend and set cookie there
-        console.log(data);
-        setUserData(data);
-        setLoading(false);
+          const dataFromApi = await login(data);
+          setTelegramData(data);
+          if (dataFromApi) {
+            dispatch(setUser(dataFromApi));
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error(`Что-то пошло не так, повторите позже`);
+        } finally {
+          setLoading(false);
+        }
       },
     );
   };
@@ -219,6 +319,44 @@ const TelegramLogin = () => {
     return () => document.removeEventListener('click', handleClick);
   }, [open]);
 
+  useEffect(() => {
+    if (user || !telegramData) return;
+
+    openRegistrationModal();
+  }, [user, telegramData]);
+
+  const logoutFn = async () => {
+    try {
+      setOpen(false);
+      setLoading(true);
+      await logout();
+      dispatch(setUser(null));
+    } catch (error) {
+      console.error(error);
+      toast.error(`Что-то пошло не так, повторите позже`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const registerFn: FormEventHandler = async (event) => {
+    event.preventDefault();
+
+    if (!telegramData) return;
+
+    try {
+      setRegistering(true);
+      const dataFromApi = await register(Number(rdgaNumber), telegramData);
+      dispatch(setUser(dataFromApi));
+      closeRegistrationModal();
+    } catch (error) {
+      console.error(error);
+      toast.error(`Что-то пошло не так, повторите позже`);
+    } finally {
+      setRegistering(false);
+    }
+  };
+
   if (!featureFlags.telegramLogin) {
     return <Container />;
   }
@@ -233,13 +371,25 @@ const TelegramLogin = () => {
 
   return (
     <Container ref={containerRef}>
-      {userData ? (
+      {user ? (
         <>
           <Background open={open}>
             <LinksList>
-              <button type='button' onClick={() => setUserData(null)}>
+              <CustomLink
+                route={`${routes.Players}/${user.rdgaNumber}`}
+                text='Профиль'
+                imagePosition='right'
+                CustomImage={PlayersSvg}
+                onClick={() => setOpen(false)}
+              />
+              <LogoutButton
+                type='button'
+                onClick={logoutFn}
+                $imagePosition='right'
+              >
+                <LogoutSvg />
                 Выйти
-              </button>
+              </LogoutButton>
             </LinksList>
           </Background>
           <AvatarContainer onClick={() => setOpen((current) => !current)}>
@@ -250,7 +400,7 @@ const TelegramLogin = () => {
                 width: '100%',
                 opacity: open ? 0 : 1,
               }}
-              imageSrc={userData.photo_url}
+              imageSrc={user.avatarUrl}
             />
           </AvatarContainer>
         </>
@@ -260,6 +410,34 @@ const TelegramLogin = () => {
           {isMobile ? '' : 'Войти'}
         </TelegramButton>
       )}
+      <RegistrationDialog>
+        <RegistrationInfoContainer>
+          <p>В нашей системе нет записи с таким пользователем Telegram.</p>
+          <p>
+            Если еще не оформил членство, то можешь это сделать по{' '}
+            <InlineLink
+              route={`${routes.About}${routes.Join}`}
+              text='данной ссылке'
+            />
+          </p>
+          <p>
+            Если уже оформлял членство и карточка игрока видна на сайте, введи
+            свой номер РДГА ниже:
+          </p>
+          <form onSubmit={registerFn}>
+            <input
+              type='number'
+              placeholder='Номер РДГА'
+              min={1}
+              value={rdgaNumber}
+              onChange={(e) => setRdgaNumber(e.target.value)}
+            />
+            <button type='submit' disabled={!rdgaNumber || registering}>
+              Связать
+            </button>
+          </form>
+        </RegistrationInfoContainer>
+      </RegistrationDialog>
     </Container>
   );
 };
