@@ -347,6 +347,8 @@ const TelegramLogin = () => {
     try {
       setRegistering(true);
       const dataFromApi = await register(Number(rdgaNumber), telegramData);
+      if (!dataFromApi) return;
+
       dispatch(setUser(dataFromApi));
       closeRegistrationModal();
     } catch (error) {
