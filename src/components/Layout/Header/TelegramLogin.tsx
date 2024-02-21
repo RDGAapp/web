@@ -396,8 +396,8 @@ const TelegramLogin = () => {
             <CrossSvg style={{ opacity: open ? 1 : 0 }} />
             <Avatar
               style={{
-                height: '100%',
-                width: '100%',
+                minHeight: '100%',
+                minWidth: '100%',
                 opacity: open ? 0 : 1,
               }}
               imageSrc={user.avatarUrl}

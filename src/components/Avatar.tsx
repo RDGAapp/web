@@ -9,12 +9,12 @@ const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
   flex: 0;
   align-items: center;
   justify-content: center;
-  
+
   aspect-ratio: 1 / 1;
   min-width: 3rem;
-  
+
   color: ${({ theme }) => theme.colors.black};
-  
+
   background-color: ${({ theme }) => theme.colors.primary};
   background-image: url('${({ $image }) => $image ?? AvatarSvg}');
   background-repeat: no-repeat;

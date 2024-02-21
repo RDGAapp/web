@@ -43,6 +43,7 @@ const User = styled.div`
   align-items: center;
 
   width: 100%;
+  padding: 0.2rem;
 `;
 
 const UserText = styled.div`
