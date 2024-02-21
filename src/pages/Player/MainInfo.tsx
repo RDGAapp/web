@@ -20,7 +20,6 @@ const Container = styled.div`
   & #avatar {
     min-width: 7rem;
     min-height: 7rem;
-    outline: 0.2rem solid ${({ theme }) => theme.colors.primary};
   }
 
   & > h1 {
