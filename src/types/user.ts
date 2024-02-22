@@ -1,4 +1,4 @@
 export interface IUserBaseInfo {
-  rdgaNumber: number | null;
+  rdgaNumber: number;
   avatarUrl: string | null;
 }

@@ -17,12 +17,11 @@ import Avatar from 'components/Avatar';
 import CustomLink, { CustomLinkStyles } from 'components/CustomLink';
 import InlineLink from 'components/InlineLink';
 import { AppSettingsContext } from 'context/AppSettings';
-import { login, logout, register } from 'helpers/api';
 import routes from 'helpers/routes';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { setUser } from 'store/user/slice';
+import { login, logout, register, authorize } from 'store/user/thunk';
 import { ITelegram, ITelegramResponse } from 'types/telegram';
 
 const Container = styled.div`
@@ -249,11 +248,10 @@ const botId = process.env.REACT_APP_TELEGRAM_BOT_ID ?? '';
 const TelegramLogin = () => {
   const dispatch = useAppDispatch();
 
-  const { user } = useAppSelector((state) => state.user);
+  const { user, loading, registering } = useAppSelector((state) => state.user);
 
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [registering, setRegistering] = useState(false);
+  const [tgLoading, setTgLoading] = useState(false);
   const [telegramData, setTelegramData] = useState<null | ITelegramResponse>(
     null,
   );
@@ -275,30 +273,30 @@ const TelegramLogin = () => {
   });
 
   const handleTelegramAuth = () => {
-    setLoading(true);
+    setTgLoading(true);
     window.Telegram.Login.auth(
       { bot_id: botId, request_access: 'write' },
       async (data: ITelegramResponse) => {
-        try {
-          if (!data) {
-            toast.error('Ошибка телеграмма, повторите позже');
-            return;
-          }
+        setTgLoading(false);
 
-          const dataFromApi = await login(data);
-          setTelegramData(data);
-          if (dataFromApi) {
-            dispatch(setUser(dataFromApi));
-          }
-        } catch (error) {
-          console.error(error);
-          toast.error(`Что-то пошло не так, повторите позже`);
-        } finally {
-          setLoading(false);
+        if (!data) {
+          toast.error('Ошибка телеграмма, повторите позже');
+          return;
         }
+
+        await dispatch(
+          login({
+            telegramData: data,
+            callback: () => setTelegramData(data),
+          }),
+        );
       },
     );
   };
+
+  useEffect(() => {
+    dispatch(authorize());
+  }, []);
 
   // hide menu on outside click
   useEffect(() => {
@@ -326,17 +324,8 @@ const TelegramLogin = () => {
   }, [user, telegramData]);
 
   const logoutFn = async () => {
-    try {
-      setOpen(false);
-      setLoading(true);
-      await logout();
-      dispatch(setUser(null));
-    } catch (error) {
-      console.error(error);
-      toast.error(`Что-то пошло не так, повторите позже`);
-    } finally {
-      setLoading(false);
-    }
+    setOpen(false);
+    dispatch(logout());
   };
 
   const registerFn: FormEventHandler = async (event) => {
@@ -344,26 +333,20 @@ const TelegramLogin = () => {
 
     if (!telegramData) return;
 
-    try {
-      setRegistering(true);
-      const dataFromApi = await register(Number(rdgaNumber), telegramData);
-      if (!dataFromApi) return;
-
-      dispatch(setUser(dataFromApi));
-      closeRegistrationModal();
-    } catch (error) {
-      console.error(error);
-      toast.error(`Что-то пошло не так, повторите позже`);
-    } finally {
-      setRegistering(false);
-    }
+    dispatch(
+      register({
+        rdgaNumber: Number(rdgaNumber),
+        telegramData,
+        callback: closeRegistrationModal,
+      }),
+    );
   };
 
   if (!featureFlags.telegramLogin) {
     return <Container />;
   }
 
-  if (loading) {
+  if (loading || tgLoading) {
     return (
       <Container>
         <Loader />
@@ -420,6 +403,7 @@ const TelegramLogin = () => {
             <InlineLink
               route={`${routes.About}${routes.Join}`}
               text='данной ссылке'
+              onClick={closeRegistrationModal}
             />
           </p>
           <p>
