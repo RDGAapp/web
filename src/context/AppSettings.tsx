@@ -2,9 +2,7 @@ import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
 
 import Role from 'enums/roles';
 
-const defaultFeatureFlags = {
-  telegramLogin: false,
-};
+const defaultFeatureFlags = {};
 
 type TFeatureFlag = keyof typeof defaultFeatureFlags;
 
@@ -70,6 +68,21 @@ const toggleFeatureFlags = (featureFlagName: TFeatureFlag) => {
   return newFeatureFlags;
 };
 
+const getFeatureFlags = () => {
+  const featureFlagsFromLs = JSON.parse(
+    localStorage.getItem('appSettings') || '{}',
+  ).featureFlags;
+
+  if (!featureFlagsFromLs) return defaultFeatureFlags;
+
+  const featureFlagsToReturn: Record<string, boolean> = {};
+  Object.keys(defaultFeatureFlags).forEach((key) => {
+    featureFlagsToReturn[key] = featureFlagsFromLs[key] ?? false;
+  });
+
+  return featureFlagsToReturn as typeof defaultFeatureFlags;
+};
+
 const colorSchemeMatchMedia = window.matchMedia('(prefers-color-scheme: dark)');
 
 const getPreferredColorScheme = () => {
@@ -88,10 +101,7 @@ const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>(
     getPreferredColorScheme(),
   );
-  const [featureFlags, setFeatureFlags] = useState(
-    JSON.parse(localStorage.getItem('appSettings') || '{}').featureFlags ??
-      defaultFeatureFlags,
-  );
+  const [featureFlags, setFeatureFlags] = useState(getFeatureFlags());
 
   const contextValue = useMemo(
     () => ({

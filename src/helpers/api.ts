@@ -133,7 +133,7 @@ export const login = async (telegramData: ITelegramResponse) => {
   }
 
   const text = await response.text();
-  console.error('Что-то пошло не так: ', text);
+  console.error('Something went wrong: ', text);
   toast.error('Что-то пошло не так, повторите позже');
   return null;
 };
@@ -151,7 +151,8 @@ export const register = async (
 
   if (response.status !== 200) {
     const text = await response.text();
-    toast.error(`Что-то пошло не так: ${text}`);
+    console.error('Something went wrong:', text)
+    toast.error('Регистрация не завершилась успехом');
     return null;
   }
 

@@ -1,6 +1,5 @@
 import {
   FormEventHandler,
-  useContext,
   useEffect,
   useRef,
   useState,
@@ -16,7 +15,6 @@ import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
 import Avatar from 'components/Avatar';
 import CustomLink, { CustomLinkStyles } from 'components/CustomLink';
 import InlineLink from 'components/InlineLink';
-import { AppSettingsContext } from 'context/AppSettings';
 import routes from 'helpers/routes';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
@@ -259,8 +257,6 @@ const TelegramLogin = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { featureFlags } = useContext(AppSettingsContext);
-
   const { isMobile } = useMatchMedia();
 
   const {
@@ -341,10 +337,6 @@ const TelegramLogin = () => {
       }),
     );
   };
-
-  if (!featureFlags.telegramLogin) {
-    return <Container />;
-  }
 
   if (loading || tgLoading) {
     return (

@@ -54,6 +54,7 @@ const PlanCardContainer = styled.div`
 
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 2rem;
+  box-shadow: 0 0 1px ${({ theme }) => theme.colors.black};
 `;
 
 const PlanCardHeader = styled.div`
@@ -78,7 +79,7 @@ const PlanCardHeader = styled.div`
 
     font-size: 3rem;
     font-style: italic;
-    color: ${({ theme }) => theme.colors.text.contrast};
+    color: ${({ theme }) => theme.colors.black};
   }
 `;
 
@@ -354,7 +355,9 @@ const About = (): JSX.Element => {
                   text='Брелок из ювелирной бронзы'
                   isSame={
                     PlanContent[selectedPlanType].bronzeCharm ===
-                    (lowerPlanType ? PlanContent[lowerPlanType].bronzeCharm : '')
+                    (lowerPlanType
+                      ? PlanContent[lowerPlanType].bronzeCharm
+                      : '')
                   }
                   isAllowed={!!PlanContent[selectedPlanType].bronzeCharm}
                 />
