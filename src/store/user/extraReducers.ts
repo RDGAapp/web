@@ -72,11 +72,10 @@ const authorizeReducers = (builder: ActionReducerMapBuilder<UserState>) =>
     });
 
 export default (builder: ActionReducerMapBuilder<UserState>) => {
-  let builderWithReducers = builder;
-  builderWithReducers = loginReducers(builderWithReducers);
-  builderWithReducers = logoutReducers(builderWithReducers);
-  builderWithReducers = registerReducers(builderWithReducers);
-  builderWithReducers = authorizeReducers(builderWithReducers);
+  loginReducers(builder);
+  logoutReducers(builder);
+  registerReducers(builder);
+  authorizeReducers(builder);
 
-  return builderWithReducers;
+  return builder;
 };
