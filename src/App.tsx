@@ -231,6 +231,7 @@ const App = (): JSX.Element => {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '0.5rem',
+                overflow: 'hidden',
               }}
             >
               <div
