@@ -16,9 +16,9 @@ const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
   color: ${({ theme }) => theme.colors.black};
 
   background-color: ${({ theme }) => theme.colors.primary};
-  background-image: url('${({ $image }) => $image ?? AvatarSvg}');
+  background-image: url('${({ $image }) => $image}'), url('${AvatarSvg}');
   background-repeat: no-repeat;
-  background-position: ${({ $image }) => ($image ? 'center' : 'center 10px')};
+  background-position: center, center 10px;
   background-size: cover;
   border-radius: 100vh;
   outline: 0.2rem solid ${({ theme }) => theme.colors.primary};
