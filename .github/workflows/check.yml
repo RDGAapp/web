@@ -9,24 +9,18 @@ jobs:
   check-code:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v2
-      -
-        name: Install dependencies
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
         run: yarn
-      -
-        name: Check ESLint
+      - name: Check ESLint
         run: yarn eslint:check
-      -
-        name: Check StyleLint
+      - name: Check StyleLint
         run: yarn stylelint:check
-      -
-        name: Check Types
+      - name: Check Types
         run: yarn types:check
-      -
-        name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v3.0.0
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v5
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
