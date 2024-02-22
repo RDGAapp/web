@@ -159,7 +159,7 @@ export const register = async (
 };
 
 export const authorize = async () => {
-  const response = await fetchRdgaApi('/authorization/logout');
+  const response = await fetchRdgaApi('/authorization/authorize');
   if (response.status !== 200) return null;
 
   return (await response.json()) as IUserBaseInfo;
