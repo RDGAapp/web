@@ -18,6 +18,8 @@ export function register() {
       });
 
       wb.messageSkipWaiting();
+      notification.style.top = '-10rem';
+      notification.style.opacity = '0';
     };
   };
 

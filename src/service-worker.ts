@@ -2,7 +2,7 @@
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
-// import * as navigationPreload from 'workbox-navigation-preload';
+import * as navigationPreload from 'workbox-navigation-preload';
 import { precacheAndRoute } from 'workbox-precaching';
 import { RangeRequestsPlugin } from 'workbox-range-requests';
 import { registerRoute } from 'workbox-routing';
@@ -14,7 +14,7 @@ import {
 
 clientsClaim();
 
-// navigationPreload.enable();
+navigationPreload.enable();
 
 declare const self: ServiceWorkerGlobalScope;
 
