@@ -51,21 +51,21 @@ registerRoute(
 // );
 
 // Images cache
-// registerRoute(
-//   ({ request }) => request.destination === 'image',
-//   new CacheFirst({
-//     cacheName: 'images',
-//     plugins: [
-//       new CacheableResponsePlugin({
-//         statuses: [200],
-//       }),
-//       new ExpirationPlugin({
-//         maxEntries: 50,
-//         maxAgeSeconds: 60 * 60 * 24 * 30,
-//       }),
-//     ],
-//   }),
-// );
+registerRoute(
+  ({ request }) => request.destination === 'image',
+  new CacheFirst({
+    cacheName: 'images',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
+  }),
+);
 
 // Video cache
 registerRoute(
@@ -74,13 +74,13 @@ registerRoute(
     cacheName: 'videos',
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200, 206],
+        statuses: [200],
       }),
+      new RangeRequestsPlugin(),
       new ExpirationPlugin({
         maxEntries: 10,
         maxAgeSeconds: 60 * 60 * 24 * 30,
       }),
-      new RangeRequestsPlugin(),
     ],
   }),
 );
