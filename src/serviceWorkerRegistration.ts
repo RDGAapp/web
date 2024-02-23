@@ -13,8 +13,6 @@ export function register() {
     notification.style.top = '1.5rem';
     notification.style.opacity = '1';
     notification.onclick = () => {
-      // eslint-disable-next-line no-console
-      console.log('SW: click notification');
       wb.addEventListener('controlling', () => {
         // eslint-disable-next-line no-console
         console.log('SW: controlling event');
