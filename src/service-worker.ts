@@ -1,13 +1,13 @@
 /// <reference lib="webworker" />
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
-// import { ExpirationPlugin } from 'workbox-expiration';
+import { ExpirationPlugin } from 'workbox-expiration';
 // import * as navigationPreload from 'workbox-navigation-preload';
 import { precacheAndRoute } from 'workbox-precaching';
 // import { RangeRequestsPlugin } from 'workbox-range-requests';
 import { registerRoute } from 'workbox-routing';
 import {
-  // CacheFirst,
+  CacheFirst,
   NetworkFirst,
   StaleWhileRevalidate,
 } from 'workbox-strategies';
@@ -94,21 +94,21 @@ registerRoute(
 );
 
 // Google fonts cache
-// registerRoute(
-//   ({ url }) => url.origin === 'https://fonts.gstatic.com',
-//   new CacheFirst({
-//     cacheName: 'google-fonts-webfonts',
-//     plugins: [
-//       new CacheableResponsePlugin({
-//         statuses: [0, 200],
-//       }),
-//       new ExpirationPlugin({
-//         maxAgeSeconds: 60 * 60 * 24 * 365,
-//         maxEntries: 10,
-//       }),
-//     ],
-//   }),
-// );
+registerRoute(
+  ({ url }) => url.origin === 'https://fonts.gstatic.com',
+  new CacheFirst({
+    cacheName: 'google-fonts-webfonts',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+        maxEntries: 10,
+      }),
+    ],
+  }),
+);
 
 // API responses
 registerRoute(
