@@ -35,20 +35,20 @@ registerRoute(
 );
 
 // CSS and JS cache
-registerRoute(
-  ({ request }) =>
-    request.destination === 'style' ||
-    request.destination === 'script' ||
-    request.destination === 'worker',
-  new StaleWhileRevalidate({
-    cacheName: 'assets',
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [200],
-      }),
-    ],
-  }),
-);
+// registerRoute(
+//   ({ request }) =>
+//     request.destination === 'style' ||
+//     request.destination === 'script' ||
+//     request.destination === 'worker',
+//   new StaleWhileRevalidate({
+//     cacheName: 'assets',
+//     plugins: [
+//       new CacheableResponsePlugin({
+//         statuses: [200],
+//       }),
+//     ],
+//   }),
+// );
 
 // Images cache
 registerRoute(
