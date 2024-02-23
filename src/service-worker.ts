@@ -9,7 +9,7 @@ import { registerRoute } from 'workbox-routing';
 import {
   // CacheFirst,
   NetworkFirst,
-  // StaleWhileRevalidate,
+  StaleWhileRevalidate,
 } from 'workbox-strategies';
 
 clientsClaim();
@@ -86,12 +86,12 @@ registerRoute(
 // );
 
 // Google stylesheets cache
-// registerRoute(
-//   ({ url }) => url.origin === 'https://fonts.googleapis.com',
-//   new StaleWhileRevalidate({
-//     cacheName: 'google-fonts-stylesheets',
-//   }),
-// );
+registerRoute(
+  ({ url }) => url.origin === 'https://fonts.googleapis.com',
+  new StaleWhileRevalidate({
+    cacheName: 'google-fonts-stylesheets',
+  }),
+);
 
 // Google fonts cache
 // registerRoute(
@@ -124,8 +124,6 @@ registerRoute(
 );
 
 self.addEventListener('message', (event) => {
-  // eslint-disable-next-line no-console
-  console.log('SW: message received', event.data);
   if (event.data?.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }

@@ -14,8 +14,6 @@ export function register() {
     notification.style.opacity = '1';
     notification.onclick = () => {
       wb.addEventListener('controlling', () => {
-        // eslint-disable-next-line no-console
-        console.log('SW: controlling event');
         window.location.reload();
       });
 
