@@ -7,17 +7,12 @@ export function register() {
   const wb = new Workbox(swUrl);
 
   const showSkipWaitingPrompt = () => {
+    wb.messageSkipWaiting();
+
     const notification = document.getElementById('reloadNotification');
     if (!notification) return;
     notification.style.top = '1.5rem';
     notification.style.opacity = '1';
-    notification.onclick = () => {
-      wb.addEventListener('controlling', () => {
-        window.location.reload();
-      });
-
-      wb.messageSkipWaiting();
-    };
   };
 
   wb.addEventListener('waiting', showSkipWaitingPrompt);

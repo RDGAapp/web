@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 
 const SWNotification = () => (
-  <Container id='reloadNotification'>
+  <Container id="reloadNotification" onClick={() => window.location.reload()}>
     Доступна более новая версия сайта! Нажмите для обновления.
   </Container>
 );
