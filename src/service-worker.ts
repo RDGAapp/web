@@ -74,7 +74,7 @@ registerRoute(
     cacheName: 'videos',
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [200],
+        statuses: [200, 206],
       }),
       new ExpirationPlugin({
         maxEntries: 10,
