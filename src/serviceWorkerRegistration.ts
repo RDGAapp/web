@@ -1,100 +1,38 @@
-/* eslint-disable no-console */
-const isLocalhost = Boolean(
-  window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.0/8 are considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/,
-    ),
-);
+import { Workbox } from 'workbox-window';
 
-type Config = {
-  onSuccess?: (registration: ServiceWorkerRegistration) => void;
-  onUpdate?: (registration: ServiceWorkerRegistration) => void;
-};
+export function register() {
+  if (!('serviceWorker' in navigator)) return;
 
-function registerValidSW(swUrl: string, config?: Config) {
-  navigator.serviceWorker
-    .register(swUrl)
-    .then((registration) => {
-      // eslint-disable-next-line no-param-reassign
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        if (installingWorker == null) {
-          return;
-        }
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === 'installed') {
-            installingWorker.postMessage('skipWaiting');
-            if (navigator.serviceWorker.controller) {
-              const notification =
-                document.getElementById('reloadNotification');
-              if (notification) {
-                notification.style.top = '1.5rem';
-                notification.style.opacity = '1';
-              }
-              config?.onUpdate?.(registration);
-            } else {
-              console.log('Content is cached for offline use.');
-              config?.onSuccess?.(registration);
-            }
-          }
-        };
-      };
-    })
-    .catch((error) => {
-      console.error('Error during service worker registration:', error);
-    });
-}
+  const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+  const wb = new Workbox(swUrl);
 
-function checkValidServiceWorker(swUrl: string, config?: Config) {
-  fetch(swUrl, {
-    headers: { 'Service-Worker': 'script' },
-  }).then((response) => {
-    const contentType = response.headers.get('content-type');
-    if (
-      response.status === 404 ||
-      (contentType != null && contentType.indexOf('javascript') === -1)
-    ) {
-      navigator.serviceWorker.ready.then((registration) => {
-        registration.unregister().then(() => {
-          window.location.reload();
-        });
+  const showSkipWaitingPrompt = () => {
+    const notification = document.getElementById('reloadNotification');
+    if (!notification) return;
+    notification.style.top = '1.5rem';
+    notification.style.opacity = '1';
+    notification.onclick = () => {
+      wb.addEventListener('controlling', () => {
+        window.location.reload();
       });
-    } else {
-      registerValidSW(swUrl, config);
-    }
-  });
-}
 
-export function register(config?: Config) {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    if (publicUrl.origin !== window.location.origin) {
-      return;
-    }
+      wb.messageSkipWaiting();
+    };
+  };
 
-    window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+  wb.addEventListener('waiting', showSkipWaitingPrompt);
 
-      if (isLocalhost) {
-        checkValidServiceWorker(swUrl, config);
-      } else {
-        registerValidSW(swUrl, config);
-      }
-    });
-  }
+  wb.register();
 }
 
 export function unregister() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready
-      .then((registration) => {
-        registration.unregister();
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
-  }
+  if (!('serviceWorker' in navigator)) return;
+
+  navigator.serviceWorker.ready
+    .then((registration) => {
+      registration.unregister();
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
 }

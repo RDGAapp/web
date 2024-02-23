@@ -107,8 +107,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 20px;
     font-family: "${({ theme }) => theme.fontFamily.primary}", sans-serif;
+    font-size: 20px;
 
     ${({ theme }) => theme.media.mobile} {
       font-size: 16px;

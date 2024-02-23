@@ -1,41 +1,130 @@
 /// <reference lib="webworker" />
-
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
+import * as navigationPreload from 'workbox-navigation-preload';
+import { precacheAndRoute } from 'workbox-precaching';
+import { RangeRequestsPlugin } from 'workbox-range-requests';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
-
-import routesList from './helpers/routesList';
-
-declare const self: ServiceWorkerGlobalScope;
+import {
+  CacheFirst,
+  NetworkFirst,
+  StaleWhileRevalidate,
+} from 'workbox-strategies';
 
 clientsClaim();
+
+navigationPreload.enable();
+
+declare const self: ServiceWorkerGlobalScope;
 
 // eslint-disable-next-line no-underscore-dangle
 precacheAndRoute(self.__WB_MANIFEST);
 
+// HTML pages cache
 registerRoute(
-  ({ url }: { request: Request; url: URL }) => {
-    if (routesList.includes(url.pathname)) return true;
-
-    return false;
-  },
-  createHandlerBoundToURL(`${process.env.PUBLIC_URL}/index.html`),
+  ({ request }) => request.mode === 'navigate',
+  new NetworkFirst({
+    cacheName: 'pages',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+    ],
+  }),
 );
 
+// CSS and JS cache
 registerRoute(
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  ({ request }) =>
+    request.destination === 'style' ||
+    request.destination === 'script' ||
+    request.destination === 'worker',
   new StaleWhileRevalidate({
+    cacheName: 'assets',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+    ],
+  }),
+);
+
+// Images cache
+registerRoute(
+  ({ request }) => request.destination === 'image',
+  new CacheFirst({
     cacheName: 'images',
     plugins: [
-      new ExpirationPlugin({ maxEntries: 50 }),
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
+  }),
+);
+
+// Video cache
+registerRoute(
+  ({ request }) => request.destination === 'video',
+  new CacheFirst({
+    cacheName: 'videos',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 10,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+      new RangeRequestsPlugin(),
+    ],
+  }),
+);
+
+// Google stylesheets cache
+registerRoute(
+  ({ url }) => url.origin === 'https://fonts.googleapis.com',
+  new StaleWhileRevalidate({
+    cacheName: 'google-fonts-stylesheets',
+  }),
+);
+
+// Google fonts cache
+registerRoute(
+  ({ url }) => url.origin === 'https://fonts.gstatic.com',
+  new CacheFirst({
+    cacheName: 'google-fonts-webfonts',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+        maxEntries: 10,
+      }),
+    ],
+  }),
+);
+
+// API responses
+registerRoute(
+  ({ url }) => url.pathname.startsWith('/api/'),
+  new NetworkFirst({
+    cacheName: 'rdga-api',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
     ],
   }),
 );
 
 self.addEventListener('message', (event) => {
-  if (event.data === 'skipWaiting') {
+  if (event.data?.type === 'skipWaiting') {
     self.skipWaiting();
   }
 });

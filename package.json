@@ -21,20 +21,16 @@
     "react-scripts": "5.0.1",
     "react-toastify": "10.0.4",
     "styled-components": "6.1.8",
-    "stylis": "4.3.1",
     "typescript": "5.3.3",
-    "workbox-background-sync": "7.0.0",
-    "workbox-broadcast-update": "7.0.0",
     "workbox-cacheable-response": "7.0.0",
     "workbox-core": "7.0.0",
     "workbox-expiration": "7.0.0",
-    "workbox-google-analytics": "7.0.0",
     "workbox-navigation-preload": "7.0.0",
     "workbox-precaching": "7.0.0",
     "workbox-range-requests": "7.0.0",
     "workbox-routing": "7.0.0",
     "workbox-strategies": "7.0.0",
-    "workbox-streams": "7.0.0"
+    "workbox-window": "7.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
