@@ -7,12 +7,22 @@ export function register() {
   const wb = new Workbox(swUrl);
 
   const showSkipWaitingPrompt = () => {
-    wb.messageSkipWaiting();
-
     const notification = document.getElementById('reloadNotification');
     if (!notification) return;
+
     notification.style.top = '1.5rem';
     notification.style.opacity = '1';
+    notification.onclick = () => {
+      // eslint-disable-next-line no-console
+      console.log('SW: click notification');
+      wb.addEventListener('controlling', () => {
+        // eslint-disable-next-line no-console
+        console.log('SW: controlling event');
+        window.location.reload();
+      });
+
+      wb.messageSkipWaiting();
+    };
   };
 
   wb.addEventListener('waiting', showSkipWaitingPrompt);
