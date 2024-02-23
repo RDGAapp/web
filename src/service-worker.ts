@@ -4,7 +4,7 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 // import * as navigationPreload from 'workbox-navigation-preload';
 import { precacheAndRoute } from 'workbox-precaching';
-// import { RangeRequestsPlugin } from 'workbox-range-requests';
+import { RangeRequestsPlugin } from 'workbox-range-requests';
 import { registerRoute } from 'workbox-routing';
 import {
   CacheFirst,
@@ -68,22 +68,22 @@ registerRoute(
 // );
 
 // Video cache
-// registerRoute(
-//   ({ request }) => request.destination === 'video',
-//   new CacheFirst({
-//     cacheName: 'videos',
-//     plugins: [
-//       new CacheableResponsePlugin({
-//         statuses: [200],
-//       }),
-//       new ExpirationPlugin({
-//         maxEntries: 10,
-//         maxAgeSeconds: 60 * 60 * 24 * 30,
-//       }),
-//       new RangeRequestsPlugin(),
-//     ],
-//   }),
-// );
+registerRoute(
+  ({ request }) => request.destination === 'video',
+  new CacheFirst({
+    cacheName: 'videos',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 10,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+      new RangeRequestsPlugin(),
+    ],
+  }),
+);
 
 // Google stylesheets cache
 registerRoute(
