@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { ReactComponent as RdgaSvg } from 'assets/icons/logo.svg';
 import { ReactComponent as MetrixSvg } from 'assets/icons/metrix.svg';
 import { ReactComponent as PdgaSvg } from 'assets/icons/pdga.svg';
-import Breadcrumbs from 'components/Breadcrumbs';
 import LogoLoader from 'components/LogoLoader';
 import routes from 'helpers/routes';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -80,58 +79,50 @@ const Profile = ({ rdgaNumber }: IProfile) => {
   if (loading) return <LogoLoader />;
 
   if (!player || error) {
-    return (
-      <>
-        <Breadcrumbs />
-        <div>Что-то пошло не так</div>
-      </>
-    );
+    return <div>Что-то пошло не так</div>;
   }
 
   return (
-    <>
-      <Breadcrumbs />
-      <Container>
-        <MainInfo
-          name={player.name}
-          surname={player.surname}
-          town={player.town}
-          avatarUrl={player.avatarUrl}
-        />
-        <SystemInfo
-          number={player.rdgaNumber}
-          rating={player.rdgaRating}
-          ratingChange={player.rdgaRatingChange}
+    <Container>
+      <MainInfo
+        name={player.name}
+        surname={player.surname}
+        town={player.town}
+        avatarUrl={player.avatarUrl}
+      />
+      <SystemInfo
+        number={player.rdgaNumber}
+        rating={player.rdgaRating}
+        ratingChange={player.rdgaRatingChange}
+        logo={<RdgaSvg />}
+      />
+      <SystemInfo
+        number={player.pdgaNumber}
+        rating={player.pdgaRating}
+        logo={<PdgaSvgColored />}
+        link={`https://pdga.com/player/${player.pdgaNumber}`}
+      />
+      <SystemInfo
+        number={player.metrixNumber}
+        rating={player.metrixRating}
+        ratingChange={player.metrixRatingChange}
+        logo={<MetrixSvg fill='hsl(24, 100%, 50%)' />}
+        link={`https://discgolfmetrix.com/player/${player.metrixNumber}`}
+      />
+      <Subscription>
+        <SubscriptionInfo
+          activeTo={player.activeTo}
           logo={<RdgaSvg />}
+          link={`${routes.About}${routes.Join}`}
         />
-        <SystemInfo
-          number={player.pdgaNumber}
-          rating={player.pdgaRating}
+        <SubscriptionInfo
+          activeTo={player.pdgaActiveTo}
           logo={<PdgaSvgColored />}
-          link={`https://pdga.com/player/${player.pdgaNumber}`}
+          link='https://www.pdga.com/membership'
         />
-        <SystemInfo
-          number={player.metrixNumber}
-          rating={player.metrixRating}
-          ratingChange={player.metrixRatingChange}
-          logo={<MetrixSvg fill='hsl(24, 100%, 50%)' />}
-          link={`https://discgolfmetrix.com/player/${player.metrixNumber}`}
-        />
-        <Subscription>
-          <SubscriptionInfo
-            activeTo={player.activeTo}
-            logo={<RdgaSvg />}
-            link={`${routes.About}${routes.Join}`}
-          />
-          <SubscriptionInfo
-            activeTo={player.pdgaActiveTo}
-            logo={<PdgaSvgColored />}
-            link='https://www.pdga.com/membership'
-          />
-        </Subscription>
-        <SportsCategoryBadge sportsCategory={player.sportsCategory} />
-      </Container>
-    </>
+      </Subscription>
+      <SportsCategoryBadge sportsCategory={player.sportsCategory} />
+    </Container>
   );
 };
 

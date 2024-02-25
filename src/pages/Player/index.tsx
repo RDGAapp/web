@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 
+import Breadcrumbs from 'components/Breadcrumbs';
+
 import Profile from './Profile';
 
 const Player = () => {
@@ -7,7 +9,12 @@ const Player = () => {
 
   const { rdgaNumber } = params;
 
-  return <Profile rdgaNumber={Number(rdgaNumber)} />;
+  return (
+    <>
+      <Breadcrumbs />
+      <Profile rdgaNumber={Number(rdgaNumber)} />
+    </>
+  );
 };
 
 export default Player;
