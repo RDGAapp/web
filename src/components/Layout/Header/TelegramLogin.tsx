@@ -1,9 +1,4 @@
-import {
-  FormEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { FormEventHandler, useEffect, useRef, useState } from 'react';
 
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
@@ -353,7 +348,7 @@ const TelegramLogin = () => {
           <Background open={open}>
             <LinksList>
               <CustomLink
-                route={`${routes.Players}/${user.rdgaNumber}`}
+                route={routes.MyProfile}
                 text='Профиль'
                 imagePosition='right'
                 CustomImage={PlayersSvg}

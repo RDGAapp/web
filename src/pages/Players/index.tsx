@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -131,12 +131,14 @@ const Players = (): JSX.Element => {
   const [town, setTown] = useState<TTown>();
   const [onlyActive, setOnlyActive] = useState<boolean>(true);
 
+  const filterRef = useRef<HTMLDivElement>(null);
+
   const { Dialog: FiltersDialog, openModal: openFiltersModal } = useDialog({
     headerText: 'Фильтры по игрокам',
   });
 
   const scrollToPageHeader = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    filterRef.current?.scrollIntoView();
   };
 
   useDebounce(
@@ -172,7 +174,7 @@ const Players = (): JSX.Element => {
   return (
     <>
       <PageHeader text='Наши игроки'>
-        <Filters>
+        <Filters ref={filterRef}>
           <SearchBar
             value={surname}
             placeholder='Введите фамилию'

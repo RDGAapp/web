@@ -23,6 +23,8 @@ enum routes {
   AdminBlogCreate = '/admin/blog/create',
   AdminBlogUpdate = '/admin/blog/update',
   AdminBlogDelete = '/admin/blog/delete',
+
+  MyProfile = '/my/profile',
 }
 
 export const routeNames: Record<routes, string> = {
@@ -50,6 +52,8 @@ export const routeNames: Record<routes, string> = {
   [routes.AdminBlogCreate]: 'Создать',
   [routes.AdminBlogUpdate]: 'Обновить',
   [routes.AdminBlogDelete]: 'Удалить',
+
+  [routes.MyProfile]: 'Мой профиль'
 };
 
 export default routes;

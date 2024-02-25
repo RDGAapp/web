@@ -1,10 +1,15 @@
-import { ReactNode, useLayoutEffect } from 'react';
+import { Suspense, useContext, useLayoutEffect } from 'react';
 
-import { useLocation } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
+import { ScrollRestoration } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
 
+import { AppSettingsContext } from 'context/AppSettings';
+import Role from 'enums/roles';
 import routes from 'helpers/routes';
+import useDialog from 'hooks/useDialog';
+import Loading from 'pages/Loading';
 
 import Banner from './Banner';
 import Footer from './Footer';
@@ -22,9 +27,6 @@ const Container = styled.article`
   margin: 0 auto;
   padding: 1rem 1rem 2rem;
 `;
-interface LayoutProps {
-  children: ReactNode;
-}
 
 const shouldShowBanner = new Set<string>([
   routes.About,
@@ -36,36 +38,36 @@ const shouldShowBanner = new Set<string>([
 
 const shouldShowVideo = new Set<string>([routes.Home]);
 
-let scrollToTimeout: null | NodeJS.Timeout = null;
-
-const Layout = ({ children }: LayoutProps): JSX.Element => {
+const Layout = (): JSX.Element => {
   const location = useLocation();
+  const { Dialog: FeatureFlagsDialog, openModal: openFeatureFlagsModal } =
+    useDialog({
+      headerText: 'Feature-флаги',
+    });
+
+  const { roles, addRoles, removeRole, featureFlags, toggleFeatureFlag } =
+    useContext(AppSettingsContext);
+
+  const isAdmin = roles.has(Role.Admin);
+  const isAuthor = roles.has(Role.Author);
 
   useLayoutEffect(() => {
-    if (location.hash) {
-      const tryToScrollToElement = () => {
-        const elementId = location.hash.replaceAll('#', '');
-
-        if (elementId) {
-          const element = document.getElementById(elementId);
-          if (element) {
-            element.scrollIntoView();
-            return;
-          }
-        }
-
-        scrollToTimeout = setTimeout(tryToScrollToElement, 500);
-      };
-
-      tryToScrollToElement();
-    }
-
-    window.scrollTo({ top: 0 });
-
-    return () => {
-      if (scrollToTimeout) clearTimeout(scrollToTimeout);
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (
+        (event.key === '`' || event.key === '~') &&
+        event.altKey &&
+        event.ctrlKey &&
+        event.metaKey &&
+        event.shiftKey
+      ) {
+        openFeatureFlagsModal();
+      }
     };
-  }, [location.pathname]);
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [openFeatureFlagsModal]);
 
   return (
     <div
@@ -80,9 +82,92 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       <Container>
         {shouldShowVideo.has(location.pathname) && <VideoBanner />}
         {shouldShowBanner.has(location.pathname) && <Banner />}
-        {children}
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
       </Container>
       <Footer />
+      <FeatureFlagsDialog>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              gap: '10px',
+              alignItems: 'center',
+              cursor: 'pointer',
+            }}
+          >
+            <input
+              id='isAdmin'
+              type='checkbox'
+              name='isAdmin'
+              checked={isAdmin}
+              onChange={() =>
+                isAdmin ? removeRole(Role.Admin) : addRoles([Role.Admin])
+              }
+              style={{ cursor: 'pointer' }}
+            />
+            <label htmlFor='isAdmin' style={{ cursor: 'pointer' }}>
+              Режим администратора
+            </label>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              gap: '10px',
+              alignItems: 'center',
+              cursor: 'pointer',
+            }}
+          >
+            <input
+              id='isAuthor'
+              type='checkbox'
+              name='isAuthor'
+              checked={isAuthor}
+              onChange={() =>
+                isAuthor ? removeRole(Role.Author) : addRoles([Role.Author])
+              }
+              style={{ cursor: 'pointer' }}
+            />
+            <label htmlFor='isAuthor' style={{ cursor: 'pointer' }}>
+              Режим автора
+            </label>
+          </div>
+          {Object.keys(featureFlags).map((key) => (
+            <div
+              key={key}
+              style={{
+                display: 'flex',
+                gap: '10px',
+                alignItems: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              <input
+                id={key}
+                type='checkbox'
+                name={key}
+                checked={featureFlags[key as keyof typeof featureFlags]}
+                onChange={() =>
+                  toggleFeatureFlag(key as keyof typeof featureFlags)
+                }
+                style={{ cursor: 'pointer' }}
+              />
+              <label htmlFor={key} style={{ cursor: 'pointer' }}>
+                {key}
+              </label>
+            </div>
+          ))}
+        </div>
+      </FeatureFlagsDialog>
+      <ScrollRestoration />
       <ToastContainer
         position='bottom-right'
         hideProgressBar
