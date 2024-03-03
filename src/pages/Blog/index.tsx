@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import LogoLoader from 'components/LogoLoader';
@@ -23,7 +24,11 @@ const Blog = () => {
 
   const { posts, loading, lastPage } = useAppSelector((state) => state.posts);
 
-  const [page, setPage] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [page, setPage] = useState(
+    Number(!!posts.length && searchParams.get('page')) || 0,
+  );
 
   const observerTarget = useRef<HTMLDivElement>(null);
 
@@ -48,6 +53,16 @@ const Blog = () => {
       }
     };
   }, [observerTarget]);
+
+  useEffect(() => {
+    const params: Record<string, string> = {};
+
+    if (page > 1) {
+      params.page = page.toString();
+    }
+
+    setSearchParams(params, { replace: true });
+  }, [page]);
 
   return (
     <Container>

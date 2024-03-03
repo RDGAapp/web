@@ -129,8 +129,8 @@ const Players = (): JSX.Element => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [pageNumber, setPageNumber] = useState<number>(
-    Number(searchParams.get('pageNumber')) || 0,
+  const [page, setPage] = useState<number>(
+    Number(searchParams.get('page')) || 0,
   );
   const [surname, setSurname] = useState<string>(
     searchParams.get('surname') ?? '',
@@ -155,7 +155,7 @@ const Players = (): JSX.Element => {
   useDebounce(
     () => {
       dispatch(getPlayers({ pageNumber: 1, surname, town, onlyActive }));
-      setPageNumber(1);
+      setPage(1);
     },
     1000,
     [surname, town, onlyActive],
@@ -163,11 +163,11 @@ const Players = (): JSX.Element => {
 
   useDebounce(
     () => {
-      if (!pageNumber) return;
+      if (!page) return;
 
       const params: Record<string, string> = {};
-      if (pageNumber > 1) {
-        params.pageNumber = pageNumber.toString();
+      if (page > 1) {
+        params.page = page.toString();
       }
       if (surname) {
         params.surname = surname;
@@ -182,11 +182,11 @@ const Players = (): JSX.Element => {
       setSearchParams(params, { replace: true });
     },
     1000,
-    [pageNumber, surname, town, onlyActive],
+    [page, surname, town, onlyActive],
   );
 
   useEffect(() => {
-    dispatch(getPlayers({ pageNumber, surname, town, onlyActive }));
+    dispatch(getPlayers({ pageNumber: page, surname, town, onlyActive }));
   }, []);
 
   const onSelectTownChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -199,7 +199,7 @@ const Players = (): JSX.Element => {
   };
 
   const onPageNumberChange = (newPageNumber: number) => {
-    setPageNumber(newPageNumber);
+    setPage(newPageNumber);
     dispatch(
       getPlayers({ pageNumber: newPageNumber, surname, town, onlyActive }),
     );
