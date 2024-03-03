@@ -165,12 +165,21 @@ const Players = (): JSX.Element => {
     () => {
       if (!pageNumber) return;
 
-      setSearchParams({
-        pageNumber: pageNumber.toString(),
-        surname,
-        town,
-        onlyActive: onlyActive.toString(),
-      });
+      const params: Record<string, string> = {};
+      if (pageNumber > 1) {
+        params.pageNumber = pageNumber.toString();
+      }
+      if (surname) {
+        params.surname = surname;
+      }
+      if (town) {
+        params.town = town;
+      }
+      if (!onlyActive) {
+        params.onlyActive = onlyActive.toString();
+      }
+
+      setSearchParams(params, { replace: true });
     },
     1000,
     [pageNumber, surname, town, onlyActive],
