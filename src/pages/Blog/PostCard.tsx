@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -109,8 +109,10 @@ const PostCard = ({
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [isSmallPost, setIsSmallPost] = useState(false);
 
+  const cardRef = useRef<HTMLDivElement>(null);
+
   return (
-    <Card>
+    <Card ref={cardRef}>
       {linkedHeader ? (
         <Link to={`${routes.Blog}/${post.code}`} title={post.header}>
           {post.header}
@@ -158,7 +160,10 @@ const PostCard = ({
       {!expanded && <Button onClick={() => setExpanded(true)}>...ещё</Button>}
       {!isSmallPost && expanded && !defaultExpanded && (
         <Button
-          onClick={() => setExpanded(false)}
+          onClick={() => {
+            setExpanded(false);
+            cardRef.current?.scrollIntoView({ behavior: 'instant' });
+          }}
           style={{ position: 'sticky', bottom: 5 }}
         >
           Свернуть

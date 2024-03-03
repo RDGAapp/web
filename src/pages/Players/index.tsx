@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ReactComponent as FilterSvg } from 'assets/icons/filter.svg';
@@ -126,10 +127,20 @@ const Players = (): JSX.Element => {
 
   const { players, loading } = useAppSelector((state) => state.player);
 
-  const [pageNumber, setPageNumber] = useState<number>(0);
-  const [surname, setSurname] = useState<string>('');
-  const [town, setTown] = useState<TTown>();
-  const [onlyActive, setOnlyActive] = useState<boolean>(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [pageNumber, setPageNumber] = useState<number>(
+    Number(searchParams.get('pageNumber')) || 0,
+  );
+  const [surname, setSurname] = useState<string>(
+    searchParams.get('surname') ?? '',
+  );
+  const [town, setTown] = useState<TTown>(
+    (searchParams.get('town') ?? '') as TTown,
+  );
+  const [onlyActive, setOnlyActive] = useState<boolean>(
+    searchParams.get('onlyActive') !== 'false',
+  );
 
   const filterRef = useRef<HTMLDivElement>(null);
 
@@ -148,6 +159,21 @@ const Players = (): JSX.Element => {
     },
     1000,
     [surname, town, onlyActive],
+  );
+
+  useDebounce(
+    () => {
+      if (!pageNumber) return;
+
+      setSearchParams({
+        pageNumber: pageNumber.toString(),
+        surname,
+        town,
+        onlyActive: onlyActive.toString(),
+      });
+    },
+    1000,
+    [pageNumber, surname, town, onlyActive],
   );
 
   useEffect(() => {
