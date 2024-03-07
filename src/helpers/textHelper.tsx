@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+
 export const getTextOrDash = ({
   text,
   link,
@@ -13,16 +16,23 @@ export const getTextOrDash = ({
 
   if (link) {
     const isExternal = !link.startsWith('/');
+    const target = isExternal ? '_blank' : '';
+    const rel = isExternal ? 'noreferrer' : '';
+
+    if (link.includes('#')) {
+      return (
+        <HashLink to={link} smooth target={target} rel={rel}>
+          {prefix ?? ''}
+          {processFn ? processFn(text) : text}
+        </HashLink>
+      );
+    }
 
     return (
-      <a
-        href={link}
-        target={isExternal ? '_blank' : ''}
-        rel={isExternal ? 'noreferrer' : ''}
-      >
+      <Link to={link} target={target} rel={rel}>
         {prefix ?? ''}
         {processFn ? processFn(text) : text}
-      </a>
+      </Link>
     );
   }
 
