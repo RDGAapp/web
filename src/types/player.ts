@@ -1,6 +1,6 @@
-import SportsCategory from "enums/sportsCategory";
+import SportsCategory from 'enums/sportsCategory';
 
-export interface IPlayer {
+export interface IBasePlayer {
   name: string;
   surname: string | null;
   rdgaNumber: number;
@@ -9,10 +9,11 @@ export interface IPlayer {
   town: string | null;
   pdgaNumber: number | null;
   metrixNumber: number | null;
-  metrixRating: number | null;
-  priority: number;
   activeTo: string;
   sportsCategory: SportsCategory | null;
+}
+
+export interface IPlayer extends IBasePlayer {
   avatarUrl: string | null;
 }
 export interface IPlayerExtended extends IPlayer {

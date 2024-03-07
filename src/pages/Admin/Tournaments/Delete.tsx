@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
+import { deleteTournament } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
-import { deleteTournament } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
 const DeleteTournament = (): JSX.Element => {

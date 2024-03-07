@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
+import { createTournament } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
 import TournamentType from 'enums/tournamentType';
-import { createTournament } from 'helpers/api';
 import TournamentNameByType from 'helpers/tournament/typeNameByType';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 

@@ -1,8 +1,8 @@
-import * as api from 'helpers/api';
+import * as api from 'api';
 import { store } from 'store';
 import { getPlayers, getPlayer } from 'store/players/thunks';
 
-jest.mock('helpers/api');
+jest.mock('api');
 
 describe('player requests', () => {
   const testError = 'test error';
@@ -12,7 +12,7 @@ describe('player requests', () => {
   });
 
   afterAll(() => {
-    jest.unmock('helpers/api');
+    jest.unmock('api');
   });
 
   describe('getPlayers function', () => {

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import * as api from 'helpers/api';
+import * as api from 'api';
 import { ITournament } from 'types/tournament';
 
 export const getTournaments = createAsyncThunk(

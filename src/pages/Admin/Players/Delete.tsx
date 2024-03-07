@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
+import { deletePlayer } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
-import { deletePlayer } from 'helpers/api';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 
 const DeletePlayer = (): JSX.Element => {

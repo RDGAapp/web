@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
+import { createPost } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
-import { createPost } from 'helpers/api';
 import PostCard from 'pages/Blog/PostCard';
 
 import AdminFormLayout from '../common/AdminFormLayout';

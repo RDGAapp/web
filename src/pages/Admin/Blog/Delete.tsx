@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
+import { deletePost } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
-import { deletePost } from 'helpers/api';
 
 import AdminFormLayout from '../common/AdminFormLayout';
 

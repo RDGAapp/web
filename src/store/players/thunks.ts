@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import * as api from 'helpers/api';
+import * as api from 'api';
 import { IPlayerExtended } from 'types/player';
 import { TTown } from 'types/town';
 

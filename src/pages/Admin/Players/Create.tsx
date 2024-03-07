@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
+import { createPlayer } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
 import SportsCategory from 'enums/sportsCategory';
-import { createPlayer } from 'helpers/api';
 import SportsCategoryNameByCategory from 'helpers/player/sportsCategoryNameByCategory';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 import Card from 'pages/Players/Card';
-import { IPlayer } from 'types/player';
+import { IBasePlayer } from 'types/player';
 
 const CreatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
@@ -17,7 +17,6 @@ const CreatePlayer = (): JSX.Element => {
   const [town, setTown] = useState('');
   const [pdgaNumber, setPdgaNumber] = useState('');
   const [metrixNumber, setMetrixNumber] = useState('');
-  const [priority, setPriority] = useState('0');
   const [activeTo, setActiveTo] = useState(new Date().getFullYear());
   const [sportsCategory, setSportsCategory] = useState<SportsCategory | null>(
     null,
@@ -76,12 +75,6 @@ const CreatePlayer = (): JSX.Element => {
       type: 'number',
     },
     {
-      value: priority,
-      onChange: setPriority,
-      label: 'Приоритет (пока что не используется, на вырост)',
-      type: 'number',
-    },
-    {
       value: activeTo,
       onChange: setActiveTo,
       label: 'Год, до которого активно членство игрока',
@@ -114,7 +107,7 @@ const CreatePlayer = (): JSX.Element => {
     },
   ];
 
-  const player = {
+  const player: IBasePlayer = {
     name,
     surname: surname || null,
     rdgaNumber: Number(rdgaNumber),
@@ -123,10 +116,9 @@ const CreatePlayer = (): JSX.Element => {
     town,
     pdgaNumber: Number(pdgaNumber) || null,
     metrixNumber: Number(metrixNumber) || null,
-    priority: Number(priority) || 0,
     activeTo: `${activeTo}-04-01T00:00:00.000Z`,
     sportsCategory,
-  } as IPlayer;
+  };
 
   const onSubmit = async () => createPlayer(player);
 
@@ -138,7 +130,14 @@ const CreatePlayer = (): JSX.Element => {
         actionNames={['Создание игрока']}
         forms={[inputs]}
         onSubmits={[onSubmit]}
-        preview={<Card player={player} />}
+        preview={
+          <Card
+            player={{
+              ...player,
+              avatarUrl: 'https://rdga.ru/files/cherkasik/mem.webp',
+            }}
+          />
+        }
       />
     </>
   );

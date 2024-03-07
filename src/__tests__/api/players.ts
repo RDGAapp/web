@@ -1,6 +1,6 @@
-import * as api from 'helpers/api';
+import * as api from 'api/players';
 
-describe('api helper', () => {
+describe('api players', () => {
   const realFetch = global.fetch;
   const fetchMock = jest.fn();
 

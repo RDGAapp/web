@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
+import { activatePlayer } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
-import { activatePlayer } from 'helpers/api';
 
 import AdminFormLayout from '../common/AdminFormLayout';
 
