@@ -6,8 +6,13 @@ import { IPaginated } from 'types/paginated';
 
 export const getPosts = createAsyncThunk(
   'posts/getAll',
-  async (page: number) => {
-    const response = await api.getPosts(page);
+  async (page: number, { getState }) => {
+    let from;
+    if (page > 1) {
+      const state = getState() as { posts: { posts: IPost[] } };
+      from = state.posts.posts[0]?.createdAt;
+    }
+    const response = await api.getPosts(page, from);
 
     if (response.ok) {
       const json = (await response.json()) as IPaginated<IPost[]>;

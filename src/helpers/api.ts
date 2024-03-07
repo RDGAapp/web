@@ -90,9 +90,12 @@ export const updatePlayerRatingMultiple = (
     body: JSON.stringify(values),
   });
 
-export const getPosts = (page: number) => {
+export const getPosts = (page: number, from?: string) => {
   const query = new URLSearchParams();
   query.append('page', page.toString());
+  if (from) {
+    query.append('from', from);
+  }
   return fetchRdgaApi(`/posts?${query.toString()}`);
 };
 
@@ -151,7 +154,7 @@ export const register = async (
 
   if (response.status !== 200) {
     const text = await response.text();
-    console.error('Something went wrong:', text)
+    console.error('Something went wrong:', text);
     toast.error('Регистрация не завершилась успехом');
     return null;
   }
