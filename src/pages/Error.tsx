@@ -35,11 +35,15 @@ const Container = styled.div`
   }
 `;
 
-const NotFound = () => (
+interface IErrorProps {
+  text: string;
+}
+
+const Error = ({ text }: IErrorProps) => (
   <Container>
     <img src={PlaceholderImg} alt='Заглушка' />
-    <p>Страница не существует или находится в разработке</p>
+    <p>{text}</p>
   </Container>
 );
 
-export default NotFound;
+export default Error;

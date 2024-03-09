@@ -116,7 +116,7 @@ const CreatePlayer = (): JSX.Element => {
     town,
     pdgaNumber: Number(pdgaNumber) || null,
     metrixNumber: Number(metrixNumber) || null,
-    activeTo: `${activeTo}-04-01T00:00:00.000Z`,
+    activeTo: `${activeTo}-01-01T00:00:00.000Z`,
     sportsCategory,
   };
 

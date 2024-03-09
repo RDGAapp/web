@@ -9,6 +9,7 @@ import Role from 'enums/roles';
 import GlobalStyle from 'helpers/GlobalStyle';
 import routes from 'helpers/routes';
 import theme from 'helpers/theme';
+import ErrorPage from 'pages/Error';
 
 // Admin pages
 const Admin = lazy(() => import('pages/Admin'));
@@ -36,7 +37,6 @@ const AdminBlogDelete = lazy(() => import('pages/Admin/Blog/Delete'));
 const About = lazy(() => import('pages/About'));
 const Calendar = lazy(() => import('pages/Calendar'));
 const Home = lazy(() => import('pages/Home'));
-const NotFound = lazy(() => import('pages/NotFound'));
 const Players = lazy(() => import('pages/Players'));
 const Player = lazy(() => import('pages/Player'));
 const Service = lazy(() => import('pages/Service'));
@@ -59,74 +59,86 @@ const App = (): JSX.Element => {
     {
       element: <Layout />,
       children: [
-        { path: routes.Home, element: <Home /> },
-        { path: routes.Service, element: <Service /> },
-        { path: routes.About, element: <About /> },
-        { path: routes.Calendar, element: <Calendar /> },
-        { path: routes.Players, element: <Players /> },
-        { path: `${routes.Players}/:rdgaNumber`, element: <Player /> },
-        { path: routes.Contacts, element: <Contacts /> },
-        { path: routes.Partners, element: <Partners /> },
-        { path: routes.Blog, element: <Blog /> },
-        { path: `${routes.Blog}/:postCode`, element: <BlogPost /> },
         {
-          element: <Personal />,
-          children: [{ path: routes.MyProfile, element: <MyProfile /> }],
-        },
-        {
-          element: <Authorized requiredRoles={[Role.Admin, Role.Author]} />,
+          errorElement: (
+            <ErrorPage text='Проверьте соединение с интернетом и попробуйте перезагрузить страницу' />
+          ),
           children: [
-            { path: routes.AdminHome, element: <Admin /> },
+            { path: routes.Home, element: <Home /> },
+            { path: routes.Service, element: <Service /> },
+            { path: routes.About, element: <About /> },
+            { path: routes.Calendar, element: <Calendar /> },
+            { path: routes.Players, element: <Players /> },
+            { path: `${routes.Players}/:rdgaNumber`, element: <Player /> },
+            { path: routes.Contacts, element: <Contacts /> },
+            { path: routes.Partners, element: <Partners /> },
+            { path: routes.Blog, element: <Blog /> },
+            { path: `${routes.Blog}/:postCode`, element: <BlogPost /> },
             {
-              element: <Authorized requiredRoles={[Role.Admin]} />,
+              element: <Personal />,
+              children: [{ path: routes.MyProfile, element: <MyProfile /> }],
+            },
+            {
+              element: <Authorized requiredRoles={[Role.Admin, Role.Author]} />,
               children: [
-                /* Админка игрока */
-                { path: routes.AdminPlayers, element: <AdminPlayers /> },
+                { path: routes.AdminHome, element: <Admin /> },
                 {
-                  path: routes.AdminPlayersCreate,
-                  element: <AdminPlayersCreate />,
-                },
-                {
-                  path: routes.AdminPlayersUpdate,
-                  element: <AdminPlayersUpdate />,
-                },
-                {
-                  path: routes.AdminPlayersDelete,
-                  element: <AdminPlayersDelete />,
-                },
-                {
-                  path: routes.AdminPlayersRenew,
-                  element: <AdminPlayersRenew />,
+                  element: <Authorized requiredRoles={[Role.Admin]} />,
+                  children: [
+                    /* Админка игрока */
+                    { path: routes.AdminPlayers, element: <AdminPlayers /> },
+                    {
+                      path: routes.AdminPlayersCreate,
+                      element: <AdminPlayersCreate />,
+                    },
+                    {
+                      path: routes.AdminPlayersUpdate,
+                      element: <AdminPlayersUpdate />,
+                    },
+                    {
+                      path: routes.AdminPlayersDelete,
+                      element: <AdminPlayersDelete />,
+                    },
+                    {
+                      path: routes.AdminPlayersRenew,
+                      element: <AdminPlayersRenew />,
+                    },
+
+                    /* Админка турнира */
+                    {
+                      path: routes.AdminTournaments,
+                      element: <AdminTournaments />,
+                    },
+                    {
+                      path: routes.AdminTournamentsCreate,
+                      element: <AdminTournamentsCreate />,
+                    },
+                    {
+                      path: routes.AdminTournamentsUpdate,
+                      element: <AdminTournamentsUpdate />,
+                    },
+                    {
+                      path: routes.AdminTournamentsDelete,
+                      element: <AdminTournamentsDelete />,
+                    },
+                  ],
                 },
 
-                /* Админка турнира */
-                {
-                  path: routes.AdminTournaments,
-                  element: <AdminTournaments />,
-                },
-                {
-                  path: routes.AdminTournamentsCreate,
-                  element: <AdminTournamentsCreate />,
-                },
-                {
-                  path: routes.AdminTournamentsUpdate,
-                  element: <AdminTournamentsUpdate />,
-                },
-                {
-                  path: routes.AdminTournamentsDelete,
-                  element: <AdminTournamentsDelete />,
-                },
+                /* Админка блога */
+                { path: routes.AdminBlog, element: <AdminBlog /> },
+                { path: routes.AdminBlogCreate, element: <AdminBlogCreate /> },
+                { path: routes.AdminBlogUpdate, element: <AdminBlogUpdate /> },
+                { path: routes.AdminBlogDelete, element: <AdminBlogDelete /> },
               ],
             },
-
-            /* Админка блога */
-            { path: routes.AdminBlog, element: <AdminBlog /> },
-            { path: routes.AdminBlogCreate, element: <AdminBlogCreate /> },
-            { path: routes.AdminBlogUpdate, element: <AdminBlogUpdate /> },
-            { path: routes.AdminBlogDelete, element: <AdminBlogDelete /> },
+            {
+              path: '*',
+              element: (
+                <ErrorPage text='Страница не существует или находится в разработке' />
+              ),
+            },
           ],
         },
-        { path: '*', element: <NotFound /> },
       ],
     },
   ]);
