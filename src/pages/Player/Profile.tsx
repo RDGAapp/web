@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
+import AvatarSvg from 'assets/icons/avatar.svg';
 import { ReactComponent as RdgaSvg } from 'assets/icons/logo.svg';
 import { ReactComponent as MetrixSvg } from 'assets/icons/metrix.svg';
 import { ReactComponent as PdgaSvg } from 'assets/icons/pdga.svg';
@@ -83,46 +85,62 @@ const Profile = ({ rdgaNumber }: IProfile) => {
   }
 
   return (
-    <Container>
-      <MainInfo
-        name={player.name}
-        surname={player.surname}
-        town={player.town}
-        avatarUrl={player.avatarUrl}
-      />
-      <SystemInfo
-        number={player.rdgaNumber}
-        rating={player.rdgaRating}
-        ratingChange={player.rdgaRatingChange}
-        logo={<RdgaSvg />}
-      />
-      <SystemInfo
-        number={player.pdgaNumber}
-        rating={player.pdgaRating}
-        logo={<PdgaSvgColored />}
-        link={`https://pdga.com/player/${player.pdgaNumber}`}
-      />
-      <SystemInfo
-        number={player.metrixNumber}
-        rating={player.metrixRating}
-        ratingChange={player.metrixRatingChange}
-        logo={<MetrixSvg fill='hsl(24, 100%, 50%)' />}
-        link={`https://discgolfmetrix.com/player/${player.metrixNumber}`}
-      />
-      <Subscription>
-        <SubscriptionInfo
-          activeTo={player.activeTo}
+    <>
+      <Helmet>
+        <meta
+          property='og:title'
+          content={`РДГА - ${[player.surname, player.name].filter(Boolean).join(' ')}`}
+        />
+        <meta property='og:description' content={player.town ?? ''} />
+        <meta property='og:image' content={player.avatarUrl ?? AvatarSvg} />
+        <meta property='og:video' content='' />
+        <meta property='og:type' content='profile' />
+        <meta property='og:first_name' content={player.name} />
+        <meta property='og:last_name' content={player.surname ?? ''} />
+        {/* TODO: gender. can be male or female
+        <meta property='og:gender' content='' /> */}
+      </Helmet>
+      <Container>
+        <MainInfo
+          name={player.name}
+          surname={player.surname}
+          town={player.town}
+          avatarUrl={player.avatarUrl}
+        />
+        <SystemInfo
+          number={player.rdgaNumber}
+          rating={player.rdgaRating}
+          ratingChange={player.rdgaRatingChange}
           logo={<RdgaSvg />}
-          link={`${routes.About}${routes.Join}`}
         />
-        <SubscriptionInfo
-          activeTo={player.pdgaActiveTo}
+        <SystemInfo
+          number={player.pdgaNumber}
+          rating={player.pdgaRating}
           logo={<PdgaSvgColored />}
-          link='https://www.pdga.com/membership'
+          link={`https://pdga.com/player/${player.pdgaNumber}`}
         />
-      </Subscription>
-      <SportsCategoryBadge sportsCategory={player.sportsCategory} />
-    </Container>
+        <SystemInfo
+          number={player.metrixNumber}
+          rating={player.metrixRating}
+          ratingChange={player.metrixRatingChange}
+          logo={<MetrixSvg fill='hsl(24, 100%, 50%)' />}
+          link={`https://discgolfmetrix.com/player/${player.metrixNumber}`}
+        />
+        <Subscription>
+          <SubscriptionInfo
+            activeTo={player.activeTo}
+            logo={<RdgaSvg />}
+            link={`${routes.About}${routes.Join}`}
+          />
+          <SubscriptionInfo
+            activeTo={player.pdgaActiveTo}
+            logo={<PdgaSvgColored />}
+            link='https://www.pdga.com/membership'
+          />
+        </Subscription>
+        <SportsCategoryBadge sportsCategory={player.sportsCategory} />
+      </Container>
+    </>
   );
 };
 
