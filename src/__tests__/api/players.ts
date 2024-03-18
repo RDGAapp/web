@@ -1,15 +1,17 @@
+import { vi } from 'vitest';
+
 import * as api from 'api/players';
 
 describe('api players', () => {
   const realFetch = global.fetch;
-  const fetchMock = jest.fn();
+  const fetchMock = vi.fn();
 
   beforeAll(() => {
     global.fetch = fetchMock;
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {

@@ -13,7 +13,7 @@ const isLocalhost = Boolean(
 export function register() {
   if (isLocalhost || !('serviceWorker' in navigator)) return;
 
-  const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+  const swUrl = `${import.meta.env.PUBLIC_URL}/service-worker.js`;
   const wb = new Workbox(swUrl);
 
   const showSkipWaitingPrompt = () => {

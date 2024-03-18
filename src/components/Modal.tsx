@@ -2,7 +2,7 @@ import { forwardRef, MouseEvent, ReactNode, RefObject } from 'react';
 
 import styled from 'styled-components';
 
-import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
+import CrossSvg from 'assets/icons/cross.svg?react';
 
 const Dialog = styled.dialog`
   overflow: hidden;

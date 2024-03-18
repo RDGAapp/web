@@ -1,7 +1,7 @@
-import { ReactComponent as PlusSvg } from 'assets/icons/plus.svg';
-import { ReactComponent as RefreshSvg } from 'assets/icons/refresh.svg';
-import { ReactComponent as RenewSvg } from 'assets/icons/renew.svg';
-import { ReactComponent as TrashSvg } from 'assets/icons/trash.svg';
+import PlusSvg from 'assets/icons/plus.svg?react';
+import RefreshSvg from 'assets/icons/refresh.svg?react';
+import RenewSvg from 'assets/icons/renew.svg?react';
+import TrashSvg from 'assets/icons/trash.svg?react';
 import Breadcrumbs from 'components/Breadcrumbs';
 import { Header } from 'components/PageContent';
 import routes from 'helpers/routes';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
-import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
+import ArrowSvg from 'assets/icons/arrow.svg?react';
 import RdgaImg from 'assets/images/neutral-rdga.webp';
 import CountdownTimer from 'components/CountdownTimer';
 import DocLink from 'components/DocLink';

@@ -10,4 +10,5 @@ README.md
 env.test
 env.development
 **/__tests__/*
-src/setupTests.ts
+vitest.config.ts
+vitest.setup.ts

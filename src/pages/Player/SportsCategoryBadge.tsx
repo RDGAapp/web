@@ -2,7 +2,7 @@ import { MouseEventHandler, useCallback, useRef } from 'react';
 
 import styled from 'styled-components';
 
-import { ReactComponent as SportCategorySvg } from 'assets/icons/sportsCategoryPin.svg';
+import SportCategorySvg from 'assets/icons/sportsCategoryPin.svg?react';
 import {
   SportsCategoryColorByCategory,
   SportsCategoryTextColorByCategory,

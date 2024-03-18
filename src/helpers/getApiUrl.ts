@@ -1,3 +1,3 @@
-const getApiUrl = (url: string) => `${process.env.REACT_APP_API_URL}${url}`;
+const getApiUrl = (url: string) => `${import.meta.env.VITE_APP_API_URL}${url}`;
 
 export default getApiUrl;

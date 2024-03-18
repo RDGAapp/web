@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import useDebounce from 'hooks/useDebounce';
 
-jest.useFakeTimers();
-const functionMock = jest.fn();
+vi.useFakeTimers();
+const functionMock = vi.fn();
 
 const Button = () => {
   const [value, setValue] = useState(0);
@@ -20,7 +21,7 @@ const Button = () => {
 
 describe('useDebounce hook', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
   test('should call function only once', () => {
     const { getByText } = render(<Button />);
@@ -33,7 +34,7 @@ describe('useDebounce hook', () => {
       fireEvent.click(button);
     }
     expect(functionMock).toHaveBeenCalledTimes(0);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(functionMock).toHaveBeenCalledTimes(1);
   });
 });

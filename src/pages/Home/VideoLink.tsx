@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { ReactComponent as LinkSvg } from 'assets/icons/link.svg';
-import { ReactComponent as PlaySvg } from 'assets/icons/play.svg';
+import LinkSvg from 'assets/icons/link.svg?react';
+import PlaySvg from 'assets/icons/play.svg?react';
 
 const Container = styled.div<{ $position: 'left' | 'right' }>`
   display: flex;

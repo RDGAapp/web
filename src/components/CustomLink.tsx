@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import styled, { RuleSet, css } from 'styled-components';
 
-import { ReactComponent as ArrowSvg } from 'assets/icons/arrow.svg';
+import ArrowSvg from 'assets/icons/arrow.svg?react';
 
 type TImagePosition = 'left' | 'right';
 

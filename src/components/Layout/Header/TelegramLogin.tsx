@@ -3,10 +3,10 @@ import { FormEventHandler, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
-import { ReactComponent as PlayersSvg } from 'assets/icons/avatar.svg';
-import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
-import { ReactComponent as LogoutSvg } from 'assets/icons/logout.svg';
-import { ReactComponent as TelegramSvg } from 'assets/icons/telegram.svg';
+import PlayersSvg from 'assets/icons/avatar.svg?react';
+import CrossSvg from 'assets/icons/cross.svg?react';
+import LogoutSvg from 'assets/icons/logout.svg?react';
+import TelegramSvg from 'assets/icons/telegram.svg?react';
 import Avatar from 'components/Avatar';
 import CustomLink, { CustomLinkStyles } from 'components/CustomLink';
 import InlineLink from 'components/InlineLink';
@@ -236,7 +236,7 @@ declare global {
   }
 }
 
-const botId = process.env.REACT_APP_TELEGRAM_BOT_ID ?? '';
+const botId = import.meta.env.VITE_APP_TELEGRAM_BOT_ID ?? '';
 
 const TelegramLogin = () => {
   const dispatch = useAppDispatch();

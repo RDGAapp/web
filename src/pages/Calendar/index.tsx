@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 
 import styled from 'styled-components';
 
-import { ReactComponent as InfoSvg } from 'assets/icons/info.svg';
+import InfoSvg from 'assets/icons/info.svg?react';
 import CalendarDay from 'components/CalendarDay';
 import LogoLoader from 'components/LogoLoader';
 import PageHeader from 'components/PageHeader';
