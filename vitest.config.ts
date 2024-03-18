@@ -5,7 +5,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  base: '',
+  base: '/',
   plugins: [react(), viteTsconfigPaths(), svgr()],
   test: {
     globals: true,
