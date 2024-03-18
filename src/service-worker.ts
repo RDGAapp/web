@@ -3,7 +3,7 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import * as navigationPreload from 'workbox-navigation-preload';
-import { precacheAndRoute } from 'workbox-precaching';
+import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
 import { RangeRequestsPlugin } from 'workbox-range-requests';
 import { registerRoute } from 'workbox-routing';
 import {
@@ -12,6 +12,7 @@ import {
   StaleWhileRevalidate,
 } from 'workbox-strategies';
 
+cleanupOutdatedCaches();
 clientsClaim();
 
 navigationPreload.enable();
