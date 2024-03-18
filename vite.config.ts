@@ -41,12 +41,14 @@ export default defineConfig({
       },
       strategies: 'injectManifest',
       srcDir: 'src',
-      filename: 'service-worker.ts'
+      filename: 'service-worker.ts',
     }),
-
   ],
   server: {
     open: true,
     port: 3000,
+  },
+  build: {
+    assetsInlineLimit: 0,
   },
 });
