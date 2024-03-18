@@ -6,7 +6,14 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   base: '',
-  plugins: [react(), viteTsconfigPaths(), svgr(), VitePWA()],
+  plugins: [
+    react(),
+    viteTsconfigPaths(),
+    svgr(),
+    VitePWA({
+      injectRegister: null,
+    }),
+  ],
   server: {
     open: true,
     port: 3000,
