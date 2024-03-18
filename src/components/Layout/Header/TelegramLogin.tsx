@@ -316,6 +316,7 @@ const TelegramLogin = () => {
 
   const logoutFn = async () => {
     setOpen(false);
+    setTelegramData(null);
     dispatch(logout());
   };
 
