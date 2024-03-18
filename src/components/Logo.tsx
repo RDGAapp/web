@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 
 import styled from 'styled-components';
 
-import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
+import LogoSvg from 'assets/icons/logo.svg?react';
 
 const Container = styled.div`
   display: flex;

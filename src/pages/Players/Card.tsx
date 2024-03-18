@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as LocationSvg } from 'assets/icons/location.svg';
-import { ReactComponent as SportsCategorySvg } from 'assets/icons/sportsCategory.svg';
+import LocationSvg from 'assets/icons/location.svg?react';
+import SportsCategorySvg from 'assets/icons/sportsCategory.svg?react';
 import Avatar from 'components/Avatar';
 import CustomLink from 'components/CustomLink';
 import RatingChangeBadge from 'components/RatingChangeBadge';

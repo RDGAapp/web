@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import { ReactComponent as RdgaSvg } from 'assets/icons/logo.svg';
-import { ReactComponent as MetrixSvg } from 'assets/icons/metrix.svg';
-import { ReactComponent as PdgaSvg } from 'assets/icons/pdga.svg';
+import RdgaSvg from 'assets/icons/logo.svg?react';
+import MetrixSvg from 'assets/icons/metrix.svg?react';
+import PdgaSvg from 'assets/icons/pdga.svg?react';
 import LogoLoader from 'components/LogoLoader';
 import routes from 'helpers/routes';
 import { useAppDispatch, useAppSelector } from 'store/hooks';

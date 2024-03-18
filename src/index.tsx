@@ -19,6 +19,6 @@ root.render(
         <App />
       </AppSettingsProvider>
     </Provider>
-  </StrictMode>
+  </StrictMode>,
 );
 serviceWorkerRegistration.register();

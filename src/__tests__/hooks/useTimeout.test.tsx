@@ -1,8 +1,9 @@
 import { fireEvent, render } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import useTimeout from 'hooks/useTimeout';
 
-const timeoutCallback = jest.fn();
+const timeoutCallback = vi.fn();
 
 const Button = () => {
   const { reset, clear } = useTimeout(timeoutCallback, 1000);
@@ -21,25 +22,25 @@ const Button = () => {
 
 describe('useTimeout hook', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
-    jest.restoreAllMocks();
+    vi.resetAllMocks();
+    vi.restoreAllMocks();
   });
 
   test('should set timeout with setTimeout', async () => {
-    jest.useFakeTimers();
-    jest.spyOn(global, 'setTimeout');
+    vi.useFakeTimers();
+    vi.spyOn(global, 'setTimeout');
 
     render(<Button />);
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
     expect(timeoutCallback).toHaveBeenCalledTimes(0);
 
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(timeoutCallback).toHaveBeenCalledTimes(1);
   });
 
   test('should call clearTimeout on reset and clear function calls', () => {
-    jest.spyOn(global, 'clearTimeout');
+    vi.spyOn(global, 'clearTimeout');
 
     const { getByText } = render(<Button />);
     const resetButton = getByText('reset');
@@ -57,7 +58,7 @@ describe('useTimeout hook', () => {
   });
 
   test('should not call clearTimeout as timer is undefined', () => {
-    jest.spyOn(global, 'clearTimeout');
+    vi.spyOn(global, 'clearTimeout');
     global.setTimeout = (() => {
       /* do nothing */
     }) as unknown as typeof setTimeout;

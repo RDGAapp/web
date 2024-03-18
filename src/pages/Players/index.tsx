@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { ReactComponent as FilterSvg } from 'assets/icons/filter.svg';
+import FilterSvg from 'assets/icons/filter.svg?react';
 import SelectSvg from 'assets/icons/select.svg';
 import ButtonOutlined from 'components/ButtonOutlined';
 import LogoLoader from 'components/LogoLoader';

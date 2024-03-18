@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "target": "es2022",
+    "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
+    "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -22,7 +27,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "vite.config.ts",
+    "vitest.config.ts"
   ],
   "exclude": [
     "src/assets"

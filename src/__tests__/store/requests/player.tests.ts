@@ -1,25 +1,27 @@
+import { vi, type Mock } from 'vitest';
+
 import * as api from 'api';
 import { store } from 'store';
 import { getPlayers, getPlayer } from 'store/players/thunks';
 
-jest.mock('api');
+vi.mock('api');
 
 describe('player requests', () => {
   const testError = 'test error';
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   afterAll(() => {
-    jest.unmock('api');
+    vi.unmock('api');
   });
 
   describe('getPlayers function', () => {
     const players = [{ rdgaNumber: 1, name: 'test' }];
 
     test('should fulfill', async () => {
-      (api.getPlayers as jest.Mock).mockReturnValue({
+      (api.getPlayers as Mock).mockReturnValue({
         ok: true,
         json: () => players,
       });
@@ -44,7 +46,7 @@ describe('player requests', () => {
     });
 
     test('should pass surname and town', async () => {
-      (api.getPlayers as jest.Mock).mockReturnValue({
+      (api.getPlayers as Mock).mockReturnValue({
         ok: true,
         json: () => players,
       });
@@ -71,7 +73,7 @@ describe('player requests', () => {
     });
 
     test('should reject', async () => {
-      (api.getPlayers as jest.Mock).mockResolvedValue({
+      (api.getPlayers as Mock).mockResolvedValue({
         ok: false,
         text: () => testError,
       });
@@ -102,7 +104,7 @@ describe('player requests', () => {
     const player = { rdgaNumber: 1, name: 'test' };
 
     test('should fulfilled', async () => {
-      (api.getPlayer as jest.Mock).mockReturnValue({
+      (api.getPlayer as Mock).mockReturnValue({
         ok: true,
         json: () => player,
       });
@@ -115,7 +117,7 @@ describe('player requests', () => {
     });
 
     test('should reject', async () => {
-      (api.getPlayer as jest.Mock).mockResolvedValue({
+      (api.getPlayer as Mock).mockResolvedValue({
         ok: false,
         text: () => testError,
       });

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReactComponent as LocationSvg } from 'assets/icons/location.svg';
+import LocationSvg from 'assets/icons/location.svg?react';
 import Avatar from 'components/Avatar';
 import { IPlayer } from 'types/player';
 

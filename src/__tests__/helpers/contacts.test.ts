@@ -1,12 +1,12 @@
-import { ReactComponent as BlgSvg } from 'assets/icons/blg.svg';
-import { ReactComponent as EkbSvg } from 'assets/icons/ekb.svg';
-import { ReactComponent as KlgSvg } from 'assets/icons/klg.svg';
-import { ReactComponent as RdgaSvg } from 'assets/icons/logo.svg';
-import { ReactComponent as MscSvg } from 'assets/icons/msc.svg';
-import { ReactComponent as NnSvg } from 'assets/icons/nn.svg';
-import { ReactComponent as PskSvg } from 'assets/icons/psk.svg';
-import { ReactComponent as SpbSvg } from 'assets/icons/spb.svg';
-import { ReactComponent as TltSvg } from 'assets/icons/tlt.svg';
+import BlgSvg from 'assets/icons/blg.svg?react';
+import EkbSvg from 'assets/icons/ekb.svg?react';
+import KlgSvg from 'assets/icons/klg.svg?react';
+import RdgaSvg from 'assets/icons/logo.svg?react';
+import MscSvg from 'assets/icons/msc.svg?react';
+import NnSvg from 'assets/icons/nn.svg?react';
+import PskSvg from 'assets/icons/psk.svg?react';
+import SpbSvg from 'assets/icons/spb.svg?react';
+import TltSvg from 'assets/icons/tlt.svg?react';
 import contacts from 'helpers/contacts';
 
 describe('contacts helper', () => {

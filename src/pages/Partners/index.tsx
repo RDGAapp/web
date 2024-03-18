@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { ReactComponent as AhoySvg } from 'assets/icons/ahoy.svg';
-import { ReactComponent as ZhilyByliSvg } from 'assets/icons/zhilybyli.svg';
+import AhoySvg from 'assets/icons/ahoy.svg?react';
+import ZhilyByliSvg from 'assets/icons/zhilybyli.svg?react';
 import AhoyImg from 'assets/images/ahoy.webp';
 import PartnersImg from 'assets/images/partners1.webp';
 import ZhilyByliImg from 'assets/images/partners2.webp';

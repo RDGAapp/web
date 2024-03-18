@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReactComponent as FileSvg } from 'assets/icons/file.svg';
+import FileSvg from 'assets/icons/file.svg?react';
 import getFileUrl from 'helpers/getFileUrl';
 
 const Container = styled.a`

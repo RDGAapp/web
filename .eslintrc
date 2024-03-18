@@ -132,6 +132,7 @@
                     "error"
                 ]
             }
-        ]
+        ],
+        "import/no-extraneous-dependencies": 0
     }
 }

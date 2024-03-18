@@ -2,7 +2,7 @@ import { ChangeEvent, useRef } from 'react';
 
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as SearchSvg } from 'assets/icons/search.svg';
+import SearchSvg from 'assets/icons/search.svg?react';
 import useMatchMedia from 'hooks/useMatchMedia';
 
 const ExpandedContainerStyle = css`
