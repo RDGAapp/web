@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 
 import styled from 'styled-components';
 
-import AvatarSvg from 'assets/icons/avatar.svg';
+import AvatarSvg from 'assets/icons/avatar.svg?url';
 
 const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
   display: flex;
@@ -18,7 +18,9 @@ const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
   background-color: ${({ theme }) => theme.colors.primary};
   background-image: url('${({ $image }) => $image}'), url('${AvatarSvg}');
   background-repeat: no-repeat;
-  background-position: center, center 10px;
+  background-position:
+    center,
+    center 10px;
   background-size: cover;
   border-radius: 100vh;
   outline: 0.2rem solid ${({ theme }) => theme.colors.primary};
@@ -28,6 +30,7 @@ const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
     disabled &&
     `
     background-color: grey;
+    outline: 0.2rem solid grey;
   `};
 `;
 

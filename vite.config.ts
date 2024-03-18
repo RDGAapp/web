@@ -43,6 +43,7 @@ export default defineConfig({
       srcDir: 'src',
       filename: 'service-worker.ts'
     }),
+
   ],
   server: {
     open: true,

@@ -66,7 +66,7 @@
     "stylelint-prettier": "5.0.0",
     "vite-plugin-pwa": "^0.19.4",
     "vitest": "1.4.0",
-    "vitest-matchmedia-mock": "^1.0.4"
+    "vitest-matchmedia-mock": "1.0.4"
   },
   "scripts": {
     "start": "vite",

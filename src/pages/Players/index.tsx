@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FilterSvg from 'assets/icons/filter.svg?react';
-import SelectSvg from 'assets/icons/select.svg';
+import SelectSvg from 'assets/icons/select.svg?url';
 import ButtonOutlined from 'components/ButtonOutlined';
 import LogoLoader from 'components/LogoLoader';
 import PageHeader from 'components/PageHeader';
