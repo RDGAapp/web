@@ -17,8 +17,6 @@ jobs:
         run: yarn stylelint:check
       - name: Check Types
         run: yarn types:check
-      - name: Test
-        run: yarn test
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5
         env:
