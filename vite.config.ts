@@ -11,7 +11,6 @@ export default defineConfig({
     viteTsconfigPaths(),
     svgr(),
     VitePWA({
-      registerType: 'autoUpdate',
       injectRegister: null,
       manifest: {
         name: 'Российская Диск-Гольф Ассоциация',

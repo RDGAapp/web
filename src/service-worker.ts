@@ -125,8 +125,6 @@ registerRoute(
 );
 
 self.addEventListener('message', (event) => {
-  // eslint-disable-next-line no-console
-  console.log('sw event', event);
   if (event.data?.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
