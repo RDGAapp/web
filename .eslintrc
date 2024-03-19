@@ -138,6 +138,12 @@
             {
                 "devDependencies": true
             }
+        ],
+        "import/no-unresolved": [
+            "error",
+            {
+                "ignore": ["^virtual:"]
+            }
         ]
     }
 }

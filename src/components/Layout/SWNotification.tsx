@@ -1,4 +1,7 @@
+import { CSSProperties } from 'react';
+
 import styled from 'styled-components';
+import { useRegisterSW } from 'virtual:pwa-register/react';
 
 const Container = styled.div`
   cursor: pointer;
@@ -24,10 +27,37 @@ const Container = styled.div`
   transition: all 1s ease-in-out;
 `;
 
-const SWNotification = () => (
-  <Container id='reloadNotification'>
-    Доступна более новая версия сайта! Нажмите для обновления.
-  </Container>
-);
+const showStyles: CSSProperties = {
+  top: '1.5rem',
+  opacity: 1,
+};
+
+const SWNotification = () => {
+  const {
+    needRefresh: [needRefresh, setNeedRefresh],
+    updateServiceWorker,
+  } = useRegisterSW({
+    onRegisterError(error) {
+      console.error('SW registration error', error);
+    },
+  });
+
+  return (
+    <Container
+      id='reloadNotification'
+      style={needRefresh ? showStyles : {}}
+      onClick={
+        needRefresh
+          ? () => {
+              updateServiceWorker(true);
+              setNeedRefresh(false);
+            }
+          : undefined
+      }
+    >
+      Доступна более новая версия сайта! Нажмите для обновления.
+    </Container>
+  );
+};
 
 export default SWNotification;
