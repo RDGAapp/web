@@ -7,7 +7,7 @@
     "@million/lint": "0.0.73",
     "@reduxjs/toolkit": "2.2.1",
     "@tinymce/tinymce-react": "4.3.2",
-    "@types/node": "20.11.28",
+    "@types/node": "20.11.29",
     "@types/react": "18.2.66",
     "@types/react-dom": "18.2.22",
     "@types/react-router": "5.1.20",
