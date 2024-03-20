@@ -9,18 +9,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
       - name: Install dependencies
-        run: yarn
+        run: bun install
       - name: Check ESLint
-        run: yarn eslint:check
+        run: bun eslint:check
       - name: Check StyleLint
-        run: yarn stylelint:check
+        run: bun stylelint:check
       - name: Check Types
-        run: yarn types:check
+        run: bun types:check
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: yarn test:coverage
+          coverageCommand: bun run test:coverage
           debug: true
