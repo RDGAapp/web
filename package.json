@@ -74,7 +74,7 @@
   "scripts": {
     "start": "bunx --bun vite",
     "start:80": "PORT=80 vite",
-    "build": "vite build --mode production",
+    "build": "tsc && vite build",
     "test": "vitest",
     "test:coverage": "vitest run --coverage --watch=false",
     "eslint:check": "yarn eslint src --ext .js,.ts,.tsx",
