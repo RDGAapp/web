@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import VideoPreview from 'assets/images/preview.webp';
 import VideoMp4 from 'assets/videos/banner.mp4';
-import VideoWebm from 'assets/videos/banner.webm';
 
 const Container = styled.div`
   isolation: isolate;
@@ -29,7 +28,6 @@ const Video = styled.video`
 const VideoBanner = () => (
   <Container>
     <Video muted poster={VideoPreview} autoPlay loop playsInline>
-      <source src={VideoWebm} type='video/webm' />
       <source src={VideoMp4} type='video/mp4' />
     </Video>
   </Container>
