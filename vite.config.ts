@@ -32,7 +32,7 @@ const manifest: Partial<ManifestOptions> = {
   display: 'standalone',
 };
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   const plugins = [
     react(),
     viteTsconfigPaths(),
@@ -45,11 +45,8 @@ export default defineConfig(({ mode }) => {
       srcDir: 'src',
       filename: 'service-worker.ts',
     }),
+    MillionLint.vite(),
   ];
-
-  if (mode !== 'production') {
-    plugins.push(MillionLint.vite());
-  }
 
   return {
     base: '/',
