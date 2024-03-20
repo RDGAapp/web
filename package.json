@@ -74,7 +74,7 @@
   "scripts": {
     "start": "bunx --bun vite",
     "start:80": "PORT=80 vite",
-    "build": "bunx --bun vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage --watch=false",
