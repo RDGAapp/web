@@ -7,8 +7,7 @@ COPY package.json ./
 COPY bun.lockb ./
 RUN bun install --frozen-lockfile
 COPY . ./
-# https://github.com/oven-sh/bun/issues/9486
-RUN npm run build
+RUN bun run build
 
 FROM nginx:stable-alpine
 COPY --from=build usr/src/app/dist /usr/share/nginx/html
