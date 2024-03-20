@@ -1,8 +1,7 @@
-FROM node:21-alpine AS build
+FROM oven/bun:1-alpine AS build
 
 LABEL maintainer="ilyakopeysk@gmail.com"
 
-RUN curl -fsSL https://bun.sh/install | bash
 WORKDIR /usr/src/app
 COPY package.json ./
 COPY bun.lockb ./
