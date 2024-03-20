@@ -2,12 +2,13 @@ FROM node:21-alpine AS build
 
 LABEL maintainer="ilyakopeysk@gmail.com"
 
+RUN curl -fsSL https://bun.sh/install | bash
 WORKDIR /usr/src/app
 COPY package.json ./
-COPY yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY bun.lockb ./
+RUN bun install --frozen-lockfile
 COPY . ./
-RUN yarn build
+RUN bun run build
 
 FROM nginx:stable-alpine
 COPY --from=build usr/src/app/dist /usr/share/nginx/html
