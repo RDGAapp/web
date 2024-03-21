@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { getPost, updatePost } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
 import PostCard from 'pages/Blog/PostCard';
+import { IPost } from 'types/blog';
 
 import AdminFormLayout from '../common/AdminFormLayout';
 
@@ -12,6 +13,7 @@ const UpdateBlog = () => {
   const [initialText, setInitialText] = useState('');
   const [text, setText] = useState('');
   const [author, setAuthor] = useState('');
+  const [authorRdgaNumber, setAuthorRdgaNumber] = useState<number>(0);
 
   const inputs = [
     {
@@ -31,8 +33,15 @@ const UpdateBlog = () => {
     {
       value: author,
       onChange: setAuthor,
-      label: 'Автор',
+      label: 'Псевдоним автора',
       type: 'text',
+      required: true,
+    },
+    {
+      value: authorRdgaNumber,
+      onChange: setAuthorRdgaNumber,
+      label: 'Номер РДГА автора',
+      type: 'number',
       required: true,
     },
   ];
@@ -41,15 +50,17 @@ const UpdateBlog = () => {
     header,
     text,
     author,
+    authorRdgaNumber,
   };
 
   const getBlogByCode = async () => {
     const response = await getPost(code);
-    const json = await response.json();
+    const json = (await response.json()) as IPost;
     setHeader(json.header);
     setInitialText(json.text);
     setText(json.text);
     setAuthor(json.author);
+    setAuthorRdgaNumber(json.authorRdgaNumber);
 
     return response;
   };
@@ -78,7 +89,14 @@ const UpdateBlog = () => {
         preview={
           <div style={{ width: '100%', height: '100%', overflow: 'auto' }}>
             <PostCard
-              post={{ ...post, code, createdAt: new Date().toISOString() }}
+              post={{
+                ...post,
+                code,
+                createdAt: new Date().toISOString(),
+                authorAvatarUrl: 'https://rdga.ru/files/cherkasik/mem.webp',
+                authorName: 'Name',
+                authorSurname: 'Surname',
+              }}
               linkedHeader
             />
           </div>

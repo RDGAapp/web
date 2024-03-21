@@ -11,6 +11,7 @@ const CreateBlog = () => {
   const [header, setHeader] = useState('');
   const [text, setText] = useState('');
   const [author, setAuthor] = useState('');
+  const [authorRdgaNumber, setAuthorRdgaNumber] = useState<number>(0);
 
   const inputs = [
     {
@@ -41,6 +42,13 @@ const CreateBlog = () => {
       type: 'text',
       required: true,
     },
+    {
+      value: authorRdgaNumber,
+      onChange: setAuthorRdgaNumber,
+      label: 'Номер РДГА автора',
+      type: 'number',
+      required: true,
+    },
   ];
 
   const post = {
@@ -48,6 +56,7 @@ const CreateBlog = () => {
     header,
     text,
     author,
+    authorRdgaNumber,
   };
 
   const onSubmit = async () => createPost(post);
@@ -62,7 +71,15 @@ const CreateBlog = () => {
         onSubmits={[onSubmit]}
         preview={
           <div style={{ width: '100%', height: '100%', overflow: 'auto' }}>
-            <PostCard post={{ ...post, createdAt: new Date().toISOString() }} />
+            <PostCard
+              post={{
+                ...post,
+                createdAt: new Date().toISOString(),
+                authorAvatarUrl: 'https://rdga.ru/files/cherkasik/mem.webp',
+                authorName: 'Name',
+                authorSurname: 'Surname',
+              }}
+            />
           </div>
         }
       />

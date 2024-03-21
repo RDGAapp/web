@@ -1,5 +1,5 @@
 import fetchRdgaApi from 'helpers/fetchRdgaApi';
-import { IPost } from 'types/blog';
+import { IPostBase } from 'types/blog';
 
 export const getPosts = (page: number, from?: string) => {
   const query = new URLSearchParams();
@@ -12,14 +12,14 @@ export const getPosts = (page: number, from?: string) => {
 
 export const getPost = (code: string) => fetchRdgaApi(`/posts/${code}`);
 
-export const createPost = (post: Omit<IPost, 'createdAt'>) =>
+export const createPost = (post: Omit<IPostBase, 'createdAt'>) =>
   fetchRdgaApi('/posts', {
     method: 'POST',
     body: JSON.stringify(post),
   });
 
 export const updatePost = (
-  post: Omit<IPost, 'createdAt' | 'code'>,
+  post: Omit<IPostBase, 'createdAt' | 'code'>,
   code: string,
 ) =>
   fetchRdgaApi(`/posts/${code}`, {

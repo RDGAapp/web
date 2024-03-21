@@ -111,6 +111,8 @@ const PostCard = ({
 
   const cardRef = useRef<HTMLDivElement>(null);
 
+  const author = post.author || `${post.authorName} ${post.authorSurname}`;
+
   return (
     <Card ref={cardRef}>
       {linkedHeader ? (
@@ -121,10 +123,10 @@ const PostCard = ({
         <h1 title={post.header}>{post.header}</h1>
       )}
       <User>
-        <Avatar />
+        <Avatar imageSrc={post.authorAvatarUrl} />
         <UserText>
-          <p title={post.author}>
-            <b>{post.author}</b>
+          <p title={author}>
+            <b>{author}</b>
           </p>
           <DateComponent
             title={new Date(post.createdAt).toLocaleString(undefined, {
