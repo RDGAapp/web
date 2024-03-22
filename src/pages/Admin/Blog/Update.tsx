@@ -12,7 +12,7 @@ const UpdateBlog = () => {
   const [header, setHeader] = useState('');
   const [initialText, setInitialText] = useState('');
   const [text, setText] = useState('');
-  const [author, setAuthor] = useState('');
+  const [author, setAuthor] = useState<string | null>(null);
   const [authorRdgaNumber, setAuthorRdgaNumber] = useState<number>(0);
 
   const inputs = [
@@ -35,7 +35,6 @@ const UpdateBlog = () => {
       onChange: setAuthor,
       label: 'Псевдоним автора',
       type: 'text',
-      required: true,
     },
     {
       value: authorRdgaNumber,

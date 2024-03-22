@@ -38,9 +38,8 @@ const CreateBlog = () => {
     {
       value: author,
       onChange: setAuthor,
-      label: 'Автор',
+      label: 'Псевдоним автора',
       type: 'text',
-      required: true,
     },
     {
       value: authorRdgaNumber,

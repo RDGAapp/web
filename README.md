@@ -1,5 +1,6 @@
 <a href="https://codeclimate.com/github/RDGAapp/web/maintainability"><img src="https://api.codeclimate.com/v1/badges/7624ca02d048cab479a6/maintainability" /></a>
 <a href="https://codeclimate.com/github/RDGAapp/web/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7624ca02d048cab479a6/test_coverage" /></a>
+![Renew Certificate](https://cronitor.io/badges/612GHK/production/xthA5BvBysrPrSN2uQMLQh0BWRg.svg)
 
 # Russian Disc-Golf Association
 

@@ -2,7 +2,7 @@ import { IPlayer } from './player';
 
 export interface IPostBase {
   code: string;
-  author: string;
+  author: string | null;
   header: string;
   text: string;
   createdAt: string;
