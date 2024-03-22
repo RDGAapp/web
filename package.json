@@ -72,11 +72,11 @@
     "vitest-matchmedia-mock": "1.0.4"
   },
   "scripts": {
-    "start": "bunx --bun vite",
+    "start": "cp ./.env/.env.development . && bunx --bun vite && rm .env.development",
     "start:80": "PORT=80 vite",
-    "build": "NODE_ENV=production bunx --bun vite build",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage --watch=false",
+    "build": "cp ./.env/.env.production . && NODE_ENV=production bunx --bun vite build --mode=production && rm .env.production",
+    "test": "cp ./.env/.env.test . && vitest && rm .env.test",
+    "test:coverage": "cp ./.env/.env.test . && vitest run --coverage --watch=false && rm .env.test",
     "eslint:check": "yarn eslint src --ext .js,.ts,.tsx",
     "stylelint:check": "stylelint './src/**/*.(js|ts|tsx)'",
     "types:check": "tsc -p tsconfig.json --noEmit ",
