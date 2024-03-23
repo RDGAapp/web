@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 const Details = styled.details`
-  max-width: 60ch;
+  overflow: hidden;
+  max-width: min(60ch, 100%);
 
   & > summary {
     cursor: pointer;
 
     width: max-content;
+    max-width: 100%;
     margin: 0 auto 1rem;
 
     font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
