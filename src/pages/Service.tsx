@@ -2,7 +2,6 @@ import DiscsShopImg from 'assets/images/service1.webp';
 import ServiceImg from 'assets/images/service2.webp';
 import {
   CustomImage,
-  Header,
   ImageContainer,
   PageContainer,
   Row,
@@ -27,7 +26,7 @@ const Service = (): JSX.Element => (
           Диски ты легко сможешь заказать через интернет либо купить пощупав в
           ближайщем к тебе магазине.
         </p>
-        <Header>Товары под заказ:</Header>
+        <SubHeader>Товары под заказ:</SubHeader>
         <ul>
           <li>Диски для игры в диск-гольф;</li>
           <li>Корзины для оборудования диск-гольф парков;</li>

@@ -6,16 +6,8 @@ import Contact from './Contact';
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem;
-
-  ${({ theme }) => theme.media.mobile} {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  ${({ theme }) => theme.media.smallMobile} {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const Contacts = () => (

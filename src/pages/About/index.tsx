@@ -18,6 +18,8 @@ import {
 import { PlanContent, PlanContentType } from 'pages/About/planContent';
 import PlanPart from 'pages/About/PlanPart';
 
+import LawInfo from './LawInfo';
+
 const PlanContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -88,6 +90,8 @@ const Step = styled.p`
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+
+  max-width: 60ch;
 
   font-size: 1rem;
   text-align: center;
@@ -303,7 +307,7 @@ const About = (): JSX.Element => {
       </Row>
       {currentDate >= campaignStartDate ? (
         <>
-          <Header id='join'>
+          <Header id='join' style={{ textAlign: 'center' }}>
             Порядок вступления или продления членства РДГА
           </Header>
           <PlanContainer>
@@ -449,6 +453,8 @@ const About = (): JSX.Element => {
           />
         </>
       )}
+
+      <LawInfo />
     </PageContainer>
   );
 };

@@ -12,6 +12,11 @@ const InnerList = styled.div`
   justify-content: center;
   width: fit-content;
   height: max-content;
+
+  &:hover > div,
+  &:focus-within > div {
+    animation-play-state: paused;
+  }
 `;
 
 const ListInstance = styled.div<{ shouldAnimate: boolean }>`

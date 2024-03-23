@@ -16,8 +16,10 @@ const Container = styled.div`
 
   & > svg {
     align-self: center;
+
     width: 100%;
     min-width: 5rem;
+    max-width: 6rem;
     height: auto;
   }
 

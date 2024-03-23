@@ -145,7 +145,7 @@ const Players = (): JSX.Element => {
   const filterRef = useRef<HTMLDivElement>(null);
 
   const { Dialog: FiltersDialog, openModal: openFiltersModal } = useDialog({
-    headerText: 'Фильтры по игрокам',
+    headerText: 'Фильтры',
   });
 
   const scrollToPageHeader = () => {
@@ -179,7 +179,7 @@ const Players = (): JSX.Element => {
         params.onlyActive = onlyActive.toString();
       }
 
-      setSearchParams(params, { replace: true });
+      setSearchParams(params, { replace: true, preventScrollReset: true });
     },
     1000,
     [page, surname, town, onlyActive],

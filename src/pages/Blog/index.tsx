@@ -57,11 +57,11 @@ const Blog = () => {
   useEffect(() => {
     const params: Record<string, string> = {};
 
-    if (page > 1) {
+    if (page >= 1) {
       params.page = page.toString();
     }
 
-    setSearchParams(params, { replace: true });
+    setSearchParams(params, { replace: true, preventScrollReset: true });
   }, [page]);
 
   return (
