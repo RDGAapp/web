@@ -36,8 +36,11 @@ const Blog = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          dispatch(getPosts(page + 1));
-          setPage((current) => current + 1);
+          setPage((current) => {
+            const newPage = current + 1;
+            dispatch(getPosts(newPage));
+            return newPage;
+          });
         }
       },
       { threshold: 1 },

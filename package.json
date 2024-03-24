@@ -72,8 +72,7 @@
     "vitest-matchmedia-mock": "1.0.4"
   },
   "scripts": {
-    "dev": "cp ./.env/.env.development . && bunx --bun vite && rm .env.development",
-    "dev:80": "cp ./.env/.env.development . && PORT=80 vite && rm .env.development",
+    "dev": "cp ./.env/.env.development . && bunx --bun vite --host && rm .env.development",
     "build": "cp ./.env/.env.production . && NODE_ENV=production bunx --bun vite build --mode=production && rm .env.production",
     "test": "cp ./.env/.env.test . && vitest && rm .env.test",
     "test:coverage": "cp ./.env/.env.test . && vitest run --coverage --watch=false && rm .env.test",
