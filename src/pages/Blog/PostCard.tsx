@@ -80,6 +80,7 @@ const Text = styled.div`
     width: auto;
     max-width: 100%;
     height: auto;
+    min-height: 200px;
     max-height: 90vh;
 
     object-fit: cover;
@@ -141,15 +142,21 @@ const PostCard = ({
       <Text
         data-expanded={expanded.toString()}
         ref={(node) => {
+          console.log(
+            'CHERKASIK: ',
+            post.code,
+            node?.scrollHeight,
+            (window.innerHeight * collapsedMaxHeightVh) / 100,
+          );
           if (
             !node ||
             node.scrollHeight >
               (window.innerHeight * collapsedMaxHeightVh) / 100
           ) {
+            setIsSmallPost(false);
             return;
           }
 
-          setExpanded(true);
           setIsSmallPost(true);
         }}
       >
@@ -159,7 +166,7 @@ const PostCard = ({
           style={{ display: 'grid', gap: '1rem' }}
         />
       </Text>
-      {!expanded && <Button onClick={() => setExpanded(true)}>...ещё</Button>}
+      {!isSmallPost && !expanded && <Button onClick={() => setExpanded(true)}>...ещё</Button>}
       {!isSmallPost && expanded && !defaultExpanded && (
         <Button
           onClick={() => {
