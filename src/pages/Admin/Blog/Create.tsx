@@ -55,7 +55,7 @@ const CreateBlog = () => {
     header,
     text,
     author,
-    authorRdgaNumber,
+    authorRdgaNumber: Number(authorRdgaNumber),
   };
 
   const onSubmit = async () => createPost(post);

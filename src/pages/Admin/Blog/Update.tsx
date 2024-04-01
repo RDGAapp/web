@@ -49,7 +49,7 @@ const UpdateBlog = () => {
     header,
     text,
     author,
-    authorRdgaNumber,
+    authorRdgaNumber: Number(authorRdgaNumber),
   };
 
   const getBlogByCode = async () => {
