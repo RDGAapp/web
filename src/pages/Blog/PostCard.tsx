@@ -142,12 +142,6 @@ const PostCard = ({
       <Text
         data-expanded={expanded.toString()}
         ref={(node) => {
-          console.log(
-            'CHERKASIK: ',
-            post.code,
-            node?.scrollHeight,
-            (window.innerHeight * collapsedMaxHeightVh) / 100,
-          );
           if (
             !node ||
             node.scrollHeight >
@@ -166,7 +160,9 @@ const PostCard = ({
           style={{ display: 'grid', gap: '1rem' }}
         />
       </Text>
-      {!isSmallPost && !expanded && <Button onClick={() => setExpanded(true)}>...ещё</Button>}
+      {!isSmallPost && !expanded && (
+        <Button onClick={() => setExpanded(true)}>...ещё</Button>
+      )}
       {!isSmallPost && expanded && !defaultExpanded && (
         <Button
           onClick={() => {
