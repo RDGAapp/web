@@ -72,8 +72,8 @@
     "vitest-matchmedia-mock": "1.0.4"
   },
   "scripts": {
-    "dev": "bunx --bun vite --host",
-    "build": "NODE_ENV=production bunx --bun vite build",
+    "dev": "vite --host",
+    "build": "vite build",
     "test": "vitest",
     "test:coverage": "vitest run --coverage --watch=false",
     "eslint:check": "yarn eslint src --ext .js,.ts,.tsx",
