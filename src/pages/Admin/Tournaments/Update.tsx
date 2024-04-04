@@ -4,8 +4,8 @@ import { updateTournament, getTournament } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
 import TournamentNameByType from 'helpers/tournament/typeNameByType';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
-import { ITournament } from 'types/tournament';
 import { TournamentType } from 'types/db';
+import { ITournament } from 'types/tournament';
 
 import Preview from './Preview';
 
