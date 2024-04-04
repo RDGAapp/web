@@ -73,7 +73,7 @@
   },
   "scripts": {
     "dev": "vite --host",
-    "build": "NODE_ENV=production bunx --bun vite build",
+    "build": "vite build --mode production",
     "test": "vitest",
     "test:coverage": "vitest run --coverage --watch=false",
     "eslint:check": "yarn eslint src --ext .js,.ts,.tsx",
