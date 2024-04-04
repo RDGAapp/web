@@ -7,8 +7,8 @@ node_modules
 .prettierrc
 .prettierignore
 README.md
-env.test
-env.development
+.env.test
+.env.development
 **/__tests__/*
 vitest.config.ts
 vitest.setup.ts
