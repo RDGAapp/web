@@ -1,4 +1,4 @@
-import TournamentType from 'enums/tournamentType';
+import { TournamentType } from 'types/db';
 
 const TournamentNameByType: Record<TournamentType, string> = {
   [TournamentType.RussianChampionship]: 'Чемпионат России',
@@ -8,7 +8,6 @@ const TournamentNameByType: Record<TournamentType, string> = {
   [TournamentType.Federal]: 'Федеральный турнир',
   [TournamentType.Regional]: 'Региональный турнир',
   [TournamentType.League]: 'Региональная лига',
-  [TournamentType.BagTag]: 'Bag-tag',
 };
 
 export default TournamentNameByType;

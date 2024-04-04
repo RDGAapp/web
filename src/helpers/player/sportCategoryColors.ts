@@ -1,4 +1,4 @@
-import SportsCategory from 'enums/sportsCategory';
+import { SportsCategory } from 'types/db';
 
 export const SportsCategoryColorByCategory: Record<SportsCategory, string> = {
   [SportsCategory.Master]: 'additional',
@@ -11,13 +11,14 @@ export const SportsCategoryColorByCategory: Record<SportsCategory, string> = {
   [SportsCategory.JuniorThird]: 'white',
 };
 
-export const SportsCategoryTextColorByCategory: Record<SportsCategory, string> = {
-  [SportsCategory.Master]: 'white',
-  [SportsCategory.Candidate]: 'white',
-  [SportsCategory.AdultFirst]: 'secondary',
-  [SportsCategory.AdultSecond]: 'secondary',
-  [SportsCategory.AdultThird]: 'secondary',
-  [SportsCategory.JuniorFirst]: 'secondary',
-  [SportsCategory.JuniorSecond]: 'secondary',
-  [SportsCategory.JuniorThird]: 'secondary',
-};
+export const SportsCategoryTextColorByCategory: Record<SportsCategory, string> =
+  {
+    [SportsCategory.Master]: 'white',
+    [SportsCategory.Candidate]: 'white',
+    [SportsCategory.AdultFirst]: 'secondary',
+    [SportsCategory.AdultSecond]: 'secondary',
+    [SportsCategory.AdultThird]: 'secondary',
+    [SportsCategory.JuniorFirst]: 'secondary',
+    [SportsCategory.JuniorSecond]: 'secondary',
+    [SportsCategory.JuniorThird]: 'secondary',
+  };

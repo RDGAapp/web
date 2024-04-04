@@ -1,4 +1,4 @@
-import TournamentType from 'enums/tournamentType';
+import { TournamentType } from 'types/db';
 
 const TournamentColorByType: Record<TournamentType, string> = {
   [TournamentType.RussianChampionship]: 'hsl(32, 98%, 60%)',
@@ -8,7 +8,6 @@ const TournamentColorByType: Record<TournamentType, string> = {
   [TournamentType.Federal]: 'hsl(217, 84%, 55%)',
   [TournamentType.Regional]: 'hsl(287, 43%, 40%)',
   [TournamentType.League]: 'hsl(110, 45%, 43%)',
-  [TournamentType.BagTag]: 'hsl(0, 0%, 0%)',
 };
 
 export default TournamentColorByType;

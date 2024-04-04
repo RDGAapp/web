@@ -7,13 +7,13 @@ import CalendarDay from 'components/CalendarDay';
 import LogoLoader from 'components/LogoLoader';
 import PageHeader from 'components/PageHeader';
 import Tournament from 'components/Tournament';
-import TournamentType from 'enums/tournamentType';
 import { getCalendarData } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournament/typeColorByType';
 import TournamentNameByType from 'helpers/tournament/typeNameByType';
 import useDialog from 'hooks/useDialog';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { getTournaments } from 'store/tournaments/thunk';
+import { TournamentType } from 'types/db';
 
 import AccreditationDialog from './AccreditationDialog';
 

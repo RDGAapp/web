@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import TournamentType from 'enums/tournamentType';
 import { spellMonth } from 'helpers/dateHelpers';
 import TournamentColorByType from 'helpers/tournament/typeColorByType';
+import { TournamentType } from 'types/db';
 
 const Container = styled.div<{
   $color: string;

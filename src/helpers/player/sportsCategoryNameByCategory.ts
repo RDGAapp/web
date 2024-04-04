@@ -1,4 +1,4 @@
-import SportsCategory from 'enums/sportsCategory';
+import { SportsCategory } from 'types/db';
 
 const SportsCategoryNameByCategory: Record<SportsCategory, string> = {
   [SportsCategory.Master]: 'Мастер спорта',

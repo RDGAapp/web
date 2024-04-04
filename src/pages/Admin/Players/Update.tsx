@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import { updatePlayer, getPlayer } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
-import SportsCategory from 'enums/sportsCategory';
 import SportsCategoryNameByCategory from 'helpers/player/sportsCategoryNameByCategory';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 import Card from 'pages/Players/Card';
+import { SportsCategory } from 'types/db';
 import { IBasePlayer } from 'types/player';
 
 const UpdatePlayer = (): JSX.Element => {

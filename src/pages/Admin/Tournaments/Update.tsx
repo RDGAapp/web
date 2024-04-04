@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import { updateTournament, getTournament } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
-import TournamentType from 'enums/tournamentType';
 import TournamentNameByType from 'helpers/tournament/typeNameByType';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 import { ITournament } from 'types/tournament';
+import { TournamentType } from 'types/db';
 
 import Preview from './Preview';
 

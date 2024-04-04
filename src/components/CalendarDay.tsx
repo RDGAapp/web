@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 import Tournament from 'components/Tournament';
 import { AppSettingsContext } from 'context/AppSettings';
-import TournamentType from 'enums/tournamentType';
 import { getMonthName, spellMonth } from 'helpers/dateHelpers';
 import theme, { commonTheme } from 'helpers/theme';
 import TournamentColorByType from 'helpers/tournament/typeColorByType';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
+import { TournamentType } from 'types/db';
 import { ITournament } from 'types/tournament';
 
 const Container = styled.div`

@@ -1,20 +1,20 @@
-import SportsCategory from 'enums/sportsCategory';
+import { AuthData, Player } from './db';
 
 export interface IBasePlayer {
-  name: string;
-  surname: string | null;
-  rdgaNumber: number;
-  rdgaRating: number | null;
-  rdgaRatingChange: number | null;
-  town: string | null;
-  pdgaNumber: number | null;
-  metrixNumber: number | null;
+  name: Player['name'];
+  surname: Player['surname'];
+  rdgaNumber: Player['rdga_number'];
+  rdgaRating: Player['rdga_rating'];
+  rdgaRatingChange: Player['rdga_rating_change'];
+  town: Player['town'];
+  pdgaNumber: Player['pdga_number'];
+  metrixNumber: Player['metrix_number'];
   activeTo: string;
-  sportsCategory: SportsCategory | null;
+  sportsCategory: Player['sports_category'];
 }
 
 export interface IPlayer extends IBasePlayer {
-  avatarUrl: string | null;
+  avatarUrl: AuthData['telegram_photo_url'];
 }
 export interface IPlayerExtended extends IPlayer {
   metrixRating: number | null;
