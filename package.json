@@ -16,7 +16,7 @@
     "react-router-hash-link": "2.4.3",
     "react-toastify": "10.0.5",
     "styled-components": "6.1.8",
-    "vite": "5.2.7",
+    "vite": "5.2.8",
     "vite-plugin-svgr": "4.2.0",
     "vite-tsconfig-paths": "4.3.2",
     "workbox-cacheable-response": "7.0.0",
