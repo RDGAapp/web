@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "2.2.2",
+    "@reduxjs/toolkit": "2.2.3",
     "@tinymce/tinymce-react": "5.0.0",
     "@vitejs/plugin-react-swc": "3.6.0",
     "million": "3.0.6",
