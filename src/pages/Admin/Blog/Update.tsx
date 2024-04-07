@@ -14,6 +14,7 @@ const UpdateBlog = () => {
   const [text, setText] = useState('');
   const [author, setAuthor] = useState<string | null>(null);
   const [authorRdgaNumber, setAuthorRdgaNumber] = useState<number>(0);
+  const [createdAt, setCreatedAt] = useState<string>('');
 
   const inputs = [
     {
@@ -50,6 +51,7 @@ const UpdateBlog = () => {
     text,
     author,
     authorRdgaNumber: Number(authorRdgaNumber),
+    createdAt: createdAt || new Date().toISOString(),
   };
 
   const getBlogByCode = async () => {
@@ -60,6 +62,7 @@ const UpdateBlog = () => {
     setText(json.text);
     setAuthor(json.author);
     setAuthorRdgaNumber(json.authorRdgaNumber);
+    setCreatedAt(json.createdAt);
 
     return response;
   };

@@ -18,10 +18,7 @@ export const createPost = (post: Omit<IPostBase, 'createdAt'>) =>
     body: JSON.stringify(post),
   });
 
-export const updatePost = (
-  post: Omit<IPostBase, 'createdAt' | 'code'>,
-  code: string,
-) =>
+export const updatePost = (post: Omit<IPostBase, 'code'>, code: string) =>
   fetchRdgaApi(`/posts/${code}`, {
     method: 'PUT',
     body: JSON.stringify(post),
