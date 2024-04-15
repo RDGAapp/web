@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { createPost } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
 import PostCard from 'pages/Blog/PostCard';
+import { IPostBase } from 'types/blog';
 
 import AdminFormLayout from '../common/AdminFormLayout';
 
@@ -50,12 +51,13 @@ const CreateBlog = () => {
     },
   ];
 
-  const post = {
+  const post: IPostBase = {
     code,
     header,
     text,
     author,
     authorRdgaNumber: Number(authorRdgaNumber),
+    createdAt: new Date().toISOString(),
   };
 
   const onSubmit = async () => createPost(post);
