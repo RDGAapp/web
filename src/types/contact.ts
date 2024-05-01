@@ -1,5 +1,5 @@
 export interface IContact {
-  Image: any;
+  code: string;
   town: string;
   phone: string;
   phone2?: string;

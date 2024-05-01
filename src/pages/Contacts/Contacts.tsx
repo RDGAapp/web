@@ -14,8 +14,8 @@ const Contacts = () => (
   <Container>
     {contacts.map((contact) => (
       <Contact
-        key={contact.town}
-        Image={contact.Image}
+        key={contact.code}
+        code={contact.code}
         phone={contact.phone}
         phone2={contact.phone2}
         email={contact.email}

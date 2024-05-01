@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import SocialLink from 'components/SocialLink';
+import getFileUrl from 'helpers/getFileUrl';
 import { IContact } from 'types/contact';
 
 const Container = styled.div`
@@ -14,7 +15,7 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 1rem;
 
-  & > svg {
+  & > img {
     align-self: center;
 
     width: 100%;
@@ -81,6 +82,7 @@ const Social = styled.div`
 `;
 
 const Contact = ({
+  code,
   town,
   phone,
   phone2 = '',
@@ -89,10 +91,15 @@ const Contact = ({
   instagram = '',
   telegram,
   vk,
-  Image,
 }: IContact): JSX.Element => (
   <Container>
-    <Image />
+    <img
+      src={getFileUrl(`/city/${code}.svg`)}
+      alt={`${town} logo`}
+      onError={(event) => {
+        (event.target as HTMLImageElement).src = '/logo.svg';
+      }}
+    />
     <TextContainer>
       <Town>{town}:</Town>
       <Text>{phone}</Text>
