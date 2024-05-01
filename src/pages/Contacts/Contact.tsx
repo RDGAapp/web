@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import SocialLink from 'components/SocialLink';
 import getFileUrl from 'helpers/getFileUrl';
+import { clearNumber } from 'helpers/wordHelpers';
 import { IContact } from 'types/contact';
 
 const Container = styled.div`
@@ -60,10 +61,6 @@ const Town = styled.h6`
   font-weight: bold;
 `;
 
-const Text = styled.p`
-  ${TextStyle};
-`;
-
 const Link = styled.a`
   ${TextStyle};
   color: ${({ theme }) => theme.colors.text.primary};
@@ -102,8 +99,8 @@ const Contact = ({
     />
     <TextContainer>
       <Town>{town}:</Town>
-      <Text>{phone}</Text>
-      {phone2 && <Text>{phone2}</Text>}
+      <Link href={`tel:${clearNumber(phone)}`}>{phone}</Link>
+      {phone2 && <Link href={`tel:${clearNumber(phone2)}`}>{phone2}</Link>}
       <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>
       {site && <Link href={site}>{site.split('//')[1].toUpperCase()}</Link>}
       <Social>

@@ -12,3 +12,9 @@ export function spell(number: number, titles: [string, string, string]) {
       : cases[number % 10 < 5 ? number % 10 : 5]
   ];
 }
+
+export const clearNumber = (number: string) => {
+  const phoneAllowedCharsRegExp = /[^1,2,3,4,5,6,7,8,9,0]/g;
+
+  return `+${number.replace(phoneAllowedCharsRegExp, '')}`;
+};
