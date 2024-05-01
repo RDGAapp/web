@@ -20,7 +20,7 @@ const contacts: IContact[] = [
     vk: 'https://vk.com/discgolfspb',
   },
   {
-    code: 'msk',
+    code: 'msc',
     town: 'Москва',
     phone: '+7 (909) 988 44 22',
     email: 'discdog@mail.ru',
