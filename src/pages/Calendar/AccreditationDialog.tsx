@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import DocLink from 'components/DocLink';
-import InlineLink from 'components/InlineLink';
 
 const Container = styled.div`
   display: flex;
@@ -37,33 +36,6 @@ const AccreditationDialog = () => (
       fileUrl='/docs/tournamentAccreditation.pdf'
       fileName='rdga-tournament-accreditation'
     />
-    <p style={{ fontWeight: 'bold' }}>Порядок аккредитации</p>
-    <ol>
-      <li>
-        Зарегистрировать турнир на{' '}
-        <InlineLink
-          route='https://discgolfmetrix.com'
-          text='Disc-Golf Metrix'
-          isExternal
-        />
-      </li>
-      <li>
-        <InlineLink
-          route='https://www.tinkoff.ru/cf/9mJN821ed7D'
-          text='Оплатить'
-          isExternal
-        />{' '}
-        аккредитацию
-      </li>
-      <li>
-        Заполнить заявку по{' '}
-        <InlineLink
-          route='https://forms.gle/TqM3sLEzVWhwxMsG9'
-          text='форме'
-          isExternal
-        />
-      </li>
-    </ol>
   </Container>
 );
 
