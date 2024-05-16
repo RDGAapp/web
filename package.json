@@ -15,7 +15,7 @@
     "react-router-dom": "6.23.0",
     "react-router-hash-link": "2.4.3",
     "react-toastify": "10.0.5",
-    "styled-components": "6.1.8",
+    "styled-components": "6.1.11",
     "vite": "5.2.10",
     "vite-plugin-svgr": "4.2.0",
     "vite-tsconfig-paths": "4.3.2",
