@@ -108,3 +108,11 @@ export const getDisplayDate = (date: Date) => {
   }
   return compDate.toLocaleDateString();
 };
+
+export function getInputDate(dateString: string, includeTime = true): string {
+  const jsDate = new Date(dateString);
+  const timeOffset = jsDate.getTimezoneOffset();
+  return new Date(jsDate.getTime() - timeOffset * 60000)
+    .toISOString()
+    .slice(0, includeTime ? 16 : 10);
+}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { updateTournament, getTournament } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';
+import { getInputDate } from 'helpers/dateHelpers';
 import TournamentNameByType from 'helpers/tournament/typeNameByType';
 import AdminFormLayout from 'pages/Admin/common/AdminFormLayout';
 import { TournamentType } from 'types/db';
@@ -41,6 +42,8 @@ const UpdateTournament = (): JSX.Element => {
       label: 'Дата начала',
       type: 'datetime-local',
       required: true,
+      min: '1900-01-01T00:00',
+      max: '9999-12-31T23:59',
     },
     {
       value: endDate,
@@ -48,6 +51,8 @@ const UpdateTournament = (): JSX.Element => {
       label: 'Дата окончания',
       type: 'datetime-local',
       required: true,
+      min: '1900-01-01T00:00',
+      max: '9999-12-31T23:59',
     },
     {
       value: tournamentType,
@@ -87,8 +92,8 @@ const UpdateTournament = (): JSX.Element => {
     const json = (await response.json()) as ITournament;
     setName(json.name);
     setTown(json.town);
-    setStartDate(json.startDate.slice(0, 19));
-    setEndDate(json.endDate.slice(0, 19));
+    setStartDate(getInputDate(json.startDate));
+    setEndDate(getInputDate(json.endDate));
     setTournamentType(json.tournamentType);
     setMetrixId(json.metrixId ?? '');
 

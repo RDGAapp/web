@@ -120,6 +120,8 @@ const Input = ({ label, onChange, type, ...props }: Props) => {
           value={props.value}
           required={props.required}
           type={type}
+          min={props.min}
+          max={props.max}
         />
       )}
     </Label>

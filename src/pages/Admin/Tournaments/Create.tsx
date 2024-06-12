@@ -48,6 +48,8 @@ const CreateTournament = (): JSX.Element => {
       label: 'Дата начала',
       type: 'datetime-local',
       required: true,
+      min: '1900-01-01T00:00',
+      max: '9999-12-31T23:59',
     },
     {
       value: endDate,
@@ -55,6 +57,8 @@ const CreateTournament = (): JSX.Element => {
       label: 'Дата окончания',
       type: 'datetime-local',
       required: true,
+      min: '1900-01-01T00:00',
+      max: '9999-12-31T23:59',
     },
     {
       value: tournamentType,
