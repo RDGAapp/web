@@ -70,6 +70,7 @@ const Text = styled.div`
 
   & * {
     max-width: 100%;
+    word-break: break-word;
   }
 
   & iframe {
