@@ -20,7 +20,7 @@ jobs:
       - name: Check Types
         run: bun types:check
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v5
+        uses: paambaati/codeclimate-action@v8
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
