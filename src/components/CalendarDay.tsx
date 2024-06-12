@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useMemo, useContext } from 'react';
 
 import styled from 'styled-components';
 
@@ -9,8 +9,8 @@ import theme, { commonTheme } from 'helpers/theme';
 import TournamentColorByType from 'helpers/tournament/typeColorByType';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
+import { useAppSelector } from 'store/hooks';
 import { TournamentType } from 'types/db';
-import { ITournament } from 'types/tournament';
 
 const Container = styled.div`
   width: 3rem;
@@ -51,17 +51,35 @@ const TournamentsList = styled.div`
 interface Props {
   day: Date;
   month: { monthName: string; shouldGreyOut: boolean };
-  tournaments: ITournament[];
 }
 
-const CalendarDay = ({ day, month, tournaments }: Props) => {
+const CalendarDay = ({ day, month }: Props) => {
   const { isSmallMobile } = useMatchMedia();
+
+  const { tournaments: allTournaments } = useAppSelector(
+    (state) => state.tournament,
+  );
 
   const { Dialog, openModal } = useDialog({
     headerText: `Турниры ${day.getDate()} ${spellMonth(day.getMonth())}`,
   });
 
   const { theme: currentTheme } = useContext(AppSettingsContext);
+
+  const tournaments = useMemo(() =>
+    allTournaments.filter((tournament) => {
+      const tournamentStartDay = new Date(tournament.startDate);
+      tournamentStartDay.setHours(0, 0, 0, 0);
+      const tournamentEndDay = new Date(tournament.endDate);
+      tournamentEndDay.setHours(0, 0, 0, 0);
+
+      const dayStart = new Date(day);
+      dayStart.setHours(0, 0, 0, 0);
+
+      return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
+    }),
+    [allTournaments, day],
+  );
 
   const getDayColor = (
     day: Date,

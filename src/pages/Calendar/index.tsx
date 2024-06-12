@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import styled from 'styled-components';
 
@@ -162,22 +162,6 @@ const Calendar = () => {
     dispatch(getTournaments());
   }, []);
 
-  const getTournamentsForThisDay = useCallback(
-    (day: Date) =>
-      tournaments.filter((tournament) => {
-        const tournamentStartDay = new Date(tournament.startDate);
-        tournamentStartDay.setHours(0, 0, 0, 0);
-        const tournamentEndDay = new Date(tournament.endDate);
-        tournamentEndDay.setHours(0, 0, 0, 0);
-
-        const dayStart = new Date(day);
-        dayStart.setHours(0, 0, 0, 0);
-
-        return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
-      }),
-    [tournaments],
-  );
-
   return (
     <>
       <PageHeader text='Календарь турниров' />
@@ -217,7 +201,6 @@ const Calendar = () => {
                             key={`day-${day.toDateString()}`}
                             day={day}
                             month={month}
-                            tournaments={getTournamentsForThisDay(day)}
                           />
                         ))}
                       </CalendarWeek>
@@ -231,6 +214,11 @@ const Calendar = () => {
                                 new Date(tournament.endDate) <= week[6]) ||
                               (new Date(tournament.startDate) <= week[0] &&
                                 new Date(tournament.endDate) >= week[6]),
+                          )
+                          .toSorted(
+                            (a, b) =>
+                              new Date(a.startDate).getTime() -
+                              new Date(b.startDate).getTime(),
                           )
                           .map((tournament) => (
                             <Tournament
