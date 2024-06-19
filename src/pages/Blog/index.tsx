@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import LogoLoader from 'components/LogoLoader';
@@ -24,10 +24,13 @@ const Blog = () => {
 
   const { posts, loading, lastPage } = useAppSelector((state) => state.posts);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [page, setPage] = useState(
-    Number(!!posts.length && searchParams.get('page')) || 0,
+    Number(
+      !!posts.length && new URLSearchParams(location.search).get('page'),
+    ) || 0,
   );
 
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -39,6 +42,12 @@ const Blog = () => {
           setPage((current) => {
             const newPage = current + 1;
             dispatch(getPosts(newPage));
+            const searchParams = new URLSearchParams(location.search);
+            searchParams.set('page', newPage.toString());
+            navigate(
+              { search: `?${searchParams}` },
+              { replace: true, preventScrollReset: true },
+            );
             return newPage;
           });
         }
@@ -56,16 +65,6 @@ const Blog = () => {
       }
     };
   }, [observerTarget]);
-
-  useEffect(() => {
-    const params: Record<string, string> = {};
-
-    if (page >= 1) {
-      params.page = page.toString();
-    }
-
-    setSearchParams(params, { replace: true, preventScrollReset: true });
-  }, [page]);
 
   return (
     <Container>

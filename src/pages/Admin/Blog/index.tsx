@@ -8,7 +8,7 @@ import routes from 'helpers/routes';
 import Section from '../common/Section';
 import Sections from '../common/Sections';
 
-const Players = () => (
+const Blog = () => (
   <>
     <Breadcrumbs />
     <Header>Действия над постами</Header>
@@ -29,4 +29,4 @@ const Players = () => (
   </>
 );
 
-export default Players;
+export default Blog;

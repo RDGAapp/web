@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FilterSvg from 'assets/icons/filter.svg?react';
 import SelectSvg from 'assets/icons/select.svg?url';
 import ButtonOutlined from 'components/ButtonOutlined';
-import LogoLoader from 'components/LogoLoader';
+import OverlayLoader from 'components/OverlayLoader';
 import PageHeader from 'components/PageHeader';
 import Pagination from 'components/Pagination';
 import SearchBar from 'components/SearchBar';
@@ -127,7 +127,10 @@ const Players = (): JSX.Element => {
 
   const { players, loading } = useAppSelector((state) => state.player);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
 
   const [page, setPage] = useState<number>(
     Number(searchParams.get('page')) || 0,
@@ -179,7 +182,12 @@ const Players = (): JSX.Element => {
         params.onlyActive = onlyActive.toString();
       }
 
-      setSearchParams(params, { replace: true, preventScrollReset: true });
+      const paramsString = new URLSearchParams(params).toString();
+
+      navigate(
+        { search: `?${paramsString}` },
+        { replace: true, preventScrollReset: true },
+      );
     },
     1000,
     [page, surname, town, onlyActive],
@@ -221,29 +229,28 @@ const Players = (): JSX.Element => {
           </Button>
         </Filters>
       </PageHeader>
-      {loading && <LogoLoader />}
-      {!loading && (players?.pagination.total ?? 0) === 0 && (
-        <NotFoundContainer>
-          <NotFoundText>
-            Игрока с такими параметрами нет в нашей базе
-          </NotFoundText>
-        </NotFoundContainer>
-      )}
-      {!loading && (
+      <OverlayLoader loading={loading}>
+        {(players?.pagination.total ?? 0) === 0 && (
+          <NotFoundContainer>
+            <NotFoundText>
+              Игрока с такими параметрами нет в нашей базе
+            </NotFoundText>
+          </NotFoundContainer>
+        )}
         <Container>
           {players?.data.map((player) => (
             <Card key={player.rdgaNumber} player={player} />
           ))}
         </Container>
-      )}
 
-      {!loading && players && (
-        <Pagination
-          currentPageNumber={players.pagination.currentPage}
-          totalPagesNumber={players.pagination.lastPage}
-          onPageChange={onPageNumberChange}
-        />
-      )}
+        {players && (
+          <Pagination
+            currentPageNumber={players.pagination.currentPage}
+            totalPagesNumber={players.pagination.lastPage}
+            onPageChange={onPageNumberChange}
+          />
+        )}
+      </OverlayLoader>
       <FiltersDialog>
         <FiltersBody>
           <CheckboxContainer>
