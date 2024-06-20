@@ -1,5 +1,8 @@
 import { createGlobalStyle, css } from 'styled-components';
 
+import FpoImage from 'assets/images/fpo.webp';
+import MpoImage from 'assets/images/mpo.webp';
+
 // https://piccalil.li/blog/a-more-modern-css-reset/
 const ModernCssReset = css`
   /* Box sizing rules */
@@ -120,10 +123,6 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.primary};
   }
 
-  #root {
-    background-color: ${({ theme }) => theme.colors.background};
-  }
-
   svg {
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
@@ -165,6 +164,19 @@ const GlobalStyle = createGlobalStyle`
 
   body:has(dialog[open]) {
     overflow: hidden;
+  }
+
+  #root {
+    background-color: ${({ theme }) => theme.colors.background};
+
+    @media (width >= 1920px) {
+      background-image: url(${FpoImage}), url(${MpoImage});
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position-x: calc(50% - 36rem - 6vw), calc(50% + 36rem + 8vw);
+      background-position-y: bottom, bottom;
+      background-size: auto 90vh, auto 90vh;
+    }
   }
 `;
 
