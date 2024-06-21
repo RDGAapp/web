@@ -26,7 +26,7 @@ describe('routesList helper', () => {
       '/admin/blog/create',
       '/admin/blog/update',
       '/admin/blog/delete',
-      '/my/profile'
+      '/my/profile',
     ]);
   });
 });

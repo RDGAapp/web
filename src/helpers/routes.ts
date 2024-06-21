@@ -53,7 +53,7 @@ export const routeNames: Record<routes, string> = {
   [routes.AdminBlogUpdate]: 'Обновить',
   [routes.AdminBlogDelete]: 'Удалить',
 
-  [routes.MyProfile]: 'Мой профиль'
+  [routes.MyProfile]: 'Мой профиль',
 };
 
 export default routes;

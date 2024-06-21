@@ -7,8 +7,8 @@ const Header = styled.h3`
 `;
 
 interface SubHeaderProps {
-  children: string,
-  id?: string,
+  children: string;
+  id?: string;
 }
 
 const SubHeader = ({ children, id }: SubHeaderProps): JSX.Element => (

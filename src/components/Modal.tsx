@@ -68,8 +68,11 @@ interface IModalProps {
   onClose?: () => void;
 }
 
-const Modal = forwardRef<HTMLDialogElement, IModalProps>(
-  ({ children, headerText, onClick, onClose }, ref) => (
+const Modal = forwardRef<HTMLDialogElement, IModalProps>(function Modal(
+  { children, headerText, onClick, onClose },
+  ref,
+) {
+  return (
     <Dialog ref={ref} onClick={onClick} onClose={onClose}>
       {headerText && (
         <ModalHeader>
@@ -85,7 +88,7 @@ const Modal = forwardRef<HTMLDialogElement, IModalProps>(
       )}
       <Container>{children}</Container>
     </Dialog>
-  ),
-);
+  );
+});
 
 export default Modal;

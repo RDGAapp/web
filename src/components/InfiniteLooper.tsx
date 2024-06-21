@@ -93,7 +93,6 @@ const InfiniteLooper = ({
       <InnerList ref={innerRef}>
         {[...Array(looperInstances)].map((_, ind) => (
           <ListInstance
-            // eslint-disable-next-line react/no-array-index-key
             key={ind}
             style={{
               animationDuration: `${speed}s`,

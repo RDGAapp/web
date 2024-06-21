@@ -156,7 +156,6 @@ const PostCard = ({
         }}
       >
         <div
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: post.text }}
           style={{ display: 'grid', gap: '1rem' }}
         />

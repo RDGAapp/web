@@ -16,7 +16,9 @@ const Service = (): JSX.Element => (
         <CustomImage src={DiscsShopImg} $position='left' />
       </ImageContainer>
       <TextContainer $position='right'>
-        <SubHeader>Диски для точных попаданий и невероятных траекторий!</SubHeader>
+        <SubHeader>
+          Диски для точных попаданий и невероятных траекторий!
+        </SubHeader>
         <p>
           Возможно твой первый диск был куплен в спорттоварах или найден на
           антрисолях, в лучшем случае это диск из Декатлона. Начало положено и

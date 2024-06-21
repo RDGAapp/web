@@ -13,8 +13,8 @@ const TextDiv = styled.div`
 `;
 
 interface TextProps {
-  children: string | JSX.Element | Array<string | JSX.Element>,
-  id?: string
+  children: string | JSX.Element | Array<string | JSX.Element>;
+  id?: string;
 }
 
 const Text = ({ children, id }: TextProps): JSX.Element => (

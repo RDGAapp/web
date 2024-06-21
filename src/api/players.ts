@@ -46,7 +46,7 @@ export const updatePlayerRating = (rdgaNumber: number, newRating: number) =>
     body: JSON.stringify({ rating: newRating }),
   });
 
-  export const activatePlayer = (rdgaNumber: number) =>
+export const activatePlayer = (rdgaNumber: number) =>
   fetchRdgaApi(`/players/${rdgaNumber}/activate`, {
     method: 'PATCH',
   });

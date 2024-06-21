@@ -13,7 +13,7 @@ const Container = styled.div`
 const Text = styled.h1<{ $textAlign: string }>`
   max-width: 22ch;
 
-  font-family: "${({ theme }) => theme.fontFamily.header}", sans-serif;
+  font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1;
@@ -32,12 +32,8 @@ const Logo = ({
   textAlign = 'start',
 }: LogoProps): JSX.Element => (
   <Container>
-    {!withoutImage && (
-      <LogoSvg width={big ? 80 : 40} height={big ? 72 : 36} />
-    )}
-    <Text $textAlign={textAlign}>
-      РОССИЙСКАЯ ДИСК-ГОЛЬФ АССОЦИАЦИЯ
-    </Text>
+    {!withoutImage && <LogoSvg width={big ? 80 : 40} height={big ? 72 : 36} />}
+    <Text $textAlign={textAlign}>РОССИЙСКАЯ ДИСК-ГОЛЬФ АССОЦИАЦИЯ</Text>
   </Container>
 );
 

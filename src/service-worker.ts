@@ -19,7 +19,6 @@ navigationPreload.enable();
 
 declare const self: ServiceWorkerGlobalScope;
 
-// eslint-disable-next-line no-underscore-dangle
 precacheAndRoute(self.__WB_MANIFEST);
 
 // HTML pages cache

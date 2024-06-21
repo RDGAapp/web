@@ -55,7 +55,7 @@ const toggleFeatureFlags = (featureFlagName: TFeatureFlag) => {
 
   const newFeatureFlags = {
     ...current?.featureFlags,
-    [featureFlagName]: !current?.featureFlags?.[featureFlagName] ?? true,
+    [featureFlagName]: !current?.featureFlags?.[featureFlagName],
   };
 
   localStorage.setItem(

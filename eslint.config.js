@@ -1,126 +1,81 @@
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
-import react from "eslint-plugin-react";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import prettier from "eslint-plugin-prettier";
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import reactRecommended from "eslint-plugin-react/configs/recommended.js";
+import reactJsxRuntime from "eslint-plugin-react/configs/jsx-runtime.js";
+import tsEslint from 'typescript-eslint';
+import prettier from "eslint-plugin-prettier/recommended";
 import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import importPlugin from "eslint-plugin-import";
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
 
-export default [{
-    ignores: ["src/types/db.ts", "eslint.config.js"],
-}, ...fixupConfigRules(compat.extends(
-    "plugin:react/recommended",
-    "airbnb",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "prettier",
-)), {
-    plugins: {
-        react: fixupPluginRules(react),
-        "@typescript-eslint": fixupPluginRules(typescriptEslint),
-        prettier,
+export default tsEslint.config(
+    js.configs.recommended,
+
+    // ts eslint
+    ...tsEslint.configs.recommended,
+    {
+        rules: {
+            "@typescript-eslint/no-explicit-any": 0,
+        },
     },
 
-    languageOptions: {
-        parser: tsParser,
-        ecmaVersion: "latest",
-        sourceType: "module",
+    prettier,
 
-        parserOptions: {
-            ecmaFeatures: {
-                jsx: true,
+    // react
+    reactRecommended,
+    reactJsxRuntime,
+    {
+        settings: {
+            react: {
+                version: 'detect',
+            }
+        },
+    },
+
+    // import
+    {
+        plugins: {
+            import: { rules: importPlugin.rules },
+        },
+        settings: {
+            "import/resolver": {
+                typescript: true,
             },
-
-            project: "./tsconfig.json",
         },
-    },
+        rules: {
+            "import/order": ["error", {
+                groups: ["builtin", "external", "internal"],
 
-    settings: {
-        "import/resolver": {
-            typescript: {},
-        },
-    },
+                pathGroups: [{
+                    pattern: "react",
+                    group: "external",
+                    position: "before",
+                }],
 
-    rules: {
-        "no-shadow": 0,
-        "react/jsx-uses-react": 0,
-        "react/react-in-jsx-scope": 0,
+                pathGroupsExcludedImportTypes: ["react"],
+                "newlines-between": "always",
 
-        "react/jsx-filename-extension": [2, {
-            extensions: [".jsx", ".tsx"],
-        }],
-
-        "import/extensions": ["error", "ignorePackages", {
-            ts: "never",
-            tsx: "never",
-        }],
-
-        "react/function-component-definition": [2, {
-            namedComponents: ["function-expression", "arrow-function"],
-        }],
-
-        "no-param-reassign": ["error", {
-            props: true,
-            ignorePropertyModificationsFor: ["state", "event"],
-        }],
-
-        "import/order": ["error", {
-            groups: ["builtin", "external", "internal"],
-
-            pathGroups: [{
-                pattern: "react",
-                group: "external",
-                position: "before",
+                alphabetize: {
+                    order: "asc",
+                    caseInsensitive: true,
+                },
             }],
-
-            pathGroupsExcludedImportTypes: ["react"],
-            "newlines-between": "always",
-
-            alphabetize: {
-                order: "asc",
-                caseInsensitive: true,
-            },
-        }],
-
-        "react/require-default-props": 0,
-
-        "jsx-a11y/label-has-associated-control": [2, {
-            required: {
-                some: ["nesting", "id"],
-            },
-        }],
-
-        "@typescript-eslint/no-explicit-any": 0,
-        "react/jsx-props-no-spreading": 0,
-        "jsx-a11y/control-has-associated-label": 0,
-        "consistent-return": 0,
-        "jsx-a11y/click-events-have-key-events": 0,
-        "jsx-a11y/no-static-element-interactions": 0,
-        "jsx-a11y/mouse-events-have-key-events": 0,
-        "@typescript-eslint/no-empty-function": 0,
-
-        "no-console": ["error", {
-            allow: ["info", "warn", "error"],
-        }],
-
-        "import/no-extraneous-dependencies": ["error", {
-            devDependencies: true,
-        }],
-
-        "import/no-unresolved": ["error", {
-            ignore: ["^virtual:"],
-        }],
+        },
     },
-}];
+
+    // jsx-a11y
+    jsxA11y.flatConfigs.recommended,
+
+    {
+        files: ["**/*.{js, ts, tsx}"]
+    },
+    {
+        ignores: ["src/types/db.ts", "eslint.config.js"],
+    },
+    {
+        rules: {
+            "no-console": ["error", {
+                allow: ["info", "warn", "error"],
+            }],
+        },
+    }
+);

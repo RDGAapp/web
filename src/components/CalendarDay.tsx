@@ -66,18 +66,19 @@ const CalendarDay = ({ day, month }: Props) => {
 
   const { theme: currentTheme } = useContext(AppSettingsContext);
 
-  const tournaments = useMemo(() =>
-    allTournaments.filter((tournament) => {
-      const tournamentStartDay = new Date(tournament.startDate);
-      tournamentStartDay.setHours(0, 0, 0, 0);
-      const tournamentEndDay = new Date(tournament.endDate);
-      tournamentEndDay.setHours(0, 0, 0, 0);
+  const tournaments = useMemo(
+    () =>
+      allTournaments.filter((tournament) => {
+        const tournamentStartDay = new Date(tournament.startDate);
+        tournamentStartDay.setHours(0, 0, 0, 0);
+        const tournamentEndDay = new Date(tournament.endDate);
+        tournamentEndDay.setHours(0, 0, 0, 0);
 
-      const dayStart = new Date(day);
-      dayStart.setHours(0, 0, 0, 0);
+        const dayStart = new Date(day);
+        dayStart.setHours(0, 0, 0, 0);
 
-      return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
-    }),
+        return tournamentStartDay <= dayStart && tournamentEndDay >= dayStart;
+      }),
     [allTournaments, day],
   );
 

@@ -60,6 +60,8 @@ describe('theme helper', () => {
         <Button data-testid='test_button' />
       </ThemeProvider>,
     );
-    expect(getByTestId('test_button')).toHaveStyle('background-color: hsl(49, 97%, 50%)');
+    expect(getByTestId('test_button')).toHaveStyle(
+      'background-color: hsl(49, 97%, 50%)',
+    );
   });
 });

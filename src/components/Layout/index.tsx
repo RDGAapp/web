@@ -21,7 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Container = styled.article`
   position: relative;
-  
+
   flex-grow: 1;
 
   width: 100%;
