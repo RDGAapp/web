@@ -24,6 +24,7 @@ const SWNotification = () => {
       autoClose: false,
       closeButton: false,
       closeOnClick: true,
+      toastId: 'new-version',
     });
   }, [needRefresh]);
 
