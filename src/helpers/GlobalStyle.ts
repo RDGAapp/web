@@ -169,14 +169,14 @@ const GlobalStyle = createGlobalStyle`
   #root {
     background-color: ${({ theme }) => theme.colors.background};
 
-    @media (width >= 1920px) {
+    /* @media (width >= 1800px) {
       background-image: url(${FpoImage}), url(${MpoImage});
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-position-x: calc(50% - 36rem - 6vw), calc(50% + 36rem + 8vw);
       background-position-y: bottom, bottom;
       background-size: auto 90vh, auto 90vh;
-    }
+    } */
   }
 `;
 
