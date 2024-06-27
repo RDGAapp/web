@@ -31,6 +31,7 @@ describe('theme helper', () => {
       error: 'hsl(0, 100%, 65%)',
       warn: 'hsl(50, 100%, 65%)',
       lighterBackground: 'hsl(0, 0%, 95%)',
+      skeletonBackground: 'hsl(0, 0%, 80%)',
       backdrop: 'hsla(0, 0%, 0%, 0.5)',
       avatarBackground: 'hsl(0, 0%, 78%)',
       black: 'hsl(0, 0%, 0%)',
