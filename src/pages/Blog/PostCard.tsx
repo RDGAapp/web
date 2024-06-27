@@ -78,13 +78,36 @@ const Text = styled.div`
   }
 
   & img {
+    @keyframes placeholder-shimmer {
+      0% {
+        background-position: -800px 0;
+      }
+
+      100% {
+        background-position: 800px 0;
+      }
+    }
+
     width: auto;
     max-width: 100%;
     height: auto;
-    min-height: 200px;
+    min-height: 20rem;
     max-height: 90vh;
 
     object-fit: cover;
+    background: linear-gradient(
+      to right,
+      ${({ theme }) => theme.colors.skeletonBackground} 8%,
+      ${({ theme }) => theme.colors.lighterBackground} 18%,
+      ${({ theme }) => theme.colors.skeletonBackground} 33%
+    );
+    background-color: ${({ theme }) => theme.colors.skeletonBackground};
+
+    animation-name: placeholder-shimmer;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
   }
 `;
 
