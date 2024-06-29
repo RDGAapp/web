@@ -16,7 +16,7 @@ const SWNotification = () => {
   useEffect(() => {
     if (!needRefresh) return;
 
-    toast.error('Доступна более новая версия сайта! Нажмите для обновления.', {
+    toast.info('Доступна более новая версия сайта! Нажмите для обновления.', {
       onClick: () => {
         updateServiceWorker(true);
         setNeedRefresh(false);
