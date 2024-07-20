@@ -38,7 +38,7 @@ describe('contacts helper', () => {
         phone2: '+7 (831) 414 21 23',
         email: 'discgolfnn@gmail.com',
         instagram: 'https://www.instagram.com/discgolfnn',
-        telegram: 'https://t.me/discgolfnn',
+        telegram: 'https://t.me/discgolf_nn',
         vk: 'https://vk.com/discgolfnn',
       },
       {
@@ -92,6 +92,11 @@ describe('contacts helper', () => {
         email: 'Alias_men@mail.ru',
         telegram: 'https://t.me/DiscGolf_VL',
         vk: 'https://vk.com/discgolfvl',
+      },
+      {
+        code: 'ryb',
+        town: 'Рыбинск',
+        telegram: 'https://t.me/DiscGolfRybinsk',
       },
     ]);
   });

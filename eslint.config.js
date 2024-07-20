@@ -1,5 +1,4 @@
-import reactRecommended from "eslint-plugin-react/configs/recommended.js";
-import reactJsxRuntime from "eslint-plugin-react/configs/jsx-runtime.js";
+import react from "eslint-plugin-react";
 import tsEslint from 'typescript-eslint';
 import prettier from "eslint-plugin-prettier/recommended";
 import js from "@eslint/js";
@@ -21,8 +20,8 @@ export default tsEslint.config(
     prettier,
 
     // react
-    reactRecommended,
-    reactJsxRuntime,
+    react.configs.flat.recommended,
+    react.configs.flat['jsx-runtime'],
     {
         settings: {
             react: {

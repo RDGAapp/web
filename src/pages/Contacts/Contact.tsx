@@ -99,9 +99,9 @@ const Contact = ({
     />
     <TextContainer>
       <Town>{town}:</Town>
-      <Link href={`tel:${clearNumber(phone)}`}>{phone}</Link>
+      {phone && <Link href={`tel:${clearNumber(phone)}`}>{phone}</Link>}
       {phone2 && <Link href={`tel:${clearNumber(phone2)}`}>{phone2}</Link>}
-      <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>
+      {email && <Link href={`mailto:${email}`}>{email.toUpperCase()}</Link>}
       {site && <Link href={site}>{site.split('//')[1].toUpperCase()}</Link>}
       <Social>
         {instagram && <SocialLink name='INSTAGRAM' value={instagram} />}
