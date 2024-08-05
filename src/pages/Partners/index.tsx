@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import AhoySvg from 'assets/icons/ahoy.svg?react';
+import StereoSvg from 'assets/icons/stereo.svg?react';
 import ZhilyByliSvg from 'assets/icons/zhilybyli.svg?react';
 import AhoyImg from 'assets/images/ahoy.webp';
 import PartnersImg from 'assets/images/partners1.webp';
@@ -102,6 +103,9 @@ const PartnersPage = () => (
         </a>
         <a href='https://ahoydiscs.ru' rel='noreferrer' target='_blank'>
           <AhoySvg width={200} />
+        </a>
+        <a href='https://stereopiter.ru' rel='noreferrer' target='_blank'>
+          <StereoSvg width={200} />
         </a>
       </LooperContent>
     </InfiniteLooper>

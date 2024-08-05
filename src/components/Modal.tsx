@@ -69,7 +69,7 @@ interface IModalProps {
 }
 
 const Modal = forwardRef<HTMLDialogElement, IModalProps>(function Modal(
-  { children, headerText, onClick, onClose },
+  { children, headerText, onClick, onClose }: IModalProps,
   ref,
 ) {
   return (

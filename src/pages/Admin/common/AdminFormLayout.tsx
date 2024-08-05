@@ -172,7 +172,8 @@ const AdminFormLayout = ({
         } else {
           addNewMessage('error', `Что-то пошло не так: ${text}`);
         }
-      } catch (e) {
+      } catch (error) {
+        console.error(error);
         if (response.ok) {
           addNewMessage('success', 'Запрос выполнен успешно');
         } else {

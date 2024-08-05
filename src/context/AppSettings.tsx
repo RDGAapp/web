@@ -36,6 +36,7 @@ const getCurrentAppSettings = (): {
   try {
     return current ? JSON.parse(current) : null;
   } catch (error) {
+    console.error(error);
     return null;
   }
 };
