@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 import LinkSvg from 'assets/icons/link.svg?react';
@@ -30,12 +32,12 @@ const VideoPreview = styled.div<{ $image: string }>`
   width: 100%;
   max-width: 28rem;
   height: 16rem;
+  border-radius: 1rem;
 
   color: transparent;
 
   background: left center url('${({ $image }) => $image}');
   background-size: cover;
-  border-radius: 1rem;
 `;
 
 const PlayButton = styled.a`
@@ -47,12 +49,12 @@ const PlayButton = styled.a`
 
   width: 7rem;
   height: 7rem;
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 100vh;
 
   color: ${({ theme }) => theme.colors.primary};
 
   background: none;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 100vh;
 
   transition: scale 0.2s ease-in-out;
 

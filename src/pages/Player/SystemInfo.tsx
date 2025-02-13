@@ -86,7 +86,7 @@ const RatingCard = styled.div`
 interface ISystemInfoProps {
   number: IPlayerExtended['rdgaNumber' | 'pdgaNumber' | 'metrixNumber'];
   rating: IPlayerExtended['rdgaRating' | 'pdgaRating' | 'metrixRating'];
-  logo: ReactElement;
+  logo: ReactElement<any>;
   ratingChange?: IPlayerExtended['rdgaRatingChange' | 'metrixRatingChange'];
   link?: string;
 }

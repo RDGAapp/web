@@ -16,9 +16,9 @@ const Card = styled.div`
   gap: 0.8rem;
 
   padding: 1rem;
+  border-radius: 0.5rem;
 
   background-color: ${({ theme }) => theme.colors.lighterBackground};
-  border-radius: 0.5rem;
 
   & > h1,
   & > a {
@@ -70,7 +70,7 @@ const Text = styled.div`
 
   & * {
     max-width: 100%;
-    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   & iframe {

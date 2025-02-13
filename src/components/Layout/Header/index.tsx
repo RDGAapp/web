@@ -1,4 +1,11 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type JSX,
+} from 'react';
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -60,11 +67,11 @@ const NavigationBackground = styled.div<{ open: boolean }>`
 
   width: min(15rem, 100vw);
   height: max-content;
+  border-radius: 0 0 1rem 1rem;
 
   background-color: ${({ theme }) => theme.colors.primary};
   clip-path: ${({ open }) =>
     open ? 'circle(90vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};
-  border-radius: 0 0 1rem 1rem;
 
   transition: clip-path 0.3s ease-in-out;
 `;

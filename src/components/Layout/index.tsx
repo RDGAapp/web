@@ -1,4 +1,4 @@
-import { Suspense, useContext, useLayoutEffect } from 'react';
+import { Suspense, useContext, useLayoutEffect, type JSX } from 'react';
 
 import { Outlet, useLocation } from 'react-router';
 import { ScrollRestoration } from 'react-router-dom';

@@ -36,10 +36,10 @@ const Button = styled.button`
 
   width: 2.5rem;
   height: 2.5rem;
-
-  background: transparent;
   border: transparent;
   border-radius: 100vh;
+
+  background: transparent;
 
   transition: scale 0.2s ease-in-out;
 

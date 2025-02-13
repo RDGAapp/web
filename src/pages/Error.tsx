@@ -16,6 +16,7 @@ const Container = styled.div`
 
     width: 100%;
     padding: 1rem;
+    border-radius: 1rem;
 
     font-size: 2rem;
     font-weight: bold;
@@ -23,7 +24,6 @@ const Container = styled.div`
     text-align: center;
 
     background-color: hsla(0deg 0% 0% / 70%);
-    border-radius: 1rem;
   }
 
   ${({ theme }) => theme.media.mobile} {

@@ -4,14 +4,14 @@ const ButtonOutlined = css`
   cursor: pointer;
 
   padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 2rem;
 
   font-size: 0.6rem;
   color: ${({ theme }) => theme.colors.text.primary};
   text-decoration: none;
 
   background: ${({ theme }) => theme.colors.lighterBackground};
-  border: none;
-  border-radius: 2rem;
 
   transition:
     background-color 0.2s ease,

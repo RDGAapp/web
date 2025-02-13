@@ -4,7 +4,9 @@
     "less",
     "postcss",
     "typescriptreact",
-    "javascriptreact"
+    "javascriptreact",
+    "typescript",
+    "javascript"
   ],
   "cSpell.words": [
     "РДГА",

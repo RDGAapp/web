@@ -13,11 +13,11 @@ const BadgeNew = styled.span`
   ${commonBadgeStyle}
   height: 1.4rem;
   padding: 0.1rem 0.5rem;
+  border-radius: 100vh;
 
   color: ${({ theme }) => theme.colors.text.contrast};
 
   background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 100vh;
 `;
 
 const Badge = styled.span<{ $increased: string }>`

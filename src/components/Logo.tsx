@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, type JSX } from 'react';
 
 import styled from 'styled-components';
 

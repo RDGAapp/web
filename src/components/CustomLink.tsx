@@ -2,7 +2,7 @@ import { FunctionComponent, SVGProps } from 'react';
 
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import styled, { RuleSet, css } from 'styled-components';
+import styled, { RuleSet, WebTarget, css } from 'styled-components';
 
 import ArrowSvg from 'assets/icons/arrow.svg?react';
 
@@ -98,7 +98,7 @@ const StyledLink = styled(Link)<ILinkProps>`
   ${({ $styles }) => $styles}
 `;
 
-const StyledHashLink = styled(HashLink)<ILinkProps>`
+const StyledHashLink = styled(HashLink as WebTarget)<ILinkProps>`
   ${CustomLinkStyles}
   ${({ $styles }) => $styles}
 `;

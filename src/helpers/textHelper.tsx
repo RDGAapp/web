@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+import { HashLink as HashLinkBrokenTypes } from 'react-router-hash-link';
+import { WebTarget } from 'styled-components';
+
+const HashLink = HashLinkBrokenTypes as WebTarget;
 
 export const getTextOrDash = ({
   text,

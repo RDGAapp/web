@@ -13,9 +13,9 @@ const Block = styled.div`
   width: fit-content;
   height: fit-content;
   padding: 0.5rem 0.7rem;
+  border-radius: 1.5rem;
 
   background-color: ${({ theme }) => theme.colors.background};
-  border-radius: 1.5rem;
 
   transition: all 0.2s ease-in-out;
 `;

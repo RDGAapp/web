@@ -13,12 +13,12 @@ const Dialog = styled.dialog`
   max-height: 90vh;
   margin: auto;
   padding: 1.5rem;
+  border: none;
+  border-radius: 1rem;
 
   color: ${({ theme }) => theme.colors.text.primary};
 
   background-color: ${({ theme }) => theme.colors.background};
-  border: none;
-  border-radius: 1rem;
 
   &::backdrop {
     background-color: ${({ theme }) => theme.colors.backdrop};
@@ -81,7 +81,7 @@ const Modal = forwardRef<HTMLDialogElement, IModalProps>(function Modal(
             height={17}
             width={17}
             onClick={() =>
-              (ref as RefObject<HTMLDialogElement>)?.current?.close()
+              (ref as RefObject<HTMLDialogElement | null>)?.current?.close()
             }
           />
         </ModalHeader>

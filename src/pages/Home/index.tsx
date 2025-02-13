@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 import AmericaVideo from 'assets/images/america-video.webp';

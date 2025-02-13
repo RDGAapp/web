@@ -26,11 +26,11 @@ const Container = styled.div<{ $expanded: boolean }>`
   flex-grow: 1;
 
   max-width: 2.5rem;
+  border-radius: 100vh;
 
   color: ${({ theme }) => theme.colors.text.primary};
 
   background: ${({ theme }) => theme.colors.lighterBackground};
-  border-radius: 100vh;
 
   transition: max-width 0.2s ease-in-out;
 
@@ -54,13 +54,13 @@ const Input = styled.input`
   width: calc(100% - 3rem);
   margin: 0;
   padding: 0.4rem 0 0.4rem 1rem;
+  border: none;
 
   font-size: 1rem;
   line-height: 1.6rem;
 
   opacity: 0;
   background-color: inherit;
-  border: none;
 
   &:focus {
     outline: none;
@@ -76,12 +76,12 @@ const Button = styled.button`
   height: 2.4rem;
   margin: 0 0 0 auto;
   padding: 0;
+  border: none;
+  border-radius: 100vh;
 
   color: ${({ theme }) => theme.colors.text.primary};
 
   background: transparent;
-  border: none;
-  border-radius: 100vh;
 
   transition:
     background-color 0.2s ease-in-out,

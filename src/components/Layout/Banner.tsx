@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 
 import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';
-import styled from 'styled-components';
+import styled, { WebTarget } from 'styled-components';
 
 import SponsorBackground from 'assets/images/banner-sponsor.webp';
 import MainBackground from 'assets/images/neutral-rdga.webp';
@@ -18,13 +18,13 @@ const Container = styled.div<{ $image: string }>`
   width: 100%;
   max-height: 28rem;
   margin: 0 0 1rem;
+  border-radius: 2.5rem;
 
   background: center url('${({ $image }) => $image}');
   background-size: cover;
-  border-radius: 2.5rem;
 `;
 
-const LinkCta = styled(HashLink)`
+const LinkCta = styled(HashLink as WebTarget)`
   cursor: pointer;
 
   display: flex;
@@ -33,6 +33,7 @@ const LinkCta = styled(HashLink)`
 
   margin-bottom: 7%;
   padding: 0.8rem 1.2rem;
+  border-radius: 2rem;
 
   font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
   font-size: 1.2rem;
@@ -42,7 +43,6 @@ const LinkCta = styled(HashLink)`
   text-decoration: none;
 
   background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 2rem;
 
   transition: scale 0.2s ease;
 

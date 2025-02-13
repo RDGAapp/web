@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, type JSX } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,13 +10,13 @@ const Button = styled.button`
   align-items: center;
 
   width: max-content;
+  border: none;
 
   font-size: 0.6rem;
   font-weight: 500;
   text-decoration: underline;
 
   background: none;
-  border: none;
 
   transition: scale 0.2s ease-in-out;
 
