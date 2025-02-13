@@ -1,4 +1,4 @@
-import { lazy, useContext } from 'react';
+import { lazy, useContext, type JSX } from 'react';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';

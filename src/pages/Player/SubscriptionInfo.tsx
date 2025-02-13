@@ -66,7 +66,7 @@ const ActiveToDate = styled.p`
 
 interface ISubscriptionInfo {
   activeTo?: IPlayerExtended['activeTo' | 'pdgaActiveTo'];
-  logo: ReactElement;
+  logo: ReactElement<any>;
   link?: string;
 }
 

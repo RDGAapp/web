@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import type { JSX } from "react";
+
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 
 import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';

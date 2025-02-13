@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 
 import { deleteTournament } from 'api';
 import Breadcrumbs from 'components/Breadcrumbs';

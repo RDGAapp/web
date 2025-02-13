@@ -9,6 +9,8 @@ import {
 } from 'components/PageContent';
 import SubHeader from 'components/SubHeader';
 
+import type { JSX } from "react";
+
 const Service = (): JSX.Element => (
   <PageContainer>
     <Row $imagePosition='left'>

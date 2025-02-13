@@ -5,6 +5,8 @@ import getFileUrl from 'helpers/getFileUrl';
 import { clearNumber } from 'helpers/wordHelpers';
 import { IContact } from 'types/contact';
 
+import type { JSX } from "react";
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;

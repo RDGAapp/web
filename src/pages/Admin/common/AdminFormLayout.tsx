@@ -6,6 +6,7 @@ import {
   useId,
   useRef,
   useState,
+  type JSX,
 } from 'react';
 
 import styled from 'styled-components';

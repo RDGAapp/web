@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import LinkSvg from 'assets/icons/link.svg?react';
 import PlaySvg from 'assets/icons/play.svg?react';
 
+import type { JSX } from "react";
+
 const Container = styled.div<{ $position: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;
