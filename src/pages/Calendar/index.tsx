@@ -38,8 +38,9 @@ const AccreditationButton = styled.button`
   gap: 4px;
   align-items: center;
 
-  background: none;
   border: none;
+
+  background: none;
 
   transition: scale 0.2s ease-in-out;
 
@@ -62,9 +63,9 @@ const Legend = styled.div`
   width: max-content;
   max-width: calc(100% - 3rem);
   padding: 1rem;
+  border-radius: 1rem;
 
   background-color: ${({ theme }) => theme.colors.lighterBackground};
-  border-radius: 1rem;
 
   ${({ theme }) => theme.media.mobile} {
     grid-template-columns: 1fr;
@@ -142,10 +143,10 @@ const TournamentList = styled.div`
 const TournamentCircle = styled.div<{ $border: string }>`
   aspect-ratio: 1 / 1;
   height: 0.5rem;
-
-  background-color: ${(props) => props.$border};
   border: 1px solid ${({ theme }) => theme.colors.text.primary};
   border-radius: 100vh;
+
+  background-color: ${(props) => props.$border};
 `;
 
 const Calendar = () => {

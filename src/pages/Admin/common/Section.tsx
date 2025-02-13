@@ -11,9 +11,9 @@ const CustomSection = styled(Link)`
   gap: 0.5rem;
   align-items: center;
 
-  font-size: 1.2rem;
-
   border-radius: 0.5rem;
+
+  font-size: 1.2rem;
 
   & svg {
     height: 1rem;

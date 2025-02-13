@@ -13,9 +13,9 @@ const Container = styled.div`
 
   max-height: 28rem;
   margin: 0 0 1rem;
+  border-radius: 2.5rem;
 
   background-size: cover;
-  border-radius: 2.5rem;
 `;
 
 const Video = styled.video`

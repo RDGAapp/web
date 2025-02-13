@@ -53,9 +53,9 @@ const PlanCardContainer = styled.div`
   width: 100%;
   max-width: 30rem;
   margin: 1rem 0;
+  border-radius: 2rem;
 
   background-color: ${({ theme }) => theme.colors.lighterBackground};
-  border-radius: 2rem;
   box-shadow: 0 0 1px ${({ theme }) => theme.colors.black};
 `;
 
@@ -99,13 +99,12 @@ const Step = styled.p`
 
 const StepNumber = styled.div`
   padding: 0.5rem 1rem;
+  border: 0.3rem solid ${({ theme }) => theme.colors.primary};
+  border-radius: 100vh;
 
   font-size: 1.3rem;
   font-weight: bold;
   font-variant: tabular-nums;
-
-  border: 0.3rem solid ${({ theme }) => theme.colors.primary};
-  border-radius: 100vh;
 `;
 
 const ArrowDown = styled(ArrowSvg)`
@@ -116,19 +115,16 @@ const ArrowDown = styled(ArrowSvg)`
 const colorByContentType = {
   [PlanContentType.Junior]: 'hsl(0, 0%, 100%)',
   [PlanContentType.Base]: 'hsl(217, 84%, 55%)',
-  [PlanContentType.VIP]: 'hsl(352, 100%, 45%)',
 };
 
 const planContentTypeMinAmounts = {
   [PlanContentType.Junior]: 500,
   [PlanContentType.Base]: 1_500,
-  [PlanContentType.VIP]: 5_000,
 };
 
 const planContentTypeMinAmountsIncreased = {
   [PlanContentType.Junior]: 500,
   [PlanContentType.Base]: 1_700,
-  [PlanContentType.VIP]: 6_000,
 };
 
 const increaseDate = new Date(
@@ -140,7 +136,7 @@ const getPlanContentMinAmounts = () =>
     ? planContentTypeMinAmountsIncreased
     : planContentTypeMinAmounts;
 
-const maxValue = getPlanContentMinAmounts()[PlanContentType.VIP] + 1_000;
+const maxValue = getPlanContentMinAmounts()[PlanContentType.Base] + 1_000;
 const minValue = getPlanContentMinAmounts()[PlanContentType.Junior];
 const range = maxValue - minValue;
 
@@ -148,14 +144,9 @@ const getLinearGradient = () => {
   const boundaries: Record<PlanContentType, { from: string; to: string }> = {
     [PlanContentType.Junior]: { from: '', to: '' },
     [PlanContentType.Base]: { from: '', to: '' },
-    [PlanContentType.VIP]: { from: '', to: '' },
   };
 
-  const order = [
-    PlanContentType.Junior,
-    PlanContentType.Base,
-    PlanContentType.VIP,
-  ];
+  const order = [PlanContentType.Junior, PlanContentType.Base];
 
   const minAmounts = getPlanContentMinAmounts();
 
@@ -186,16 +177,17 @@ const getLinearGradient = () => {
 const RangeInput = styled.input`
   width: 80%;
   height: 0.7rem;
+  border-radius: 2rem;
 
   appearance: none;
   background: ${getLinearGradient()};
-  border-radius: 2rem;
   outline: 0;
   box-shadow: 0 0 4px ${({ theme }) => theme.colors.backdrop};
 
   &::-webkit-slider-thumb {
     aspect-ratio: 1 / 1;
     width: 1.2rem;
+    border-radius: 50%;
 
     appearance: none;
     background-image: radial-gradient(
@@ -203,17 +195,16 @@ const RangeInput = styled.input`
       ${({ theme }) => theme.colors.background} 40%,
       ${({ theme }) => theme.colors.primary} 45%
     );
-    border-radius: 50%;
     box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
   }
 
   &::-moz-range-thumb {
     width: 2rem;
     height: 2rem;
+    border-radius: 50%;
 
     appearance: none;
     background-image: radial-gradient(circle, #f7f7fc 40%, #ff9800 45%);
-    border-radius: 50%;
     box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
   }
 
@@ -234,10 +225,7 @@ const About = (): JSX.Element => {
   let lowerPlanType: PlanContentType | undefined = PlanContentType.Junior;
   let selectedPlanType = PlanContentType.Junior;
   const minAmounts = getPlanContentMinAmounts();
-  if (price >= minAmounts[PlanContentType.VIP]) {
-    selectedPlanType = PlanContentType.VIP;
-    lowerPlanType = PlanContentType.Base;
-  } else if (price >= minAmounts[PlanContentType.Base]) {
+  if (price >= minAmounts[PlanContentType.Base]) {
     selectedPlanType = PlanContentType.Base;
     lowerPlanType = PlanContentType.Junior;
   } else if (price >= minAmounts[PlanContentType.Junior]) {
@@ -347,23 +335,18 @@ const About = (): JSX.Element => {
                   yesText={`${price} ₽`}
                 />
                 <PlanPart
-                  text='Ремувка (текстильный брелок) с указанием номера РДГА и года членства'
+                  text='Пластиковая карта члена клуба РДГА дизайна 2025 года'
                   isSame={
                     PlanContent[selectedPlanType].charmType ===
                     (lowerPlanType ? PlanContent[lowerPlanType].charmType : '')
                   }
                   isAllowed={!!PlanContent[selectedPlanType].charmType}
-                  yesText={PlanContent[selectedPlanType].charmType}
                 />
                 <PlanPart
-                  text='Брелок из ювелирной бронзы'
-                  isSame={
-                    PlanContent[selectedPlanType].bronzeCharm ===
-                    (lowerPlanType
-                      ? PlanContent[lowerPlanType].bronzeCharm
-                      : '')
-                  }
-                  isAllowed={!!PlanContent[selectedPlanType].bronzeCharm}
+                  text='Сувенирный маркер диск члена клуба РДГА дизайна 2025 года (за отдельную плату)'
+                  isSame={selectedPlanType !== PlanContentType.Junior}
+                  isAllowed
+                  yesText='600₽'
                 />
                 <PlanPart
                   text='Знаки достижений (браслеты, значки)'
@@ -371,22 +354,10 @@ const About = (): JSX.Element => {
                   isAllowed
                 />
                 <PlanPart
-                  text='Скидка на корзины'
-                  isSame={selectedPlanType !== PlanContentType.Junior}
-                  isAllowed
-                  yesText='20% на покупку корзин у партнёров РДГА'
-                />
-                <PlanPart
-                  text='Скидка на участие в кэмпах РДГА'
-                  isSame={selectedPlanType !== PlanContentType.Junior}
-                  isAllowed
-                  yesText='50%'
-                />
-                <PlanPart
                   text='Скидка на участие в ПроТуре (каждый этап)'
                   isSame={selectedPlanType !== PlanContentType.Junior}
                   isAllowed
-                  yesText='500р'
+                  yesText='500₽ (по запросу игрока при регистрации)'
                 />
                 <PlanPart
                   text='Участие в розыгрышах и акциях РДГА'
@@ -395,11 +366,6 @@ const About = (): JSX.Element => {
                 />
                 <PlanPart
                   text='Ведение статистики спортивных достижений игрока (при участии в аккредитованных турнирах)'
-                  isSame={selectedPlanType !== PlanContentType.Junior}
-                  isAllowed
-                />
-                <PlanPart
-                  text='Электронные брошюры'
                   isSame={selectedPlanType !== PlanContentType.Junior}
                   isAllowed
                 />
@@ -416,7 +382,7 @@ const About = (): JSX.Element => {
             <StepNumber>2</StepNumber>
             <Step>
               <InlineLink
-                route='https://discgolf.bitrix24site.ru/new24/'
+                route='https://discgolf.bitrix24site.ru/new25/'
                 text='Заполни анкету игрока'
                 isExternal
               />

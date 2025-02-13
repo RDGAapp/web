@@ -43,7 +43,6 @@ const ConsoleContainer = styled.div`
 
   height: 20vh;
   padding: 0.5rem;
-
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 0.5rem;
 `;
@@ -63,10 +62,9 @@ const Button = styled.button`
 
   width: max-content;
   margin-top: 0.5rem;
+  border-radius: 0.5rem;
 
   font-size: 1rem;
-
-  border-radius: 0.5rem;
 `;
 
 const Error = styled.p`

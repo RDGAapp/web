@@ -12,6 +12,7 @@ const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
 
   aspect-ratio: 1 / 1;
   min-width: 3rem;
+  border-radius: 100vh;
 
   color: ${({ theme }) => theme.colors.black};
 
@@ -22,7 +23,6 @@ const Background = styled.div<{ disabled: boolean; $image?: string | null }>`
     center,
     center 10px;
   background-size: cover;
-  border-radius: 100vh;
   outline: 0.2rem solid ${({ theme }) => theme.colors.primary};
   box-shadow: 0 0 4px ${({ theme }) => theme.colors.lighterBackground};
 

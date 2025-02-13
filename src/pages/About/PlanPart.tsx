@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 0.25rem 0;
-  text-align: center;
   border-bottom: 2px solid ${({ theme }) => theme.colors.text.neutral};
+  text-align: center;
 
   &:last-of-type {
     border: none;

@@ -35,13 +35,13 @@ const Background = styled.div<{ open: boolean }>`
 
   width: min(15em, 100vw);
   height: max-content;
+  border-radius: 0 0 1rem 1rem;
 
   background-color: ${({ theme }) => theme.colors.primary};
   clip-path: ${({ open }) =>
     open
       ? 'circle(50vh at calc(100% - 2.25rem) 0)'
       : 'circle(0 at calc(100% - 2.25rem) 2.25rem)'};
-  border-radius: 0 0 1rem 1rem;
 
   transition: clip-path 0.2s ease-in-out;
 `;
@@ -73,10 +73,10 @@ const AvatarContainer = styled.button`
 
   width: 2.5rem;
   height: 2.5rem;
-
-  background: transparent;
   border: transparent;
   border-radius: 100%;
+
+  background: transparent;
 
   transition: scale 0.2s ease-in-out;
 
@@ -112,6 +112,7 @@ const Loader = styled.span`
 
     width: 2.5rem;
     height: 2.5rem;
+    border-radius: 50%;
 
     line-height: 1;
 
@@ -120,7 +121,6 @@ const Loader = styled.span`
       hsl(201deg 76% 47%),
       hsl(198deg 75% 55%)
     );
-    border-radius: 50%;
 
     animation: coin-flip 4.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
@@ -150,12 +150,12 @@ const TelegramButton = styled.button`
   align-items: center;
 
   padding: 0 1rem 0 0.5rem;
+  border: transparent;
+  border-radius: 100vh;
 
   color: ${({ theme }) => theme.colors.white};
 
   background: linear-gradient(90deg, hsl(201deg 76% 47%), hsl(198deg 75% 55%));
-  border: transparent;
-  border-radius: 100vh;
 
   transition: scale 0.2s ease-in-out;
 
@@ -183,9 +183,9 @@ const RegistrationInfoContainer = styled.div`
 
   & input {
     padding: 0.5rem 1rem;
-    background-color: transparent;
     border: 1px solid ${({ theme }) => theme.colors.text.primary};
     border-radius: 2rem;
+    background-color: transparent;
   }
 
   & button {
@@ -194,10 +194,10 @@ const RegistrationInfoContainer = styled.div`
     width: max-content;
     margin: auto;
     padding: 0.5rem 1rem;
-
-    background-color: ${({ theme }) => theme.colors.lighterBackground};
     border: none;
     border-radius: 2rem;
+
+    background-color: ${({ theme }) => theme.colors.lighterBackground};
 
     transition: all 0.3s ease-in-out;
 
@@ -226,8 +226,8 @@ const RegistrationInfoContainer = styled.div`
 const LogoutButton = styled.button<{ $imagePosition: 'right' }>`
   ${CustomLinkStyles}
   cursor: pointer;
-  background-color: transparent;
   border: none;
+  background-color: transparent;
 `;
 
 declare global {

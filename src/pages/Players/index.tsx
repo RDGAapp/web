@@ -58,6 +58,8 @@ const Select = styled.select`
 
   width: 13rem;
   padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 1rem;
 
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.text.primary};
@@ -68,8 +70,6 @@ const Select = styled.select`
   background-repeat: no-repeat;
   background-position: center right 1rem;
   background-size: 1rem;
-  border: none;
-  border-radius: 1rem;
 
   transition: all 0.2s ease-in-out;
 
@@ -142,7 +142,7 @@ const Players = (): JSX.Element => {
     (searchParams.get('town') ?? '') as TTown,
   );
   const [onlyActive, setOnlyActive] = useState<boolean>(
-    searchParams.get('onlyActive') !== 'false',
+    searchParams.get('onlyActive') === 'true',
   );
 
   const filterRef = useRef<HTMLDivElement>(null);
@@ -178,7 +178,7 @@ const Players = (): JSX.Element => {
       if (town) {
         params.town = town;
       }
-      if (!onlyActive) {
+      if (onlyActive) {
         params.onlyActive = onlyActive.toString();
       }
 

@@ -13,9 +13,9 @@ const Label = styled.label`
 
 const CustomInput = styled.input`
   padding: 0.2rem 0.6rem;
-  background-color: inherit;
   border: 1px solid currentColor;
   border-radius: 0.5rem;
+  background-color: inherit;
 
   &:invalid {
     border-color: ${({ theme }) => theme.colors.invalid};
@@ -24,9 +24,9 @@ const CustomInput = styled.input`
 
 const CustomSelect = styled.select`
   padding: 0.2rem 0.6rem;
-  background-color: inherit;
   border: 1px solid currentColor;
   border-radius: 0.5rem;
+  background-color: inherit;
 
   &:invalid {
     border-color: ${({ theme }) => theme.colors.invalid};

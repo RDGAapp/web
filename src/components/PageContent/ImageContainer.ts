@@ -5,9 +5,9 @@ const ImageContainer = styled.div`
 
   width: 65%;
   margin: auto;
+  border-radius: 1rem;
 
   background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 1rem;
 `;
 
 export default ImageContainer;

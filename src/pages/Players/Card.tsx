@@ -42,10 +42,10 @@ const CommonSideStyles = css`
   width: 100%;
   height: 100%;
   padding: 1rem;
+  border-radius: 2rem;
 
   backface-visibility: hidden;
   background-color: ${({ theme }) => theme.colors.lighterBackground};
-  border-radius: 2rem;
 `;
 
 const FrontSide = styled.div<{ disabled?: boolean }>`

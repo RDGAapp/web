@@ -16,7 +16,6 @@ const Container = styled.div`
   width: 3rem;
   height: 3rem;
   padding: 0.2rem 0.3rem;
-
   border: 1px solid ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 0.5rem;
 
@@ -34,10 +33,10 @@ const TournamentCirclesContainer = styled.div`
 const TournamentCircle = styled.div<{ border: string }>`
   aspect-ratio: 1 / 1;
   height: 0.5rem;
-
-  background-color: ${(props) => props.border};
   border: 1px solid currentColor;
   border-radius: 100vh;
+
+  background-color: ${(props) => props.border};
 `;
 
 const TournamentsList = styled.div`

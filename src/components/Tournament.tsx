@@ -19,10 +19,10 @@ const Container = styled.div<{
   max-width: ${(props) => props.$maxWidth};
   height: 3rem;
   padding: 0 0.5rem;
-
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
   border: 2px solid transparent;
   border-radius: 0.5rem;
+
+  background-color: ${({ theme }) => theme.colors.lighterBackground};
 
   transition: all 0.2s ease-in-out;
 

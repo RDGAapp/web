@@ -12,9 +12,9 @@ const Container = styled.div`
   justify-self: center;
 
   padding: 1rem;
+  border-radius: 1rem;
 
   background-color: ${({ theme }) => theme.colors.lighterBackground};
-  border-radius: 1rem;
 
   & > img {
     align-self: center;
