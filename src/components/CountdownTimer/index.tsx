@@ -32,7 +32,7 @@ const CountdownTimer = ({ deadline, onTimeUpdate }: ITimerProps) => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
 
-  const interval = useRef<ReturnType<typeof setInterval>>();
+  const interval = useRef<ReturnType<typeof setInterval>>(null);
 
   useEffect(() => {
     if (interval.current) clearInterval(interval.current);
@@ -51,7 +51,9 @@ const CountdownTimer = ({ deadline, onTimeUpdate }: ITimerProps) => {
 
     updateTime();
     interval.current = setInterval(updateTime, 1000);
-    return () => interval.current && clearInterval(interval.current);
+    return () => {
+      if (interval.current) clearInterval(interval.current);
+    };
   }, []);
 
   return (

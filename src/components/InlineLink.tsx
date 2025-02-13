@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import styled, { RuleSet, css } from 'styled-components';
+import styled, { RuleSet, WebTarget, css } from 'styled-components';
 
 const LinkStyles = css`
   color: ${({ theme }) => theme.colors.secondary};
@@ -19,7 +19,7 @@ const StyledLink = styled(Link)<{ $styles?: RuleSet }>`
   ${({ $styles }) => $styles}
 `;
 
-const StyledHashLink = styled(HashLink)<{ $styles?: RuleSet }>`
+const StyledHashLink = styled(HashLink as WebTarget)<{ $styles?: RuleSet }>`
   ${LinkStyles}
   ${({ $styles }) => $styles}
 `;
