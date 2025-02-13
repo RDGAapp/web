@@ -55,7 +55,7 @@
     "jest-styled-components": "7.2.0",
     "jsdom": "26.0.0",
     "postcss-styled-syntax": "0.7.1",
-    "prettier": "3.5.0",
+    "prettier": "3.5.1",
     "prettier-eslint": "16.3.0",
     "stylelint": "16.14.1",
     "stylelint-config-clean-order": "7.0.0",
