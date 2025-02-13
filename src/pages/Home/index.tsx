@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 import AmericaVideo from 'assets/images/america-video.webp';
@@ -15,8 +17,6 @@ import {
 import SubHeader from 'components/SubHeader';
 import Stepper from 'pages/Home/Stepper';
 import VideoLink from 'pages/Home/VideoLink';
-
-import type { JSX } from "react";
 
 const ArticleContainer = styled.article`
   display: grid;

@@ -1,8 +1,8 @@
+import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 import LinkSvg from 'assets/icons/link.svg?react';
-
-import type { JSX } from "react";
 
 const Link = styled.a`
   display: flex;

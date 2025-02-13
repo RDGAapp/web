@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import DiscsShopImg from 'assets/images/service1.webp';
 import ServiceImg from 'assets/images/service2.webp';
 import {
@@ -8,8 +10,6 @@ import {
   TextContainer,
 } from 'components/PageContent';
 import SubHeader from 'components/SubHeader';
-
-import type { JSX } from "react";
 
 const Service = (): JSX.Element => (
   <PageContainer>

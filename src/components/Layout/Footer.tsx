@@ -1,9 +1,9 @@
+import type { JSX } from 'react';
+
 import styled from 'styled-components';
 
 import Logo from 'components/Logo';
 import useMatchMedia from 'hooks/useMatchMedia';
-
-import type { JSX } from "react";
 
 const PrimaryBackground = styled.footer`
   background: ${({ theme }) => theme.colors.primary};

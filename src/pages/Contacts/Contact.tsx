@@ -1,11 +1,11 @@
+import type { JSX } from 'react';
+
 import styled, { css } from 'styled-components';
 
 import SocialLink from 'components/SocialLink';
 import getFileUrl from 'helpers/getFileUrl';
 import { clearNumber } from 'helpers/wordHelpers';
 import { IContact } from 'types/contact';
-
-import type { JSX } from "react";
 
 const Container = styled.div`
   display: grid;

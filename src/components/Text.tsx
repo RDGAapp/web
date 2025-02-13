@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import type { JSX } from 'react';
 
-import type { JSX } from "react";
+import styled from 'styled-components';
 
 const TextDiv = styled.div`
   width: 100%;

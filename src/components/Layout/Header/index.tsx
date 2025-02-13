@@ -1,4 +1,11 @@
-import { useContext, useEffect, useMemo, useRef, useState, type JSX } from 'react';
+import {
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type JSX,
+} from 'react';
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';

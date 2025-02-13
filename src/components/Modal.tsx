@@ -73,7 +73,7 @@ const Modal = forwardRef<HTMLDialogElement, IModalProps>(function Modal(
   ref,
 ) {
   return (
-    (<Dialog ref={ref} onClick={onClick} onClose={onClose}>
+    <Dialog ref={ref} onClick={onClick} onClose={onClose}>
       {headerText && (
         <ModalHeader>
           <h1>{headerText}</h1>
@@ -87,7 +87,7 @@ const Modal = forwardRef<HTMLDialogElement, IModalProps>(function Modal(
         </ModalHeader>
       )}
       <Container>{children}</Container>
-    </Dialog>)
+    </Dialog>
   );
 });
 
