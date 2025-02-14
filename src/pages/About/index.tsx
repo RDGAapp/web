@@ -213,8 +213,11 @@ const RangeInput = styled.input`
   }
 `;
 
+// const campaignStartDate = new Date(
+//   Date.UTC(new Date().getFullYear(), 1, 14, 21, 0, 0, 0),
+// );
 const campaignStartDate = new Date(
-  Date.UTC(new Date().getFullYear(), 1, 14, 21, 0, 0, 0),
+  Date.UTC(new Date().getFullYear(), 1, 21, 21, 0, 0, 0),
 );
 
 const About = (): JSX.Element => {

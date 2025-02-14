@@ -135,9 +135,7 @@ const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
   }, []);
 
   return (
-    <AppSettingsContext.Provider value={contextValue}>
-      {children}
-    </AppSettingsContext.Provider>
+    <AppSettingsContext value={contextValue}>{children}</AppSettingsContext>
   );
 };
 
