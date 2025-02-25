@@ -119,25 +119,11 @@ const colorByContentType = {
 
 const planContentTypeMinAmounts = {
   [PlanContentType.Junior]: 500,
-  [PlanContentType.Base]: 1_500,
+  [PlanContentType.Base]: 2_000,
 };
 
-const planContentTypeMinAmountsIncreased = {
-  [PlanContentType.Junior]: 500,
-  [PlanContentType.Base]: 1_700,
-};
-
-const increaseDate = new Date(
-  Date.UTC(new Date().getFullYear(), 2, 31, 21, 0, 0, 0),
-);
-
-const getPlanContentMinAmounts = () =>
-  new Date() >= increaseDate
-    ? planContentTypeMinAmountsIncreased
-    : planContentTypeMinAmounts;
-
-const maxValue = getPlanContentMinAmounts()[PlanContentType.Base] + 1_000;
-const minValue = getPlanContentMinAmounts()[PlanContentType.Junior];
+const maxValue = planContentTypeMinAmounts[PlanContentType.Base] + 1_000;
+const minValue = planContentTypeMinAmounts[PlanContentType.Junior];
 const range = maxValue - minValue;
 
 const getLinearGradient = () => {
@@ -148,18 +134,17 @@ const getLinearGradient = () => {
 
   const order = [PlanContentType.Junior, PlanContentType.Base];
 
-  const minAmounts = getPlanContentMinAmounts();
-
   order.forEach((type, index) => {
     boundaries[type].from =
       index === 0
         ? '0%'
-        : `${Math.round(((minAmounts[type] - minValue) * 100) / range)}%`;
+        : `${Math.round(((planContentTypeMinAmounts[type] - minValue) * 100) / range)}%`;
     boundaries[type].to =
       index === order.length - 1
         ? '100%'
         : `${Math.round(
-            ((minAmounts[order[index + 1]] - minValue) * 100) / range,
+            ((planContentTypeMinAmounts[order[index + 1]] - minValue) * 100) /
+              range,
           )}%`;
   });
 
@@ -213,11 +198,8 @@ const RangeInput = styled.input`
   }
 `;
 
-// const campaignStartDate = new Date(
-//   Date.UTC(new Date().getFullYear(), 1, 14, 21, 0, 0, 0),
-// );
 const campaignStartDate = new Date(
-  Date.UTC(new Date().getFullYear(), 1, 21, 21, 0, 0, 0),
+  Date.UTC(new Date().getFullYear(), 1, 14, 21, 0, 0, 0),
 );
 
 const About = (): JSX.Element => {
@@ -227,11 +209,10 @@ const About = (): JSX.Element => {
 
   let lowerPlanType: PlanContentType | undefined = PlanContentType.Junior;
   let selectedPlanType = PlanContentType.Junior;
-  const minAmounts = getPlanContentMinAmounts();
-  if (price >= minAmounts[PlanContentType.Base]) {
+  if (price >= planContentTypeMinAmounts[PlanContentType.Base]) {
     selectedPlanType = PlanContentType.Base;
     lowerPlanType = PlanContentType.Junior;
-  } else if (price >= minAmounts[PlanContentType.Junior]) {
+  } else if (price >= planContentTypeMinAmounts[PlanContentType.Junior]) {
     selectedPlanType = PlanContentType.Junior;
     lowerPlanType = undefined;
   }
@@ -287,13 +268,6 @@ const About = (): JSX.Element => {
             fileUrl='/docs/rdga.pdf'
             fileName='rdga-about'
           />
-          {/* <p>
-            <InlineLink
-              route='https://www.tinkoff.ru/cf/9mJN821ed7D'
-              text='Поддержать РДГА'
-              isExternal
-            />
-          </p> */}
         </TextContainer>
       </Row>
       {currentDate >= campaignStartDate ? (

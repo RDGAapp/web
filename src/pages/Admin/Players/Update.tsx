@@ -125,6 +125,7 @@ const UpdatePlayer = (): JSX.Element => {
     setPdgaNumber(json.pdgaNumber || '');
     setMetrixNumber(json.metrixNumber || '');
     setActiveTo(new Date(json.activeTo).getFullYear());
+    setSportsCategory(json.sportsCategory);
 
     return response;
   };
