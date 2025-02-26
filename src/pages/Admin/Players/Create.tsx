@@ -12,8 +12,6 @@ const CreatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [rdgaNumber, setRdgaNumber] = useState('');
-  const [rdgaRating, setRdgaRating] = useState('');
-  const [rdgaRatingChange, setRdgaRatingChange] = useState('0');
   const [town, setTown] = useState('');
   const [pdgaNumber, setPdgaNumber] = useState('');
   const [metrixNumber, setMetrixNumber] = useState('');
@@ -42,18 +40,6 @@ const CreatePlayer = (): JSX.Element => {
       label: 'Номер РДГА',
       type: 'number',
       required: true,
-    },
-    {
-      value: rdgaRating,
-      onChange: setRdgaRating,
-      label: 'Рейтинг РДГА',
-      type: 'number',
-    },
-    {
-      value: rdgaRatingChange,
-      onChange: setRdgaRatingChange,
-      label: 'Изменения рейтинга РДГА',
-      type: 'number',
     },
     {
       value: town,
@@ -111,8 +97,6 @@ const CreatePlayer = (): JSX.Element => {
     name,
     surname: surname || null,
     rdgaNumber: Number(rdgaNumber),
-    rdgaRating: Number(rdgaRating) || 0,
-    rdgaRatingChange: Number(rdgaRatingChange) || 0,
     town,
     pdgaNumber: Number(pdgaNumber) || null,
     metrixNumber: Number(metrixNumber) || null,
@@ -135,6 +119,8 @@ const CreatePlayer = (): JSX.Element => {
             player={{
               ...player,
               avatarUrl: 'https://rdga.ru/files/cherkasik/mem.webp',
+              rdgaRating: 0,
+              rdgaRatingChange: null,
             }}
           />
         }

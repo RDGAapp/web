@@ -99,6 +99,7 @@ const Profile = ({ rdgaNumber }: IProfile) => {
       <SystemInfo
         number={player.pdgaNumber}
         rating={player.pdgaRating}
+        ratingChange={player.pdgaRatingChange}
         logo={<PdgaSvgColored />}
         link={`https://pdga.com/player/${player.pdgaNumber}`}
       />
