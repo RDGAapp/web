@@ -12,8 +12,6 @@ const UpdatePlayer = (): JSX.Element => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [rdgaNumber, setRdgaNumber] = useState('');
-  const [rdgaRating, setRdgaRating] = useState('');
-  const [rdgaRatingChange, setRdgaRatingChange] = useState('0');
   const [town, setTown] = useState('');
   const [pdgaNumber, setPdgaNumber] = useState('');
   const [metrixNumber, setMetrixNumber] = useState('');
@@ -35,18 +33,6 @@ const UpdatePlayer = (): JSX.Element => {
       onChange: setSurname,
       label: 'Фамилия',
       type: 'text',
-    },
-    {
-      value: rdgaRating,
-      onChange: setRdgaRating,
-      label: 'Рейтинг РДГА',
-      type: 'number',
-    },
-    {
-      value: rdgaRatingChange,
-      onChange: setRdgaRatingChange,
-      label: 'Изменения рейтинга РДГА',
-      type: 'number',
     },
     {
       value: town,
@@ -103,8 +89,6 @@ const UpdatePlayer = (): JSX.Element => {
   const player: Omit<IBasePlayer, 'rdgaNumber'> = {
     name,
     surname: surname || null,
-    rdgaRating: Number(rdgaRating) || 0,
-    rdgaRatingChange: Number(rdgaRatingChange) || 0,
     town,
     pdgaNumber: Number(pdgaNumber) || null,
     metrixNumber: Number(metrixNumber) || null,
@@ -119,8 +103,6 @@ const UpdatePlayer = (): JSX.Element => {
     const json = await response.json();
     setName(json.name);
     setSurname(json.surname || '');
-    setRdgaRating(json.rdgaRating);
-    setRdgaRatingChange(json.rdgaRatingChange);
     setTown(json.town);
     setPdgaNumber(json.pdgaNumber || '');
     setMetrixNumber(json.metrixNumber || '');
@@ -154,6 +136,8 @@ const UpdatePlayer = (): JSX.Element => {
             player={{
               ...player,
               rdgaNumber: Number(rdgaNumber),
+              rdgaRating: 0,
+              rdgaRatingChange: null,
               avatarUrl: 'https://rdga.ru/files/cherkasik/mem.webp',
             }}
           />
