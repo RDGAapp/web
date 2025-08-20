@@ -1,9 +1,8 @@
-import * as matchers from '@testing-library/jest-dom/matchers';
 import { cleanup } from '@testing-library/react';
-import { expect, afterEach } from 'vitest';
+import { afterEach } from 'vitest';
 import 'jest-styled-components';
-
-expect.extend(matchers);
+import '@testing-library/jest-dom';
+import '@testing-library/dom';
 
 afterEach(() => {
   cleanup();

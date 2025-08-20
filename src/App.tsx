@@ -6,10 +6,11 @@ import { ThemeProvider } from 'styled-components';
 import Layout from 'components/Layout';
 import { AppSettingsContext } from 'context/AppSettings';
 import Role from 'enums/roles';
-import GlobalStyle from 'helpers/GlobalStyle';
 import routes from 'helpers/routes';
 import theme from 'helpers/theme';
 import ErrorPage from 'pages/Error';
+
+import './App.module.css';
 
 // Admin pages
 const Admin = lazy(() => import('pages/Admin'));
@@ -145,7 +146,6 @@ const App = (): JSX.Element => {
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
-      <GlobalStyle />
       <RouterProvider router={router} />
     </ThemeProvider>
   );

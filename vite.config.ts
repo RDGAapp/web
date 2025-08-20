@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import { ManifestOptions, VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
+import { patchCssModules } from 'vite-css-modules';
 
 const manifest: Partial<ManifestOptions> = {
   name: 'Российская Диск-Гольф Ассоциация',
@@ -37,6 +38,9 @@ export default defineConfig(() => {
     react(),
     viteTsconfigPaths(),
     svgr(),
+    patchCssModules({
+      generateSourceTypes: true,
+    }),
     VitePWA({
       registerType: 'prompt',
       injectRegister: null,
