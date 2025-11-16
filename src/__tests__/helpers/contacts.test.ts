@@ -15,8 +15,8 @@ describe('contacts helper', () => {
       {
         code: 'spb',
         town: 'Санкт-Петербург',
-        phone: '+7 (981) 783 25 16',
-        email: 'discgolfspb@gmail.com',
+        phone: '+7 (981) 150 33 14',
+        email: 'Valeriy.ivanov.spb@gmail.com',
         instagram: 'https://www.instagram.com/discgolf_spb',
         telegram: 'https://t.me/discgolfspb',
         vk: 'https://vk.com/discgolfspb',
