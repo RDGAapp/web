@@ -1,8 +1,8 @@
 [![RDGA Site availability](https://cronitor.io/badges/CvFGcA/production/f9YYjduxppjFayYa4xJGjpniwnA.svg)](https://rdga.ru)
 ![RDGA Site Certificate Renewed](https://cronitor.io/badges/612GHK/production/xthA5BvBysrPrSN2uQMLQh0BWRg.svg)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/7624ca02d048cab479a6/maintainability)](https://codeclimate.com/github/RDGAapp/web/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7624ca02d048cab479a6/test_coverage)](https://codeclimate.com/github/RDGAapp/web/test_coverage)
+[![Maintainability](https://qlty.sh/gh/RDGAapp/projects/web/maintainability)](https://qlty.sh/gh/RDGAapp/projects/web)
+[![Test Coverage](https://qlty.sh/gh/RDGAapp/projects/web/coverage)](https://codeclimate.com/github/RDGAapp/web/test_coverage)
 
 # Russian Disc-Golf Association
 
