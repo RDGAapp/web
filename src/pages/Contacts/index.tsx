@@ -78,18 +78,18 @@ const ContactsPage = () => (
     <PresidentContainer>
       <img src={PresidentImg} alt='president' />
       <PresidentTextContainer>
-        <h3 title='Голубев Кирилл'>Голубев Кирилл</h3>
-        <h4 title='Вице-президент РДГА'>Президент РДГА</h4>
+        <h3 title='Иванов Валерий'>Иванов Валерий</h3>
+        <h4 title='Президент РДГА'>Президент РДГА</h4>
         <a
-          href='mailto:forglik@yandex.ru'
+          href='mailto:Valeriy.ivanov.spb@gmail.com'
           target='_blank'
           rel='noreferrer'
-          title='forglik@yandeх.ru'
+          title='Valeriy.ivanov.spb@gmail.com'
         >
-          forglik@yandeх.ru
+          Valeriy.ivanov.spb@gmail.com
         </a>
         <a
-          href='https://t.me/MrGlik'
+          href='https://t.me/gleam13'
           target='_blank'
           rel='noreferrer'
           title='Telegram'
