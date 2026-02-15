@@ -199,7 +199,7 @@ const RangeInput = styled.input`
 `;
 
 const campaignStartDate = new Date(
-  Date.UTC(new Date().getFullYear(), 1, 14, 21, 0, 0, 0),
+  Date.UTC(new Date().getFullYear(), 11, 31, 23, 59, 59, 999),
 );
 
 const About = (): JSX.Element => {
