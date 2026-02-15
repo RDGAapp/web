@@ -7,7 +7,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "2.6.0",
     "@tinymce/tinymce-react": "6.0.0",
-    "@vitejs/plugin-react-swc": "3.8.0",
+    "@vitejs/plugin-react-swc": "4.2.3",
     "million": "3.1.11",
     "react": "19.0.0",
     "react-dom": "19.0.0",
