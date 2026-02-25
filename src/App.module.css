@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   /* colors */
   --color-primary: hsl(49, 97%, 50%);
   --color-secondary: hsl(217, 84%, 55%);
@@ -8,6 +9,17 @@
   --color-black: hsl(0, 0%, 0%);
   --color-white: hsl(0, 0%, 100%);
   --color-text-neutral: hsl(0, 0%, 50%);
+
+  --color-success: light-dark(hsl(120, 75%, 43%), hsl(120, 75%, 30%));
+  --color-error: light-dark(hsl(0, 100%, 65%), hsl(0, 100%, 30%));
+  --color-warn: light-dark(hsl(50, 100%, 65%), hsl(50, 100%, 50%));
+  --color-background: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 15%));
+  --color-border: light-dark(hsl(0, 0%, 0%), hsl(0, 0%, 100%));
+  --color-borderContrast: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 15%));
+  --color-lighterBackground: light-dark(hsl(0, 0%, 95%), hsl(0, 0%, 25%));
+  --color-skeletonBackground: light-dark(hsl(0, 0%, 80%), hsl(0, 0%, 35%));
+  --color-text-primary: light-dark(hsl(0, 0%, 0%), hsl(0, 0%, 100%));
+  --color-text-contrast: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 0%));
 
   /* font family */
   --font-primary: 'Inter';
@@ -19,38 +31,6 @@
   --zIndex-header: 101;
   --zIndex-selectedPlayerCard: 800;
   --zIndex-modal: 999;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* colors */
-    --color-success: hsl(120, 75%, 30%);
-    --color-error: hsl(0, 100%, 30%);
-    --color-warn: hsl(50, 100%, 50%);
-    --color-background: hsl(0, 0%, 15%);
-    --color-border: hsl(0, 0%, 100%);
-    --color-borderContrast: hsl(0, 0%, 15%);
-    --color-lighterBackground: hsl(0, 0%, 25%);
-    --color-skeletonBackground: hsl(0, 0%, 35%);
-    --color-text-primary: hsl(0, 0%, 100%);
-    --color-text-contrast: hsl(0, 0%, 0%);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    /* colors */
-    --color-success: hsl(120, 75%, 43%);
-    --color-error: hsl(0, 100%, 65%);
-    --color-warn: hsl(50, 100%, 65%);
-    --color-background: hsl(0, 0%, 100%);
-    --color-border: hsl(0, 0%, 0%);
-    --color-borderContrast: hsl(0, 0%, 100%);
-    --color-lighterBackground: hsl(0, 0%, 95%);
-    --color-skeletonBackground: hsl(0, 0%, 80%);
-    --color-text-primary: hsl(0, 0%, 0%);
-    --color-text-contrast: hsl(0, 0%, 100%);
-  }
 }
 
 /* https://piccalil.li/blog/a-more-modern-css-reset/ */
@@ -209,21 +189,21 @@ body:has(dialog[open]) {
   overflow: hidden;
 }
 
-#root {
+body > div:first-of-type {
   background-color: var(--color-background);
-
-  /* @media (width >= 1800px) {
-    background-image:
-      url('assets/images/fpo.webp'), url('assets/images/mpo.webp');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position-x: calc(50% - 36rem - 6vw), calc(50% + 36rem + 8vw);
-    background-position-y: bottom, bottom;
-    background-size:
-      auto 90vh,
-      auto 90vh;
-  } */
 }
+
+/* @media (width >= 1800px) {
+  background-image:
+    url('assets/images/fpo.webp'), url('assets/images/mpo.webp');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-x: calc(50% - 36rem - 6vw), calc(50% + 36rem + 8vw);
+  background-position-y: bottom, bottom;
+  background-size:
+    auto 90vh,
+    auto 90vh;
+} */
 
 @media (width <= 768px) {
   html {

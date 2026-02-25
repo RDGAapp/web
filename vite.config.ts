@@ -1,10 +1,10 @@
 import MillionLint from '@million/lint';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
+import { patchCssModules } from 'vite-css-modules';
 import { ManifestOptions, VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
-import { patchCssModules } from 'vite-css-modules';
 
 const manifest: Partial<ManifestOptions> = {
   name: 'Российская Диск-Гольф Ассоциация',
@@ -39,7 +39,7 @@ export default defineConfig(() => {
     viteTsconfigPaths(),
     svgr(),
     patchCssModules({
-      generateSourceTypes: true,
+      generateSourceTypes: false,
     }),
     VitePWA({
       registerType: 'prompt',

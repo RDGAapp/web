@@ -1,0 +1,27 @@
+.background {
+  display: flex;
+  flex: 0;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 1 / 1;
+  min-width: 3rem;
+  border-radius: 100vh;
+
+  color: var(--color-black);
+
+  background-color: var(--color-primary);
+  background-image: attr(data-image);
+  background-repeat: no-repeat;
+  background-position:
+    center,
+    center 10px;
+  background-size: cover;
+  outline: 0.2rem solid var(--color-primary);
+  box-shadow: 0 0 4px var(--color-lighterBackground);
+
+  &[data-disabled='true'] {
+    background-color: grey;
+    outline: 0.2rem solid grey;
+  }
+}
