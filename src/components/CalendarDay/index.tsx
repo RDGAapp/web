@@ -1,51 +1,14 @@
-import { useMemo, useContext } from 'react';
-
-import styled from 'styled-components';
+import { useMemo, CSSProperties } from 'react';
 
 import Tournament from 'components/Tournament';
-import { AppSettingsContext } from 'context/AppSettings';
 import { getMonthName, spellMonth } from 'helpers/dateHelpers';
-import theme, { commonTheme } from 'helpers/theme';
 import TournamentColorByType from 'helpers/tournament/typeColorByType';
 import useDialog from 'hooks/useDialog';
 import useMatchMedia from 'hooks/useMatchMedia';
 import { useAppSelector } from 'store/hooks';
 import { TournamentType } from 'types/db';
 
-const Container = styled.div`
-  width: 3rem;
-  height: 3rem;
-  padding: 0.2rem 0.3rem;
-  border: 1px solid ${({ theme }) => theme.colors.lighterBackground};
-  border-radius: 0.5rem;
-
-  ${({ theme }) => theme.media.smallMobile} {
-    width: auto;
-  }
-`;
-
-const TournamentCirclesContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  gap: 0.1rem;
-`;
-
-const TournamentCircle = styled.div<{ border: string }>`
-  aspect-ratio: 1 / 1;
-  height: 0.5rem;
-  border: 1px solid currentColor;
-  border-radius: 100vh;
-
-  background-color: ${(props) => props.border};
-`;
-
-const TournamentsList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-`;
+import styles from './styles.module.css';
 
 interface Props {
   day: Date;
@@ -62,8 +25,6 @@ const CalendarDay = ({ day, month }: Props) => {
   const { Dialog, openModal } = useDialog({
     headerText: `Турниры ${day.getDate()} ${spellMonth(day.getMonth())}`,
   });
-
-  const { theme: currentTheme } = useContext(AppSettingsContext);
 
   const tournaments = useMemo(
     () =>
@@ -87,33 +48,23 @@ const CalendarDay = ({ day, month }: Props) => {
     shouldGreyOut: boolean,
   ) => {
     if (tournaments.length !== 0) {
-      return commonTheme.colors.primary;
+      return 'var(--color-primary)';
     }
     if (getMonthName(day) === monthName) {
-      return shouldGreyOut
-        ? theme[currentTheme].colors.lighterBackground
-        : 'inherit';
+      return shouldGreyOut ? 'var(--color-background-lighter)' : 'inherit';
     }
-    return shouldGreyOut
-      ? 'inherit'
-      : theme[currentTheme].colors.lighterBackground;
-  };
-
-  const getDayTextColor = () => {
-    if (tournaments.length !== 0) {
-      return commonTheme.colors.black;
-    }
-    return 'inherit';
+    return shouldGreyOut ? 'inherit' : 'var(--color-background-lighter)';
   };
 
   const shouldOpenModal = isSmallMobile && tournaments.length > 0;
 
   return (
     <>
-      <Container
+      <div
         key={`day-${day.toDateString()}`}
+        className={styles.container}
         style={{
-          color: getDayTextColor(),
+          color: tournaments.length === 0 ? 'inherit' : 'var(--color-black)',
           backgroundColor: getDayColor(
             day,
             month.monthName,
@@ -121,26 +72,32 @@ const CalendarDay = ({ day, month }: Props) => {
           ),
           cursor: shouldOpenModal ? 'pointer' : 'default',
         }}
+        role='button'
+        tabIndex={0}
+        onKeyDown={() => {}}
         onClick={shouldOpenModal ? openModal : undefined}
       >
         {day.getDate()}
-        <TournamentCirclesContainer>
+        <div className={styles['tournament-circles']}>
           {tournaments.map((tournament) => (
-            <TournamentCircle
+            <div
               key={`calendar-${tournament.name}-${tournament.town}`}
               title={tournament.name}
-              border={
-                TournamentColorByType[
-                  tournament.tournamentType as TournamentType
-                ]
+              style={
+                {
+                  '--tournament-color':
+                    TournamentColorByType[
+                      tournament.tournamentType as TournamentType
+                    ],
+                } as CSSProperties
               }
             />
           ))}
-        </TournamentCirclesContainer>
-      </Container>
+        </div>
+      </div>
       {tournaments.length > 0 && (
         <Dialog>
-          <TournamentsList>
+          <div className={styles['tournament-list']}>
             {tournaments.map((tournament) => (
               <Tournament
                 key={`${tournament.name}-${tournament.town}`}
@@ -153,7 +110,7 @@ const CalendarDay = ({ day, month }: Props) => {
                 metrixId={tournament.metrixId}
               />
             ))}
-          </TournamentsList>
+          </div>
         </Dialog>
       )}
     </>

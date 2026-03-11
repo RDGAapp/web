@@ -1,39 +1,40 @@
 :root {
-  color-scheme: light dark;
   /* colors */
-  --color-primary: oklch(0.86 0.18 93);
-  --color-secondary: oklch(0.59 0.19 260);
-  --color-additional: oklch(0.58 0.24 26);
-  --color-backdrop: oklch(from var(--color-black) l c h / 0.5);
-  --color-avatarBackground: oklch(0.83 0 0);
-  --color-black: oklch(0 0 0);
-  --color-white: oklch(1 0 0);
-  --color-text-neutral: oklch(0.6 0 0);
-
-  --color-success: light-dark(oklch(0.70 0.23 143), oklch(0.5 0.23 143));
-  --color-error: light-dark(oklch(0.67 0.21 25), oklch(0.47 0.21 25));
-  --color-warn: light-dark(oklch(0.9 0.16 98), oklch(0.7 0.16 98));
-  --color-background: light-dark(oklch(0.95 0 0), oklch(0.3 0 0));
-  --color-border: light-dark(oklch(0 0 0), oklch(1 0 0));
-  --color-borderContrast: light-dark(oklch(1 0 0), oklch(0.3 0 0));
-  --color-lighterBackground: light-dark(oklch(0.9 0 0), oklch(0.35 0 0));
-  --color-skeletonBackground: light-dark(oklch(0.8 0 0), oklch(0.4 0 0));
-  --color-text-primary: light-dark(oklch(0 0 0), oklch(1 0 0));
-  --color-text-contrast: light-dark(oklch(1 0 0), oklch(0 0 0));
+  --color-primary: oklch(86% 0.18 93deg);
+  --color-secondary: oklch(59% 0.19 260deg);
+  --color-additional: oklch(58% 0.24 26deg);
+  --color-backdrop: oklch(from var(--color-black) l c h / 50%);
+  --color-black: oklch(0% 0 0deg);
+  --color-white: oklch(100% 0 0deg);
+  --color-text-neutral: oklch(60% 0 0deg);
+  --color-success: light-dark(oklch(70% 0.23 143deg), oklch(50% 0.23 143deg));
+  --color-error: light-dark(oklch(67% 0.21 25deg), oklch(47% 0.21 25deg));
+  --color-warn: light-dark(oklch(90% 0.16 98deg), oklch(70% 0.16 98deg));
+  --color-background: light-dark(oklch(95% 0 0deg), oklch(30% 0 0deg));
+  --color-background-lighter: light-dark(oklch(90% 0 0deg), oklch(35% 0 0deg));
+  --color-background-avatar: oklch(83% 0 0deg);
+  --color-background-skeleton: light-dark(oklch(80% 0 0deg), oklch(40% 0 0deg));
+  --color-border: light-dark(oklch(0% 0 0deg), oklch(100% 0 0deg));
+  --color-border-contrast: light-dark(oklch(100% 0 0deg), oklch(30% 0 0deg));
+  --color-text-primary: light-dark(oklch(0% 0 0deg), oklch(100% 0 0deg));
+  --color-text-contrast: light-dark(oklch(100% 0 0deg), oklch(0% 0 0deg));
 
   /* font family */
   --font-primary: 'Inter';
   --font-header: 'Oswald';
 
   /* z-index */
-  --zIndex-swNotification: 1000;
-  --zIndex-spinner: 100;
-  --zIndex-header: 101;
-  --zIndex-selectedPlayerCard: 800;
-  --zIndex-modal: 999;
+  --z-index-sw-notification: 1000;
+  --z-index-spinner: 100;
+  --z-index-header: 101;
+  --z-index-selected-player-card: 800;
+  --z-index-modal: 999;
+
+  color-scheme: light dark;
 }
 
 /* https://piccalil.li/blog/a-more-modern-css-reset/ */
+
 /* Box sizing rules */
 *,
 *::before,

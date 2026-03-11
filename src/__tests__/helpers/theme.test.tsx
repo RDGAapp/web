@@ -1,12 +1,4 @@
-import { render } from '@testing-library/react';
-import styled, { ThemeProvider } from 'styled-components';
-
 import theme from 'helpers/theme';
-
-const Button = styled.button`
-  color: ${({ theme }) => theme.colors.black};
-  background-color: ${({ theme }) => theme.colors.primary};
-`;
 
 describe('theme helper', () => {
   test('should return theme', () => {
@@ -53,16 +45,5 @@ describe('theme helper', () => {
       spinner: 100,
       modal: 999,
     });
-  });
-
-  test('should use set variable from theme', () => {
-    const { getByTestId } = render(
-      <ThemeProvider theme={theme.light}>
-        <Button data-testid='test_button' />
-      </ThemeProvider>,
-    );
-    expect(getByTestId('test_button')).toHaveStyle(
-      'background-color: hsl(49, 97%, 50%)',
-    );
   });
 });

@@ -1,5 +1,4 @@
 {
-  "customSyntax": "postcss-styled-syntax",
   "plugins": [
     "stylelint-prettier"
   ],
@@ -15,6 +14,6 @@
     "selector-type-no-unknown": null,
     "selector-type-case": null,
     "no-duplicate-selectors": null,
-    "value-no-vendor-prefix": null
+    "value-no-vendor-prefix": null,
   }
 }

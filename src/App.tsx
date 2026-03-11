@@ -1,13 +1,11 @@
 import { lazy, useContext, type JSX } from 'react';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
 
 import Layout from 'components/Layout';
 import { AppSettingsContext } from 'context/AppSettings';
 import Role from 'enums/roles';
 import routes from 'helpers/routes';
-import theme from 'helpers/theme';
 import ErrorPage from 'pages/Error';
 
 import './App.module.css';
@@ -144,11 +142,7 @@ const App = (): JSX.Element => {
     },
   ]);
 
-  return (
-    <ThemeProvider theme={theme[currentTheme]}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
