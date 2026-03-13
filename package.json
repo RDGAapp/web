@@ -66,7 +66,7 @@
     "stylelint-prettier": "5.0.3",
     "typescript": "5.7.3",
     "typescript-eslint": "8.25.0",
-    "vite-plugin-pwa": "0.21.1",
+    "vite-plugin-pwa": "1.2.0",
     "vitest": "3.0.7",
     "vitest-matchmedia-mock": "2.0.1"
   },
