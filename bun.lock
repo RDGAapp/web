@@ -30,6 +30,7 @@
         "workbox-window": "7.4.0",
       },
       "devDependencies": {
+        "@cspell/dict-ru_ru": "2.3.2",
         "@eslint/js": "9.33.0",
         "@million/lint": "1.0.14",
         "@testing-library/dom": "10.4.1",
@@ -277,6 +278,8 @@
     "@clack/core": ["@clack/core@0.3.5", "", { "dependencies": { "picocolors": "^1.0.0", "sisteransi": "^1.0.5" } }, "sha512-5cfhQNH+1VQ2xLQlmzXMqUoiaH0lRBq9/CLW9lTyMbuKLC3+xEK01tHVvyut++mLOn5urSHmkm6I0Lg9MaJSTQ=="],
 
     "@clack/prompts": ["@clack/prompts@0.7.0", "", { "dependencies": { "@clack/core": "^0.3.3", "is-unicode-supported": "*", "picocolors": "^1.0.0", "sisteransi": "^1.0.5" } }, "sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA=="],
+
+    "@cspell/dict-ru_ru": ["@cspell/dict-ru_ru@2.3.2", "", {}, "sha512-wYGINTRjfKycUrXAASgnoBjiLlhn7EE7H5B5MMbTwhiLijfWOhyRiNajGpn0aY5H4UDWnfch3kGnQ1zr/wKzaw=="],
 
     "@csstools/color-helpers": ["@csstools/color-helpers@6.0.2", "", {}, "sha512-LMGQLS9EuADloEFkcTBR3BwV/CGHV7zyDxVRtVDTwdI2Ca4it0CCVTT9wCkxSgokjE5Ho41hEPgb8OEUwoXr6Q=="],
 

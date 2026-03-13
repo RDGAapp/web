@@ -1,0 +1,28 @@
+.doc-link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  align-items: center;
+
+  width: max-content;
+  max-width: 100%;
+
+  line-height: 1;
+  text-decoration-color: transparent;
+  text-decoration-style: wavy;
+
+  transition: text-decoration-color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration-color: currentColor;
+  }
+}
+
+@media (width <= 767px) {
+  .doc-link {
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+  }
+}

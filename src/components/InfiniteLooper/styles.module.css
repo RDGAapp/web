@@ -1,0 +1,35 @@
+.looper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  height: max-content;
+
+  &:hover > div,
+  &:focus-within > div {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes slide-anim {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.list-element {
+  display: flex;
+  width: max-content;
+}
+
+.list-element.animated {
+  animation: slide-anim linear infinite;
+}

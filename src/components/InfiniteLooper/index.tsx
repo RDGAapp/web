@@ -1,41 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import styled from 'styled-components';
-
-const Looper = styled.div`
-  overflow: hidden;
-  width: 100%;
-`;
-
-const InnerList = styled.div`
-  display: flex;
-  justify-content: center;
-  width: fit-content;
-  height: max-content;
-
-  &:hover > div,
-  &:focus-within > div {
-    animation-play-state: paused;
-  }
-`;
-
-const ListInstance = styled.div<{ shouldAnimate: boolean }>`
-  @keyframes slide-anim {
-    from {
-      transform: translateX(0%);
-    }
-
-    to {
-      transform: translateX(-100%);
-    }
-  }
-
-  display: flex;
-  width: max-content;
-  animation: slide-anim linear infinite;
-
-  ${({ shouldAnimate }) => !shouldAnimate && 'animation: none;'}
-`;
+import styles from './styles.module.css';
 
 const InfiniteLooper = ({
   speed,
@@ -89,22 +54,24 @@ const InfiniteLooper = ({
   }, []);
 
   return (
-    <Looper ref={outerRef}>
-      <InnerList ref={innerRef}>
+    <div className={styles.looper} ref={outerRef}>
+      <div className={styles.list} ref={innerRef}>
         {[...Array(looperInstances)].map((_, ind) => (
-          <ListInstance
+          <div
             key={ind}
+            className={
+              styles['list-element'] + (shouldAnimate ? styles.animated : '')
+            }
             style={{
               animationDuration: `${speed}s`,
               animationDirection: direction === 'right' ? 'reverse' : 'normal',
             }}
-            shouldAnimate={shouldAnimate}
           >
             {children}
-          </ListInstance>
+          </div>
         ))}
-      </InnerList>
-    </Looper>
+      </div>
+    </div>
   );
 };
 

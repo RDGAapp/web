@@ -1,26 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import styled from 'styled-components';
-
 import Numbers from './Numbers';
-
-const Container = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-start;
-
-  & > p {
-    font-size: 6rem;
-    font-weight: bold;
-    line-height: 1;
-  }
-
-  ${({ theme }) => theme.media.mobile} {
-    & > p {
-      font-size: 3rem;
-    }
-  }
-`;
+import styles from './styles.module.css';
 
 interface ITimerProps {
   deadline: Date;
@@ -57,13 +38,13 @@ const CountdownTimer = ({ deadline, onTimeUpdate }: ITimerProps) => {
   }, []);
 
   return (
-    <Container>
+    <div className={styles.countdown}>
       <Numbers value={days} words={['день', 'дня', 'дней']} />
       <p>:</p>
       <Numbers value={hours} words={['час', 'часа', 'часов']} />
       <p>:</p>
       <Numbers value={minutes} words={['минута', 'минуты', 'минут']} />
-    </Container>
+    </div>
   );
 };
 
