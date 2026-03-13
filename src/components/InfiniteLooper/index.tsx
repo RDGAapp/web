@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { clsx } from 'clsx';
+
 import styles from './styles.module.css';
 
 const InfiniteLooper = ({
@@ -59,9 +61,9 @@ const InfiniteLooper = ({
         {[...Array(looperInstances)].map((_, ind) => (
           <div
             key={ind}
-            className={
-              styles['list-element'] + (shouldAnimate ? styles.animated : '')
-            }
+            className={clsx(styles['list-element'], {
+              [styles.animated]: shouldAnimate,
+            })}
             style={{
               animationDuration: `${speed}s`,
               animationDirection: direction === 'right' ? 'reverse' : 'normal',
