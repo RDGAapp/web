@@ -1,64 +1,14 @@
-import { useEffect, useState, type JSX } from 'react';
+import { CSSProperties, useEffect, useState, type JSX } from 'react';
 
 import { useLocation } from 'react-router';
 import { HashLink } from 'react-router-hash-link';
-import styled, { WebTarget } from 'styled-components';
 
 import SponsorBackground from 'assets/images/banner-sponsor.webp';
 import MainBackground from 'assets/images/neutral-rdga.webp';
 import PlayersBackground from 'assets/images/players.webp';
 import routes from 'helpers/routes';
 
-const Container = styled.div<{ $image: string }>`
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  aspect-ratio: 16/9;
-  width: 100%;
-  max-height: 28rem;
-  margin: 0 0 1rem;
-  border-radius: 2.5rem;
-
-  background: center url('${({ $image }) => $image}');
-  background-size: cover;
-`;
-
-const LinkCta = styled(HashLink as WebTarget)`
-  cursor: pointer;
-
-  display: flex;
-  gap: 0.7rem;
-  align-items: center;
-
-  margin-bottom: 7%;
-  padding: 0.8rem 1.2rem;
-  border-radius: 2rem;
-
-  font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1;
-  color: ${({ theme }) => theme.colors.black};
-  text-decoration: none;
-
-  background-color: ${({ theme }) => theme.colors.primary};
-
-  transition: scale 0.2s ease;
-
-  &:hover,
-  &:focus-visible {
-    scale: 1.1;
-  }
-
-  &:active {
-    scale: 0.9;
-  }
-
-  & svg {
-    height: 1rem;
-  }
-`;
+import styles from './styles.module.css';
 
 const bannerContent = new Map<string, Record<string, string>>([
   [
@@ -124,16 +74,20 @@ const Banner = (): JSX.Element => {
   }, [location.pathname]);
 
   return (
-    <Container $image={image}>
-      <LinkCta
+    <div
+      className={styles.banner}
+      style={{ '--bg-image': `url(${image})` } as CSSProperties}
+    >
+      <HashLink
+        className={styles.cta}
         to={link}
         smooth
         rel={link.startsWith('/') ? '' : 'noreferrer'}
         target={link.startsWith('/') ? '' : '_blank'}
       >
         {text}
-      </LinkCta>
-    </Container>
+      </HashLink>
+    </div>
   );
 };
 

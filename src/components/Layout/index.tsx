@@ -3,7 +3,6 @@ import { Suspense, useContext, useLayoutEffect, type JSX } from 'react';
 import { Outlet, useLocation } from 'react-router';
 import { ScrollRestoration } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import styled from 'styled-components';
 
 import { AppSettingsContext } from 'context/AppSettings';
 import Role from 'enums/roles';
@@ -14,21 +13,11 @@ import Loading from 'pages/Loading';
 import Banner from './Banner';
 import Footer from './Footer';
 import Header from './Header';
+import styles from './styles.module.css';
 import SWNotification from './SWNotification';
 import VideoBanner from './VideoBanner';
 
 import 'react-toastify/dist/ReactToastify.css';
-
-const Container = styled.article`
-  position: relative;
-
-  flex-grow: 1;
-
-  width: 100%;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 1rem 1rem 2rem;
-`;
 
 const shouldShowBanner = new Set<string>([
   routes.About,
@@ -81,13 +70,13 @@ const Layout = (): JSX.Element => {
     >
       <SWNotification />
       <Header />
-      <Container>
+      <article className={styles.content}>
         {shouldShowVideo.has(location.pathname) && <VideoBanner />}
         {shouldShowBanner.has(location.pathname) && <Banner />}
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
-      </Container>
+      </article>
       <Footer />
       <FeatureFlagsDialog>
         <div

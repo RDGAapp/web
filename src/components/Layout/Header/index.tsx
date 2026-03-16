@@ -7,8 +7,8 @@ import {
   type JSX,
 } from 'react';
 
+import { clsx } from 'clsx';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 import PlayersSvg from 'assets/icons/avatar.svg?react';
 import BlogSvg from 'assets/icons/blog.svg?react';
@@ -25,92 +25,8 @@ import Role from 'enums/roles';
 import routes from 'helpers/routes';
 
 import HamburgerButton from './HamburgerButton';
+import styles from './styles.module.css';
 import TelegramLogin from './TelegramLogin';
-
-const Container = styled.div`
-  isolation: isolate;
-  position: sticky;
-  z-index: ${({ theme }) => theme.zIndex.header};
-  top: 0;
-
-  color: ${({ theme }) => theme.colors.black};
-
-  background-color: ${({ theme }) => theme.colors.primary};
-`;
-
-const Navigation = styled.div`
-  display: grid;
-  grid-template: 'commercial logo contact' 1fr / 1fr 1fr 1fr;
-  gap: 0.5rem;
-
-  max-width: 67rem;
-  margin: 0 auto;
-  padding: 1rem;
-`;
-
-const NavigationContainer = styled.nav`
-  position: relative;
-
-  display: flex;
-  grid-area: commercial;
-  align-items: center;
-  justify-content: flex-start;
-
-  padding-left: 1rem;
-`;
-
-const NavigationBackground = styled.div<{ open: boolean }>`
-  position: absolute;
-  z-index: -1;
-  top: -0.5rem;
-  left: 0;
-
-  width: min(15rem, 100vw);
-  height: max-content;
-  border-radius: 0 0 1rem 1rem;
-
-  background-color: ${({ theme }) => theme.colors.primary};
-  clip-path: ${({ open }) =>
-    open ? 'circle(90vh at 0 0)' : 'circle(0 at 2.25rem 2.25rem)'};
-
-  transition: clip-path 0.3s ease-in-out;
-`;
-
-const LinksList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-
-  margin-top: 4rem;
-  margin-bottom: 0;
-  padding: 0 1rem 1rem 1.5rem;
-
-  @media (width < 554px) {
-    margin-top: 5.1rem;
-  }
-`;
-
-const LogoBlock = styled(Link)`
-  position: relative;
-  z-index: 1;
-
-  grid-area: logo;
-
-  margin: auto;
-
-  text-decoration: none;
-
-  transition: scale 0.2s ease-in-out;
-
-  &:hover,
-  &:focus-visible {
-    scale: 1.1;
-  }
-
-  &:active {
-    scale: 0.9;
-  }
-`;
 
 const links: Record<
   string,
@@ -185,33 +101,31 @@ const Header = (): JSX.Element => {
   }, [roles]);
 
   return (
-    <Container>
-      <Navigation>
-        <NavigationContainer ref={navigationRef}>
-          <NavigationBackground open={isMenuOpen}>
-            <LinksList>
-              {linksToShow.map((link) => (
-                <CustomLink
-                  key={link.route}
-                  route={link.route}
-                  onClick={() => setIsMenuOpen(false)}
-                  text={link.text}
-                  CustomImage={link.svg}
-                />
-              ))}
-            </LinksList>
-          </NavigationBackground>
-          <HamburgerButton
-            open={isMenuOpen}
-            onClick={() => setIsMenuOpen((current) => !current)}
-          />
-        </NavigationContainer>
-        <LogoBlock to={routes.Home}>
-          <Logo withoutImage textAlign='center' />
-        </LogoBlock>
-        <TelegramLogin />
-      </Navigation>
-    </Container>
+    <div className={styles.header}>
+      <nav className={styles.navigation} ref={navigationRef}>
+        <div className={clsx(styles.background, { [styles.open]: isMenuOpen })}>
+          <ul className={styles.links}>
+            {linksToShow.map((link) => (
+              <CustomLink
+                key={link.route}
+                route={link.route}
+                onClick={() => setIsMenuOpen(false)}
+                text={link.text}
+                CustomImage={link.svg}
+              />
+            ))}
+          </ul>
+        </div>
+        <HamburgerButton
+          open={isMenuOpen}
+          onClick={() => setIsMenuOpen((current) => !current)}
+        />
+      </nav>
+      <Link className={styles.logo} to={routes.Home}>
+        <Logo withoutImage textAlign='center' />
+      </Link>
+      <TelegramLogin />
+    </div>
   );
 };
 

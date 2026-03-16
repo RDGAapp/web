@@ -17,10 +17,8 @@
   &:focus-visible {
     text-decoration-color: currentColor;
   }
-}
 
-@media (width <= 767px) {
-  .doc-link {
+  @media (width <= 767px) {
     justify-content: center;
     margin: auto;
     text-align: center;
