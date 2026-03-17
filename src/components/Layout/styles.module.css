@@ -1,20 +1,21 @@
 .footer {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-
-  max-width: 72rem;
-  margin: auto;
-  padding: 1rem;
-
   color: var(--color-black);
-
   background: var(--color-primary);
 
-  @media (width <= 767px) {
-    flex-direction: column;
+  & > footer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 72rem;
+    margin: auto;
+    padding: 1rem;
+
+    @media (width <= 767px) {
+      flex-direction: column;
+    }
   }
 }
 

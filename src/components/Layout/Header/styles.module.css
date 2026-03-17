@@ -1,20 +1,21 @@
 .header {
-  isolation: isolate;
-  position: sticky;
-  z-index: var(--z-index-header);
-  top: 0;
-
-  display: grid;
-  grid-template: 'commercial logo contact' 1fr / 1fr 1fr 1fr;
-  gap: 0.5rem;
-
-  max-width: 67rem;
-  margin: 0 auto;
-  padding: 1rem;
-
   color: var(--color-black);
-
   background-color: var(--color-primary);
+
+  & > div {
+    isolation: isolate;
+    position: sticky;
+    z-index: var(--z-index-header);
+    top: 0;
+
+    display: grid;
+    grid-template: 'commercial logo contact' 1fr / 1fr 1fr 1fr;
+    gap: 0.5rem;
+
+    max-width: 67rem;
+    margin: 0 auto;
+    padding: 1rem;
+  }
 }
 
 .navigation {

@@ -102,29 +102,33 @@ const Header = (): JSX.Element => {
 
   return (
     <div className={styles.header}>
-      <nav className={styles.navigation} ref={navigationRef}>
-        <div className={clsx(styles.background, { [styles.open]: isMenuOpen })}>
-          <ul className={styles.links}>
-            {linksToShow.map((link) => (
-              <CustomLink
-                key={link.route}
-                route={link.route}
-                onClick={() => setIsMenuOpen(false)}
-                text={link.text}
-                CustomImage={link.svg}
-              />
-            ))}
-          </ul>
-        </div>
-        <HamburgerButton
-          open={isMenuOpen}
-          onClick={() => setIsMenuOpen((current) => !current)}
-        />
-      </nav>
-      <Link className={styles.logo} to={routes.Home}>
-        <Logo withoutImage textAlign='center' />
-      </Link>
-      <TelegramLogin />
+      <div>
+        <nav className={styles.navigation} ref={navigationRef}>
+          <div
+            className={clsx(styles.background, { [styles.open]: isMenuOpen })}
+          >
+            <ul className={styles.links}>
+              {linksToShow.map((link) => (
+                <CustomLink
+                  key={link.route}
+                  route={link.route}
+                  onClick={() => setIsMenuOpen(false)}
+                  text={link.text}
+                  CustomImage={link.svg}
+                />
+              ))}
+            </ul>
+          </div>
+          <HamburgerButton
+            open={isMenuOpen}
+            onClick={() => setIsMenuOpen((current) => !current)}
+          />
+        </nav>
+        <Link className={styles.logo} to={routes.Home}>
+          <Logo withoutImage textAlign='center' />
+        </Link>
+        <TelegramLogin />
+      </div>
     </div>
   );
 };

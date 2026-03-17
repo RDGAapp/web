@@ -8,26 +8,28 @@ import styles from './styles.module.css';
 const Footer = (): JSX.Element => {
   const { isDesktop } = useMatchMedia();
   return (
-    <footer className={styles.footer}>
-      <Logo big={isDesktop} />
-      <div className={styles.copyright}>
-        <p>© Федерация Флаинг Диска Свердловской области</p>
-        <p>
-          Наши соц сети:{' '}
-          <a href='https://vk.com/discgolf' rel='noreferrer' target='_blank'>
-            ВКонтакте
-          </a>
-          {', '}
-          <a
-            href='https://t.me/discgolf_russia'
-            rel='noreferrer'
-            target='_blank'
-          >
-            Telegram
-          </a>
-        </p>
-      </div>
-    </footer>
+    <div className={styles.footer}>
+      <footer>
+        <Logo big={isDesktop} />
+        <div className={styles.copyright}>
+          <p>© Федерация Флаинг Диска Свердловской области</p>
+          <p>
+            Наши соц сети:{' '}
+            <a href='https://vk.com/discgolf' rel='noreferrer' target='_blank'>
+              ВКонтакте
+            </a>
+            {', '}
+            <a
+              href='https://t.me/discgolf_russia'
+              rel='noreferrer'
+              target='_blank'
+            >
+              Telegram
+            </a>
+          </p>
+        </div>
+      </footer>
+    </div>
   );
 };
 
