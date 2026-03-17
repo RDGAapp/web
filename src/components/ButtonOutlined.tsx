@@ -8,10 +8,10 @@ const ButtonOutlined = css`
   border-radius: 2rem;
 
   font-size: 0.6rem;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-text-primary);
   text-decoration: none;
 
-  background: ${({ theme }) => theme.colors.lighterBackground};
+  background: var(--color-background-lighter);
 
   transition:
     background-color 0.2s ease,
@@ -19,14 +19,14 @@ const ButtonOutlined = css`
 
   &:disabled {
     cursor: not-allowed;
-    color: ${({ theme }) => theme.colors.text.neutral};
-    background-color: ${({ theme }) => theme.colors.background};
+    color: var(--color-text-neutral);
+    background-color: var(--color-background);
   }
 
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
-    color: ${({ theme }) => theme.colors.black};
-    background: ${({ theme }) => theme.colors.primary};
+    color: var(--color-black);
+    background: var(--color-primary);
   }
 `;
 

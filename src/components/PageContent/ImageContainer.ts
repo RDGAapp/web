@@ -7,7 +7,7 @@ const ImageContainer = styled.div`
   margin: auto;
   border-radius: 1rem;
 
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: var(--color-primary);
 `;
 
 export default ImageContainer;

@@ -10,7 +10,7 @@ const PageContainer = styled.article`
   padding: 1rem;
 
   & a {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: var(--color-secondary);
   }
 `;
 

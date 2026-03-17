@@ -9,7 +9,7 @@ const Row = styled.div<{ $imagePosition: 'left' | 'right' }>`
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-template-areas: 'picture' 'description';
     grid-template-columns: 1fr;
   }

@@ -1,4 +1,11 @@
-import { ChangeEvent, useEffect, useRef, useState, type JSX } from 'react';
+import {
+  ChangeEvent,
+  CSSProperties,
+  useEffect,
+  useRef,
+  useState,
+  type JSX,
+} from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -14,7 +21,7 @@ import towns from 'helpers/townsList';
 import useDebounce from 'hooks/useDebounce';
 import useDialog from 'hooks/useDialog';
 import Card from 'pages/Players/Card';
-import { useAppSelector, useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getPlayers } from 'store/players/thunks';
 import { TTown } from 'types/town';
 
@@ -30,11 +37,11 @@ const Container = styled.ul`
 
   list-style: none;
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     grid-template-columns: 1fr 1fr;
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -47,7 +54,7 @@ const Filters = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     flex-wrap: nowrap;
     width: 100%;
   }
@@ -62,11 +69,11 @@ const Select = styled.select`
   border-radius: 1rem;
 
   font-size: 1rem;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-primary);
 
   appearance: none;
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
-  background-image: url('${SelectSvg}');
+  background-color: var(--color-background-lighter);
+  background-image: var(--bg-image);
   background-repeat: no-repeat;
   background-position: center right 1rem;
   background-size: 1rem;
@@ -75,8 +82,8 @@ const Select = styled.select`
 
   &:hover,
   &:focus-visible {
-    color: ${({ theme }) => theme.colors.black};
-    background-color: ${({ theme }) => theme.colors.primary};
+    color: var(--color-black);
+    background-color: var(--color-primary);
   }
 `;
 
@@ -90,7 +97,7 @@ const NotFoundContainer = styled.div`
 const NotFoundText = styled.p`
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(color-text-primary);
   text-align: center;
 `;
 
@@ -261,7 +268,11 @@ const Players = (): JSX.Element => {
             />
             Только активные
           </CheckboxContainer>
-          <Select value={town} onChange={onSelectTownChange}>
+          <Select
+            value={town}
+            onChange={onSelectTownChange}
+            style={{ '--bg-image': `url('${SelectSvg}')` } as CSSProperties}
+          >
             <option value=''>Выберите город</option>
             {towns.map((town) => (
               <option value={town} key={town}>

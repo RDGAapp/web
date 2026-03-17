@@ -16,12 +16,12 @@ const Dialog = styled.dialog`
   border: none;
   border-radius: 1rem;
 
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-text-primary);
 
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: var(--color-background);
 
   &::backdrop {
-    background-color: ${({ theme }) => theme.colors.backdrop};
+    background-color: var(--color-backdrop);
   }
 
   &[open] {
@@ -43,7 +43,7 @@ const ModalHeader = styled.div`
 
     &:hover,
     &:focus-within {
-      color: ${({ theme }) => theme.colors.primary};
+      color: var(--color-primary);
     }
   }
 

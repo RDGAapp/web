@@ -16,8 +16,7 @@ const Container = styled.div<{ $color?: string }>`
   grid-column: span 1;
   grid-row: span 1;
 
-  ${({ theme, $color }) =>
-    $color && `background-color: ${theme.colors[$color]}`};
+  ${({ $color }) => $color && `background-color: var(--color-${$color})`};
 
   & > img,
   & > svg {
@@ -43,11 +42,11 @@ const ActiveToDate = styled.p`
     font-weight: bold;
     line-height: 1;
 
-    ${({ theme }) => theme.media.tablet} {
+    @media (width <= 1024) {
       font-size: 1.5rem;
     }
 
-    ${({ theme }) => theme.media.mobile} {
+    @media (width <= 767) {
       font-size: 2rem;
     }
   }
@@ -59,7 +58,7 @@ const ActiveToDate = styled.p`
 
     &:hover,
     &:focus-visible {
-      text-decoration-color: hsl(217deg 84% 45%);
+      text-decoration-color: oklch(0.51 0.2 260);
     }
   }
 `;

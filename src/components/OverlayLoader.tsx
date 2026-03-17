@@ -21,11 +21,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
 
-  background-color: color-mix(
-    in hsl,
-    ${({ theme }) => theme.colors.background},
-    transparent 40%
-  );
+  background-color: oklch(from var(--color-background) l c h / 40%);
 `;
 
 interface Props {

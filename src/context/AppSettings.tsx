@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect, useMemo, useState } from 'react';
+import { ReactNode, createContext, useMemo, useState } from 'react';
 
 import Role from 'enums/roles';
 
@@ -11,7 +11,6 @@ export const AppSettingsContext = createContext<{
   addRoles: (value: Role[]) => void;
   removeRole: (value: Role) => void;
   removeAllRoles: () => void;
-  theme: 'light' | 'dark';
   featureFlags: typeof defaultFeatureFlags;
   toggleFeatureFlag: (value: TFeatureFlag) => void;
 }>({
@@ -19,7 +18,6 @@ export const AppSettingsContext = createContext<{
   addRoles: () => {},
   removeRole: () => {},
   removeAllRoles: () => {},
-  theme: 'light',
   featureFlags: defaultFeatureFlags,
   toggleFeatureFlag: () => {},
 });
@@ -84,30 +82,17 @@ const getFeatureFlags = () => {
   return featureFlagsToReturn as typeof defaultFeatureFlags;
 };
 
-const colorSchemeMatchMedia = window.matchMedia('(prefers-color-scheme: dark)');
-
-const getPreferredColorScheme = () => {
-  if (colorSchemeMatchMedia.matches) {
-    return 'dark';
-  }
-  return 'light';
-};
-
 const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
   const [roles, setRoles] = useState<Set<Role>>(
     new Set(
       JSON.parse(localStorage.getItem('appSettings') || '{}').roles ?? [],
     ),
   );
-  const [theme, setTheme] = useState<'light' | 'dark'>(
-    getPreferredColorScheme(),
-  );
   const [featureFlags, setFeatureFlags] = useState(getFeatureFlags());
 
   const contextValue = useMemo(
     () => ({
       roles,
-      theme,
       addRoles: (newRoles: Role[]) =>
         setRoles((value) => updateRoles([...value, ...newRoles])),
       removeRole: (roleToRemove: Role) =>
@@ -120,19 +105,8 @@ const AppSettingsProvider = ({ children }: IAppSettingsProviderProps) => {
       toggleFeatureFlag: (value: TFeatureFlag) =>
         setFeatureFlags(toggleFeatureFlags(value)),
     }),
-    [roles, theme, featureFlags],
+    [roles, featureFlags],
   );
-
-  useEffect(() => {
-    colorSchemeMatchMedia.addEventListener('change', () =>
-      setTheme(getPreferredColorScheme()),
-    );
-
-    return () =>
-      colorSchemeMatchMedia.removeEventListener('change', () =>
-        setTheme(getPreferredColorScheme()),
-      );
-  }, []);
 
   return (
     <AppSettingsContext value={contextValue}>{children}</AppSettingsContext>

@@ -13,8 +13,8 @@ const ExpandedContainerStyle = css`
   }
 
   & button {
-    color: ${({ theme }) => theme.colors.black};
-    background-color: ${({ theme }) => theme.colors.primary};
+    color: var(--color-black);
+    background-color: var(--color-primary);
   }
 `;
 
@@ -28,15 +28,15 @@ const Container = styled.div<{ $expanded: boolean }>`
   max-width: 2.5rem;
   border-radius: 100vh;
 
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-text-primary);
 
-  background: ${({ theme }) => theme.colors.lighterBackground};
+  background: var(--color-background-lighter);
 
   transition: max-width 0.2s ease-in-out;
 
   ${({ $expanded }) => $expanded && ExpandedContainerStyle};
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     width: 100%;
   }
 
@@ -79,7 +79,7 @@ const Button = styled.button`
   border: none;
   border-radius: 100vh;
 
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-text-primary);
 
   background: transparent;
 
@@ -89,8 +89,8 @@ const Button = styled.button`
 
   &:hover,
   &:focus-visible {
-    color: ${({ theme }) => theme.colors.black};
-    background-color: ${({ theme }) => theme.colors.primary};
+    color: var(--color-black);
+    background-color: var(--color-primary);
   }
 `;
 

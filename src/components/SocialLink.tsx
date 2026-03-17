@@ -11,13 +11,13 @@ const Link = styled.a`
   font-size: 0.7rem;
   font-weight: 400;
   line-height: 1;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-text-primary);
 
   transition: color 0.2s ease-in-out;
 
   &:hover,
   &:focus-visible {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: var(--color-secondary);
   }
 
   & svg {

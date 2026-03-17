@@ -16,7 +16,7 @@ const Container = styled.div`
   padding: 1rem;
   border-radius: 1rem;
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  background-color: var(--color-background-lighter);
 
   & > img {
     align-self: center;
@@ -27,7 +27,7 @@ const Container = styled.div`
     height: auto;
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     max-width: 80vw;
   }
 `;
@@ -65,12 +65,12 @@ const Town = styled.h6`
 
 const Link = styled.a`
   ${TextStyle};
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-text-primary);
   transition: color 0.2s ease-in-out;
 
   &:hover,
   &:focus-visible {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: var(--color-secondary);
   }
 `;
 

@@ -26,11 +26,11 @@ const Container = styled.div`
     font-size: 2rem;
   }
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     grid-column: span 4;
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-column: span 2;
     grid-row: span 1;
   }

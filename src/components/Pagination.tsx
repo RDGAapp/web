@@ -18,13 +18,13 @@ const PageNumber = styled.button<{ $number?: boolean }>`
   font-size: 0.8rem;
 
   &:disabled {
-    ${({ $number, theme }) =>
+    ${({ $number }) =>
       $number &&
       css`
         cursor: default;
-        color: ${({ theme }) => theme.colors.black};
+        color: var(--color-black);
         opacity: 1;
-        background-color: ${theme.colors.primary};
+        background-color: var(--color-primary);
       `}
   }
 `;

@@ -16,9 +16,9 @@ const PresidentContainer = styled.div`
   margin: auto auto 2rem;
   border-radius: 1rem;
 
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: var(--color-primary);
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     height: 10rem;
   }
 `;
@@ -27,7 +27,7 @@ const PresidentTextContainer = styled.div`
   overflow: hidden;
   height: max-content;
   margin: auto 2rem auto 0;
-  color: ${({ theme }) => theme.colors.black};
+  color: var(--color-black);
 
   & * {
     overflow: hidden;
@@ -55,11 +55,11 @@ const PresidentTextContainer = styled.div`
 
     &:hover,
     &:focus-visible {
-      color: ${({ theme }) => theme.colors.secondary};
+      color: var(--color-secondary);
     }
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     margin: auto 1rem auto 0;
 
     & h3 {

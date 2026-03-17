@@ -17,7 +17,7 @@ const TextContainer = styled.div<{ $position: 'left' | 'right' }>`
   line-height: 1.5rem;
   text-align: ${({ $position }) => ($position === 'left' ? 'end' : 'start')};
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     align-items: center;
     text-align: center;
   }

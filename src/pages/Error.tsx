@@ -26,7 +26,7 @@ const Container = styled.div`
     background-color: hsla(0deg 0% 0% / 70%);
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     max-width: 100%;
 
     & p {

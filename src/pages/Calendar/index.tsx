@@ -25,7 +25,7 @@ const PreContent = styled.div`
 
   margin-bottom: 2rem;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     flex-direction: column;
     align-items: center;
   }
@@ -65,9 +65,9 @@ const Legend = styled.div`
   padding: 1rem;
   border-radius: 1rem;
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  background-color: var(--color-background-lighter);
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-template-columns: 1fr;
   }
 `;
@@ -77,7 +77,7 @@ const LegendItem = styled.div`
   gap: 0.5rem;
   align-items: center;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     justify-content: center;
   }
 `;
@@ -94,7 +94,7 @@ const Month = styled.div`
   grid-template-columns: 1fr 15fr;
   gap: 1rem;
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     grid-template-columns: 1fr;
   }
 `;
@@ -114,7 +114,7 @@ const CalendarRow = styled.div`
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
 
-  ${({ theme }) => theme.media.smallMobile} {
+  @media (width <= 600px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -135,7 +135,7 @@ const TournamentList = styled.div`
   display: flex;
   gap: 1rem;
 
-  ${({ theme }) => theme.media.smallMobile} {
+  @media (width <= 600px) {
     display: none;
   }
 `;
@@ -143,7 +143,7 @@ const TournamentList = styled.div`
 const TournamentCircle = styled.div<{ $border: string }>`
   aspect-ratio: 1 / 1;
   height: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.text.primary};
+  border: 1px solid var(--color-text-primary);
   border-radius: 100vh;
 
   background-color: ${(props) => props.$border};

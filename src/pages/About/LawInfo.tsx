@@ -11,7 +11,7 @@ const Details = styled.details`
     max-width: 100%;
     margin: 0 auto 1rem;
 
-    font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
+    font-family: var(--font-header), sans-serif;
     font-size: 2rem;
     font-weight: 400;
     line-height: 1;
@@ -26,7 +26,7 @@ const Details = styled.details`
     }
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     text-align: center;
   }
 `;

@@ -22,7 +22,7 @@ const Container = styled.div<{
   border: 2px solid transparent;
   border-radius: 0.5rem;
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  background-color: var(--color-background-lighter);
 
   transition: all 0.2s ease-in-out;
 

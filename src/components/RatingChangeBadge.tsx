@@ -15,20 +15,20 @@ const BadgeNew = styled.span`
   padding: 0.1rem 0.5rem;
   border-radius: 100vh;
 
-  color: ${({ theme }) => theme.colors.text.contrast};
+  color: var(--color-text-contrast);
 
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: var(--color-secondary);
 `;
 
 const Badge = styled.span<{ $increased: string }>`
   ${commonBadgeStyle}
-  color: ${({ theme, $increased }) =>
-    $increased === 'true' ? theme.colors.success : theme.colors.error};
+  color: ${({ $increased }) =>
+    $increased === 'true' ? 'var(--color-success)' : 'var(--color-error)'};
 `;
 
 const BadgeNeutral = styled.span`
   ${commonBadgeStyle}
-  color: ${({ theme }) => theme.colors.text.neutral};
+  color: var(--color-text-neutral);
 `;
 
 interface Props {

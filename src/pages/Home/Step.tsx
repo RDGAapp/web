@@ -15,7 +15,7 @@ const Block = styled.div`
   padding: 0.5rem 0.7rem;
   border-radius: 1.5rem;
 
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: var(--color-background);
 
   transition: all 0.2s ease-in-out;
 `;
@@ -27,7 +27,7 @@ const Header = styled.h5`
 const WhiteText = styled.div`
   display: grid;
   gap: 0.5rem;
-  color: #fff;
+  color: oklch(1 0 0);
 
   & p {
     font-size: 1rem;
@@ -43,7 +43,7 @@ const WhiteText = styled.div`
   }
 
   & a {
-    color: ${({ theme }) => theme.colors.primary};
+    color: var(--color-primary);
   }
 `;
 

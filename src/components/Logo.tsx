@@ -13,7 +13,7 @@ const Container = styled.div`
 const Text = styled.h1<{ $textAlign: string }>`
   max-width: 22ch;
 
-  font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
+  font-family: var(--font-header), sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1;

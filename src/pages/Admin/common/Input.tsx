@@ -1,9 +1,7 @@
-import { ChangeEvent, InputHTMLAttributes, useContext } from 'react';
+import { ChangeEvent, InputHTMLAttributes } from 'react';
 
 import { Editor } from '@tinymce/tinymce-react';
 import styled from 'styled-components';
-
-import { AppSettingsContext } from 'context/AppSettings';
 
 const Label = styled.label`
   display: flex;
@@ -18,7 +16,7 @@ const CustomInput = styled.input`
   background-color: inherit;
 
   &:invalid {
-    border-color: ${({ theme }) => theme.colors.invalid};
+    border-color: var(--color-invalid);
   }
 `;
 
@@ -29,7 +27,7 @@ const CustomSelect = styled.select`
   background-color: inherit;
 
   &:invalid {
-    border-color: ${({ theme }) => theme.colors.invalid};
+    border-color: var(--color-invalid);
   }
 `;
 
@@ -41,7 +39,6 @@ interface Props
 }
 
 const Input = ({ label, onChange, type, ...props }: Props) => {
-  const { theme } = useContext(AppSettingsContext);
   return (
     <Label>
       {label}:
@@ -87,8 +84,8 @@ const Input = ({ label, onChange, type, ...props }: Props) => {
             `,
             fullscreen_native: true,
             quickbars_insert_toolbar: false,
-            skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
-            content_css: theme === 'dark' ? 'dark' : '',
+            // skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
+            // content_css: theme === 'dark' ? 'dark' : '',
             extended_valid_elements: 'img[src|style|alt|loading=lazy]',
           }}
           onEditorChange={(value) => onChange(value)}

@@ -1,7 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
 
-import { commonTheme } from 'helpers/theme';
-
 interface UseMatchMedia {
   isSmallMobile: boolean;
   isMobile: boolean;
@@ -10,12 +8,10 @@ interface UseMatchMedia {
 }
 
 const queries = [
-  `(max-width: ${commonTheme.breakpoints.smallMobile}px)`,
-  `(max-width: ${commonTheme.breakpoints.mobile}px)`,
-  `(max-width: ${commonTheme.breakpoints.tablet}px) and (min-width: ${
-    commonTheme.breakpoints.mobile - 1
-  }px)`,
-  `(min-width: ${commonTheme.breakpoints.tablet}px)`,
+  `(width <= 600px)`,
+  `(width <= 767px)`,
+  `(width <= 1024px) and (width > 767px)`,
+  `(width > 1024px)`,
 ];
 
 const useMatchMedia = (): UseMatchMedia => {

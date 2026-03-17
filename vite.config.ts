@@ -27,8 +27,8 @@ const manifest: Partial<ManifestOptions> = {
       purpose: 'maskable',
     },
   ],
-  theme_color: '#fbcd04',
-  background_color: '#fbcd04',
+  theme_color: 'oklch(0.86 0.18 92)',
+  background_color: 'oklch(0.86 0.18 92)',
   start_url: '/',
   display: 'standalone',
 };

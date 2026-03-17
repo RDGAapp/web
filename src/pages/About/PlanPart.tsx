@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   padding: 0.25rem 0;
-  border-bottom: 2px solid ${({ theme }) => theme.colors.text.neutral};
+  border-bottom: 2px solid var(--color-text-neutral);
   text-align: center;
 
   &:last-of-type {

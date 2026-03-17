@@ -6,5 +6,5 @@ export default css`
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  background-color: var(--color-background-lighter);
 `;

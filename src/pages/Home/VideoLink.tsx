@@ -14,7 +14,7 @@ const Container = styled.div<{ $position: 'left' | 'right' }>`
 
   border-radius: 2rem;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     align-items: center;
   }
 `;
@@ -49,10 +49,10 @@ const PlayButton = styled.a`
 
   width: 7rem;
   height: 7rem;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
+  border: 1px solid var(--color-primary);
   border-radius: 100vh;
 
-  color: ${({ theme }) => theme.colors.primary};
+  color: var(--color-primary);
 
   background: none;
 
@@ -71,7 +71,7 @@ const PlayButton = styled.a`
     aspect-ratio: 3 / 4;
     width: 2.1rem;
     margin-left: 0.5rem;
-    stroke: ${({ theme }) => theme.colors.primary};
+    stroke: var(--color-primary);
   }
 `;
 
@@ -82,7 +82,7 @@ const VideoName = styled.a`
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: var(--color-text-primary);
   text-decoration: none;
 
   transition: scale 0.2s ease-in-out;

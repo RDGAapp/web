@@ -34,7 +34,7 @@ const VideoContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-template-columns: 1fr;
   }
 `;

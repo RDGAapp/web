@@ -8,12 +8,12 @@ import CountdownTimer from 'components/CountdownTimer';
 import DocLink from 'components/DocLink';
 import InlineLink from 'components/InlineLink';
 import {
-  Header,
-  TextContainer,
-  Row,
-  PageContainer,
-  ImageContainer,
   CustomImage,
+  Header,
+  ImageContainer,
+  PageContainer,
+  Row,
+  TextContainer,
 } from 'components/PageContent';
 import { PlanContent, PlanContentType } from 'pages/About/planContent';
 import PlanPart from 'pages/About/PlanPart';
@@ -39,7 +39,7 @@ const InputDescription = styled.div`
   justify-content: space-between;
   width: 80%;
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     width: 100%;
   }
 `;
@@ -55,8 +55,8 @@ const PlanCardContainer = styled.div`
   margin: 1rem 0;
   border-radius: 2rem;
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
-  box-shadow: 0 0 1px ${({ theme }) => theme.colors.black};
+  background-color: var(--color-background-lighter);
+  box-shadow: 0 0 1px var(--color-black);
 `;
 
 const PlanCardHeader = styled.div`
@@ -70,7 +70,7 @@ const PlanCardHeader = styled.div`
   font-weight: bold;
   text-align: center;
 
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: var(--color-primary);
 
   & p {
     position: absolute;
@@ -81,7 +81,7 @@ const PlanCardHeader = styled.div`
 
     font-size: 3rem;
     font-style: italic;
-    color: ${({ theme }) => theme.colors.black};
+    color: var(--color-black);
   }
 `;
 
@@ -99,7 +99,7 @@ const Step = styled.p`
 
 const StepNumber = styled.div`
   padding: 0.5rem 1rem;
-  border: 0.3rem solid ${({ theme }) => theme.colors.primary};
+  border: 0.3rem solid var(--color-primary);
   border-radius: 100vh;
 
   font-size: 1.3rem;
@@ -113,8 +113,8 @@ const ArrowDown = styled(ArrowSvg)`
 `;
 
 const colorByContentType = {
-  [PlanContentType.Junior]: 'hsl(0, 0%, 100%)',
-  [PlanContentType.Base]: 'hsl(217, 84%, 55%)',
+  [PlanContentType.Junior]: 'oklch(0 0 1)',
+  [PlanContentType.Base]: 'oklch(0.59 0.2 260)',
 };
 
 const planContentTypeMinAmounts = {
@@ -167,7 +167,7 @@ const RangeInput = styled.input`
   appearance: none;
   background: ${getLinearGradient()};
   outline: 0;
-  box-shadow: 0 0 4px ${({ theme }) => theme.colors.backdrop};
+  box-shadow: 0 0 4px var(--color-backdrop);
 
   &::-webkit-slider-thumb {
     aspect-ratio: 1 / 1;
@@ -177,10 +177,10 @@ const RangeInput = styled.input`
     appearance: none;
     background-image: radial-gradient(
       circle,
-      ${({ theme }) => theme.colors.background} 40%,
-      ${({ theme }) => theme.colors.primary} 45%
+      var(--color-background) 40%,
+      var(--color-primary) 45%
     );
-    box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
+    box-shadow: 0 0 4px 2px var(--color-backdrop);
   }
 
   &::-moz-range-thumb {
@@ -189,11 +189,15 @@ const RangeInput = styled.input`
     border-radius: 50%;
 
     appearance: none;
-    background-image: radial-gradient(circle, #f7f7fc 40%, #ff9800 45%);
-    box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.backdrop};
+    background-image: radial-gradient(
+      circle,
+      oklch(0.98 0.01 286) 40%,
+      oklch(0.77 0.17 64) 45%
+    );
+    box-shadow: 0 0 4px 2px var(--color-backdrop);
   }
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     width: 100%;
   }
 `;

@@ -11,13 +11,13 @@ const Container = styled.div`
 
   margin: 1.5rem 0;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     justify-content: center;
   }
 `;
 
 const Header = styled.h1`
-  font-family: '${({ theme }) => theme.fontFamily.header}', sans-serif;
+  font-family: var(--font-header), sans-serif;
   font-size: 2rem;
   font-weight: 400;
   line-height: 1;

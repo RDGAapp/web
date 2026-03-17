@@ -20,14 +20,14 @@ const RatingCardContainer = styled.div`
 
   background-color: transparent;
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024px) {
     grid-column: span 8;
     grid-row: span 1;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767px) {
     grid-column: span 2;
     grid-row: span 1;
   }
@@ -78,7 +78,7 @@ const RatingCard = styled.div`
 
     &:hover,
     &:focus-visible {
-      text-decoration-color: ${({ theme }) => theme.colors.primary};
+      text-decoration-color: var(--color-primary);
     }
   }
 `;

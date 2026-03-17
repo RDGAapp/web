@@ -22,7 +22,7 @@ const Container = styled.div`
   grid-template-columns: repeat(12, 1fr);
   gap: 0.5rem;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-template-columns: 1fr 1fr;
   }
 `;
@@ -39,14 +39,14 @@ const Subscription = styled.div`
 
   background-color: transparent;
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     grid-column: span 8;
     grid-row: span 1;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-column: span 2;
     grid-row: span 2;
     grid-template-columns: 1fr;
@@ -54,11 +54,7 @@ const Subscription = styled.div`
 `;
 
 const PdgaSvgColored = styled(PdgaSvg)`
-  fill: hsl(217deg 84% 45%);
-
-  @media (prefers-color-scheme: light) {
-    fill: hsl(217deg 84% 60%);
-  }
+  fill: light-dark(oklch(0.5 0.2 260), oklch(0.6 0.2 260));
 `;
 
 interface IProfile {
@@ -107,7 +103,7 @@ const Profile = ({ rdgaNumber }: IProfile) => {
         number={player.metrixNumber}
         rating={player.metrixRating}
         ratingChange={player.metrixRatingChange}
-        logo={<MetrixSvg fill='hsl(24, 100%, 50%)' />}
+        logo={<MetrixSvg fill='oklch(0.7 0.2 43)' />}
         link={`https://discgolfmetrix.com/player/${player.metrixNumber}`}
       />
       <Subscription>

@@ -44,7 +44,7 @@ const ConsoleContainer = styled.div`
 
   height: 20vh;
   padding: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
 `;
 
@@ -80,7 +80,7 @@ const Success = styled.p`
 
 const Message = styled.p`
   font-size: 0.75rem;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: var(--color-secondary);
 `;
 
 const MessageWithCursor = styled.p`
@@ -98,7 +98,7 @@ const MessageWithCursor = styled.p`
   position: relative;
   width: max-content;
   font-size: 0.75rem;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: var(--color-secondary);
 
   &::after {
     content: '';
@@ -109,7 +109,7 @@ const MessageWithCursor = styled.p`
     width: 2px;
     height: 100%;
 
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: var(--color-primary);
 
     animation: blink 1s linear infinite;
   }

@@ -45,7 +45,7 @@ const CommonSideStyles = css`
   border-radius: 2rem;
 
   backface-visibility: hidden;
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  background-color: var(--color-background-lighter);
 `;
 
 const FrontSide = styled.div<{ disabled?: boolean }>`
@@ -56,8 +56,8 @@ const FrontSide = styled.div<{ disabled?: boolean }>`
   ${({ disabled }) =>
     disabled &&
     `
-      color: hsl(0, 0%, 100%);
-      background-color: #b2b1b1af;
+      color: oklch(1 0 0);
+      background-color: oklch(0.76 0 17 / 70%);
       cursor: not-allowed;
     `};
 `;

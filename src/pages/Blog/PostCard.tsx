@@ -18,7 +18,7 @@ const Card = styled.div`
   padding: 1rem;
   border-radius: 0.5rem;
 
-  background-color: ${({ theme }) => theme.colors.lighterBackground};
+  background-color: var(--color-background-lighter);
 
   & > h1,
   & > a {
@@ -32,7 +32,7 @@ const Card = styled.div`
 
   & > a:hover,
   & > a:focus-visible {
-    text-decoration-color: ${({ theme }) => theme.colors.primary};
+    text-decoration-color: var(--color-primary);
   }
 `;
 
@@ -97,11 +97,11 @@ const Text = styled.div`
     object-fit: cover;
     background: linear-gradient(
       to right,
-      ${({ theme }) => theme.colors.skeletonBackground} 8%,
-      ${({ theme }) => theme.colors.lighterBackground} 18%,
-      ${({ theme }) => theme.colors.skeletonBackground} 33%
+      var(--color-background-skeleton) 8%,
+      var(--color-background-lighter) 18%,
+      var(--color-background-skeleton) 33%
     );
-    background-color: ${({ theme }) => theme.colors.skeletonBackground};
+    background-color: var(--color-background-skeleton);
 
     animation-name: placeholder-shimmer;
     animation-duration: 3s;
@@ -112,7 +112,7 @@ const Text = styled.div`
 `;
 
 const DateComponent = styled.p`
-  color: ${({ theme }) => theme.colors.text.neutral};
+  color: var(--color-text-neutral);
 `;
 
 const Button = styled.button`

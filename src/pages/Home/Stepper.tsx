@@ -17,18 +17,20 @@ const Container = styled.div<{ $image: string }>`
   padding: 2rem;
   border-radius: 3rem;
 
-  background: linear-gradient(#0008, #0008), url('${({ $image }) => $image}');
+  background:
+    linear-gradient(oklch(0 0 0 / 50%), oklch(0 0 0 / 50%)),
+    url('${({ $image }) => $image}');
   background-position: center, center;
   background-size: cover;
 
   transition: all 0.2s ease-in-out;
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     min-height: 31rem;
     max-height: 70vh;
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-template-columns: 1fr;
     min-height: 40rem;
     padding: 1rem;
@@ -43,7 +45,7 @@ const StepNumbers = styled.div`
 
   margin: auto auto 0;
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-column: 1;
   }
 `;
@@ -56,15 +58,15 @@ const StepNumber = styled.p<{ selected: boolean }>`
   padding: 0.5rem 1rem;
   border-radius: 1.5rem;
 
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: var(--color-background);
 
   transition: all 0.2s ease-in-out;
 
-  ${({ selected, theme }) =>
+  ${({ selected }) =>
     selected
       ? `
-        color: ${theme.colors.black};
-        background-color: ${theme.colors.primary};
+        color: var(--color-black);
+        background-color: var(--color-primary);
       `
       : `
         cursor: pointer;

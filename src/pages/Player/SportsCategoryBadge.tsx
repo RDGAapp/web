@@ -25,7 +25,7 @@ const Container = styled.div<{ textColor: string; color: string }>`
   align-items: center;
   justify-content: center;
 
-  color: ${({ theme, color }) => theme.colors[color]};
+  color: ${({ color }) => `var(--color-${color}`};
 
   perspective: 20rem;
   background-color: transparent;
@@ -52,16 +52,16 @@ const Container = styled.div<{ textColor: string; color: string }>`
 
     font-weight: bold;
     line-height: 1;
-    color: ${({ theme, textColor }) => theme.colors[textColor]};
+    color: ${({ textColor }) => `var(--color-text-${textColor})`};
     text-align: center;
     text-transform: uppercase;
   }
 
-  ${({ theme }) => theme.media.tablet} {
+  @media (width <= 1024) {
     grid-column: span 4;
   }
 
-  ${({ theme }) => theme.media.mobile} {
+  @media (width <= 767) {
     grid-column: span 2;
     grid-row: span 1;
     grid-row-start: 2;

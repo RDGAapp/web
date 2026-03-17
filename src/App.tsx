@@ -1,9 +1,8 @@
-import { lazy, useContext, type JSX } from 'react';
+import { lazy, type JSX } from 'react';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import Layout from 'components/Layout';
-import { AppSettingsContext } from 'context/AppSettings';
 import Role from 'enums/roles';
 import routes from 'helpers/routes';
 import ErrorPage from 'pages/Error';
@@ -52,8 +51,6 @@ const Personal = lazy(() => import('components/Personal'));
 const MyProfile = lazy(() => import('pages/MyProfile'));
 
 const App = (): JSX.Element => {
-  const { theme: currentTheme } = useContext(AppSettingsContext);
-
   const router = createBrowserRouter([
     {
       element: <Layout />,
