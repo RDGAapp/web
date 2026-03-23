@@ -12,7 +12,7 @@ import styled from 'styled-components';
 
 import FilterSvg from 'assets/icons/filter.svg?react';
 import SelectSvg from 'assets/icons/select.svg?url';
-import ButtonOutlined from 'components/ButtonOutlined';
+import Button from 'components/Button';
 import OverlayLoader from 'components/OverlayLoader';
 import PageHeader from 'components/PageHeader';
 import Pagination from 'components/Pagination';
@@ -25,84 +25,9 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getPlayers } from 'store/players/thunks';
 import { TTown } from 'types/town';
 
-const Container = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  justify-content: flex-start;
+import styles from './styles.module.css';
 
-  width: calc(100% - 2rem);
-  margin: auto;
-  padding: 0 1rem 2rem;
-
-  list-style: none;
-
-  @media (width <= 1024) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (width <= 767px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const Filters = styled.div`
-  display: flex;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: flex-end;
-
-  @media (width <= 1024) {
-    flex-wrap: nowrap;
-    width: 100%;
-  }
-`;
-
-const Select = styled.select`
-  cursor: pointer;
-
-  width: 13rem;
-  padding: 0.4rem 1rem;
-  border: none;
-  border-radius: 1rem;
-
-  font-size: 1rem;
-  color: var(--color-primary);
-
-  appearance: none;
-  background-color: var(--color-background-lighter);
-  background-image: var(--bg-image);
-  background-repeat: no-repeat;
-  background-position: center right 1rem;
-  background-size: 1rem;
-
-  transition: all 0.2s ease-in-out;
-
-  &:hover,
-  &:focus-visible {
-    color: var(--color-black);
-    background-color: var(--color-primary);
-  }
-`;
-
-const NotFoundContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-const NotFoundText = styled.p`
-  padding: 0.5rem 1rem;
-  font-size: 1.5rem;
-  color: var(color-text-primary);
-  text-align: center;
-`;
-
-const Button = styled.button`
-  ${ButtonOutlined}
+const ButtonStyled = styled(Button)`
   flex-shrink: 0;
   width: 2.5rem;
   height: 2.5rem;
@@ -111,22 +36,6 @@ const Button = styled.button`
   & svg {
     width: 1rem;
   }
-`;
-
-const FiltersBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-`;
-
-const CheckboxContainer = styled.label`
-  cursor: pointer;
-
-  display: flex;
-  gap: 0.2rem;
-  align-items: center;
-
-  height: 2rem;
 `;
 
 const Players = (): JSX.Element => {
@@ -224,31 +133,29 @@ const Players = (): JSX.Element => {
   return (
     <>
       <PageHeader text='Наши игроки'>
-        <Filters ref={filterRef}>
+        <div ref={filterRef} className={styles.filters}>
           <SearchBar
             value={surname}
             placeholder='Введите фамилию'
             onChange={onSurnameInputChange}
             ariaLabel='surname-search'
           />
-          <Button onClick={openFiltersModal}>
+          <ButtonStyled onClick={openFiltersModal}>
             <FilterSvg />
-          </Button>
-        </Filters>
+          </ButtonStyled>
+        </div>
       </PageHeader>
       <OverlayLoader loading={loading}>
         {(players?.pagination.total ?? 0) === 0 && (
-          <NotFoundContainer>
-            <NotFoundText>
-              Игрока с такими параметрами нет в нашей базе
-            </NotFoundText>
-          </NotFoundContainer>
+          <div className={styles['not-found']}>
+            <p>Игрока с такими параметрами нет в нашей базе</p>
+          </div>
         )}
-        <Container>
+        <ul className={styles.players}>
           {players?.data.map((player) => (
             <Card key={player.rdgaNumber} player={player} />
           ))}
-        </Container>
+        </ul>
 
         {players && (
           <Pagination
@@ -259,16 +166,17 @@ const Players = (): JSX.Element => {
         )}
       </OverlayLoader>
       <FiltersDialog>
-        <FiltersBody>
-          <CheckboxContainer>
+        <div className={styles['filters-modal']}>
+          <label className={styles.checkbox}>
             <input
               type='checkbox'
               checked={onlyActive}
               onChange={(event) => setOnlyActive(event.target.checked)}
             />
             Только активные
-          </CheckboxContainer>
-          <Select
+          </label>
+          <select
+            className={styles.select}
             value={town}
             onChange={onSelectTownChange}
             style={{ '--bg-image': `url('${SelectSvg}')` } as CSSProperties}
@@ -279,8 +187,8 @@ const Players = (): JSX.Element => {
                 {town}
               </option>
             ))}
-          </Select>
-        </FiltersBody>
+          </select>
+        </div>
       </FiltersDialog>
     </>
   );

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import ButtonOutlined from './ButtonOutlined';
+import Button from './Button';
 
 const Container = styled.div`
   display: flex;
@@ -12,8 +12,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const PageNumber = styled.button<{ $number?: boolean }>`
-  ${ButtonOutlined}
+const PageNumber = styled(Button)<{ $number?: boolean }>`
   aspect-ratio: 1 / 1;
   font-size: 0.8rem;
 

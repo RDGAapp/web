@@ -3,7 +3,17 @@
   "import": ["@cspell/dict-ru_ru/cspell-ext.json"],
   "language": "en, ru",
   "dictionaries": [],
-  "words": ["clsx", "рдга", "rdga", "pdga", "metrix", "oklch"],
+  "words": [
+    "clsx",
+    "рдга",
+    "rdga",
+    "pdga",
+    "metrix",
+    "oklch",
+    "precaching",
+    "matchmedia",
+    "cherkasik"
+  ],
   "flagWords": [],
   "ignorePaths": [],
   "useGitIgnore": true

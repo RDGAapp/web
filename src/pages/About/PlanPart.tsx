@@ -22,7 +22,7 @@ const Container = styled.div`
 `;
 
 const Text = styled.p<{ $color: string }>`
-  color: ${({ theme, $color }) => theme.colors[$color]};
+  color: var(--color-${({ $color }) => $color});
 `;
 
 interface IPlanPartProps {

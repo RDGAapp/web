@@ -20,13 +20,13 @@ const Container = styled.div`
 
     font-size: 2rem;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.white};
+    color: var(--colors-white);
     text-align: center;
 
-    background-color: hsla(0deg 0% 0% / 70%);
+    background-color: oklch(0 0 0 / 70%);
   }
 
-  @media (width <= 767) {
+  @media (width <= 767px) {
     max-width: 100%;
 
     & p {

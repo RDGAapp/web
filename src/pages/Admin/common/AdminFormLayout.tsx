@@ -11,9 +11,9 @@ import {
 
 import styled from 'styled-components';
 
-import ButtonOutlined from 'components/ButtonOutlined';
 import { Header } from 'components/PageContent';
 
+import Button from 'components/Button';
 import Input from './Input';
 
 const Container = styled.div`
@@ -54,8 +54,7 @@ const Form = styled.form`
   gap: 0.5rem;
 `;
 
-const Button = styled.button`
-  ${ButtonOutlined};
+const ButtonStyled = styled(Button)`
   position: sticky;
   bottom: 0;
   left: 50%;
@@ -217,9 +216,13 @@ const AdminFormLayout = ({
                   />
                 ))}
               </Form>
-              <Button type='submit' form={formIds[index]} disabled={loading}>
+              <ButtonStyled
+                type='submit'
+                form={formIds[index]}
+                disabled={loading}
+              >
                 Отправить
-              </Button>
+              </ButtonStyled>
             </Fragment>
           ))}
         </FormsContainer>

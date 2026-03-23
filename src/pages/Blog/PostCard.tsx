@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Avatar from 'components/Avatar';
-import ButtonOutlined from 'components/ButtonOutlined';
+import Button from 'components/Button';
 import { getDisplayDate } from 'helpers/dateHelpers';
 import routes from 'helpers/routes';
 import { IPost } from 'types/blog';
@@ -113,11 +113,6 @@ const Text = styled.div`
 
 const DateComponent = styled.p`
   color: var(--color-text-neutral);
-`;
-
-const Button = styled.button`
-  ${ButtonOutlined}
-  width: max-content;
 `;
 
 export interface IPostCard {

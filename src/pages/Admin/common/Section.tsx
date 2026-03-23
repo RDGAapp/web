@@ -3,10 +3,10 @@ import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import ButtonOutlined from 'components/ButtonOutlined';
+import clsx from 'clsx';
+import buttonStyles from 'components/Button/styles.module.css';
 
 const CustomSection = styled(Link)`
-  ${ButtonOutlined};
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -21,7 +21,12 @@ const CustomSection = styled(Link)`
 `;
 
 const Section = ({ children, to }: { children: ReactNode; to: string }) => (
-  <CustomSection to={to}>{children}</CustomSection>
+  <CustomSection
+    className={clsx(buttonStyles.button, buttonStyles.outlined)}
+    to={to}
+  >
+    {children}
+  </CustomSection>
 );
 
 export default Section;
